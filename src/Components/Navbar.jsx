@@ -1,18 +1,27 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import useAuth from '../Hooks/useAuth';
 
 const Navbar = () => {
+    const {user,logOut} = useAuth()
 
     const navLinks = <>
                 <li>
                     <NavLink> home </NavLink>
                 </li>
                 <li>
-                    <NavLink> home </NavLink>
+                    <NavLink> all classes </NavLink>
                 </li>
                 <li>
-                    <NavLink to='signUp'> sign up </NavLink>
+                    <NavLink> teach on academix </NavLink>
                 </li>
+                {/* <li>
+                    <NavLink to='/signUp'> sign up </NavLink>
+                </li> */}
+           
+            {/* <button onClick={logOut}>
+                  log out
+            </button> */}
 
     </>
     
@@ -40,22 +49,34 @@ const Navbar = () => {
         </div>
         {/* user profile */}
         <div className="navbar-end">
-        <div className="dropdown dropdown-end">
+
+                    {
+                        user ? 
+                        <>
+                             <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
-          <img
-            alt="Tailwind CSS Navbar component"
-            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+         <img src={user.photoURL} alt="" />
         </div>
       </div>
       <ul
         tabIndex={0}
         class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3  p-2 shadow">
 
-        <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
+        <li> {user.displayName} </li>
+        <li><a>dashboard</a></li>
+        <li>
+            <Link className='btn' onClick={logOut}>Log Out</Link>
+        </li>
       </ul>
     </div>
+                        </> 
+                        : 
+                        <>
+                        <Link className='btn' to='/signIn'>Sign In</Link>
+                        </>
+                    }
+
         </div>
       </div>
     );
