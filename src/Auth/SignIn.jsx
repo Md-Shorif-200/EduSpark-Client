@@ -1,16 +1,20 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from '../Hooks/useAuth';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLogIn from './SocialAuth/SocialLogIn';
 
 const SignIn = () => {
-        const {signIn} = useAuth()
+        const {signIn} = useAuth();
+        const location = useLocation();
+        const navigate = useNavigate();
+
+        const from = location.state?.from?.pathname || '/'
 
         // react hook form
         const {
             register,
-            handleSubmit,
+            handleSubmit, reset,
             formState: { errors },
           } = useForm()
 
@@ -20,6 +24,8 @@ const SignIn = () => {
                 .then(result => {
                      const loggedUser = result.user;
                      console.log(loggedUser);
+                      reset()
+                     navigate(from , {replace : true})
                      
                 })
               
@@ -41,24 +47,24 @@ const SignIn = () => {
 
       {/* user email  */}
                <label className="fieldset-label">Email</label>
-      <input type="email" className="input" placeholder="Enter Your email"  {...register('email',{required : true})} />
+      <input type="email" className="input my-4" placeholder="Enter Your email"  {...register('email',{required : true})} />
       {errors.email && <span className='text-red-500 my-3'>This field is required</span>}
 
                      {/* user email password  */}
                      <label className="fieldset-label">Password</label>
-      <input type="text" className="input" placeholder="Enter Your email"  {...register('password',{required : true})} />
+      <input type="text" className="input my-4" placeholder="Enter Your email"  {...register('password',{required : true})} />
 
-      <button className='btn'>Sign In</button>
+      <button className='btn common_bg_color_1 text-white w-full my-2'>Sign In</button>
 
-                        <p>or </p>
+                        <p className='text-center capitalize my-4'>or sign in with </p>
 
                         <div>
                             <SocialLogIn></SocialLogIn>
                         </div>
 
 
-      <div>
-                  <p> you have no account? please <Link className='' to='/signUp'>Sign Up</Link> </p>
+      <div className='my-3'>
+                  <p>if you have no account? please <Link className='text-red-600' to='/signUp'>Sign Up</Link> </p>
             </div>
 
     </form>

@@ -1,2 +1,21 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+
+
+
+
+/* common color */
+
+
+.common_bg_color_1 {
+    background-color: #292865;
+}
+
+.common_bg_color_2 {
+    background-color: #FFFCF4;
+}
+
+.sign_up input{
+    margin: 15px 0;
+}

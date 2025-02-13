@@ -1,30 +1,38 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../Hooks/useAuth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   // react hook form
   const {
     register,
-    handleSubmit,
+    handleSubmit,reset,
     formState: { errors },
   } = useForm();
 
   // get user data from authProvider
-  const { creatUser,updateProfile } = useAuth();
+  const { creatUser,updateUserProfile } = useAuth();
+  const navigate = useNavigate()
 
   const onSubmit = (data) => {
     creatUser(data.email, data.password)
       .then((result) => {
-          // update Profile
-          const loggedUser = result.user;
-           
-          updateProfile(data.name, data.photoUrl)
+        const loggedUser = result.user;
+        
+        // update Profile
+          updateUserProfile(data.name, data.photoUrl)
           .then(() => {
-                    
+            console.log('user profile updated');
+            
+            reset()
+            navigate('/')  
         })
-        console.log(loggedUser);
+        .catch(err => {
+           console.log(err);
+           
+        })
+         
         
       })
       .catch((err) => {
@@ -35,7 +43,7 @@ const SignUp = () => {
   //   console.log(watch("example")) // watch input value by passing the name of it
 
   return (
-    <div>
+    <div className="sign_up">
       <div className="hero bg-base-200 min-h-screen">
         <div className="hero-content flex-col">
           <div className="text-center lg:text-left mb-4">
@@ -95,12 +103,12 @@ const SignUp = () => {
 
                 {/* sign Up button */}
 
-                <button className="btn">Sign Up</button>
+                <button className="btn w-full common_bg_color_1 text-white my-2 ">Sign Up</button>
 
-                <div>
+                <div className="my-2">
                   <p>
                     already you have an account? please{" "}
-                    <Link className="" to="/signIn">
+                    <Link className="text-green-700" to="/signIn">
                       Sign In
                     </Link>{" "}
                   </p>

@@ -58,9 +58,10 @@ const logOut = () => {
 
 
 // update Profile
-const UpdateProfile = (name,photoUrl) => {
+const updateUserProfile = (name,photoUrl) => {
 return updateProfile(auth.currentUser, {
-    displayName : name, photoURL : photoUrl
+    displayName
+ : name, photoURL : photoUrl
 })
 }
 
@@ -71,7 +72,7 @@ return updateProfile(auth.currentUser, {
             creatUser,
             signIn,
             logOut,
-            updateProfile,
+            updateUserProfile,
             googleSignIn
     }
 
