@@ -64,7 +64,10 @@ const Navbar = () => {
         class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3  p-2 shadow">
 
         <li> {user.displayName} </li>
-        <li><a>dashboard</a></li>
+
+          <li>
+                        <Link className='btn' to='dashboard'>Dashaboard</Link>
+        </li> 
         <li>
             <Link className='btn' onClick={logOut}>Log Out</Link>
         </li>

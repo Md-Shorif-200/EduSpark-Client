@@ -2,6 +2,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../Hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   // react hook form
@@ -13,8 +15,12 @@ const SignUp = () => {
 
   // get user data from authProvider
   const { creatUser,updateUserProfile } = useAuth();
-  const navigate = useNavigate()
 
+  const navigate = useNavigate()
+  const axiosSecure = useAxiosSecure()
+
+
+// form submit functionality
   const onSubmit = (data) => {
     creatUser(data.email, data.password)
       .then((result) => {
@@ -23,10 +29,33 @@ const SignUp = () => {
         // update Profile
           updateUserProfile(data.name, data.photoUrl)
           .then(() => {
-            console.log('user profile updated');
             
-            reset()
-            navigate('/')  
+            const userInfo = {
+              name : data.name,
+              email : data.email,
+              image : data.photoUrl
+            }
+
+            axiosSecure.post('/users', userInfo)
+            .then(result => {
+               const registerdUser = result.data;
+               
+              
+               if(registerdUser.insertedId){
+                toast.success('sign up succesfully');
+                reset()
+                navigate('/') 
+               }
+                
+             
+            })
+
+            .catch(err => {
+               console.log(err);
+               return ;
+            })
+            
+      
         })
         .catch(err => {
            console.log(err);
@@ -40,7 +69,7 @@ const SignUp = () => {
       });
   };
 
-  //   console.log(watch("example")) // watch input value by passing the name of it
+
 
   return (
     <div className="sign_up">
