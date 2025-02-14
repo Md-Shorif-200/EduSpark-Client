@@ -23,8 +23,8 @@ const SocialLogIn = () => {
             }
 
             axiosSecure.post('/users',userInfo)
-            .then(data => {
-                 console.log(data.data);
+            .then(res => {
+                 console.log(res.data);
                  
                  navigate(from , {replace : true})
             })

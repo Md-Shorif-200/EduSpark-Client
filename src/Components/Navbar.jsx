@@ -7,13 +7,13 @@ const Navbar = () => {
 
     const navLinks = <>
                 <li>
-                    <NavLink> home </NavLink>
+                    <NavLink to='/'> home </NavLink>
                 </li>
                 <li>
-                    <NavLink> all classes </NavLink>
+                    <NavLink to='allClasses'> all classes </NavLink>
                 </li>
                 <li>
-                    <NavLink> teach on academix </NavLink>
+                    <NavLink to='/TeachOnApplyForm'> teach on academix </NavLink>
                 </li>
                 {/* <li>
                     <NavLink to='/signUp'> sign up </NavLink>

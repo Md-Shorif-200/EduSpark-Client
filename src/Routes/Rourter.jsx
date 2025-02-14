@@ -9,10 +9,11 @@ import SignIn from "../Auth/SignIn";
 import ErrorPage from "../Components/ErrorPage";
 import Home from "../Pages/Home/Home";
 import DashboardLayout from "../Layout/DashboardLayout";
-import TeacherRequest from "../Pages/AdminDashboard/TeacherRequest";
+
 import Users from "../Pages/AdminDashboard/Users";
 import AllClasses from "../Pages/AdminDashboard/AllClasses";
 import AdminProfile from "../Pages/AdminDashboard/AdminProfile";
+import TeachOnApplyForm from "../Pages/TeachOnApplyForm";
 
 
 
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
          {
           path : 'signIn',
           element : <SignIn></SignIn>
+         },
+         {
+          path : 'TeachOnApplyForm',
+          element : <TeachOnApplyForm></TeachOnApplyForm>
          }
       ]
     },
@@ -43,10 +48,7 @@ const router = createBrowserRouter([
       element : <DashboardLayout></DashboardLayout>,
       errorElement : <ErrorPage></ErrorPage>,
       children  : [
-        {
-          path : 'teacherRequest',
-          element : <TeacherRequest></TeacherRequest>
-        },
+  
         {
           path : 'users',
           element : <Users></Users>

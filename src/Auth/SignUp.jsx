@@ -36,7 +36,7 @@ const SignUp = () => {
               image : data.photoUrl
             }
 
-            axiosSecure.post('/users', userInfo)
+            axiosSecure.post('/users/:email', userInfo)
             .then(result => {
                const registerdUser = result.data;
                

@@ -16,6 +16,23 @@
     background-color: #FFFCF4;
 }
 
+/*  */
+.navbar ul li {
+    margin-left: 15px;
+    }
+.navbar ul li a.active {
+background-color: #292865;
+color: white;
+}
+
 .sign_up input{
     margin: 15px 0;
+}
+.teach_on_apply_form input {
+    margin : 15px 0;
+    width: 100%;
+}
+.teach_on_apply_form select {
+
+    width: 100%;
 }
