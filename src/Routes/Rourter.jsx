@@ -14,6 +14,7 @@ import Users from "../Pages/AdminDashboard/Users";
 import AllClasses from "../Pages/AdminDashboard/AllClasses";
 import AdminProfile from "../Pages/AdminDashboard/AdminProfile";
 import TeachOnApplyForm from "../Pages/TeachOnApplyForm";
+import TeacherRequest from "../Pages/AdminDashboard/TeacherRequest";
 
 
 
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       element : <DashboardLayout></DashboardLayout>,
       errorElement : <ErrorPage></ErrorPage>,
       children  : [
+        {
+            path : 'teacherRequest',
+            element : <TeacherRequest></TeacherRequest>
+        },
   
         {
           path : 'users',

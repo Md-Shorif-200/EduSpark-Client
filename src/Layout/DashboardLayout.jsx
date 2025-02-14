@@ -2,6 +2,9 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 
 const DashboardLayout = () => {
+
+   const user = 'admin'
+
     return (
         <div>
   
@@ -15,12 +18,24 @@ const DashboardLayout = () => {
     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
     <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
      
-            <li> <NavLink to='teacherRequest'> teacher request </NavLink> </li>
+          
+            {
+              user == 'admin' ? 
+              <>
+                   <li> <NavLink to='teacherRequest'> teacher request </NavLink> </li>
             <li> <NavLink to='users'> Users </NavLink> </li>
             <li> <NavLink to='allClasses'> all classes </NavLink> </li>
             <li> <NavLink to='adminProfile'> profile </NavLink> </li>
              <div className='divider'></div>
              <li> <NavLink to='/'> home </NavLink> </li>
+             
+              </>
+              :
+              <>
+              
+              </>
+            }
+          
     </ul>
   </div>
 </div>

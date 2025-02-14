@@ -27,7 +27,9 @@ const handleAdminButton = (user) => {
             console.log(result.data);
              if(result.data.modifiedCount > 0){
 
-                toast.success(`${user.name} is an admin now!`)
+                toast.success(`${user.name} is an admin now!`);
+
+                refetch()
              }
         })
         .catch(err => console.log(err))

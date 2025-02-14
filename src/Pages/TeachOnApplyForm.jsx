@@ -3,6 +3,9 @@ import { useForm } from "react-hook-form";
 
 import { toast } from "react-toastify";
 import useAuth from "../Hooks/useAuth";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const TeachOnApplyForm = () => {
   // react hook form
@@ -12,14 +15,49 @@ const TeachOnApplyForm = () => {
     formState: { errors },
   } = useForm();
 
-  // user data
+
   const {user} = useAuth()
+  const axiosSecure = useAxiosSecure()
+  const navigate = useNavigate()
+
 
   
 
 // form submit functionality
   const onSubmit = (data) => {
+    console.log(data);
   
+    const teacherInfo = {
+      name : data.name,
+      image : data.photoUrl,
+      email : data.email,
+      experience : data.experience,
+      title : data.title,
+      catagory : data.catagory,
+      status : 'pending'
+    }
+
+    // post data to database
+    axiosSecure.post('/teachers', teacherInfo)
+    .then(result => {
+         console.log(result.data);
+
+         if(result.data.insertedId){
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your form succesfully submited",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          // form reset
+          reset();
+            navigate('/')
+         }
+         
+    })
+
+    
   }
   return (
     <div className="teach_on_apply_form">
@@ -39,12 +77,10 @@ const TeachOnApplyForm = () => {
                   type="text"
                   className="input"
                   placeholder="Enter Your Name"
-                  {...register("name", { required: true })}
+                  {...register("name")}
                   value={user?.displayName}
                 />
-                {errors.name && (
-                  <span className="text-red-500 "> name is required</span>
-                )}
+           
 
                 {/* user photo url  */}
                 <label className="fieldset-label">Photo</label>
@@ -52,12 +88,10 @@ const TeachOnApplyForm = () => {
                   type="text"
                   className="input"
                   placeholder="Enter Your Photo Url"
-                  {...register("photoUrl", { required: true })}
+                  {...register("photoUrl")}
                   value={user?.photoURL}
                 />
-                {errors.photoUrl && (
-                  <span className="bg-red-500">This field is required</span>
-                )}
+            
 
                 {/* user email  */}
                 <label className="fieldset-label">Email</label>
@@ -65,19 +99,15 @@ const TeachOnApplyForm = () => {
                   type="email"
                   className="input"
                   placeholder="Enter Your email"
-                  {...register("email", { required: true })}
-                  value={user.email}
+                  {...register("email",)}
+                  value={user?.email}
                 />
-                {errors.email && (
-                  <span className="text-red-500 my-3">
-                    This field is required
-                  </span>
-                )}
+            
 
                 {/* experience with dropdown */}
 <fieldset className="fieldset">
   <legend className="fieldset-legend">Experience</legend>
-  <select defaultValue="mid-level" className="select"{...register('experience',{required : true})} >
+  <select defaultValue="" className="select"{...register('experience',{required : true})} >
     <option disabled={true}></option>
     <option>biginer</option>
     <option>mid-level</option>
@@ -113,7 +143,7 @@ const TeachOnApplyForm = () => {
 
                 <fieldset className="fieldset">
   <legend className="fieldset-legend">catagory</legend>
-  <select defaultValue="web development" className="select"{...register('catagory',{required : true})} >
+  <select defaultValue="" className="select"{...register('catagory',{required : true})} >
     <option disabled={true}></option>
     <option>web development</option>
     <option>grapics design</option>
@@ -124,7 +154,7 @@ const TeachOnApplyForm = () => {
 
 </fieldset>
 
-{errors.experience && (
+{errors.catagory && (
                   <span className="text-red-500 my-3">
                     This field is required
                   </span>
