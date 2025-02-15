@@ -63,7 +63,7 @@ const handleAdminButton = (user) => {
                 <td>{user.name}</td>
                 <td>{user.email}</td>
 
-                 <td>  { user?.role ==  'admin' ? <>admin</> : <><FaUsers></FaUsers></>} </td>
+                 <td>  { user.role ? <>  <p>{user.role}</p> </> : <><FaUsers></FaUsers></>} </td>
             
                 <td>
                    {

@@ -15,6 +15,7 @@ import AllClasses from "../Pages/AdminDashboard/AllClasses";
 import AdminProfile from "../Pages/AdminDashboard/AdminProfile";
 import TeachOnApplyForm from "../Pages/TeachOnApplyForm";
 import TeacherRequest from "../Pages/AdminDashboard/TeacherRequest";
+import AddClass from "../Pages/TeacherDashboard/AddClass";
 
 
 
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
         {
           path : 'adminProfile',
           element :  <AdminProfile></AdminProfile>
+        },
+        {
+          path : 'addClass',
+          element : <AddClass></AddClass>
         }
       ]
   

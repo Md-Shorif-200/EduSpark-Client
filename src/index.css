@@ -20,7 +20,7 @@
 .navbar ul li {
     margin-left: 15px;
     }
-.navbar ul li a.active {
+ ul li a.active {
 background-color: #292865;
 color: white;
 }
@@ -34,5 +34,10 @@ color: white;
 }
 .teach_on_apply_form select {
 
+    width: 100%;
+}
+
+.add_class_form input {
+    margin : 15px 0;
     width: 100%;
 }

@@ -51,7 +51,7 @@ const TeachOnApplyForm = () => {
             timer: 1500
           });
           // form reset
-          reset();
+          reset()
             navigate('/')
          }
          

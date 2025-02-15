@@ -1,12 +1,13 @@
 import React from 'react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import Swal from 'sweetalert2';
 
 const TeacherRequest = () => {
 
     const axiosSecure = useAxiosSecure();
 
-    const {data : teachers = []} = useQuery({
+    const {data : teachers = [], refetch} = useQuery({
         queryKey : ['users'],
         queryFn :  async () => {
              const res = await axiosSecure.get('/teachers')
@@ -21,7 +22,18 @@ const TeacherRequest = () => {
                 .then(result => {
                       const  data = result.data;
                         console.log(data);
-                        
+                        if(data.modifiedCount > 1) {
+                                   Swal.fire({
+                                        position: "top-end",
+                                        icon: "success",
+                                        title: `${teacher.name} is a teacher now!`,
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                      });
+                                      
+                                    //   refetch api 
+                                    refetch()
+                        }
                      
                 })
     }
