@@ -33,7 +33,7 @@ const AllClasses = () => {
     
             {
                 classes.map((singleClass,index) =>
-                    <tr>
+                    <tr key={index}>
                 <th> {index + 1}</th>
                 <td> {singleClass.title} </td>
                 <td> {singleClass.image} </td>

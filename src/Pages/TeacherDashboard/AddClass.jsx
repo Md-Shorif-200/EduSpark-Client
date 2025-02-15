@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const AddClass = () => {
 
@@ -13,7 +14,8 @@ const AddClass = () => {
   } = useForm();
 
   const {user} = useAuth()
-  const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate()
 
   const onSubmit = (data) => {
 
@@ -39,7 +41,8 @@ const AddClass = () => {
                         timer: 1500
                       });
                       // form reset
-                      reset()
+                      reset();
+                      navigate('/dashboard/myClass')
         }
     })
 
