@@ -1,13 +1,40 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useClass from "../../Hooks/useClass";
+import Swal from "sweetalert2";
 
 
 
 const AllClasses = () => {
     const axiosSecure = useAxiosSecure()
 
-    const [classes,refetch] = useClass()
+    const [classes,refetch] = useClass();
+
+
+    const handleApproveBtn = (id) => {
+
+       
+      axiosSecure.patch(`/classes/${id}`)
+      .then(res => {
+             if(res.data.modifiedCount > 1) {
+                                   Swal.fire({
+                                        position: "top-end",
+                                        icon: "success",
+                                        title: ` class is approved now now!`,
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                      });
+                                      
+                                    //   refetch api 
+                                    refetch()
+                        }
+           
+      })
+      .catch(err => {
+        console.log(err);
+        
+      })
+    }
   
 
     return (
@@ -39,7 +66,7 @@ const AllClasses = () => {
                 <td> {singleClass.image} </td>
                 <td> {singleClass.email} </td>
                 <td> {singleClass.description} </td>
-                <td>  <button className="btn">approve</button>  </td>
+                <td>  <button className="btn" onClick={() => handleApproveBtn(singleClass._id)}>approve</button>  </td>
                 <td>  <button className="btn">reject</button>  </td>
                 <td>  <button className="btn">progress</button>  </td>
          

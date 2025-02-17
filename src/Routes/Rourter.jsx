@@ -6,7 +6,7 @@ import MainLayout from "../Layout/MainLayout";
 
 import SignUp from "../Auth/SignUp";
 import SignIn from "../Auth/SignIn";
-import ErrorPage from "../Components/ErrorPage";
+import ErrorPage from "../Common/ErrorPage";
 import Home from "../Pages/Home/Home";
 import DashboardLayout from "../Layout/DashboardLayout";
 
@@ -17,12 +17,16 @@ import TeachOnApplyForm from "../Pages/TeachOnApplyForm";
 import TeacherRequest from "../Pages/AdminDashboard/TeacherRequest";
 import AddClass from "../Pages/TeacherDashboard/AddClass";
 import MyClass from "../Pages/TeacherDashboard/MyClass";
+import MyClassDetailsPage from "../Pages/TeacherDashboard/MyClassDetailsPage";
+import AllClass from "../Pages/Class/AllClass";
+import ClassDetails from "../Pages/Class/ClassDetails";
 
 
 
 
 
 const router = createBrowserRouter([
+  // main layout routers
     {
       path: "/",
       element: <MainLayout></MainLayout>,
@@ -43,9 +47,19 @@ const router = createBrowserRouter([
          {
           path : 'TeachOnApplyForm',
           element : <TeachOnApplyForm></TeachOnApplyForm>
+         },
+         {
+          path : 'allClasses',
+          element : <AllClass></AllClass>
+         },
+         {
+          path : 'classDetails/:id',
+          element : <ClassDetails></ClassDetails>
          }
       ]
     },
+
+    // dashboard routers 
     {
       path : 'dashboard',
       element : <DashboardLayout></DashboardLayout>,
@@ -75,6 +89,11 @@ const router = createBrowserRouter([
         {
           path : 'myClass',
           element : <MyClass></MyClass>
+        },
+        {
+          path : '/dashboard/myClassDetails/:id',
+          element : <MyClassDetailsPage></MyClassDetailsPage>,
+          loader : ({params}) => fetch(`http://localhost:5000/classes/${params.id}`)
         }
       ]
   

@@ -8,7 +8,7 @@ const TeacherRequest = () => {
     const axiosSecure = useAxiosSecure();
 
     const {data : teachers = [], refetch} = useQuery({
-        queryKey : ['users'],
+        queryKey : ['teacher'],
         queryFn :  async () => {
              const res = await axiosSecure.get('/teachers')
               return res.data
@@ -36,6 +36,11 @@ const TeacherRequest = () => {
                         }
                      
                 })
+
+                // axiosSecure.patch(`/users/:${teacher._email}`)
+                // .then(result => {
+                  
+                // })
     }
 
     return (

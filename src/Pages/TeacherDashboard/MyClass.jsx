@@ -1,8 +1,9 @@
 import React from 'react';
-import SectionTitle from '../../Components/SectionTitle';
+import SectionTitle from '../../Common/SectionTitle';
 import useClass from '../../Hooks/useClass';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const MyClass = () => {
               const axiosSecure = useAxiosSecure();
@@ -40,6 +41,9 @@ const MyClass = () => {
                   });
 
             }
+
+            //  details button functionality
+          
     return (
         <div>
 
@@ -66,7 +70,7 @@ const MyClass = () => {
         <button className='btn' onClick={() =>  handleDeleteButton(singleClass)}>delete</button>
 
     <div className="card-actions justify-end">
-      <button className="btn btn-primary">see more </button>
+      <Link to={`/dashboard/myClassDetails/${singleClass._id}`} className="btn btn-primary">see details </Link>
     </div>
   </div>
 </div>
