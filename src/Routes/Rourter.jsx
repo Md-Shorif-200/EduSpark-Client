@@ -20,6 +20,8 @@ import MyClass from "../Pages/TeacherDashboard/MyClass";
 import MyClassDetailsPage from "../Pages/TeacherDashboard/MyClassDetailsPage";
 import AllClass from "../Pages/Class/AllClass";
 import ClassDetails from "../Pages/Class/ClassDetails";
+import StudentProfile from "../Pages/StudentDashboard/StudentProfile";
+import MyEnrollMent from "../Pages/StudentDashboard/MyEnrollMent";
 
 
 
@@ -94,6 +96,14 @@ const router = createBrowserRouter([
           path : '/dashboard/myClassDetails/:id',
           element : <MyClassDetailsPage></MyClassDetailsPage>,
           loader : ({params}) => fetch(`http://localhost:5000/classes/${params.id}`)
+        },
+        {
+          path : 'studentProfile',
+          element : <StudentProfile></StudentProfile>
+        },
+        {
+          path : 'myEnrollMent',
+          element : <MyEnrollMent></MyEnrollMent>
         }
       ]
   

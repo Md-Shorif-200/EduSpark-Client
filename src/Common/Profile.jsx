@@ -1,6 +1,23 @@
-import React from 'react';
+import useAuth from "../Hooks/useAuth";
+import useRole from "../Hooks/useRole";
 
-const Profile = ({userName, email,phone, image, role}) => {
+
+
+const Profile = () => {
+  
+  const {user} = useAuth();
+  const  [role, isLoading] = useRole();
+
+  const userName = user?.displayName;
+  const email = user?.email;
+  const image = user?.photoURL;
+  const phone = '0124698745';
+  const Role = role;
+
+   
+   
+
+
     return (
         <div>
             <div className="hero bg-base-200 min-h-screen">
@@ -9,10 +26,10 @@ const Profile = ({userName, email,phone, image, role}) => {
       src={image}
       class="max-w-sm rounded-lg shadow-2xl" />
     <div>
-      <h1 className="text-5xl font-bold"> {userName} </h1>
-      <h1 className="text-5xl font-bold"> {email} </h1>
-      <h1 className="text-5xl font-bold"> {phone} </h1>
-      <h1 className="text-5xl font-bold"> {role} </h1>
+      <h1 className=""> {userName} </h1>
+      <h1 className=""> {email} </h1>
+      <h1 className=""> {phone} </h1>
+      <h1 className=""> {Role} </h1>
 
     </div>
   </div>

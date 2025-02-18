@@ -7,18 +7,25 @@ const TeacherRequest = () => {
 
     const axiosSecure = useAxiosSecure();
 
-    const {data : teachers = [], refetch} = useQuery({
-        queryKey : ['teacher'],
+    const {data : users = [], refetch} = useQuery({
+        queryKey : ['users'],
         queryFn :  async () => {
-             const res = await axiosSecure.get('/teachers')
+             const res = await axiosSecure.get('/users')
               return res.data
         }
     })
 
-    // approve button functionality
+
+
+    const teachers = users.filter(user => user.status === 'pending')
+     console.log(teachers);
+     
+    
+
+    // manage  teacher request
 
     const handleApproveButton = (teacher) => {
-                axiosSecure.patch(`/teachers/${teacher._id}`)
+                axiosSecure.patch(`/teacher/${teacher._id}`)
                 .then(result => {
                       const  data = result.data;
                         console.log(data);
@@ -37,10 +44,11 @@ const TeacherRequest = () => {
                      
                 })
 
-                // axiosSecure.patch(`/users/:${teacher._email}`)
-                // .then(result => {
+                axiosSecure.patch(`/users/:${teacher._email}`)
+                .then(result => {
+                  console.log(result.data);
                   
-                // })
+                })
     }
 
     return (
@@ -74,9 +82,9 @@ const TeacherRequest = () => {
                             <img src={teacher.image} className='w-[50px] h-[50px] rounded-full' alt="teacher image" />
                         </td>
                         <td>  {teacher.name} </td>
-                        <td>  {teacher.title} </td>
-                        <td>  {teacher.catagory} </td>
-                        <td>  {teacher.experience} </td>
+                        <td>  {teacher.skills.title} </td>
+                        <td>  {teacher.skills.catagory} </td>
+                        <td>  {teacher.skills.experience} </td>
                         <td>  {teacher.status} </td>
                         <td>  
                             <button className='btn' onClick={() => handleApproveButton(teacher)}> approve </button> 

@@ -5,12 +5,15 @@ import { FaUsers } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import useRole from "../../Hooks/useRole";
 
 const Users = () => {
    
   const axiosSecure = useAxiosSecure();
-
-  // get data from database using tanstak query
+  const [role, isLoading] = useRole();
+   console.log(role);
+   
+  // get data from database userCollection 
   const { data: users = [] , refetch} = useQuery({
     queryKey: ["users"],
     queryFn: async () => {

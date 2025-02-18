@@ -27,35 +27,48 @@ const TeachOnApplyForm = () => {
   const onSubmit = (data) => {
     console.log(data);
   
-    const teacherInfo = {
-      name : data.name,
-      image : data.photoUrl,
-      email : data.email,
+    const skills = {
+      // name : data.name,
+      // image : data.photoUrl,
+      // email : data.email,
       experience : data.experience,
       title : data.title,
       catagory : data.catagory,
-      status : 'pending'
+      // status : 'pending'
     }
 
     // post data to database
-    axiosSecure.post('/teachers', teacherInfo)
-    .then(result => {
-         console.log(result.data);
+    // axiosSecure.post('/teachers', teacherInfo)
+    // .then(result => {
+    //      console.log(result.data);
 
-         if(result.data.insertedId){
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Your form succesfully submited",
-            showConfirmButton: false,
-            timer: 1500
-          });
-          // form reset
-          reset()
-            navigate('/')
-         }
+    //      if(result.data.insertedId){
+    //       Swal.fire({
+    //         position: "top-end",
+    //         icon: "success",
+    //         title: "Your form succesfully submited",
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //       });
+    //       // form reset
+    //       reset()
+    //         navigate('/')
+    //      }
          
-    })
+    // })
+
+          try{
+            axiosSecure.patch(`/users/${user.email}`,skills)
+            .then(result => {
+               console.log(  ' your request accepted', result.data);
+               reset()
+                       navigate('/')
+               
+            })
+          }catch(error){
+             console.log(error);
+             
+          }
 
     
   }
