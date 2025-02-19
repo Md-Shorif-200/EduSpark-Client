@@ -23,6 +23,8 @@ import ClassDetails from "../Pages/Class/ClassDetails";
 import StudentProfile from "../Pages/StudentDashboard/StudentProfile";
 import MyEnrollMent from "../Pages/StudentDashboard/MyEnrollMent";
 import TeachOnPage from "../Pages/TeachOn/TeachOnPage";
+import PrivateRoute from "./PrivateRoute";
+import TeacherProfile from "../Pages/TeacherDashboard/TeacherProfile";
 
 
 
@@ -49,7 +51,9 @@ const router = createBrowserRouter([
          },
          {
           path : 'TeachOn',
-          element : <TeachOnPage></TeachOnPage>
+          element : <PrivateRoute>
+             <TeachOnPage></TeachOnPage>
+          </PrivateRoute>
          },
          {
           path : 'allClasses',
@@ -88,6 +92,10 @@ const router = createBrowserRouter([
         {
           path : 'addClass',
           element : <AddClass></AddClass>
+        },
+        {
+           path : 'teacherProfile',
+           element : <TeacherProfile></TeacherProfile>
         },
         {
           path : 'myClass',

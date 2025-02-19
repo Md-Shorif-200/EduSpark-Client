@@ -6,13 +6,14 @@ import useRole from "../Hooks/useRole";
 const Profile = () => {
   
   const {user} = useAuth();
-  const  [role, isLoading] = useRole();
-
+  const  [data, isLoading] = useRole();
+  
   const userName = user?.displayName;
   const email = user?.email;
   const image = user?.photoURL;
   const phone = '0124698745';
-  const Role = role;
+  const role = data.role
+
 
    
    
@@ -29,7 +30,7 @@ const Profile = () => {
       <h1 className=""> {userName} </h1>
       <h1 className=""> {email} </h1>
       <h1 className=""> {phone} </h1>
-      <h1 className=""> {Role} </h1>
+      <h1 className=""> {role} </h1>
 
     </div>
   </div>

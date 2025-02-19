@@ -13,7 +13,7 @@ const Users = () => {
   const [role, isLoading] = useRole();
    console.log(role);
    
-  // get data from database userCollection 
+  // get user data from database userCollection 
   const { data: users = [] , refetch} = useQuery({
     queryKey: ["users"],
     queryFn: async () => {

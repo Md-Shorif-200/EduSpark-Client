@@ -1,33 +1,34 @@
-import React from 'react';
-import TeachOnApplyForm from './TeachOnApplyForm';
+
+
+import Loading from '../../Common/Loading';
 import useRole from '../../Hooks/useRole';
-import TeacherStatusMeassage from './TeacherStatusMeassage';
+import RejectionMeassage from './RejectionMeassage';
+
+
+
+import TeacherConfirmation from './TeacherConfirmation';
 
 const TeachOnPage = () => {
-                    const [role,isLoading] = useRole();
-                     console.log(role);
-                     
-    return (
-        <div>
-            
 
-                    {
-                        role === 'teacher' ? 
-                        <>
-                        <TeacherStatusMeassage></TeacherStatusMeassage>
-                        </> 
-                        :
-                          <>
-                 <TeachOnApplyForm></TeachOnApplyForm>
-                          
-                          </>
-                    }
+    const [data,isLoading] = useRole();
+    const status = data?.status;
+
+    if(isLoading){
+         return <Loading></Loading>
+    }
+    
+
+    
+
+       return (
+           <div>
+
+             {status === 'accepted' &&  <TeacherConfirmation></TeacherConfirmation>}
+                  {status === 'rejected' &&  <RejectionMeassage></RejectionMeassage>}
+           </div>
+       )
 
 
-         
-
-        </div>
-    );
-};
+}
 
 export default TeachOnPage;

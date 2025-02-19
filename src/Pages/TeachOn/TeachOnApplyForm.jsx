@@ -6,8 +6,12 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import useRole from "../../Hooks/useRole";
+import Loading from "../../Common/Loading";
 
 const TeachOnApplyForm = () => {
+
+   
   // react hook form
   const {
     register,

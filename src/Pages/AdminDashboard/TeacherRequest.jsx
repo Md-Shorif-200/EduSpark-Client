@@ -3,13 +3,14 @@ import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
+import Loading from '../../Common/Loading';
 
 
 const TeacherRequest = () => {
 
     const axiosSecure = useAxiosSecure();
 
-    const {data : users = [], refetch} = useQuery({
+    const {data : users = [], isLoading, refetch} = useQuery({
         queryKey : ['users'],
         queryFn :  async () => {
              const res = await axiosSecure.get('/users')
@@ -17,9 +18,13 @@ const TeacherRequest = () => {
         }
     })
 
+    if(isLoading){
+      return <Loading></Loading>
+    }
 
 
-    const teachers = users.filter(user => user.status === 'pending' || user.status === 'accepted')
+// filter teachers by status
+    const teachers = users.filter(user => user.status === 'pending' || user.status === 'accepted' || user.status ===  'rejected')
      console.log(teachers);
      
     
@@ -28,11 +33,11 @@ const TeacherRequest = () => {
 
     const handleApproveButton = (teacher) => {
               
-              console.log(teacher);
-              
+  
+        
 
                 try{
-                  axiosSecure.patch(`/users/teacher/${teacher.email}`)
+                  axiosSecure.patch(`/users/teacher/confirm/${teacher.email}`)
                   .then(result => {
                      
                     console.log(result.data);
@@ -52,6 +57,27 @@ const TeacherRequest = () => {
 
     }
 
+    // reject techer request 
+    const handleRejectButton = (teacher) => {
+      try{
+        axiosSecure.patch(`/users/teacher/reject/${teacher.email}`)
+        .then(result => {
+           
+          console.log(result.data);
+          if(result.data.modifiedCount > 0){
+            toast.success(`reject succesfully`)
+              refetch()
+          }else{
+            toast.warning(`something is wrong`)
+          }
+          
+        })
+
+      }catch(error) {
+          console.log(error);
+          
+      }
+    }
     return (
            <div>
              <div className="my-4"> total request {teachers.length} :</div>
@@ -91,7 +117,7 @@ const TeacherRequest = () => {
                             <button className='btn' onClick={() => handleApproveButton(teacher)}> approve </button> 
                         </td>
                         <td>  
-                            <button className='btn'> reject </button> 
+                            <button className='btn' onClick={() => handleRejectButton(teacher)}> reject </button> 
                         </td>
                      
                        
