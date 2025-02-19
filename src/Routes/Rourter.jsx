@@ -13,7 +13,7 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import Users from "../Pages/AdminDashboard/Users";
 import AllClasses from "../Pages/AdminDashboard/AllClasses";
 import AdminProfile from "../Pages/AdminDashboard/AdminProfile";
-import TeachOnApplyForm from "../Pages/TeachOnApplyForm";
+
 import TeacherRequest from "../Pages/AdminDashboard/TeacherRequest";
 import AddClass from "../Pages/TeacherDashboard/AddClass";
 import MyClass from "../Pages/TeacherDashboard/MyClass";
@@ -22,6 +22,7 @@ import AllClass from "../Pages/Class/AllClass";
 import ClassDetails from "../Pages/Class/ClassDetails";
 import StudentProfile from "../Pages/StudentDashboard/StudentProfile";
 import MyEnrollMent from "../Pages/StudentDashboard/MyEnrollMent";
+import TeachOnPage from "../Pages/TeachOn/TeachOnPage";
 
 
 
@@ -47,8 +48,8 @@ const router = createBrowserRouter([
           element : <SignIn></SignIn>
          },
          {
-          path : 'TeachOnApplyForm',
-          element : <TeachOnApplyForm></TeachOnApplyForm>
+          path : 'TeachOn',
+          element : <TeachOnPage></TeachOnPage>
          },
          {
           path : 'allClasses',

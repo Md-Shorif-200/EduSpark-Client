@@ -2,8 +2,8 @@
 import { useForm } from "react-hook-form";
 
 import { toast } from "react-toastify";
-import useAuth from "../Hooks/useAuth";
-import useAxiosSecure from "../Hooks/useAxiosSecure";
+import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
@@ -60,9 +60,18 @@ const TeachOnApplyForm = () => {
           try{
             axiosSecure.patch(`/users/${user.email}`,skills)
             .then(result => {
-               console.log(  ' your request accepted', result.data);
-               reset()
-                       navigate('/')
+              
+              if(result.data.insertedId){
+                      Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your form succesfully submited",
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                      reset()
+                      navigate('/')
+                    }
                
             })
           }catch(error){

@@ -2,6 +2,8 @@ import React from 'react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
+
 
 const TeacherRequest = () => {
 
@@ -17,7 +19,7 @@ const TeacherRequest = () => {
 
 
 
-    const teachers = users.filter(user => user.status === 'pending')
+    const teachers = users.filter(user => user.status === 'pending' || user.status === 'accepted')
      console.log(teachers);
      
     
@@ -25,30 +27,29 @@ const TeacherRequest = () => {
     // manage  teacher request
 
     const handleApproveButton = (teacher) => {
-                axiosSecure.patch(`/teacher/${teacher._id}`)
-                .then(result => {
-                      const  data = result.data;
-                        console.log(data);
-                        if(data.modifiedCount > 1) {
-                                   Swal.fire({
-                                        position: "top-end",
-                                        icon: "success",
-                                        title: `${teacher.name} is a teacher now!`,
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                      });
-                                      
-                                    //   refetch api 
-                                    refetch()
-                        }
-                     
-                })
+              
+              console.log(teacher);
+              
 
-                axiosSecure.patch(`/users/:${teacher._email}`)
-                .then(result => {
-                  console.log(result.data);
-                  
-                })
+                try{
+                  axiosSecure.patch(`/users/teacher/${teacher.email}`)
+                  .then(result => {
+                     
+                    console.log(result.data);
+                    if(result.data.modifiedCount > 0){
+                      toast.success(`${teacher.name} is a teacher now!`)
+                        refetch()
+                    }else{
+                      toast.warning(`${teacher.name} is already a teacher`)
+                    }
+                    
+                  })
+
+                }catch(error) {
+                    console.log(error);
+                    
+                }
+
     }
 
     return (

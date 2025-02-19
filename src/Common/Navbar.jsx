@@ -13,7 +13,7 @@ const Navbar = () => {
                     <NavLink to='allClasses'> all classes </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/TeachOnApplyForm'> teach on academix </NavLink>
+                    <NavLink to='/TeachOn'> teach on academix </NavLink>
                 </li>
                 {/* <li>
                     <NavLink to='/signUp'> sign up </NavLink>
