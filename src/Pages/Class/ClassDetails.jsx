@@ -1,40 +1,12 @@
-import React, { useEffect } from 'react';
+
 import { Link, useLoaderData, useParams } from 'react-router-dom';
-import useAxiosSecure from '../../Hooks/useAxiosSecure';
+
 
 
 const ClassDetails = () => {
      const classData = useLoaderData()
 
-     
-     
-    //  const id = useParams();
-    //   console.log(id);
-      
-    //   const axiosSecure = useAxiosSecure();
-
-    // //  const {data} = useQuery({
-    // //     queryKey : ['data'],
-    // //     queryFn : async () => {
-    // //          const res = await axiosSecure.get(`/classes/${id}`);
-    // //          return res.data
-    // //     }
-    // //  })
-
-    // try{
-    //         axiosSecure.get(`/classes/${id}`)
-    //         .then(result => {
-                
-        //              console.log(result);
-        
-        //         })
-        // }catch(error){
-            //         console.log(error);
-            
-            // }
-            
-            
-            
+  
             
             const {title, name, email ,price, description, image,status} = classData;
 
@@ -59,7 +31,7 @@ const ClassDetails = () => {
         <p> {description}</p>
        </div>
       
-      <Link to='payment' className="btn btn-primary my-4">pay</Link>
+      <Link to='/payment' className="btn btn-primary my-4">pay</Link>
     </div>
   </div>
 </div>

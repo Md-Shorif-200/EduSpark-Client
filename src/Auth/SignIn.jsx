@@ -64,7 +64,7 @@ const SignIn = () => {
 
 
       <div className='my-3'>
-                  <p>if you have no account? please <Link className='text-red-600' to='/signUp'>Sign Up</Link> </p>
+                  <p> new to academix <Link className='text-red-600' to='/signUp'>creat account</Link> </p>
             </div>
 
     </form>
