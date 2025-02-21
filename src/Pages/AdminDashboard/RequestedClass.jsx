@@ -2,38 +2,79 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useClass from "../../Hooks/useClass";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
+import { useState } from "react";
+import Loading from "../../Common/Loading";
 
 
 
-const AllClasses = () => {
+
+const RequestedClass = () => {
     const axiosSecure = useAxiosSecure()
 
-    const [classes,refetch] = useClass();
+    const [classes,refetch,isLoading] = useClass();
+    const [disabled , setDisabled] = useState(true);
 
+    if(isLoading){
+      return <Loading></Loading>
+    }
 
+// approve class request
     const handleApproveBtn = (id) => {
 
        
-      axiosSecure.patch(`/classes/${id}`)
-      .then(res => {
-             if(res.data.modifiedCount > 1) {
+      axiosSecure.patch(`/classes/approve/${id}`)
+      .then(result => {
+          console.log(result.data);
+          
+             if(result.data.modifiedCount > 0) {
                                    Swal.fire({
                                         position: "top-end",
                                         icon: "success",
-                                        title: ` class is approved now now!`,
+                                        title: ` class is approved  now!`,
                                         showConfirmButton: false,
                                         timer: 1500
                                       });
                                       
+                                      setDisabled(false)
                                     //   refetch api 
                                     refetch()
+                        }else if( result.data.modifiedCount === 0 && result.data.matchedCount === 1){
+
+                          toast.error('class is already approved')
                         }
+                       
+                        
+
            
       })
       .catch(err => {
         console.log(err);
         
       })
+    }
+// reject class request
+    const handleRejectBtn = (id) => {
+
+       
+     try{
+      axiosSecure.patch(`/classes/reject/${id}`)
+      .then(result => {
+         console.log(result.data);
+         
+         if(result.data.modifiedCount > 1){
+           toast.success('class is reject');
+           setDisabled(true)
+          //  refetch
+          refetch();
+         }
+      } )
+
+     }catch(error){
+      console.log(error);
+      
+     }
+      
     }
   
 
@@ -67,9 +108,20 @@ const AllClasses = () => {
                 <td> {singleClass.email} </td>
                 <td> {singleClass.description} </td>
                 <td>  <button className="btn" onClick={() => handleApproveBtn(singleClass._id)}>approve</button>  </td>
-                <td>  <button className="btn">reject</button>  </td>
-                <td>  <button className="btn">progress</button>  </td>
+                <td>  <button className="btn" onClick={() =>  handleRejectBtn(singleClass._id)}>reject</button>  </td>
+                   <td>
+                   {
+                      disabled ? 
+                      <>
+                 <button className="btn" disabled>progress</button>  
+                      
+                      </>   : 
+                      <>
+                      <button className="btn">progess</button>
+                      </>
+                    }
          
+                   </td>
               </tr>)
             }
        
@@ -80,4 +132,4 @@ const AllClasses = () => {
     );
 };
 
-export default AllClasses;
+export default RequestedClass;

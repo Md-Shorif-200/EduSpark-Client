@@ -3,14 +3,14 @@ import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../Hooks/useAuth';
 
 const Navbar = () => {
-    const {user,logOut} = useAuth()
+    const {user,logOut} = useAuth();
 
     const navLinks = <>
                 <li>
                     <NavLink to='/'> home </NavLink>
                 </li>
                 <li>
-                    <NavLink to='allClasses'> all classes </NavLink>
+                    <NavLink to='allClass'> all classes </NavLink>
                 </li>
                 <li>
                     <NavLink to='/TeachOn'> teach on academix </NavLink>

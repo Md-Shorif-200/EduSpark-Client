@@ -11,7 +11,8 @@ import Home from "../Pages/Home/Home";
 import DashboardLayout from "../Layout/DashboardLayout";
 
 import Users from "../Pages/AdminDashboard/Users";
-import AllClasses from "../Pages/AdminDashboard/AllClasses";
+import RequestedClass from "../Pages/AdminDashboard/RequestedClass";
+// import AllClasses from "../Pages/AdminDashboard/AllClasses";
 import AdminProfile from "../Pages/AdminDashboard/AdminProfile";
 
 import TeacherRequest from "../Pages/AdminDashboard/TeacherRequest";
@@ -25,6 +26,7 @@ import MyEnrollMent from "../Pages/StudentDashboard/MyEnrollMent";
 import TeachOnPage from "../Pages/TeachOn/TeachOnPage";
 import PrivateRoute from "./PrivateRoute";
 import TeacherProfile from "../Pages/TeacherDashboard/TeacherProfile";
+import Payment from "../Pages/Payment/Payment";
 
 
 
@@ -56,12 +58,17 @@ const router = createBrowserRouter([
           </PrivateRoute>
          },
          {
-          path : 'allClasses',
+          path : 'allClass',
           element : <AllClass></AllClass>
          },
          {
-          path : 'classDetails/:id',
-          element : <ClassDetails></ClassDetails>
+          path : 'allClass/classDetails/:id',
+          element : <ClassDetails></ClassDetails>,
+          loader : ({params}) => fetch(`http://localhost:5000/classes/${params.id}`)
+         },
+         {
+          path : 'payment',
+          element : <Payment></Payment>
          }
       ]
     },
@@ -82,8 +89,8 @@ const router = createBrowserRouter([
           element : <Users></Users>
         },
         {
-          path : 'allClasses',
-          element : <AllClasses></AllClasses>
+          path : 'RequestedClass',
+          element : <RequestedClass></RequestedClass>
         },
         {
           path : 'adminProfile',

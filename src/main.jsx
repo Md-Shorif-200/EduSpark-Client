@@ -8,11 +8,12 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import router from './Routes/Rourter.jsx';
+
 import AuthProvider from './Context/AuthProvider.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 // import { Toaster } from 'react-hot-toast';
 import { ToastContainer } from 'react-toastify';
+import router from './Routes/Router.jsx';
 
 const queryClient = new QueryClient()
 

@@ -27,12 +27,12 @@ const SocialLogIn = () => {
             .then(res => {
                  console.log(res.data);
                  
-                 navigate(from , {replace : true})
-            })
-            .catch(err => {
-                console.log(err);
-                
-            })
+                })
+                .catch(err => {
+                    console.log(err);
+                    
+                })
+                navigate(from , {replace : true})
 
 
         })

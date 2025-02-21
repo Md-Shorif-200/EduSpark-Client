@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
@@ -9,6 +9,7 @@ import Loading from '../../Common/Loading';
 const TeacherRequest = () => {
 
     const axiosSecure = useAxiosSecure();
+    const [disabled , setDisabled] = useState(false)
 
     const {data : users = [], isLoading, refetch} = useQuery({
         queryKey : ['users'],
@@ -66,7 +67,8 @@ const TeacherRequest = () => {
           console.log(result.data);
           if(result.data.modifiedCount > 0){
             toast.success(`reject succesfully`)
-              refetch()
+              refetch();
+
           }else{
             toast.warning(`something is wrong`)
           }
@@ -77,6 +79,12 @@ const TeacherRequest = () => {
           console.log(error);
           
       }
+    }
+
+    // manage reject button
+
+    const rejectionMessage = () => {
+      toast.error(  ` teacher was rejected `)
     }
     return (
            <div>
@@ -113,12 +121,35 @@ const TeacherRequest = () => {
                         <td>  {teacher.skills.catagory} </td>
                         <td>  {teacher.skills.experience} </td>
                         <td>  {teacher.status} </td>
+                        {/* approve button */}
                         <td>  
-                            <button className='btn' onClick={() => handleApproveButton(teacher)}> approve </button> 
+
+                          {
+                            teacher.status === 'rejected' 
+                            ?
+                             <><button onClick={rejectionMessage} className='btn bg-gray-400'>approve</button></> 
+                            :
+                            <> <button className = 'btn' onClick={() => handleApproveButton(teacher)}> approve </button>  </>
+                          }
+
                         </td>
-                        <td>  
-                            <button className='btn' onClick={() => handleRejectButton(teacher)}> reject </button> 
-                        </td>
+
+                              {/* reject button */}
+
+                              <td>  
+
+{
+  teacher.status === 'rejected' 
+  ?
+   <><button onClick={rejectionMessage} className='btn bg-gray-400'>reject</button></> 
+  :
+  <>    <button className='btn' onClick={() => handleRejectButton(teacher)}> reject </button>   </>
+}
+
+</td>
+
+
+                       
                      
                        
        

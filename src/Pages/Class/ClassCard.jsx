@@ -19,7 +19,7 @@ const ClassCard = ({approvedClass}) => {
     <h1> {description} </h1>
     <h1> total Enrollment  </h1>
     <div className="card-actions justify-end">
-      <Link to={`/classDetails/${_id}`} className="btn" >Enroll </Link>
+      <Link to={`/allClass/classDetails/${_id}`} className="btn" >Enroll </Link>
     </div>
   </div>
 </div>
