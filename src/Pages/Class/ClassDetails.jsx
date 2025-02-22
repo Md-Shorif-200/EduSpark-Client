@@ -8,7 +8,7 @@ const ClassDetails = () => {
 
   
             
-            const {title, name, email ,price, description, image,status} = classData;
+            const {_id,title, name, email ,price, description, image,status} = classData;
 
 
     return (
@@ -31,7 +31,7 @@ const ClassDetails = () => {
         <p> {description}</p>
        </div>
       
-      <Link to='/payment' className="btn btn-primary my-4">pay</Link>
+      <Link to={`/payment/${_id}`} className="btn btn-primary my-4">pay</Link>
     </div>
   </div>
 </div>
