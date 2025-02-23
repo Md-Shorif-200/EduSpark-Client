@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const EnrollmentCard = ({myPayment}) => {
-     const {courseTitle,TeacherName,courseBanner} = myPayment
+     const {_id,courseTitle,TeacherName,courseBanner} = myPayment
     return (
         <div>
             <div className="card bg-base-100 w-full shadow-sm">
@@ -15,7 +16,7 @@ const EnrollmentCard = ({myPayment}) => {
     <h1 className='text-xl  my-2'>   Teacher  Name : {TeacherName} </h1>
     
     <div className="card-actions justify-end">
-      <button className="btn common_bg_color_1 text-white w-full">continue</button>
+      <Link to='/dashboard/myEnrollMent/enrollmentDetails' className="btn common_bg_color_1 text-white w-full">continue</Link>
     </div>
   </div>
 </div>

@@ -103,7 +103,7 @@ const AddClass = () => {
                  {/* price */}
                  <label className="fieldset-label">price</label>
                 <input
-                  type="text"
+                  type="number"
                   className="input"
                   placeholder="Enter course price"
                   {...register("price",{required : true})}

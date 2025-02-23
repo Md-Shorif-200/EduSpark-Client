@@ -27,6 +27,7 @@ import TeachOnPage from "../Pages/TeachOn/TeachOnPage";
 import PrivateRoute from "./PrivateRoute";
 import TeacherProfile from "../Pages/TeacherDashboard/TeacherProfile";
 import Payment from "../Pages/Payment/Payment";
+import EnrollmentDetails from "../Pages/StudentDashboard/EnrollmentDetails";
 
 
 
@@ -122,6 +123,10 @@ const router = createBrowserRouter([
         {
           path : 'myEnrollMent',
           element : <MyEnrollMent></MyEnrollMent>
+        },
+        {
+          path : '/dashboard/myEnrollMent/enrollmentDetails',
+          element : <EnrollmentDetails></EnrollmentDetails>
         }
       ]
   

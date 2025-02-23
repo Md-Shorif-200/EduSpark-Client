@@ -1,0 +1,79 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import ClassUpdateModal from './ClassUpdateModal';
+
+const MyClassCard = ({singleClass}) => {
+
+    const {title, name, email, price ,description, image ,status } = singleClass;
+
+
+    
+            //  delete fuctionality
+            const handleDeleteButton = (singleClass) => {
+                
+
+
+                Swal.fire({
+                 title: "Are you sure?",
+                 text: "You won't be able to revert this!",
+                 icon: "warning",
+                 showCancelButton: true,
+                 confirmButtonColor: "#3085d6",
+                 cancelButtonColor: "#d33",
+                 confirmButtonText: "Yes, delete it!"
+               }).then((result) => {
+                 if (result.isConfirmed) {
+
+                   axiosSecure.delete(`/classes/${singleClass._id}`)
+                   .then(result => {
+                         if(result.data.deletedCount > 0){
+                           Swal.fire({
+                             title: "Deleted!",
+                             text: "Your file has been deleted.",
+                             icon: "success"
+                           });
+                               refetch()
+                         }
+                   })
+
+                 }
+               });
+
+         }
+
+    return (
+        <div>
+              <div className="card bg-base-100 w-full shadow-sm">
+  <figure>
+    <img className='w-full h-[180px]'
+      src={image}
+      alt="class image" />
+  </figure>
+  <div className="card-body p-4 capitalize">
+    <h2 className="card-title"> {title} </h2>
+    <div className="card_cnt">
+    <h2 className="font-semibold  text-md my-2"> name :  <span className='text-gray-700'>{name}</span> </h2>
+    <h2 className="font-semibold  text-md my-2"> email : <span className='text-gray-700'>{email} </span> </h2>
+    <h2 className="font-semibold  text-md my-2"> course fee  :<span className='text-gray-700'>{price} </span> </h2>
+    <h2 className="font-semibold  text-md my-2"> description : <span className='text-gray-700'>{description} </span> </h2>
+    <h2 className="font-semibold  text-md my-2"> status  :<span className='text-gray-700'>{status} </span> </h2>
+    </div>
+     
+       <div className="action_btn w-full flex justify-between ">
+        
+       <button className=''> <ClassUpdateModal title={title} image = {image} description={description} price={price}></ClassUpdateModal></button>
+        <button className='btn' onClick={() =>  handleDeleteButton(singleClass)}>delete</button>
+      <Link to={`/dashboard/myClassDetails/${singleClass._id}`} className="btn common_bg_color_1 text-white">see details </Link>
+       </div>
+
+      
+
+
+  </div>
+</div>
+        </div>
+    );
+};
+
+export default MyClassCard;
