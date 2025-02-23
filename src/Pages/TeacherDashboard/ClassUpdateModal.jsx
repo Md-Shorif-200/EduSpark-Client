@@ -2,23 +2,57 @@
 import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { useState } from 'react'
 import React from 'react';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import { toast } from 'react-toastify';
 
-const ClassUpdateModal = ({title, image ,description ,price}) => {
-    let [isOpen, setIsOpen] = useState(false)
+const ClassUpdateModal = ({refetch,id,title, image ,description ,price}) => {
+   
+   
+    let [isOpen, setIsOpen] = useState(false);
+    const axiosSecure = useAxiosSecure()
 
     function open() {
       setIsOpen(true)
     }
   
-    function close() {
-      setIsOpen(false)
-    }
-  
-
+    
+    // get updated data
     const [Title,setTitle]= useState(title);
-    const [coursePhoto,setCoursePhoto]= useState(title);
+    const [coursePhoto,setCoursePhoto]= useState(image);
     const [courseFee,setCourseFee]= useState(price);
     const [courseDescription,setCourseDescription]= useState(description);
+    
+  
+  const classUpdateData = {
+           title : Title,
+           image : coursePhoto,
+           price : courseFee,
+           description : courseDescription
+    }
+   
+    function close() {
+      try{
+        axiosSecure.patch(`/classes/update/${id}`,classUpdateData)
+        .then(result => {
+           console.log(result.data);
+              if(result.data.modifiedCount > 0){
+                  toast.success('update successfull');
+                  // call refetch
+                  refetch();
+                  setIsOpen(false)
+              }
+            
+        })
+            
+      }catch(error){
+         console.log(error);
+         
+      }finally{
+        
+        setIsOpen(false)
+      }
+    }
+    
     
 
     return (
@@ -42,7 +76,7 @@ const ClassUpdateModal = ({title, image ,description ,price}) => {
             <div className="flex  items-center justify-center p-4">
               <DialogPanel
                 transition
-                className="w-full max-w-lg rounded-xl bg-white/5 p-6  duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
+                className="w-full  rounded-xl max-w-xl p-14  duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
               >
                       {/* className="w-full max-w-md rounded-xl bg-white/5 p-6 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0" */}
 

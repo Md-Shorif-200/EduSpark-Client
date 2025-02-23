@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import ClassUpdateModal from './ClassUpdateModal';
 
-const MyClassCard = ({singleClass}) => {
+const MyClassCard = ({refetch,singleClass}) => {
 
-    const {title, name, email, price ,description, image ,status } = singleClass;
+    const {_id,title, name, email, price ,description, image ,status } = singleClass;
 
 
     
@@ -62,7 +62,7 @@ const MyClassCard = ({singleClass}) => {
      
        <div className="action_btn w-full flex justify-between ">
         
-       <button className=''> <ClassUpdateModal title={title} image = {image} description={description} price={price}></ClassUpdateModal></button>
+       <button className=''> <ClassUpdateModal refetch={refetch} id={_id} title={title} image = {image} description={description} price={price}></ClassUpdateModal></button>
         <button className='btn' onClick={() =>  handleDeleteButton(singleClass)}>delete</button>
       <Link to={`/dashboard/myClassDetails/${singleClass._id}`} className="btn common_bg_color_1 text-white">see details </Link>
        </div>

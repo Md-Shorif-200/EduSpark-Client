@@ -23,7 +23,7 @@ const MyClass = () => {
                     {
                         myClasses.map((singleClass,index) => 
 
-                                  <MyClassCard key={index} singleClass={singleClass}></MyClassCard>
+                                  <MyClassCard key={index} refetch={refetch} singleClass={singleClass}></MyClassCard>
                           
                         )
                     }
