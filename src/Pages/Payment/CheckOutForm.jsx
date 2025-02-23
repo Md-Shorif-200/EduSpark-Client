@@ -24,21 +24,23 @@ const CheckOutForm = () => {
 
   
 const classData = useLoaderData()
-const {_id,title, name, email ,price, description, image,status} = classData;
+const {_id,title, name ,price,image} = classData;
 const totalPrice = price;
 
-
+// send payment data to server
   useEffect(() => {
-       axiosSecure.post('/creat-payment-intent',{courseFee : totalPrice})
-       .then(res => {
-        console.log(res.data.clientSecret);
-        setClientSecret(res.data.clientSecret)
-        
-       })
-       .catch(err => {
-        console.log(err);
-        
-       })
+          if(totalPrice > 0){
+            axiosSecure.post('/creat-payment-intent',{courseFee : totalPrice})
+            .then(res => {
+             console.log(res.data.clientSecret);
+             setClientSecret(res.data.clientSecret)
+             
+            })
+            .catch(err => {
+             console.log(err);
+             
+            })
+          }
   },[])
 // manage checkout form
   const  handleSubmit = async (e) => {
@@ -94,14 +96,15 @@ const totalPrice = price;
                 // save the payment in the database
 
                 const payment = {
-                      name : name,
-                      email : email,
+                      TeacherName : name,
+                      studentEmail : user.email,
                       courseTitle : title,
                       courseFee : totalPrice,
-                       data : new Date(),
+                      courseBanner : image,
+                       date : new Date(),
                       transectionId : paymentIntent.id ,
+                      paymentId : _id,
                       status : 'pending',
-                      paymentId : _id
 
                 }
 
@@ -114,7 +117,7 @@ const totalPrice = price;
                         Swal.fire({
                           position: "top-end",
                           icon: "success",
-                          title: "Your work has been saved",
+                          title: "your payment succesfull",
                           showConfirmButton: false,
                           timer: 1500
                         });
@@ -142,6 +145,7 @@ const totalPrice = price;
               '::placeholder': {
                 color: '#aab7c4',
               },
+            
             },
             invalid: {
               color: '#9e2146',
