@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../Hooks/useAuth';
+import nav_logo from '../assets/navLogo/academix_logo.png'
 
 const Navbar = () => {
     const {user,logOut} = useAuth();
@@ -26,7 +27,7 @@ const Navbar = () => {
     </>
     
     return (
-        <div className="navbar bg-base-100 shadow-sm">
+        <div className="navbar bg-base-100 shadow-sm py-3">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -39,7 +40,9 @@ const Navbar = () => {
             </ul>
           </div>
         {/* nav logo  */}
-          <a className="btn btn-ghost text-xl">academix</a>
+           <div className="nav_logo">
+                     <img src={nav_logo} className='w-28 h-20'  alt="" />
+           </div>
         </div>
         {/* nav links */}
         <div className="navbar-center hidden lg:flex">

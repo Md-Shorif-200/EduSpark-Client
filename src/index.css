@@ -20,6 +20,13 @@
 .navbar ul li {
     margin-left: 15px;
     }
+    .navbar ul li a {
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 500;
+        }
+
+
  ul li a.active {
 background-color: #292865;
 color: white;

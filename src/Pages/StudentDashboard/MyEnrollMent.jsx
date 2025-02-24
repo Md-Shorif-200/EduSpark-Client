@@ -10,7 +10,7 @@ const MyEnrollMent = () => {
  const [payments,refetch,isLoading] = usePayments();
 
   
-const myPayments = payments.filter(payment => payment.studentEmail === user.email)
+const myPayments = payments.filter(payment => payment.studentEmail === user?.email)
 
 
     return (

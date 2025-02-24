@@ -53,6 +53,7 @@ const SignIn = () => {
                      {/* user email password  */}
                      <label className="fieldset-label">Password</label>
       <input type="text" className="input my-4" placeholder="Enter Your email"  {...register('password',{required : true})} />
+      {errors.password && <span className='text-red-500 my-3'>This field is required</span>}
 
       <button className='btn common_bg_color_1 text-white w-full my-2'>Sign In</button>
 

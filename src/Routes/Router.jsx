@@ -125,7 +125,7 @@ const router = createBrowserRouter([
           element : <MyEnrollMent></MyEnrollMent>
         },
         {
-          path : '/dashboard/myEnrollMent/enrollmentDetails',
+          path : '/dashboard/myEnrollMent/enrollmentDetails/:id',
           element : <EnrollmentDetails></EnrollmentDetails>
         }
       ]

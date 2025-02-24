@@ -2,7 +2,6 @@ import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import ClassProgress from './ClassProgress';
 import ClassAssignment from './ClassAssignment';
-import AssignmentList from './AssignmentList';
 import useAssignments from '../../Hooks/useAssignments';
 import Loading from '../../Common/Loading';
 
