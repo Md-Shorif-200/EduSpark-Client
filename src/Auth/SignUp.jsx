@@ -46,6 +46,8 @@ const SignUp = () => {
                 toast.success('sign up succesfully');
                 reset()
                 navigate('/') 
+               }else{
+                return ;
                }
                 
              

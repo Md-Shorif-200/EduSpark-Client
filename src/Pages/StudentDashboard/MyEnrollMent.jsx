@@ -3,6 +3,7 @@ import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import usePayments from '../../Hooks/usePayments';
 import useAuth from '../../Hooks/useAuth';
 import EnrollmentCard from './EnrollmentCard';
+import SectionTitle from '../../Common/SectionTitle';
 
 const MyEnrollMent = () => {
     const {user} = useAuth()
@@ -13,12 +14,15 @@ const myPayments = payments.filter(payment => payment.studentEmail === user.emai
 
 
     return (
-        <div className='grid grid-cols-2 gap-8 px-14 py-10'>
+           <div>
+                        <SectionTitle title={'Your Enrollments '}></SectionTitle>
+              <div className='grid grid-cols-2 gap-8 px-14 py-10'>
             
-      {
-        myPayments.map((myPayment,index) => <EnrollmentCard key={index} myPayment={myPayment}></EnrollmentCard> )
-      }
-        </div>
+            {
+              myPayments.map((myPayment,index) => <EnrollmentCard key={index} myPayment={myPayment}></EnrollmentCard> )
+            }
+              </div>
+           </div>
     );
 };
 

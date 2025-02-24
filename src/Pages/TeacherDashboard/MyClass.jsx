@@ -7,12 +7,17 @@ import { Link } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 import ClassUpdateModal from './ClassUpdateModal';
 import MyClassCard from './MyClassCard';
+import Loading from '../../Common/Loading';
 
 const MyClass = () => {
             const {user}  =  useAuth()
       
-             const [classes , refetch] = useClass()
-             const myClasses = classes.filter(data => data?.email == user?.email)
+             const [classes,refetch,isLoading]= useClass()
+             const myClasses = classes.filter(data => data?.email == user?.email);
+
+             if(isLoading){
+                 return <Loading></Loading>
+             }
 
     return (
         <div>
