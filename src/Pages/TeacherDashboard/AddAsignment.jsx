@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 
-const ClassAssignment = ({ classData,refetch }) => {
+const AddAsignment = ({ classData,refetch }) => {
   let [isOpen, setIsOpen] = useState(false);
 
   const axiosSecure = useAxiosSecure();
@@ -76,12 +76,12 @@ const ClassAssignment = ({ classData,refetch }) => {
               transition
               className="w-full max-w-md rounded-xl bg-white/5 p-6 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
             >
-              <DialogTitle
+              {/* <DialogTitle
                 as="h3"
                 className="text-base/7 font-medium text-white"
               >
                 Payment successful
-              </DialogTitle>
+              </DialogTitle> */}
 
               <main>
                 <div>
@@ -170,4 +170,4 @@ const ClassAssignment = ({ classData,refetch }) => {
   );
 };
 
-export default ClassAssignment;
+export default AddAsignment;

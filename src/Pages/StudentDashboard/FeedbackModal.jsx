@@ -1,9 +1,27 @@
 import React from 'react';
 import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { useState } from 'react'
+import { useForm } from 'react-hook-form';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import ReactStars from "react-rating-stars-component";
+import { CiStar } from "react-icons/ci";
+
+
+ 
 
 const FeedbackModal = () => {
-    let [isOpen, setIsOpen] = useState(true)
+
+      // react hook form
+      const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+      } = useForm();
+
+    let [isOpen, setIsOpen] = useState(false);
+    const axiosSecure = useAxiosSecure();
+    const [Rating,setRating ] = useState(0)
 
     function open() {
       setIsOpen(true)
@@ -12,6 +30,21 @@ const FeedbackModal = () => {
     function close() {
       setIsOpen(false)
     }
+// manage feedback form submission
+    const onSubmit = (data) => {
+      
+        // try{
+        // axiosSecure.post('/feedback')
+        // }catch(error){
+        //     console.log(error);
+            
+        // }
+         
+    }
+    const handleRatingChange = (newRating) => {
+        setRating(newRating);
+        console.log("New Rating:", newRating);
+      };
   
     return (
       <>
@@ -32,18 +65,85 @@ const FeedbackModal = () => {
                 <DialogTitle as="h3" className="text-base/7 font-medium text-white">
                   Payment successful
                 </DialogTitle>
-                <p className="mt-2 text-sm/6 text-white/50">
-                  Your payment has been successfully submitted. We’ve sent you an email with all of the details of your
-                  order.
-                </p>
-                <div className="mt-4">
-                  <Button
-                    className="inline-flex items-center gap-2 rounded-md bg-gray-700 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[focus]:outline-1 data-[focus]:outline-white data-[open]:bg-gray-700"
-                    onClick={close}
-                  >
-                    Got it, thanks!
-                  </Button>
-                </div>
+
+
+           
+                   <main>
+                                <div>
+                                  <div className=" bg-base-200">
+                                    <div className=" flex-col">
+                                      <div className="card bg-base-100 w-full max-w-lg shrink-0 shadow-2xl">
+                                        <div className="card-body relative">
+                                          {/* form  */}
+                                          <form className="" onSubmit={handleSubmit(onSubmit)}>
+                                     
+                                            {/* assignment description  */}
+                
+                                            <fieldset className="fieldset">
+                                              <legend className="fieldset-legend">
+                                                Description
+                                              </legend>
+                
+                                              <textarea
+                                                className="textarea h-24"
+                                                placeholder="Assignment Description"
+                                                {...register("description", { required: true })}
+                                              ></textarea>
+                
+                                              {errors.description && (
+                                                <span className="text-red-500 my-3">
+                                                  This field is required
+                                                </span>
+                                              )}
+                                            </fieldset>
+                
+                                                {/* react rating component  */}
+
+                                                <legend className="fieldset-legend">
+                                                rating
+                                              </legend>
+                                                <ReactStars
+        count={5} // Number of stars
+        value={Rating} // Current rating
+        onChange={handleRatingChange} // Function to handle rating change
+        size={40} // Size of stars
+        activeColor="#ffd700" // Color of active stars (gold)
+        isHalf={true} // Allow half stars
+        emptyIcon={ <CiStar></CiStar> } // Icon for empty stars
+        // halfIcon={<i className="fa fa-star-half-alt"></i>} // Icon for half stars
+        // filledIcon={<i className="fa fa-star"></i>} // Icon for filled stars
+      />
+  
+                                           
+                                            {/* form button */}
+                
+                                            <Button
+                                              type="submit"
+                                              className="btn  mt-4 common_bg_color_1 text-white"
+                                            >
+                                              send
+                                            </Button>
+                                          </form>
+                                          <div
+                                            className="absolute bottom-8 right-12"
+                                            onClick={close}
+                                          >
+                                            <button className="btn  common_bg_color_1 text-white">
+                                              {" "}
+                                              cencel
+                                            </button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </main>
+
+           
+
+               
+    
               </DialogPanel>
             </div>
           </div>

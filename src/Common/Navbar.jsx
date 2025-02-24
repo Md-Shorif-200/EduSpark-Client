@@ -66,13 +66,13 @@ const Navbar = () => {
         tabIndex={0}
         class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3  p-2 shadow">
 
-        <li> {user.displayName} </li>
+        <li  className='font-semibold my-4 text-[15px] capitalize'> {user.displayName} </li>
 
           <li>
-                        <Link className='btn' to='dashboard'>Dashaboard</Link>
+                        <Link className='btn ' to='dashboard'>Dashaboard</Link>
         </li> 
         <li>
-            <Link className='btn' onClick={logOut}>Log Out</Link>
+            <Link className='btn  my-4' onClick={logOut}>Log Out</Link>
         </li>
       </ul>
     </div>

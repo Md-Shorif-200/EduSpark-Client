@@ -11,17 +11,17 @@ const Banner = () => {
     return (
         <div>
                  <Carousel>
-                <div className="">
-                     <img src={banner_img_1} alt="" />
-                    <p className="legend">Legend 1</p>
+                <div className="w-full h-[500px]">
+                     <img className="" src={banner_img_1}  alt="" />
+                    
                 </div>
-                <div>
-                    <img src={banner_img_2} alt="" />
-                    <p className="legend">Legend 2</p>
+                <div className="w-full h-[500px]">
+                    <img className="" src={banner_img_2} alt="" />
+                
                 </div>
-                <div>
-                     <img src={banner_img_3} alt="" />
-                    <p className="legend">Legend 3</p>
+                <div className="w-full h-[500px]">
+                     <img className="" src={banner_img_3} alt="" />
+                    
                 </div>
             </Carousel> 
         </div>

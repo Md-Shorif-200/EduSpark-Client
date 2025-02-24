@@ -11,64 +11,70 @@ import img_5 from '../../assets/partnership/img-5.jpeg'
 
 const Partners = () => {
     return (
-        <div className='Our_partners'>
-            <SectionTitle title={'out partners'}></SectionTitle>
+        <div className='Our_partners mb-14'>
+            <SectionTitle title={'our partners'}></SectionTitle>
 
 
-            <section className='grid grid-cols-5 gap-6 items-center'>
+            <section className='grid grid-cols-4 gap-6 items-center'>
 
-                {/*partner company logo  */}
-            <div className="card bg-base-100  shadow-sm">
-  <figure className="p-5">
-    <img
-      src={img_1}
-      alt="Shoes"
-      class="rounded-xl" />
-  </figure>
-
-            </div>
-            <div className="card bg-base-100  shadow-sm">
-  <figure className="p-5">
-    <img
-      src={img_2}
-      alt="Shoes"
-      class="rounded-xl" />
-  </figure>
-
-            </div>
-            <div className="card bg-base-100  shadow-sm">
-  <figure className="p-5">
-    <img
-      src={img_3}
-      alt="Shoes"
-      class="rounded-xl" />
-  </figure>
-
-            </div>
-            <div className="card bg-base-100  shadow-sm">
-  <figure className="p-5">
-    <img
-      src={img_4}
-      alt="Shoes"
-      class="rounded-xl" />
-  </figure>
-
-            </div>
-            <div className="card bg-base-100  shadow-sm">
-  <figure className="p-5">
+                {/*partner company logo and description  */}
+                <div className=" w-full h-[300px]card bg-base-100  shadow-sm">
+  <div className="p-5">
     <img
       src={img_5}
-      alt="Shoes"
-      class="rounded-xl" />
-  </figure>
+      alt="Parter company logo"
+      class="rounded-xl w-full h-[100px]" />
+       <div className="description">
+       
+        <p>Programming Hero brings interactive and engaging coding courses to our platform, making learning to code easier and more enjoyable. </p>
+       </div>
+  </div>
 
             </div>
 
-                 {/* <img className='w-[150px]' src={img_1} alt="" />
-                 <img className='w-[150px]' src={img_2} alt="" />
-                 <img className='w-[150px]' src={img_3} alt="" />
-                 <img className='w-[150px]' src={img_4} alt="" />
-                 <img className='w-[150px]' src={img_5} alt="" /> */}
+
+            <div className="card w-full h-[300px] bg-base-100  shadow-sm">
+  <div className="p-5">
+    <img
+      src={img_1}
+      alt="Parter company logo"
+      class="rounded-xl w-full h-[100px]" />
+       <div className="description">
+        <p>
+Apple partners with us to provide advanced digital tools and resources that enhance the online learning experience.</p>
+       </div>
+  </div>
+
+            </div>
+    
+            <div className="card w-full h-[300px] bg-base-100  shadow-sm">
+  <div className="p-5">
+    <img
+      src={img_3}
+      alt="Parter company logo"
+      class="rounded-xl w-full h-[100px]" />
+       <div className="description">
+     
+       <p>TutorialBD provides high-quality educational content and tutorials, empowering students with knowledge across various subjects.</p>
+       </div>
+  </div>
+
+            </div>
+            <div className="card w-full h-[300px] bg-base-100  shadow-sm">
+  <div className="p-5">
+    <img
+      src={img_4}
+      alt="Parter company logo"
+      class="rounded-xl w-full h-[100px]" />
+       <div className="description">
+      
+        <p>W3Schools supports our community with comprehensive, easy-to-follow web development tutorials and documentation. </p>
+       </div>
+  </div>
+
+            </div>
+           
+              
 
             </section>
 
