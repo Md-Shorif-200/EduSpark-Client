@@ -27,7 +27,7 @@ const Navbar = () => {
     </>
     
     return (
-        <div className="navbar bg-base-100 shadow-sm py-3">
+        <div className="navbar bg-base-100 shadow-sm px-6 py-4">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -41,7 +41,7 @@ const Navbar = () => {
           </div>
         {/* nav logo  */}
            <div className="nav_logo">
-                     <img src={nav_logo} className='w-28 h-20'  alt="" />
+                     <img src={nav_logo} className='w-[100px] h-[70px] rounded-sm'  alt="" />
            </div>
         </div>
         {/* nav links */}
@@ -59,12 +59,12 @@ const Navbar = () => {
                              <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
-         <img src={user.photoURL} alt="" />
+         <img className='' src={user.photoURL} alt="" />
         </div>
       </div>
       <ul
         tabIndex={0}
-        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3  p-2 shadow">
+        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3  p-3 shadow">
 
         <li  className='font-semibold my-4 text-[15px] capitalize'> {user.displayName} </li>
 

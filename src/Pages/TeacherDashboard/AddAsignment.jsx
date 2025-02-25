@@ -148,7 +148,7 @@ const AddAsignment = ({ classData,refetch }) => {
                             </Button>
                           </form>
                           <div
-                            className="absolute bottom-8 right-12"
+                            className="md:absolute bottom-8 right-12"
                             onClick={close}
                           >
                             <button className="btn  common_bg_color_1 text-white">

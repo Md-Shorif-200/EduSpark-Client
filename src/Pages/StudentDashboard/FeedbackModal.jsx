@@ -96,7 +96,7 @@ const FeedbackModal = ({classData}) => {
         <>
         <Button
           onClick={open}
-          className="rounded-md btn mt-4 w-30 "
+          className="rounded-md btn mt-4 w-[300px]  "
           >
         TER
           </Button>

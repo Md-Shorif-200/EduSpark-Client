@@ -4,6 +4,7 @@ import ClassProgress from './ClassProgress';
 import ClassAssignment from './AddAsignment';
 import useAssignments from '../../Hooks/useAssignments';
 import Loading from '../../Common/Loading';
+import AddAsignment from './AddAsignment';
 
 const MyClassDetailsPage = () => {
      const classData = useLoaderData();
@@ -27,7 +28,7 @@ const MyClassDetailsPage = () => {
                   </div>
 
                  <div className="creat_assignment">
-            <ClassAssignment classData={classData} refetch={refetch}></ClassAssignment> 
+            <AddAsignment classData={classData} refetch={refetch}></AddAsignment> 
                </div>
 
                <div className="assignmet_list mt-8">

@@ -40,7 +40,7 @@ const handleAdminButton = (user) => {
 
   return (
     <div>
-      <div className="my-4"> total users :{users.length} </div>
+    
 
       <div className="overflow-x-auto">
         <table className="table">

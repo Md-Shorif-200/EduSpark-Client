@@ -22,7 +22,7 @@ const ClassProgress = ({classData,totalAssignments}) => {
 
   return (
     <div>
-      <div className="class_progress_cards grid grid-cols-3 gap-8">
+      <div className="class_progress_cards grid grid-cols-1 gap-y-6 sm:grid-cols-3 md:gap-8">
     
 
         <div className="card w-full bg-base-100 card-sm shadow-sm p-8  capitalize">

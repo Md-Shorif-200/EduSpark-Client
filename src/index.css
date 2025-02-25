@@ -31,7 +31,7 @@
         }
 
 
- ul li a.active {
+ .navbar  li a.active {
 background-color: #292865;
 color: white;
 }
@@ -115,4 +115,20 @@ margin: 10px;
 .thumb .h-\[500px\] {
     width: 100px;
 height: 70px;
+}
+
+.dashboard_menu .text-base-content {
+    background-color: #292865;
+    color: white;
+    font-weight: 600;
+    height: 100vh;
+}
+
+.text-base-content li a {
+     text-transform: capitalize;
+}
+
+.text-base-content li a.active {
+    background-color: white;
+    color: black;
 }

@@ -20,17 +20,17 @@ const Profile = () => {
 
 
     return (
-        <div>
-            <div className="hero bg-base-200 min-h-screen">
-  <div className="hero-content flex-col lg:flex-row">
+        <div className="">
+            <div className="hero  bg-base-200 min-h-screen " >
+  <div className="hero-content flex-col  md:flex-row gap-x-14">
     <img
       src={image}
-      class="max-w-sm rounded-lg shadow-2xl" />
+      class=" w-[250px] rounded-lg shadow-2xl" />
     <div>
-      <h1 className=""> {userName} </h1>
-      <h1 className=""> {email} </h1>
-      <h1 className=""> {phone} </h1>
-      <h1 className=""> {role} </h1>
+      <h1 className="text-md font-semibold capitalize my-3">  name :         {userName}     </h1>
+      <h1 className="text-md font-semibold capitalize my-3">  email :         {email}     </h1>
+      <h1 className="text-md font-semibold capitalize my-3">  phone :         {phone}     </h1>
+      <h1 className="text-md font-semibold capitalize my-3">  role :         {role}     </h1>
 
     </div>
   </div>

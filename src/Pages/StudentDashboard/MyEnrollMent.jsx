@@ -16,7 +16,7 @@ const myPayments = payments.filter(payment => payment.studentEmail === user?.ema
     return (
            <div>
                         <SectionTitle title={'Your Enrollments '}></SectionTitle>
-              <div className='grid grid-cols-2 gap-8 px-14 py-10'>
+              <div className='grid grid-cols-1  sm:grid-cols-2 gap-8 md:px-14 md:py-10'>
             
             {
               myPayments.map((myPayment,index) => <EnrollmentCard key={index} myPayment={myPayment}></EnrollmentCard> )

@@ -60,11 +60,11 @@ const MyClassCard = ({refetch,singleClass}) => {
     <h2 className="font-semibold  text-md my-2"> status  :<span className='text-gray-700'>{status} </span> </h2>
     </div>
      
-       <div className="action_btn w-full flex justify-between ">
+       <div className="action_btn w-full block md:flex justify-between ">
         
-       <button className=''> <ClassUpdateModal refetch={refetch} id={_id} title={title} image = {image} description={description} price={price}></ClassUpdateModal></button>
-        <button className='btn' onClick={() =>  handleDeleteButton(singleClass)}>delete</button>
-      <Link to={`/dashboard/myClassDetails/${singleClass._id}`} className="btn common_bg_color_1 text-white">see details </Link>
+       <button className=' '> <ClassUpdateModal refetch={refetch} id={_id} title={title} image = {image} description={description} price={price}></ClassUpdateModal></button>
+        <button className='btn mx-5 md:mx-0 ' onClick={() =>  handleDeleteButton(singleClass)}>delete</button>
+      <Link to={`/dashboard/myClassDetails/${singleClass._id}`} className="btn my-5 md:my-0 common_bg_color_1 text-white">see details </Link>
        </div>
 
       

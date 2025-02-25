@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const StudentMenu = () => {
     return (
-        <div>
+        <div className='dashboard_menu'>
                       <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
     
 
