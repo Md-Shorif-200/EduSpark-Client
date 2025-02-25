@@ -3,13 +3,19 @@ import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
-import ReactStars from "react-rating-stars-component";
-import { CiStar } from "react-icons/ci";
+// import ReactStars from "react-rating-stars-component";
+// import { CiStar } from "react-icons/ci";
+import { Rating } from '@smastrom/react-rating'
+
+import '@smastrom/react-rating/style.css'
+import '@smastrom/react-rating/style.css'
+import useAuth from '../../Hooks/useAuth';
+import Swal from 'sweetalert2';
 
 
  
 
-const FeedbackModal = () => {
+const FeedbackModal = ({classData}) => {
 
       // react hook form
       const {
@@ -19,39 +25,79 @@ const FeedbackModal = () => {
         formState: { errors },
       } = useForm();
 
-    let [isOpen, setIsOpen] = useState(false);
+    let [isOpen, setIsOpen] = useState(false);  // modal initial value
+    const [rating, setRating] = useState(0) // rating Initial value
+    const {user} = useAuth(); // get user information form authProvider
+     console.log(user);
+     
     const axiosSecure = useAxiosSecure();
-    const [Rating,setRating ] = useState(0)
 
-    function open() {
-      setIsOpen(true)
-    }
-  
-    function close() {
-      setIsOpen(false)
-    }
-// manage feedback form submission
-    const onSubmit = (data) => {
-      
-        // try{
-        // axiosSecure.post('/feedback')
-        // }catch(error){
-        //     console.log(error);
-            
-        // }
-         
-    }
+   
+    // manage handleRatingChange functions
     const handleRatingChange = (newRating) => {
         setRating(newRating);
-        console.log("New Rating:", newRating);
+
       };
-  
-    return (
-      <>
+
+    
+// manage feedback form submission
+  const onSubmit = (data) => {
+
+       const feedbackInfo = {
+              studentName : user?.displayName,
+              studentEmail : classData.studentEmail,
+              studentImage : user?.photoURL,
+              courseTitle : classData.courseTitle,
+              teacherName : classData.TeacherName,
+              date : new Date(),
+              feedbackDescription : data.description,
+              feedbackStar : rating
+       }
+   
+      
+        try{
+        axiosSecure.post('/feedback',feedbackInfo)
+        .then(response => {
+                  const feedbackSuccessfull = response.data.insertedId;
+
+                  if(feedbackSuccessfull){
+                    Swal.fire({
+                      title: "feedback given successfullyh",
+                      icon: "success",
+                      draggable: true
+                    });
+
+                    reset()  // reset form
+                    setRating(0);
+                    setIsOpen(false) // close modal
+                    
+                  }
+        })
+        }catch(error){
+            console.log(error);
+            
+        }finally{
+          setIsOpen(false)
+        }
+         
+      }
+
+
+      function open() {
+        setIsOpen(true)
+      }
+    
+      function close() {
+        setIsOpen(false)
+      }
+
+      
+      return (
+        <>
         <Button
           onClick={open}
           className="rounded-md btn mt-4 w-30 "
-        >
+          >
         TER
           </Button>
   
@@ -62,18 +108,18 @@ const FeedbackModal = () => {
                 transition
                 className="w-full max-w-md rounded-xl bg-white/5 p-6 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
               >
-                <DialogTitle as="h3" className="text-base/7 font-medium text-white">
-                  Payment successful
-                </DialogTitle>
-
+             
 
            
                    <main>
                                 <div>
+                                  
+                               
                                   <div className=" bg-base-200">
                                     <div className=" flex-col">
                                       <div className="card bg-base-100 w-full max-w-lg shrink-0 shadow-2xl">
                                         <div className="card-body relative">
+                                                <h1 className='text-lg capitalize font-semibold'>teaching evalutation report</h1>
                                           {/* form  */}
                                           <form className="" onSubmit={handleSubmit(onSubmit)}>
                                      
@@ -86,7 +132,7 @@ const FeedbackModal = () => {
                 
                                               <textarea
                                                 className="textarea h-24"
-                                                placeholder="Assignment Description"
+                                                placeholder="write your opinion"
                                                 {...register("description", { required: true })}
                                               ></textarea>
                 
@@ -99,21 +145,12 @@ const FeedbackModal = () => {
                 
                                                 {/* react rating component  */}
 
-                                                <legend className="fieldset-legend">
-                                                rating
-                                              </legend>
-                                                <ReactStars
-        count={5} // Number of stars
-        value={Rating} // Current rating
-        onChange={handleRatingChange} // Function to handle rating change
-        size={40} // Size of stars
-        activeColor="#ffd700" // Color of active stars (gold)
-        isHalf={true} // Allow half stars
-        emptyIcon={ <CiStar></CiStar> } // Icon for empty stars
-        // halfIcon={<i className="fa fa-star-half-alt"></i>} // Icon for half stars
-        // filledIcon={<i className="fa fa-star"></i>} // Icon for filled stars
-      />
-  
+                                        
+                                                <h1 className='text-md capitalize font-semibold my-4'>give your feedback</h1>
+                                        
+                                              {/* react rating */}
+                                              <Rating style={{ maxWidth: 200 }} value={rating} onChange={setRating} />
+                                               
                                            
                                             {/* form button */}
                 

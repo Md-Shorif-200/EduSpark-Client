@@ -15,7 +15,7 @@ const Partners = () => {
             <SectionTitle title={'our partners'}></SectionTitle>
 
 
-            <section className='grid grid-cols-4 gap-6 items-center'>
+            <section className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-center'>
 
                 {/*partner company logo and description  */}
                 <div className=" w-full h-[300px]card bg-base-100  shadow-sm">

@@ -82,7 +82,7 @@ const EnrollmentDetails = () => {
 
       <div className="p-8">
           <div className="feedBackSection">
-            <FeedbackModal></FeedbackModal>
+            <FeedbackModal classData ={data}></FeedbackModal>
           </div>
       <div className="assignment_list_title text-xl capitalize font-semibold  my-6 ">
         <h1>Your All Assignment for this class </h1>

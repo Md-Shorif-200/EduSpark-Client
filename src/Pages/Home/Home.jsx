@@ -1,5 +1,7 @@
 import Banner from "./Banner";
+import Feedback from "./Feedback";
 import Partners from "./Partners";
+import PlatformOverview from "./PlatformOverview";
 import PopulerCourse from "./PopulerCourse";
 
 
@@ -8,7 +10,9 @@ const Home = () => {
         <div>
                <Banner></Banner>
                <Partners></Partners>
-               <PopulerCourse></PopulerCourse>
+               {/* <PopulerCourse></PopulerCourse> */}
+               <Feedback></Feedback>
+               <PlatformOverview></PlatformOverview>
         </div>
     );
 };
