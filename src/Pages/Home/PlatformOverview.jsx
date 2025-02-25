@@ -2,14 +2,19 @@ import React, { useEffect, useState } from 'react';
 import SectionTitle from '../../Common/SectionTitle';
 import overviewImg  from '../../assets/Overview/telework-6795505_640.jpg'
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import useClass from '../../Hooks/useClass';
+import usePayments from '../../Hooks/usePayments';
 
 const PlatformOverview = () => {
 
         const [users,setUsers ] = useState([])
       const axiosSecure = useAxiosSecure();
+      const [classes] = useClass();  // get all classes
+      const [payments] = usePayments(); // get all enrollments
+
 
       useEffect(() => {
-            axiosSecure.get('/users')
+            axiosSecure.get('/users') // get all users
             .then(response => {
                   setUsers(response.data)
                   
@@ -40,7 +45,7 @@ const PlatformOverview = () => {
                                         <div className="card bg-base-100 text-center  w-full h-[150px]  shadow-sm">
   <div className="card-body text-center">
     <h2 className=" text-lg font-bold capitalize mb-2"> total classes</h2>
- 
+    <h1 className='text-3xl font-semibold'>  {classes.length} </h1>
     </div>
   </div>
                                         </div>
@@ -48,7 +53,7 @@ const PlatformOverview = () => {
                                         <div className="card bg-base-100  text-center  w-full h-[150px]  sadow-sm">
   <div className="card-body text-center">
     <h2 className=" text-lg font-bold capitalize mb-2"> total enrollments</h2>
- 
+    <h1 className='text-3xl font-semibold'>  {payments.length} </h1>
     </div>
   </div>
                                         </div>

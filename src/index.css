@@ -8,6 +8,7 @@
 /* common color */
 
 
+
 .common_bg_color_1 {
     background-color: #292865;
 }
@@ -68,4 +69,36 @@ margin: 10px;
      
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 
+}
+
+
+.inspire_teacher .inspire_img {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+}
+
+.inspire_teacher .inspire_cnt {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+}
+
+
+.exclusive_cards .card {
+     height:  330px;
+     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+     text-align: center;
+     text-transform: capitalize;
+     font-weight: 600;
+
+}
+.exclusive_cards  .logo p {
+    font-size: 30px;
+        margin: 10px 0;
+        transform: translateX(40%);
+        color : #292865;
+}
+.exclusive_cards  .desc {
+    font-size : 14px ;
+    color : rgba(0, 0, 0, 0.719);
+    line-height: 23px;
 }
