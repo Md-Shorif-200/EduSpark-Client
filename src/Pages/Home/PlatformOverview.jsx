@@ -30,19 +30,19 @@ const PlatformOverview = () => {
 
               <SectionTitle title={'our overview'}></SectionTitle>
 
-               <div className='overview_container  w-full grid grid-cols-2 gap-x-6 my-14'>
+               <div className='overview_container  w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-14'>
                         <div className="left_side">
                               <div className="overview_cards grid grid-cols-2 gap-4">
-                                        <div className="total_users w-full">
-                                        <div className="card bg-base-10 text-center w-full h-[150px]   shadow-sm">
+                                        <div className="total_users w-full col-span-2 md:col-span-1">
+                                        <div className="card  text-center w-full h-[150px]   shadow-sm">
   <div className="card-body text-center">
     <h2 className=" text-lg font-bold capitalize mb-2"> total users</h2>
                 <h1 className='text-3xl font-semibold'>  {users.length} </h1>
   </div>
 </div>
                                         </div>
-                                        <div className="total_classes w-full">
-                                        <div className="card bg-base-100 text-center  w-full h-[150px]  shadow-sm">
+                                        <div className="total_classes w-full col-span-2 md:col-span-1">
+                                        <div className="card   text-center  w-full h-[150px]  shadow-sm">
   <div className="card-body text-center">
     <h2 className=" text-lg font-bold capitalize mb-2"> total classes</h2>
     <h1 className='text-3xl font-semibold'>  {classes.length} </h1>
@@ -50,7 +50,7 @@ const PlatformOverview = () => {
   </div>
                                         </div>
                                         <div className="total_students w-full_enrollmen  grid col-span-2">
-                                        <div className="card bg-base-100  text-center  w-full h-[150px]  sadow-sm">
+                                        <div className="card   text-center  w-full h-[150px]  sadow-sm">
   <div className="card-body text-center">
     <h2 className=" text-lg font-bold capitalize mb-2"> total enrollments</h2>
     <h1 className='text-3xl font-semibold'>  {payments.length} </h1>

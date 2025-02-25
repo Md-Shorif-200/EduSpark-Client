@@ -4,9 +4,9 @@ import inspireImg  from '../../assets/InspireTeacher/teacher-6831688_640.webp'
 const InspireAsTeacher = () => {
 
     return (
-        <div  className='inspire_teacher w-full h-[300px] my-10 grid grid-cols-2 gap-x-6'>
+        <div  className='inspire_teacher w-full h-full my-10 grid grid-cols-1 sm:grid-cols-2 gap-x-6'>
              <div className='inspire_img'>
-            <img src={inspireImg} className='w-full h-[300px] rounded-md' alt="" />
+            <img src={inspireImg} className='w-full h-full  lg:h-[300px] rounded-md' alt="" />
              </div>
 
              <div className="inspire_cnt">

@@ -11,16 +11,16 @@ const Banner = () => {
     return (
         <div>
                  <Carousel>
-                <div className="w-full h-[500px]">
-                     <img className="" src={banner_img_1}  alt="" />
+                <div className="w-full   md:h-[500px]">
+                     <img className="h-[500px]" src={banner_img_1}  alt="" />
                     
                 </div>
-                <div className="w-full h-[500px]">
-                    <img className="" src={banner_img_2} alt="" />
+                <div className="w-full   md:h-[500px]">
+                    <img className="h-[500px]" src={banner_img_2} alt="" />
                 
                 </div>
-                <div className="w-full h-[500px]">
-                     <img className="" src={banner_img_3} alt="" />
+                <div className="w-full   md:h-[500px]">
+                     <img className="h-[500px]" src={banner_img_3} alt="" />
                     
                 </div>
             </Carousel> 

@@ -8,13 +8,15 @@ import { GiSkills } from "react-icons/gi";
 
 const ExclusiveSolution = () => {
     return (
-        <div>
+        <div className=''>
 
-              <div>
-                  <SectionTitle title={'Exclusive Solutions that Set Us Apart'}></SectionTitle>
-              </div>
+             
+                   <div className=''>
+                   <SectionTitle title={'Exclusive Solutions that Set Us Apart'}></SectionTitle>
+                   </div>
+           
 
-              <div className="exclusive_cards grid grid-cols-4 gap-x-6">
+              <div className="exclusive_cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                      {/* card 1 */}
               <div className="card bg-base-100 w-full shadow-sm">
   <div className="card-body">
