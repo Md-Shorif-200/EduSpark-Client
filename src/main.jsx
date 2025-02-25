@@ -23,7 +23,7 @@ createRoot(document.getElementById('root')).render(
             <AuthProvider>
           <QueryClientProvider client={queryClient}>
                     {/* react router dom */}
-          <div className='max-w-6xl mx-auto'>
+          <div className='max-w-6xl mx-auto px-6 lg:p-0'>
           <RouterProvider router={router} />
           </div>
           {/* <Toaster></Toaster> */}

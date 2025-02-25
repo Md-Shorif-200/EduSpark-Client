@@ -6,18 +6,19 @@ const ClassCard = ({approvedClass}) => {
     return (
         <div>
 
-<div className="card bg-base-100 w-96 shadow-sm">
+<div className="card bg-base-100 w-full shadow-sm ">
   <figure>
     <img
       src={image}
-      alt="Shoes" />
+       className='w-full h-[200px]'
+      alt="class image" />
   </figure>
-  <div className="card-body">
-    <h2 className="card-title">Card Title</h2>
-    <h1> {name} </h1>
-    <h1> {price} </h1>
-    <h1> {description} </h1>
-    <h1> total Enrollment  </h1>
+  <div className="card-body capitalize">
+    <h2 className="text-lg font-bold"> {title} </h2>
+    <h1 className='text-md font-semibold'> teacher :  <span className='text-gray-600'>{name}</span> </h1>
+    <h1 className='text-md font-semibold'> course fee : <span className='text-gray-600'>{price} $</span> </h1>
+    <h1 className='text-md font-semibold'> course outline : <span className='text-gray-600'>{description}</span> </h1>
+    <h1 className='text-md font-semibold'> total enrollment :    </h1>
     <div className="card-actions justify-end">
       <Link to={`/allClass/classDetails/${_id}`} className="btn" >Enroll </Link>
     </div>
