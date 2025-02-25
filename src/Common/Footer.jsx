@@ -32,11 +32,11 @@ const Footer = () => {
   <form>
     <h6 className="footer-title">Newsletter</h6>
     <fieldset className="w-full">
-      <label>Enter your email address</label>
+     
       <div className="join">
         <input
           type="text"
-          placeholder="username@site.com"
+          placeholder="enter email"
           class="input input-bordered join-item" />
         <button className="btn btn-primary join-item">Subscribe</button>
       </div>

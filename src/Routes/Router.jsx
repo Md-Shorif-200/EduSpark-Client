@@ -28,6 +28,7 @@ import PrivateRoute from "./PrivateRoute";
 import TeacherProfile from "../Pages/TeacherDashboard/TeacherProfile";
 import Payment from "../Pages/Payment/Payment";
 import EnrollmentDetails from "../Pages/StudentDashboard/EnrollmentDetails";
+import WelcomeMessage from "../Pages/WelcomeMessage";
 
 
 
@@ -64,12 +65,16 @@ const router = createBrowserRouter([
          },
          {
           path : 'allClass/classDetails/:id',
-          element : <ClassDetails></ClassDetails>,
+          element : <PrivateRoute>
+            <ClassDetails></ClassDetails>
+          </PrivateRoute>,
           loader : ({params}) => fetch(`http://localhost:5000/classes/${params.id}`)
          },
          {
           path : '/payment/:id',
-          element : <Payment></Payment>,
+          element :   <PrivateRoute>
+            <Payment></Payment>
+          </PrivateRoute>,
           loader : ({params}) => fetch(`http://localhost:5000/classes/${params.id}`)
 
          }
@@ -82,6 +87,10 @@ const router = createBrowserRouter([
       element : <DashboardLayout></DashboardLayout>,
       errorElement : <ErrorPage></ErrorPage>,
       children  : [
+          {
+            path : '/dashboard',
+            element : <WelcomeMessage></WelcomeMessage>
+          },
         {
             path : 'teacherRequest',
             element : <TeacherRequest></TeacherRequest>
