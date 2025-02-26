@@ -1,8 +1,22 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Academix
 
-Currently, two official plugins are available:
+#### Admin :  Shorif 
+#### password  :  shorif234234
+### project live link : 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<a href="https://academix-e460f.web.app/">click to see </a>
+
+### kye features : 
+1. full stack website
+2. single page application
+3. dashboard layout
+4. firebase authentication system
+5. stripe payment system
+6. use react for frontend
+7. use some react npm package
+8. private route
+9. using mongodb database
+10. responsive for all devices
+
+
