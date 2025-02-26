@@ -1,7 +1,9 @@
 
 # Academix
 
-#### Admin :  Shorif 
+#### Admin user name :  Shorif 
+#### Admin email :  shorif234@gmail.com 
+
 #### password  :  shorif234234
 ### project live link : 
 
