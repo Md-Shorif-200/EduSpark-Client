@@ -34,7 +34,7 @@ const SignUp = () => {
               name : data.name,
               email : data.email,
               image : data.photoUrl,
-              role : 'user'
+              role : 'student'
             }
 
             axiosSecure.post('/users', userInfo)

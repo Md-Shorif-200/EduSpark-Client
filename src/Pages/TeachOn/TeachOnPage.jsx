@@ -10,9 +10,6 @@ const TeachOnPage = () => {
   const status = data?.status;
 
 
-  if (isLoading) {
-    return <Loading></Loading>;
-  }
 
   return (
     <div>
@@ -28,9 +25,7 @@ const TeachOnPage = () => {
         <TeachOnApplyForm></TeachOnApplyForm>
         </>}
 
-      {/* {status === "accepted" && }
-      {status === "rejected" &&}
-      {role === "admin" && } */}
+
     </div>
   );
 };

@@ -20,7 +20,7 @@ const ClassCard = ({approvedClass}) => {
     <h1 className='text-md font-semibold'> course outline : <span className='text-gray-600'>{description}</span> </h1>
     <h1 className='text-md font-semibold'> total enrollment :    </h1>
     <div className="card-actions justify-end">
-      <Link to={`/allClass/classDetails/${_id}`} className="btn" >Enroll </Link>
+      <Link to={`/allClass/classDetails/${_id}`} className="btn common_bg_color_1 text-white" >Enroll </Link>
     </div>
   </div>
 </div>

@@ -29,6 +29,7 @@ import TeacherProfile from "../Pages/TeacherDashboard/TeacherProfile";
 import Payment from "../Pages/Payment/Payment";
 import EnrollmentDetails from "../Pages/StudentDashboard/EnrollmentDetails";
 import WelcomeMessage from "../Pages/WelcomeMessage";
+import AdminClassProgress from "../Pages/AdminDashboard/AdminClassProgress";
 
 
 
@@ -93,16 +94,28 @@ const router = createBrowserRouter([
           },
         {
             path : 'teacherRequest',
-            element : <TeacherRequest></TeacherRequest>
+            element : <PrivateRoute>
+               <TeacherRequest></TeacherRequest>
+            </PrivateRoute>
         },
   
         {
           path : 'users',
-          element : <Users></Users>
+          element : <PrivateRoute>
+             <Users></Users>
+          </PrivateRoute>
         },
         {
           path : 'RequestedClass',
-          element : <RequestedClass></RequestedClass>
+          element : <PrivateRoute>
+            <RequestedClass></RequestedClass>
+          </PrivateRoute>
+        },
+        {
+          path : '/dashboard/class-progress/:id',
+          element : <PrivateRoute>
+             <AdminClassProgress></AdminClassProgress>
+          </PrivateRoute>
         },
         {
           path : 'adminProfile',
@@ -110,7 +123,7 @@ const router = createBrowserRouter([
         },
         {
           path : 'addClass',
-          element : <AddClass></AddClass>
+          element : <PrivateRoute><AddClass></AddClass></PrivateRoute>
         },
         {
            path : 'teacherProfile',
@@ -118,11 +131,11 @@ const router = createBrowserRouter([
         },
         {
           path : 'myClass',
-          element : <MyClass></MyClass>
+          element : <PrivateRoute><MyClass></MyClass></PrivateRoute>
         },
         {
           path : '/dashboard/myClassDetails/:id',
-          element : <MyClassDetailsPage></MyClassDetailsPage>,
+          element :<PrivateRoute> <MyClassDetailsPage></MyClassDetailsPage></PrivateRoute>,
           loader : ({params}) => fetch(`http://localhost:5000/classes/${params.id}`)
         },
         {
@@ -131,11 +144,13 @@ const router = createBrowserRouter([
         },
         {
           path : 'myEnrollMent',
-          element : <MyEnrollMent></MyEnrollMent>
+          element : <PrivateRoute>
+                <MyEnrollMent></MyEnrollMent>
+          </PrivateRoute>
         },
         {
           path : '/dashboard/myEnrollMent/enrollmentDetails/:id',
-          element : <EnrollmentDetails></EnrollmentDetails>
+          element :<PrivateRoute> <EnrollmentDetails></EnrollmentDetails></PrivateRoute>
         }
       ]
   

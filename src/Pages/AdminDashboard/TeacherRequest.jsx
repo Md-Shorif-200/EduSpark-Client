@@ -4,12 +4,15 @@ import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
 import Loading from '../../Common/Loading';
+import useRole from '../../Hooks/useRole';
 
 
 const TeacherRequest = () => {
 
     const axiosSecure = useAxiosSecure();
     const [disabled , setDisabled] = useState(false)
+
+     
 
     const {data : users = [], isLoading, refetch} = useQuery({
         queryKey : ['users'],
@@ -19,10 +22,7 @@ const TeacherRequest = () => {
         }
     })
 
-    if(isLoading){
-      return <Loading></Loading>
-    }
-
+  
 
 // filter teachers by status
     const teachers = users.filter(user => user.status === 'pending' || user.status === 'accepted' || user.status ===  'rejected')
@@ -81,11 +81,11 @@ const TeacherRequest = () => {
       }
     }
 
-    // manage reject button
+    // // manage reject button
 
-    const rejectionMessage = () => {
-      toast.error(  ` teacher was rejected `)
-    }
+    // const rejectionMessage = () => {
+    //   toast.error(  ` teacher was rejected `)
+    // }
     return (
            <div>
          
@@ -120,32 +120,32 @@ const TeacherRequest = () => {
                         <td>  {teacher.skills.title} </td>
                         <td>  {teacher.skills.catagory} </td>
                         <td>  {teacher.skills.experience} </td>
-                        <td>  {teacher.status} </td>
+                        <td className='text-blue-950'>  {teacher.status} </td>
                         {/* approve button */}
                         <td>  
 
                           {
                             teacher.status === 'rejected' 
                             ?
-                             <><button onClick={rejectionMessage} className='btn bg-gray-400'>approve</button></> 
+                             <><button  className='btn bg-gray-400' disabled>approve</button></> 
                             :
                             <> <button className = 'btn' onClick={() => handleApproveButton(teacher)}> approve </button>  </>
                           }
 
                         </td>
 
-                              {/* reject button */}
+   <td>
+       {
+         teacher?.status === 'rejected' ?
+         
+         <>
+           <button className='btn' disabled>reject</button>
+         </>
 
-                              <td>  
+          : 
 
-{
-  teacher.status === 'rejected' 
-  ?
-   <><button onClick={rejectionMessage} className='btn bg-gray-400'>reject</button></> 
-  :
-  <>    <button className='btn' onClick={() => handleRejectButton(teacher)}> reject </button>   </>
-}
-
+   <button className='btn' onClick={() => handleRejectButton(teacher)}> reject </button> 
+       }
 </td>
 
 

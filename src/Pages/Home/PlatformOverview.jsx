@@ -4,26 +4,32 @@ import overviewImg  from '../../assets/Overview/telework-6795505_640.jpg'
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import useClass from '../../Hooks/useClass';
 import usePayments from '../../Hooks/usePayments';
+import Loading from '../../Common/Loading';
 
 const PlatformOverview = () => {
 
-        const [users,setUsers ] = useState([])
+        const [totalUsers,setTotalUsers ] = useState([])
       const axiosSecure = useAxiosSecure();
       const [classes] = useClass();  // get all classes
-      const [payments] = usePayments(); // get all enrollments
+      const [payments,refetch,isLoading] = usePayments(); // get all enrollments
+      
+
+      if(isLoading){
+        return <Loading></Loading>
+      }
 
 
-      useEffect(() => {
+
             axiosSecure.get('/users') // get all users
             .then(response => {
-                  setUsers(response.data)
-                  
+                  setTotalUsers(response.data)
+                  refetch()
             })
             .catch(error => {
                  console.log(error);
                  
             })
-      },[])
+
 
     return (
         <div>
@@ -37,7 +43,7 @@ const PlatformOverview = () => {
                                         <div className="card  text-center w-full h-[150px]   shadow-sm">
   <div className="card-body text-center">
     <h2 className=" text-lg font-bold capitalize mb-2"> total users</h2>
-                <h1 className='text-3xl font-semibold'>  {users.length} </h1>
+                <h1 className='text-3xl font-semibold'>  {totalUsers.length} </h1>
   </div>
 </div>
                                         </div>

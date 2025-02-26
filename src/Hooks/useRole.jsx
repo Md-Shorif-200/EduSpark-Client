@@ -7,10 +7,8 @@ import { useQuery } from '@tanstack/react-query';
 const useRole = () => {
      const axiosSecure = useAxiosSecure();
      const {user} = useAuth();
-     console.log(user);
+
      
-
-
      const {data,refetch,isLoading} = useQuery({
         queryKey : ['role',user?.email],
         enabled : !!user?.email,
@@ -21,10 +19,10 @@ const useRole = () => {
               
           }
      })
-     console.log(data);
+
  
        
-     return [data,isLoading]
+     return [data,refetch,isLoading]
 
 };
 

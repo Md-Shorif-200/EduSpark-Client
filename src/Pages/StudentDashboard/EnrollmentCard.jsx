@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 const EnrollmentCard = ({myPayment}) => {
      const {_id,courseTitle,TeacherName,courseBanner} = myPayment
+      
+       
     return (
         <div>
             <div className="card bg-base-100 w-full shadow-sm">

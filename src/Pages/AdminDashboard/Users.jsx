@@ -2,17 +2,21 @@ import { useQuery } from "@tanstack/react-query";
 
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { FaUsers } from "react-icons/fa";
-import { FaDeleteLeft } from "react-icons/fa6";
+
 import { toast } from "react-toastify";
 import { useState } from "react";
 import useRole from "../../Hooks/useRole";
+import { FaDeleteLeft } from "react-icons/fa6";
+import Swal from "sweetalert2";
+import Loading from "../../Common/Loading";
 
 const Users = () => {
    
   const axiosSecure = useAxiosSecure();
   const [role, isLoading] = useRole();
-   console.log(role);
-   
+
+
+  
   // get user data from database userCollection 
   const { data: users = [] , refetch} = useQuery({
     queryKey: ["users"],
@@ -21,6 +25,7 @@ const Users = () => {
       return res.data;
     },
   });
+  
 
 //   
 
@@ -36,6 +41,42 @@ const handleAdminButton = (user) => {
              }
         })
         .catch(err => console.log(err))
+}
+
+const handleUserDelete = (user) => {
+
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+
+      axiosSecure.delete(`/users/${user?._id}`)
+      .then(result => {
+             
+           const deleteSuccess = result.data.deletedCount > 0;
+
+           if(deleteSuccess){
+             Swal.fire({
+               title: "Deleted!",
+               text: "Your file has been deleted.",
+               icon: "success"
+             });
+           refetch()
+
+           }
+              
+      })
+      .catch(err => console.log(err))
+
+
+    }
+  });
 }
 
   return (
@@ -85,7 +126,7 @@ const handleAdminButton = (user) => {
                 </td>
                 <td>
                   {" "}
-                  <button className="btn">
+                  <button className="btn" onClick={() =>  handleUserDelete(user)}>
                     <FaDeleteLeft></FaDeleteLeft>
                   </button>{" "}
                 </td>

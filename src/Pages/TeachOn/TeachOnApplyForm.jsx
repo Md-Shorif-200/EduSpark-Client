@@ -32,40 +32,21 @@ const TeachOnApplyForm = () => {
     console.log(data);
   
     const skills = {
-      // name : data.name,
-      // image : data.photoUrl,
-      // email : data.email,
+  
       experience : data.experience,
       title : data.title,
       catagory : data.catagory,
-      // status : 'pending'
+  
     }
 
-    // post data to database
-    // axiosSecure.post('/teachers', teacherInfo)
-    // .then(result => {
-    //      console.log(result.data);
-
-    //      if(result.data.insertedId){
-    //       Swal.fire({
-    //         position: "top-end",
-    //         icon: "success",
-    //         title: "Your form succesfully submited",
-    //         showConfirmButton: false,
-    //         timer: 1500
-    //       });
-    //       // form reset
-    //       reset()
-    //         navigate('/')
-    //      }
-         
-    // })
+  
 
           try{
             axiosSecure.patch(`/users/${user.email}`,skills)
             .then(result => {
+        
               
-              if(result.data.insertedId){
+              if(result.data.modifiedCount > 0){
                       Swal.fire({
                         position: "top-end",
                         icon: "success",
@@ -79,7 +60,7 @@ const TeachOnApplyForm = () => {
                
             })
           }catch(error){
-             console.log(error);
+             toast.error('something is wrong . try again')
              
           }
 

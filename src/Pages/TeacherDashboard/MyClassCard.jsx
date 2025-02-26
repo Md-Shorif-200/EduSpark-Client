@@ -6,6 +6,8 @@ import ClassUpdateModal from './ClassUpdateModal';
 const MyClassCard = ({refetch,singleClass}) => {
 
     const {_id,title, name, email, price ,description, image ,status } = singleClass;
+ 
+     
 
 
     
@@ -56,7 +58,7 @@ const MyClassCard = ({refetch,singleClass}) => {
     <h2 className="font-semibold  text-md my-2"> name :  <span className='text-gray-700'>{name}</span> </h2>
     <h2 className="font-semibold  text-md my-2"> email : <span className='text-gray-700'>{email} </span> </h2>
     <h2 className="font-semibold  text-md my-2"> course fee  :<span className='text-gray-700'>{price} </span> </h2>
-    <h2 className="font-semibold  text-md my-2"> description : <span className='text-gray-700'>{description} </span> </h2>
+    <h2 className="font-semibold  text-md my-2" title={description}> description : <span className='text-gray-700'>{description.slice(0,20)}.... </span> </h2>
     <h2 className="font-semibold  text-md my-2"> status  :<span className='text-gray-700'>{status} </span> </h2>
     </div>
      
@@ -64,7 +66,18 @@ const MyClassCard = ({refetch,singleClass}) => {
         
        <button className=' '> <ClassUpdateModal refetch={refetch} id={_id} title={title} image = {image} description={description} price={price}></ClassUpdateModal></button>
         <button className='btn mx-5 md:mx-0 ' onClick={() =>  handleDeleteButton(singleClass)}>delete</button>
-      <Link to={`/dashboard/myClassDetails/${singleClass._id}`} className="btn my-5 md:my-0 common_bg_color_1 text-white">see details </Link>
+            
+            {
+              status === 'pending' ? 
+               <>
+               <button className='btn' disabled>see details</button>
+               </> : 
+
+               <>
+               <Link to={`/dashboard/myClassDetails/${singleClass._id}`} className="btn my-5 md:my-0 common_bg_color_1 text-white">see details </Link>
+               
+               </>
+            }
        </div>
 
       

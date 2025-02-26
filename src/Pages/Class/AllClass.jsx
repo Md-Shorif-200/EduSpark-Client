@@ -1,11 +1,16 @@
 import React from 'react';
 import useClassCard from '../../Hooks/useClassCard';
 import ClassCard from './ClassCard';
+import Loading from '../../Common/Loading';
 
 const AllClass = () => {
-            const [classes,refetch] = useClassCard();
+            const [classes,refetch,isLoading] = useClassCard();
 
             const approvedClasses = classes.filter(Class => Class.status == 'approved')
+
+            if(isLoading){
+              return <Loading></Loading>
+            }
             
     return (
         <div className='my-10'>

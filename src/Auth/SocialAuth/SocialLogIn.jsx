@@ -2,6 +2,7 @@ import React from 'react';
 import useAuth from '../../Hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import { toast } from 'react-toastify';
 
 const SocialLogIn = () => {
     const {googleSignIn} = useAuth()
@@ -20,12 +21,12 @@ const SocialLogIn = () => {
                 name : result.user?.displayName,
                 email : result.user?.email,
                 image : result.user?.photoURL,
-                role : 'user'
+                role : 'student'
             }
 
             axiosSecure.post('/users',userInfo)
             .then(res => {
-                 console.log(res.data);
+                  toast.success('log in successfully')
                  
                 })
                 .catch(err => {

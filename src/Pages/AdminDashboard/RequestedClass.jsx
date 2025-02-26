@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import Loading from "../../Common/Loading";
+import { Link } from "react-router-dom";
 
 
 
@@ -13,7 +14,7 @@ const RequestedClass = () => {
     const axiosSecure = useAxiosSecure()
 
     const [classes,refetch,isLoading] = useClass();
-    const [disabled , setDisabled] = useState(true);
+   
 
     if(isLoading){
       return <Loading></Loading>
@@ -36,7 +37,7 @@ const RequestedClass = () => {
                                         timer: 1500
                                       });
                                       
-                                      setDisabled(false)
+              
                                     //   refetch api 
                                     refetch()
                         }else if( result.data.modifiedCount === 0 && result.data.matchedCount === 1){
@@ -64,7 +65,7 @@ const RequestedClass = () => {
          
          if(result.data.modifiedCount > 1){
            toast.success('class is reject');
-           setDisabled(true)
+          
           //  refetch
           refetch();
          }
@@ -111,13 +112,15 @@ const RequestedClass = () => {
                 <td>  <button className="btn" onClick={() =>  handleRejectBtn(singleClass._id)}>reject</button>  </td>
                    <td>
                    {
-                      disabled ? 
+                      singleClass.status === 'approved' ? 
                       <>
-                 <button className="btn" disabled>progress</button>  
+                 <Link to={`/dashboard/class-progress/${singleClass._id}`} className="btn" >progress</Link>  
                       
-                      </>   : 
+                      </>  
+                       : 
                       <>
-                      <button className="btn">progess</button>
+<button className="btn" disabled>progess</button>
+
                       </>
                     }
          
