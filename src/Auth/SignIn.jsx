@@ -4,11 +4,13 @@ import useAuth from '../Hooks/useAuth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLogIn from './SocialAuth/SocialLogIn';
 import { toast } from 'react-toastify';
+import Loading from '../Common/Loading';
 
 const SignIn = () => {
-        const {signIn} = useAuth();
+        const {signIn,loading} = useAuth();
         const location = useLocation();
         const navigate = useNavigate();
+
 
         const from = location.state?.from?.pathname || '/'
 
@@ -23,6 +25,11 @@ const SignIn = () => {
           const onSubmit = (data) => {
                 signIn(data.email,data.password)
                 .then(result => {
+
+                  
+        if(loading){
+          return <Loading></Loading>
+        }
                      const loggedUser = result.user;
                       
                        toast.success('log in succesfully')
@@ -63,18 +70,21 @@ const SignIn = () => {
 
       <button className='btn common_bg_color_1 text-white w-full my-2'>Sign In</button>
 
-                        <p className='text-center capitalize my-4'>or sign in with </p>
-
-                        <div>
-                            <SocialLogIn></SocialLogIn>
-                        </div>
-
+                       
 
       <div className='my-3'>
                   <p> new to academix <Link className='text-red-600' to='/signUp'>creat account</Link> </p>
             </div>
 
     </form>
+
+
+    <p className='text-center capitalize my-4'>or sign in with </p>
+
+<div>
+    <SocialLogIn></SocialLogIn>
+</div>
+
 
   </div>
 </div>

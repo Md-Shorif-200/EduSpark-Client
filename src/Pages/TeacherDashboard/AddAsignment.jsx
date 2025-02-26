@@ -41,8 +41,9 @@ const AddAsignment = ({ classData,refetch }) => {
 
         if (respons.data.insertedId) {
           toast.success("assignment added succesfully");
-          refetch()
-          setIsOpen(false);
+          reset(); // clear form
+          refetch()  // reload data
+          setIsOpen(false); // close modal 
         }
       });
     } catch (error) {

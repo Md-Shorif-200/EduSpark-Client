@@ -4,6 +4,7 @@ import useAuth from "../Hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
+import Loading from "../Common/Loading";
 
 const SignUp = () => {
   // react hook form
@@ -14,7 +15,9 @@ const SignUp = () => {
   } = useForm();
 
   // get user data from authProvider
-  const { creatUser,updateUserProfile } = useAuth();
+  const { creatUser,updateUserProfile,loading } = useAuth();
+
+
 
   const navigate = useNavigate()
   const axiosSecure = useAxiosSecure()
@@ -24,11 +27,16 @@ const SignUp = () => {
   const onSubmit = (data) => {
     creatUser(data.email, data.password)
       .then((result) => {
-        const loggedUser = result.user;
+  
         
         // update Profile
           updateUserProfile(data.name, data.photoUrl)
           .then(() => {
+
+         
+        if(loading){
+          return <Loading></Loading>
+        }
             
             const userInfo = {
               name : data.name,
@@ -43,11 +51,9 @@ const SignUp = () => {
                
               
                if(registerdUser.insertedId){
+                 reset()
                 toast.success('sign up succesfully');
-                reset()
                 navigate('/') 
-               }else{
-                return ;
                }
                 
              

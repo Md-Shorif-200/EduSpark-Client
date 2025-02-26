@@ -132,3 +132,17 @@ height: 70px;
     background-color: white;
     color: black;
 }
+
+
+ .rr--box{
+    --rr--stroke-off-color : brown;
+    --rr--fill-on-color: gold;
+}
+
+
+
+/* max-width: 200px;
+--rr--fill-on-color: #ffb23f;
+--rr--fill-off-color: #fff7ed;
+--rr--stroke-on-color: #e17b21;
+--rr--stroke-off-color: #eda76a; */
