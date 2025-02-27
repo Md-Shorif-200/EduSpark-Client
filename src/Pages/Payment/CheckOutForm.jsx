@@ -14,6 +14,7 @@ const CheckOutForm = () => {
  const [error,setError] = useState('');
  const [clientSecret,setClientSecret] = useState('');
  const [transectionId, setTransectionId] = useState('')
+//  stripe payments 
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate()
@@ -32,7 +33,7 @@ const totalPrice = price;
           if(totalPrice > 0){
             axiosSecure.post('/creat-payment-intent',{courseFee : totalPrice})
             .then(res => {
-             console.log(res.data.clientSecret);
+            //  console.log(res.data.clientSecret);
              setClientSecret(res.data.clientSecret)
              
             })
@@ -89,9 +90,9 @@ const totalPrice = price;
             
         }else{
      
-           console.log('payment intent ', paymentIntent);
+          //  console.log('payment intent ', paymentIntent);
            if(paymentIntent.status === 'succeeded'){
-            console.log('transection id : ', paymentIntent.id);
+            // console.log('transection id : ', paymentIntent.id);
             setTransectionId(paymentIntent.id)
                 // save the payment in the database
 
@@ -112,6 +113,8 @@ const totalPrice = price;
                       const res = await axiosSecure.post('/payments', payment)
                  
                       if(res.data.insertedId){
+                        // setTotalEnrollments(totalEnrollments + 1)
+                         
                         
                         navigate('/dashboard/myEnrollMent')
                         Swal.fire({
@@ -121,6 +124,19 @@ const totalPrice = price;
                           showConfirmButton: false,
                           timer: 1500
                         });
+
+
+
+                        // update class totalEnrollments 
+                        axiosSecure.patch(`/classes/${_id}`) 
+                        
+                        .then(response => {
+                          
+                          console.log(response.data);
+                          //  setTotalEnrollments(totalEnrollments + 1)
+                          
+                        })
+                    
                       }
                       
                     }catch(error){

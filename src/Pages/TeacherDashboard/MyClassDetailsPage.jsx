@@ -1,21 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import ClassProgress from './ClassProgress';
 import ClassAssignment from './AddAsignment';
 import useAssignments from '../../Hooks/useAssignments';
 import Loading from '../../Common/Loading';
 import AddAsignment from './AddAsignment';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const MyClassDetailsPage = () => {
-     const classData = useLoaderData();
 
+  const classData = useLoaderData();
+  
      const [assignments,refetch,isLoading]  = useAssignments();
-
-      const myAssignmets = assignments.filter(assignment => assignment.assignmentId === classData._id)
+     
+     const myAssignmets = assignments.filter(assignment => assignment.assignmentId === classData._id);
+     
+     const axiosSecure = useAxiosSecure();
+     const [submitedAssignments , setSubmitedAssignments] = useState([])
+     
+     const filterdSubmissions = submitedAssignments.filter(submission => submission.submitedId === classData._id);
+    try{
+         useEffect(() => {
+          axiosSecure.get('/submit-asignment')
+          .then(response => {
+                setSubmitedAssignments(response.data);
+                refetch()
+          })
+         } ,[filterdSubmissions])
+    }catch(error){
+             console.log(error);
+             
+    }
     
-      if(isLoading){
-           return <Loading></Loading>
-      }
+      // if(isLoading){
+      //      return <Loading></Loading>
+      // }
       
  
       
@@ -23,7 +42,7 @@ const MyClassDetailsPage = () => {
         <div className='px-12 py-10'>
 
                   <div className="class_Prgress">
-             <ClassProgress classData={classData} totalAssignments= {myAssignmets.length} ></ClassProgress>
+             <ClassProgress classData={classData} totalAssignments= {myAssignmets} totalSubmissions={filterdSubmissions.length}></ClassProgress>
 
                   </div>
 

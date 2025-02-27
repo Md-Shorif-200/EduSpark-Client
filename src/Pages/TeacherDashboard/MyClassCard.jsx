@@ -64,7 +64,14 @@ const MyClassCard = ({refetch,singleClass}) => {
      
        <div className="action_btn w-full block md:flex justify-between ">
         
-       <button className=' '> <ClassUpdateModal refetch={refetch} id={_id} title={title} image = {image} description={description} price={price}></ClassUpdateModal></button>
+       <button className=' '>
+       
+                <div>
+                <ClassUpdateModal refetch={refetch} id={_id} title={title} image = {image} description={description} price={price}></ClassUpdateModal>
+                </div>
+         
+         </button>
+
         <button className='btn mx-5 md:mx-0 ' onClick={() =>  handleDeleteButton(singleClass)}>delete</button>
             
             {

@@ -41,7 +41,7 @@ const Navbar = () => {
           </div>
         {/* nav logo  */}
            <div className="nav_logo">
-                     <img src={nav_logo} className='w-[100px] h-[70px] rounded-sm'  alt="" />
+                     <img src={nav_logo} className='w-[80px] h-[50px] rounded-sm'  alt="" />
            </div>
         </div>
         {/* nav links */}

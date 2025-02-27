@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Loading from "../../Common/Loading";
 import usePayments from "../../Hooks/usePayments";
 
-const ClassProgress = ({classData,totalAssignments}) => {
+const ClassProgress = ({classData,totalAssignments,totalSubmissions}) => {
 
           // const [totalEnrollments , setTotalEnrollments] = useState(0)
           // const [totalAssignment , setTotalAssignment] = useState(0)
@@ -26,24 +26,24 @@ const ClassProgress = ({classData,totalAssignments}) => {
     
 
         <div className="card w-full bg-base-100 card-sm shadow-sm p-8  capitalize ">
-          <div className="card-body">
-            <h2 className=" text-xl font-semibold text-center">total enrollment</h2>
-             <p className="text-2xl font-semibold text-center">    {totalEnrollments.length} </p>
+          <div className="">
+            <h2 className=" text-xl font-semibold ">total enrollment</h2>
+             <p className="text-2xl font-semibold mt-3  text-center">    {totalEnrollments.length} </p>
           </div>
         </div>
 
         <div className="card w-full bg-base-100 card-sm shadow-sm p-8 capitalize">
-          <div className="card-body">
-            <h2 className=" text-xl font-semibold text-center">total assignment</h2>
-            <p className="text-x2l font-semibold text-center"> </p>
+          <div className="">
+            <h2 className=" text-xl font-semibold ">total assignment</h2>
+            <p className="text-xl font-semibold  mt-3 text-center"> {totalAssignments.length} </p>
           </div>
         </div>
 
 
         <div className="card w-full bg-base-100 card-sm shadow-sm p-8 capitalize">
-          <div className="card-body">
-            <h2 className=" text-xl font-semibold text-center"></h2>
-            <p className="text-x2l font-semibold text-center"></p>
+          <div className="">
+            <h2 className=" text-xl font-semibold "> total asignment submission</h2>
+            <p className="text-x2l font-semibold  mt-3 text-center"> {totalSubmissions} </p>
           </div>
         </div>
 

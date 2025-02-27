@@ -18,7 +18,7 @@ import StudentFeedback from './StudentFeedback';
 const Feedback = () => {
     const axiosPublic = useAxiosPublic(); // base url 
 const [studentFeedback, setStudentFeedback] = useState([])
-console.log(studentFeedback);
+
 
 // get feedback data form database 
  

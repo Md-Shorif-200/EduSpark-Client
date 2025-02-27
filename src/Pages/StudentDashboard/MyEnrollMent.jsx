@@ -17,15 +17,16 @@ const MyEnrollMent = () => {
  }
 
   
-const myPayments = payments.filter(payment => payment.studentEmail === user?.email)
+const myPayments = payments.filter(payment => payment.studentEmail === user.email)
 
- 
+   console.log(myPayments);
+   
     return (
            <div>
                    
 
                           {
-                            data.role === 'user' ? 
+                            data?.role === 'user' ? 
                             <div className=' w-full min-h-screen flex justify-center items-center '>
                             <div className="card bg-base-100 w-[70%] h-[200px] mx-auto shadow-sm">
           <div className="card-body flex justify-center  items-center">
