@@ -81,7 +81,7 @@ const MyClassCard = ({refetch,singleClass}) => {
                </> : 
 
                <>
-               <Link to={`/dashboard/myClassDetails/${singleClass._id}`} className="btn my-5 md:my-0 common_bg_color_1 text-white">see details </Link>
+               <Link to={`/dashboard/myClassDetails/${singleClass._id}`} className="btn my-5 md:my-0 primary_bg_color text-white">see details </Link>
                
                </>
             }

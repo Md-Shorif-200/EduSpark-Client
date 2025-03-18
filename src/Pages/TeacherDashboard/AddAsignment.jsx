@@ -60,7 +60,7 @@ const AddAsignment = ({ classData,refetch }) => {
     <>
       <Button
         onClick={open}
-        className="btn common_bg_color_1 text-white mt-8 capitalize"
+        className="btn primary_bg_color text-white mt-8 capitalize"
       >
         + creat Assignment
       </Button>
@@ -143,7 +143,7 @@ const AddAsignment = ({ classData,refetch }) => {
 
                             <Button
                               type="submit"
-                              className="btn  mt-4 common_bg_color_1 text-white"
+                              className="btn  mt-4 primary_bg_color text-white"
                             >
                               Add Assignment
                             </Button>
@@ -152,7 +152,7 @@ const AddAsignment = ({ classData,refetch }) => {
                             className="md:absolute bottom-8 right-12"
                             onClick={close}
                           >
-                            <button className="btn  common_bg_color_1 text-white">
+                            <button className="btn  primary_bg_color text-white">
                               {" "}
                               cencel
                             </button>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const ClassCard = ({approvedClass}) => {
      const {title,name ,email, price ,description, status , image,_id} = approvedClass;
     return (
-        <div>
+        <div className='populer_course_card'>
 
 <div className="card bg-base-100 w-full shadow-sm ">
   <figure>
@@ -20,7 +20,7 @@ const ClassCard = ({approvedClass}) => {
     <h1 className='text-md font-semibold'> course outline : <span className='text-gray-600'>{description}</span> </h1>
     <h1 className='text-md font-semibold'> total enrollment :    </h1>
     <div className="card-actions justify-end">
-      <Link to={`/allClass/classDetails/${_id}`} className="btn common_bg_color_1 text-white" >Enroll </Link>
+      <Link to={`/allClass/classDetails/${_id}`} className="btn primary_bg_color text-white" >Enroll </Link>
     </div>
   </div>
 </div>

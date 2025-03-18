@@ -6,6 +6,11 @@ import SocialLogIn from "./SocialAuth/SocialLogIn";
 import { toast } from "react-toastify";
 import Loading from "../Common/Loading";
 
+// lottie files 
+
+import signIn_lottie_animation from '../assets/lottie react/log-in.json'
+import Lottie from "lottie-react";
+
 const SignIn = () => {
   const { signIn, loading } = useAuth();
   const location = useLocation();
@@ -41,9 +46,9 @@ const SignIn = () => {
   return (
     <div>
       <div className="hero bg-base-200 min-h-screen">
-        <div className="hero-content flex-col">
+        <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left mb-4">
-            <h1 className="text-3xl font-bold">sign In now!</h1>
+                <Lottie animationData={signIn_lottie_animation}></Lottie>
           </div>
 
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
@@ -77,7 +82,7 @@ const SignIn = () => {
                   </span>
                 )}
 
-                <button className="btn common_bg_color_1 text-white w-full my-2">
+                <button className="btn primary_bg_color text-white w-full my-2">
                   Sign In
                 </button>
 

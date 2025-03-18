@@ -5,6 +5,12 @@ import { Link, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import Loading from "../Common/Loading";
+import Lottie from "lottie-react";
+
+// lottie file
+
+
+import lottie_signUp_animation from '../assets/lottie react/Animation - 1741485045379.json'
 
 const SignUp = () => {
   // react hook form
@@ -83,13 +89,15 @@ const SignUp = () => {
   return (
     <div className="sign_up">
       <div className="hero bg-base-200 min-h-screen">
-        <div className="hero-content flex-col">
-          <div className="text-center lg:text-left mb-4">
-            <h1 className="text-3xl font-bold">Sign Up now!</h1>
+        <div className="hero-content flex-col lg:flex-row-reverse">
+        
+        <div className="text-center lg:text-left mb-4">
+                   <Lottie animationData={lottie_signUp_animation}></Lottie>
           </div>
 
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
             <div className="card-body">
+                    <h1 className="text-2xl  uppercase font-semibold text-center">sign up</h1>
               <form className="" onSubmit={handleSubmit(onSubmit)}>
 
                 {/* user name */}
@@ -141,7 +149,7 @@ const SignUp = () => {
 
                 {/* sign Up button */}
 
-                <button className="btn w-full common_bg_color_1 text-white my-2 ">Sign Up</button>
+                <button className="btn w-full primary_bg_color text-white my-2 ">Sign Up</button>
 
                 <div className="my-2">
                   <p>
@@ -154,6 +162,9 @@ const SignUp = () => {
               </form>
             </div>
           </div>
+
+      
+
         </div>
       </div>
     </div>

@@ -119,7 +119,7 @@ const ClassUpdateModal = ({refetch,id,title, image ,description ,price}) => {
         </form>
 
                         <div>
-                          <button onClick={close} className='btn common_bg_color_1 text-white'>cencel</button>
+                          <button onClick={close} className='btn primary_bg_color text-white'>cencel</button>
                         </div>
       </div>
     </div>

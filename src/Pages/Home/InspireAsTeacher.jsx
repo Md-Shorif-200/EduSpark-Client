@@ -17,7 +17,7 @@ const InspireAsTeacher = () => {
     <p className='text-lg my-4'>  Join our platform and become a beacon of knowledge and inspiration. Connect with eager students, create transformative courses, and make a real impact. Let’s build the future of education together!
 </p>
     <div className="card-actions justify-end">
-      <button className="btn common_bg_color_1 text-white uppercase">become a teacher </button>
+      <button className="btn primary_bg_color text-white uppercase">become a teacher </button>
     </div>
   </div>
 

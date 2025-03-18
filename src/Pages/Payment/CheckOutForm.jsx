@@ -170,7 +170,7 @@ const totalPrice = price;
         }}
       />
       {/*  */}
-      <button type="submit" className="btn w-[100px] text-white common_bg_color_1 my-4" disabled={!stripe || !clientSecret}>
+      <button type="submit" className="btn w-[100px] text-white primary_bg_color my-4" disabled={!stripe || !clientSecret}>
         Pay
       </button>
         <p className="text-red-700 my-4">  {error} </p>

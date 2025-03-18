@@ -1,3 +1,4 @@
+import AboutUs from "./AboutUs";
 import Banner from "./Banner";
 import ExclusiveSolution from "./ExclusiveSolution";
 import Feedback from "./Feedback";
@@ -12,7 +13,8 @@ const Home = () => {
     return (
         <div>
                <Banner></Banner>
-               <Partners></Partners>
+               <AboutUs></AboutUs>
+               {/* <Partners></Partners> */}
                <PopulerCourse></PopulerCourse>
                <Feedback></Feedback>
                <PlatformOverview></PlatformOverview>

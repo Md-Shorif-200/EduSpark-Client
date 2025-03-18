@@ -2,27 +2,133 @@
 @plugin "daisyui";
 
 
+/* common section starts */
 
+/* 
+Primary: #00A6A6 (Teal)
+Secondary: #6A0DAD (Purple)
+Background: #F4F4F4 (Light Gray)
+Text: #2C2C2C (Dark Gray)
+Accent: #FFB703 (Yellow-Orange) 
 
+*/
 
+/* css color variable */
 
-
-
-/* common color */
-
-
-
-.common_bg_color_1 {
-    background-color: #292865;
+:root {
+--Primary: #00A6A6 ;
+--Secondary: #6A0DAD ;
+--Background: #F4F4F4 ;
+--Text: #2C2C2C ;
+--Accent: #FFB703 ;
 }
 
-.common_bg_color_2 {
-    background-color: #FFFCF4;
+.primary_bg_color {
+    background-color: var(--Primary);
+}
+.secondary_bg_color {
+    background-color: var(--Background);
 }
 
-/*  */
+.primary_text_color {
+color: white; 
+}
+.secondary_text_color {
+    color: var(--Secondary);
+}
+
+.accent_bg_color {
+    background-color: var(--Accent);
+}
+
+
+.section_heading {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color:white
+}
+.btn_primary {
+
+    background-color:  var(--Secondary);
+    color : white;
+    outline: none;
+    border: none;
+    font-weight: 800;
+
+/*     
+    width: 120px;
+    background-color: #00A6A6;
+    color: #F4F4F4;
+
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    transition: .5s ease; */
+}
+.btn_primary:hover{
+    /* color: black; */
+}
+
+
+.btn_secondary {
+
+    background-color:  white;
+    color : black;
+    outline: none;
+    border: none;
+    font-weight: 800;
+  transition: .5s all;
+    /* width: 150px;
+    background-color: #F4F4F4;
+    color: black;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    transition: .5s ease; */
+}
+
+.btn_secondary:hover {
+    /* background-color:#00A6A6 ;
+    color: white; */    background-color: var(--Secondary);
+     color  : white;
+}
+
+.actionable_primary_btn {
+    background-color:  var(--Secondary);
+     color : white;
+     outline: none;
+     border: none;
+     font-weight: 700;
+   
+}
+
+.actionable_secondary_btn {
+    background-color:  white;
+     color : black;
+     outline: none;
+     border: none;
+     font-weight: 700;
+   transition: .5s all;
+}
+.actionable_secondary_btn:hover {
+     background-color: var(--Secondary);
+     color  : white;
+}
+/* common section ends */
+
+/* navigation section  */
+ .navbar {
+           background-color: var(--Primary);
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+          position: fixed;
+          top : 0;
+          z-index: 10;
+ }
+
 .navbar ul li {
     margin-left: 15px;
+ 
     }
     .navbar ul li a {
         font-size: 12px;
@@ -30,10 +136,43 @@
         font-weight: 500;
         }
 
+        .navbar li a {
+            color : white ;
+                font-weight: bold;
+                transition: ease;
+        }
+     
+        /* .navbar li a.active{
+            background-color: #6a0dad96;
+            color: white;
+        } */
 
- .navbar  li a.active {
-background-color: #292865;
-color: white;
+
+
+.avatar img {
+    width: 32px;
+    height: 32px;
+}
+
+.navbar .dropdown_cnt{
+   width: 220px;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  
+}
+
+/* .dropdown-content .btn:hover{
+
+} */
+
+
+/* banner section */
+ .banner_cnt h1 {
+    line-height: 60px;
+}
+
+.banner {
+    background-color: rgba(0, 0, 0, 0.432);
+    background-blend-mode:multiply;
 }
 
 .sign_up input{
@@ -139,6 +278,11 @@ height: 70px;
     --rr--fill-on-color: gold;
 }
 
+
+.populer_course_card .card:hover {
+    transform: scale(1.1);
+    transition: .5s  ease-out;
+}
 
 
 /* max-width: 200px;

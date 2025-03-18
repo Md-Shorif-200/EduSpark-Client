@@ -16,11 +16,11 @@ const PopulerCourse = () => {
              
    
     return (
-        <div>
+        <div className='bg_color_2 p-6 '>
 
               <SectionTitle title={'our populer courses'}></SectionTitle>
 
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-14'> 
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 '> 
                  {
                     populerClasses.map(populerClass => <ClassCard approvedClass= {populerClass}></ClassCard>)
                  }

@@ -168,7 +168,7 @@ const TeachOnApplyForm = () => {
                 )}
                 {/* sign Up button */}
 
-                <button className="btn w-full common_bg_color_1 text-white my-8 p-3 ">submit for review</button>
+                <button className="btn w-full primary_bg_color text-white my-8 p-3 ">submit for review</button>
 
               </form>
             </div>

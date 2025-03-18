@@ -156,7 +156,7 @@ const FeedbackModal = ({classData}) => {
                 
                                             <Button
                                               type="submit"
-                                              className="btn  mt-4 common_bg_color_1 text-white"
+                                              className="btn  mt-4 primary_bg_color text-white"
                                             >
                                               send
                                             </Button>
@@ -165,7 +165,7 @@ const FeedbackModal = ({classData}) => {
                                             className="absolute bottom-8 right-12"
                                             onClick={close}
                                           >
-                                            <button className="btn  common_bg_color_1 text-white">
+                                            <button className="btn  primary_bg_color text-white">
                                               {" "}
                                               cencel
                                             </button>
