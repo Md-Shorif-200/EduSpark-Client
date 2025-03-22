@@ -1,49 +1,50 @@
+
 [
     {
       "id": 1,
-      "icon": "https://example.com/icons/web-development.png",
+      "icon": "https://i.postimg.cc/dQN9Y51q/world-wide-web.png",
       "title": "Web Development",
       "description": "Learn how to build interactive websites using HTML, CSS, JavaScript, and modern frameworks like React and Node.js."
     },
     {
       "id": 2,
-      "icon": "https://example.com/icons/web-design.png",
+      "icon": "https://i.postimg.cc/ZRVx0cxx/web-designing.png",
       "title": "Web Design",
       "description": "Master the art of creating visually appealing and user-friendly websites using design principles and tools like Adobe XD and Figma."
     },
     {
       "id": 3,
-      "icon": "https://example.com/icons/digital-marketing.png",
+      "icon": "https://i.postimg.cc/N084vYyV/marketing.png",
       "title": "Digital Marketing",
       "description": "Explore SEO, social media strategies, content marketing, and paid advertising to drive traffic and build brand awareness online."
     },
     {
       "id": 4,
-      "icon": "https://example.com/icons/video-editing.png",
+      "icon": "https://i.postimg.cc/NMgxgVm0/video-editing.png",
       "title": "Video Editing",
       "description": "Learn video editing techniques using software like Adobe Premiere Pro, Final Cut Pro, and DaVinci Resolve to create professional-quality videos."
     },
     {
       "id": 5,
-      "icon": "https://example.com/icons/data-entry.png",
+      "icon": "https://i.postimg.cc/rsHGNwbd/working.png",
       "title": "Data Entry",
       "description": "Gain skills in data entry, including using spreadsheets, databases, and various software tools to input and manage information effectively."
     },
     {
       "id": 6,
-      "icon": "https://example.com/icons/data-science.png",
+      "icon": "https://i.postimg.cc/52Cgp8ff/exploratory-analysis.png",
       "title": "Data Science",
       "description": "Dive into data analysis, machine learning, and big data technologies to extract valuable insights from raw data using Python and R."
     },
     {
       "id": 7,
-      "icon": "https://example.com/icons/web-development.png",
+      "icon": "https://i.postimg.cc/c4jTQFyD/advabced-web.png",
       "title": "Advanced Web Development",
       "description": "Take your web development skills to the next level with advanced techniques in server-side programming, API integrations, and web application deployment."
     },
     {
       "id": 8,
-      "icon": "https://example.com/icons/web-design.png",
+      "icon": "https://i.postimg.cc/s2CcL127/ui-ux.png",
       "title": "UX/UI Design",
       "description": "Learn the principles of user experience (UX) and user interface (UI) design to create intuitive and aesthetically pleasing digital products."
     }

@@ -3,8 +3,8 @@ import React from 'react';
 const SectionTitle = ({title,subTitle}) => {
     return (
         <div className='text-center font-semibold'>
-            <h1 className='text-3xl font-bold  my-6  md:my-14 capitalize'>{title} </h1>
-            <h1>{subTitle} </h1>
+            <h3 className='text-justify capitalize my-3'>{subTitle} </h3>
+            <h1 className='text-4xl font-semibold capitalize text-justify'>{title} </h1>
         </div>
     );
 };

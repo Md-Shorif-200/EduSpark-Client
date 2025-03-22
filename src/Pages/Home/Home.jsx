@@ -1,5 +1,6 @@
 import AboutUs from "./AboutUs";
 import Banner from "./Banner";
+import EducationFaculties from "./EducationFaculties";
 import ExclusiveSolution from "./ExclusiveSolution";
 import Feedback from "./Feedback";
 import InspireAsTeacher from "./InspireAsTeacher";
@@ -14,6 +15,7 @@ const Home = () => {
         <div>
                <Banner></Banner>
                <AboutUs></AboutUs>
+               <EducationFaculties></EducationFaculties>
                {/* <Partners></Partners> */}
                <PopulerCourse></PopulerCourse>
                <Feedback></Feedback>

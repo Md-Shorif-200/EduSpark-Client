@@ -175,6 +175,19 @@ color: white;
     background-blend-mode:multiply;
 }
 
+.faculty_card {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: .3s all;
+}
+.faculty_card:hover{
+    background-color: var(--Secondary);
+    color: white;
+}
+
+/* .swiper-button-next {
+  background-color: red;
+} */
+
 .sign_up input{
     margin: 15px 0;
 }
@@ -279,9 +292,13 @@ height: 70px;
 }
 
 
-.populer_course_card .card:hover {
+/* .populer_course_card .card:hover {
     transform: scale(1.1);
     transition: .5s  ease-out;
+} */
+
+.class_card{
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
 }
 
 
