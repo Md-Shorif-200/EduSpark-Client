@@ -2,7 +2,7 @@
 @plugin "daisyui";
 
 
-/* common section starts */
+/*! common section starts */
 
 /* 
 Primary: #00A6A6 (Teal)
@@ -115,7 +115,7 @@ color: white;
      background-color: var(--Secondary);
      color  : white;
 }
-/* common section ends */
+/*! common section ends */
 
 /* navigation section  */
  .navbar {
@@ -175,6 +175,8 @@ color: white;
     background-blend-mode:multiply;
 }
 
+/* faculty section */
+
 .faculty_card {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     transition: .3s all;
@@ -188,6 +190,33 @@ color: white;
   background-color: red;
 } */
 
+/* statistics section */
+
+.statistics_cards .card {
+    background-color: white;
+    color: black;
+    text-transform: capitalize;
+    text-align: center;
+    padding: 30px 0;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.statistics_cards .card h1 {
+    font-size: 45px;
+    font-weight: 600;
+}
+.statistics_cards .card p {
+   font-size: 20px;
+   color: gray;
+}
+
+.statistics_img_card {
+  
+    background-color: white;
+    color: black;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+padding: 35px 18px;
+border-radius: 20px;
+}
 .sign_up input{
     margin: 15px 0;
 }
@@ -298,7 +327,7 @@ height: 70px;
 } */
 
 .class_card{
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 
@@ -307,3 +336,5 @@ height: 70px;
 --rr--fill-off-color: #fff7ed;
 --rr--stroke-on-color: #e17b21;
 --rr--stroke-off-color: #eda76a; */
+
+

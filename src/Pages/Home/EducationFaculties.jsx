@@ -82,7 +82,7 @@ const EducationFaculties = () => {
   // }
 
     return (
-        <div className='my-14'>
+        <div className=''>
                 {/* <SectionTitle  title={'  education facultites'}></SectionTitle> */}
                 {/* sweper slider */}
                 <Swiper

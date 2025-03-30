@@ -14,11 +14,21 @@ import { Carousel } from 'react-responsive-carousel';
        import img_9 from '../../assets/banner-img/img-9.jpg'
        import img_10 from '../../assets/banner-img/img-10.jpg'
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import BannerContent from "../../Componets/BannerContent";
 
 
 const Banner = () => {
+
+    // const [delay,setDelay] = useState(5000)
+
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         setDelay(3000)
+    //     }, 5000);
+
+    //     return () => clearTimeout(timer)
+    // }, [])
 
    
 
@@ -27,29 +37,43 @@ const Banner = () => {
                  <Carousel
                  autoPlay 
                  infiniteLoop 
-                 interval={3000} 
+                 interval={4000} 
                  showThumbs={false} 
       showStatus={false}
+      transitionTime={800}  // Slide পরিবর্তনের সময় 0.8s (Smooth effect)
+      swipeable={true}  // Mouse & touch swipe সাপোর্ট
+      emulateTouch={true} // Smooth swipe effect
+      stopOnHover={false} // Mouse hover করলে স্লাইড বন্ধ হবে না
+      useKeyboardArrows={true} // কিবোর্ডের arrow key ব্যবহার করে স্লাইড করা যাব
+   
 
                  >
 
                 <div className="">
-                                   <BannerContent className='w-full h-full' img={img_2} subTitle={'welcome to academix'} title= {'Transform Your Future with Expert-Led Online Courses'} description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.'}></BannerContent>                    
+                                   <BannerContent className='w-full h-full' img={img_8} subTitle={'welcome to academix'} title= {'Unlock Your Potential with Expert-Led Courses'} description={"Join thousands of learners worldwide and gain in-demand skills with our high-quality online courses. Start learning today and take your career to the next level!"}></BannerContent>                    
                 </div>
 
                 <div className="">
                                    <BannerContent  className='w-full h-full' img={img_2} 
                                    subTitle={'welcome to academix'} 
                                    
-                                   title= {'Transform Your Future with Expert-Led Online Courses'} 
+                                   title= {'Learn Anytime, Anywhere – Master New Skills'} 
                                    
-                                   description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.'}></BannerContent>                    
+                                   description={ "Flexible and affordable courses designed for busy professionals, students, and lifelong learners. Learn at your own pace and achieve your goals!"}></BannerContent>                    
                 
                 </div>
-                {/* <div className="w-full   md:h-[500px]">
-                                   <BannerContent img={banner_img_1}></BannerContent>                    
-                    
-                </div> */}
+
+
+                <div className="">
+                                   <BannerContent  className='w-full h-full' img={img_1} 
+                                   subTitle={'welcome to academix'} 
+                                   
+                                   title= {'From Beginner to Pro – Learn with Industry Experts'} 
+                                   
+                                   description={"Our expert instructors guide you through hands-on learning experiences in programming, design, marketing, and more. Start your learning journey today!"}></BannerContent>                    
+                
+                </div>
+                
             </Carousel> 
         </div>
             

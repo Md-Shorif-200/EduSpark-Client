@@ -23,8 +23,8 @@ const BannerContent = ({subTitle,title,description,img}) => {
 
                         <div className="banner_cnt w-[45%] text-justify py-30 px-16 " data-aos='fade-up' data-aos-duration="1000">
 
-                               <h6 className="section_heading">
-                                
+                               <h6 className="section_heading"> {subTitle}
+{/*                                 
                                     <Typewriter
                                        words={[`${subTitle}`]}
                                        loop = {0}
@@ -33,7 +33,7 @@ const BannerContent = ({subTitle,title,description,img}) => {
                                         typeSpeed={100}
                                         deleteSpeed={100}
                                         delaySpeed={1000}
-                                    ></Typewriter>
+                                    ></Typewriter> */}
                                </h6>
                                <h1 className="text-5xl   font-semibold my-6 primary_text_color">{title}</h1>
                                <p className=" text-white"> {description} </p>

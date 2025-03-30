@@ -2,19 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ClassCard = ({approvedClass}) => {
-     const {title,name ,email, price ,description, status , image,_id,duration} = approvedClass;
+     const {title,name ,email, price ,description, status , image,_id,duration,totalEnrollments} = approvedClass;
     return (
         <div className='populer_course_card'>
 
-<div className="class_card bg-base-100 w-full ">
+<div className="class_card bg-base-100 w-full">
   <figure>
     <img
       src={image}
        className='w-full h-[160px]'
       alt="class image" />
   </figure>
-  <div className=" capitalize">
+  <div className=" capitalize px-2 py-3">
     <h2 className="text-lg font-bold  my-2"> {title} </h2>
+    {/* <h2 className="text-lg font-bold  my-2"> {totalEnrollments} </h2> */}
     {/* <h1 className='text-md font-semibold'> teacher :  <span className='text-gray-600'>{name}</span> </h1> */}
     <h1 className='text-md font-semibold'><span className='text-gray-600'>{price} $</span> </h1>
     {/* <h1 className='text-md font-semibold'><span className='text-gray-600'>{duration}</span> </h1> */}

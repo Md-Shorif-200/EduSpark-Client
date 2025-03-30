@@ -7,6 +7,7 @@ import InspireAsTeacher from "./InspireAsTeacher";
 import Partners from "./Partners";
 import PlatformOverview from "./PlatformOverview";
 import PopulerCourse from "./PopulerCourse";
+import Statistics from "./Statistics";
 import SuccessHistory from "./SuccesStory";
 
 
@@ -18,11 +19,12 @@ const Home = () => {
                <EducationFaculties></EducationFaculties>
                {/* <Partners></Partners> */}
                <PopulerCourse></PopulerCourse>
-               <Feedback></Feedback>
-               <PlatformOverview></PlatformOverview>
-               <InspireAsTeacher></InspireAsTeacher>
-               <ExclusiveSolution></ExclusiveSolution>
-               <SuccessHistory></SuccessHistory>
+               <Statistics></Statistics>
+               {/* <Feedback></Feedback> */}
+               {/* <PlatformOverview></PlatformOverview> */}
+               {/* <InspireAsTeacher></InspireAsTeacher> */}
+               {/* <ExclusiveSolution></ExclusiveSolution> */}
+               {/* <SuccessHistory></SuccessHistory> */}
         </div>
     );
 };
