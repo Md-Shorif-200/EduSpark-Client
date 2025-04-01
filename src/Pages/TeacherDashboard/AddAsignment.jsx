@@ -3,7 +3,8 @@ import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import { toast } from "react-toastify";
+import toast from 'react-hot-toast';
+
 
 const AddAsignment = ({ classData,refetch }) => {
   let [isOpen, setIsOpen] = useState(false);

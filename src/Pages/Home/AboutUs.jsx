@@ -21,16 +21,18 @@ const AboutUs = () => {
          useEffect(() => {
                     // Initialize AOS
         AOS.init({
-          duration: 1000, // Duration of animation in milliseconds
-          once: true, // Whether animation should happen only once
-          easing: 'ease', // Easing function for the animation
+            duration: 800, // কম ডুরেশন = স্মুথার এফেক্ট (১৫০০ms থেকে ১২০০ms বা ১০০০ms এ নামান)
+            once: false, // false করলে স্ক্রোল আপ/ডাউন করলে বারবার অ্যানিমেশন ট্রিগার হবে
+            easing: 'ease-in-out', // 'ease' এর চেয়ে 'ease-in-out' বেশি স্মুথ
+            offset: 120, // এলিমেন্ট ভিউপোর্টের ১২০px আগে অ্যানিমেশন শুরু হবে
+            mirror: true, // স্ক্রোল ডাউনের পাশাপাশি স্ক্রোল আপেও অ্যানিমেশন দেখাবে
         });
           } , [])
 
     return (
         <div className='grid grid-cols-2 gap-x-8 px-16  mb-4 items-center'>
 
-<div className="about_us_cnt">
+<div className="about_us_cnt" data-aos='fade-right' data-aos-delay='100'>
                     <h6 className='secondary_text_color  text-[16px] uppercase font-bold'>
                     <Typewriter
                                        words={['about us']}
@@ -43,13 +45,13 @@ const AboutUs = () => {
                                     ></Typewriter>
 
                     </h6>
-                    <h1 className='text-5xl  text_color_2 font-semibold my-4 leading-16'>
+                    <h1 className='text-5xl  secondary_text_color font-semibold my-4 leading-16'>
                     Empowering Minds Shaping Futures
                     </h1>
 
-                    <p className='text_color_2 mt-3 mb-5'>At Academix, we believe that quality education should be accessible to everyone. Our expert-led courses are designed to help learners gain real-world skills and advance their careers. Join us in shaping a future where knowledge knows no boundaries!</p>
+                    <p className='secondary_text_color mt-3 mb-5'>At Academix, we believe that quality education should be accessible to everyone. Our expert-led courses are designed to help learners gain real-world skills and advance their careers. Join us in shaping a future where knowledge knows no boundaries!</p>
 
-                    <div className="about_checkmark grid grid-cols-2 gap-6">
+                    <div className="about_checkmark grid grid-cols-2 gap-6 secondary_text_color">
                           <div>
                               <p className='flex items-center  gap-x-3'> <span className=' text-xl'><FaCheckCircle></FaCheckCircle> </span>  Innovative Learning    </p>
                           </div>
@@ -68,7 +70,7 @@ const AboutUs = () => {
                     </div>
 
                      <div>
-                          <button className='btn primary_bg_color text-white uppercase mt-8'>learn more</button>
+                          <button className='btn btn_primary uppercase mt-8'>learn more</button>
                      </div>
             </div>
 
@@ -80,7 +82,7 @@ const AboutUs = () => {
                      </div>
             </div> */}
 
-            <div className="about_us_animation w-full" data-aos='fade-left' data-aos-delay = '100'>
+            <div className="about_us_animation w-full" data-aos='fade-left' data-aos-delay='600'>
                 <Lottie animationData={lottie_animation}></Lottie>
             </div>
 

@@ -11,8 +11,8 @@ import Class_Catagory_tab from '../../Pages/Class/Class_Catagory_tab';
 
 const PopulerCourse = () => {
     const  [classes,refetch,isLoading]  = useClass();
-    
-    const sortedClass = classes.sort((a,b) => b.totalEnrollments - a.totalEnrollments);
+    const approvedClass = classes.filter(classData => classData.status === 'approved')
+    const sortedClass = approvedClass.sort((a,b) => b.totalEnrollments - a.totalEnrollments);
     const populerClasses = sortedClass.slice(0,8)
 
     const web_softawre = populerClasses.filter(data => data.category == "web & software")

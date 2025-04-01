@@ -5,7 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 import useAssignments from "../../Hooks/useAssignments";
 // import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
-import { toast } from "react-toastify";
+import toast from 'react-hot-toast';
+
 import FeedbackModal from "./FeedbackModal";
 
 const EnrollmentDetails = () => {

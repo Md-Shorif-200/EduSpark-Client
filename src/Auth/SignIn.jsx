@@ -3,7 +3,8 @@ import { useForm } from "react-hook-form";
 import useAuth from "../Hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogIn from "./SocialAuth/SocialLogIn";
-import { toast } from "react-toastify";
+import toast from 'react-hot-toast';
+
 import Loading from "../Common/Loading";
 
 // lottie files 

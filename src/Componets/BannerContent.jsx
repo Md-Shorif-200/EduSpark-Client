@@ -12,9 +12,12 @@ const BannerContent = ({subTitle,title,description,img}) => {
        useEffect(() => {
                     // Initialize AOS
         AOS.init({
-          duration: 1000, // Duration of animation in milliseconds
-          once: true, // Whether animation should happen only once
-          easing: 'ease', // Easing function for the animation
+              duration: 1200, // কম ডুরেশন = স্মুথার এফেক্ট (১৫০০ms থেকে ১২০০ms বা ১০০০ms এ নামান)
+              once: false, // false করলে স্ক্রোল আপ/ডাউন করলে বারবার অ্যানিমেশন ট্রিগার হবে
+              easing: 'ease-in-out', // 'ease' এর চেয়ে 'ease-in-out' বেশি স্মুথ
+              offset: 120, // এলিমেন্ট ভিউপোর্টের ১২০px আগে অ্যানিমেশন শুরু হবে
+              delay: 100, // প্রতিটি এলিমেন্টের অ্যানিমেশনে ১০০ms ডিলে যোগ করুন
+              mirror: true, // স্ক্রোল ডাউনের পাশাপাশি স্ক্রোল আপেও অ্যানিমেশন দেখাবে
         });
           } , [])
 
@@ -23,7 +26,7 @@ const BannerContent = ({subTitle,title,description,img}) => {
 
                         <div className="banner_cnt w-[45%] text-justify py-30 px-16 " data-aos='fade-up' data-aos-duration="1000">
 
-                               <h6 className="section_heading"> {subTitle}
+                               <h6 className="text-[20px] font-bold uppercase text-white"> {subTitle}
 {/*                                 
                                     <Typewriter
                                        words={[`${subTitle}`]}

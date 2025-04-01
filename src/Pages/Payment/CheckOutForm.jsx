@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import { useLoaderData, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import toast from 'react-hot-toast';
+
 import Swal from "sweetalert2";
 
 

@@ -2,10 +2,17 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useClass from "../../Hooks/useClass";
 import Swal from "sweetalert2";
-import { toast } from "react-toastify";
+import toast from 'react-hot-toast';
+
 import { useState } from "react";
 import Loading from "../../Common/Loading";
 import { Link } from "react-router-dom";
+
+// react icons
+import { FcApproval, FcDeleteColumn } from "react-icons/fc";
+import { FcDisapprove } from "react-icons/fc";
+import { MdDelete } from "react-icons/md";
+
 
 
 
@@ -23,26 +30,20 @@ const RequestedClass = () => {
 // approve class request
     const handleApproveBtn = (id) => {
 
-       
+      
       axiosSecure.patch(`/classes/approve/${id}`)
       .then(result => {
           console.log(result.data);
           
              if(result.data.modifiedCount > 0) {
-                                   Swal.fire({
-                                        position: "top-end",
-                                        icon: "success",
-                                        title: ` class is approved  now!`,
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                      });
+                                toast.success('class is approve now!')
                                       
               
                                     //   refetch api 
                                     refetch()
                         }else if( result.data.modifiedCount === 0 && result.data.matchedCount === 1){
 
-                          toast.error('class is already approved')
+                          toast.error("This class is already approved. You can't approve it again!")
                         }
                        
                         
@@ -63,12 +64,15 @@ const RequestedClass = () => {
       .then(result => {
          console.log(result.data);
          
-         if(result.data.modifiedCount > 1){
-           toast.success('class is reject');
+         if(result.data.modifiedCount > 0){
+           toast.success('The class was successfully rejected');
           
           //  refetch
           refetch();
-         }
+         }else if( result.data.modifiedCount === 0 && result.data.matchedCount > 0){
+
+          toast.error("This class is already rejected.")
+        }
       } )
 
      }catch(error){
@@ -77,6 +81,58 @@ const RequestedClass = () => {
      }
       
     }
+
+    // delete class
+
+    const handleDeleteBtn = (id) => {
+       console.log(id);
+       
+      toast(
+          (t) => (
+              <div>
+                  <p className="font-semibold">Are you sure you want to delete this class?</p>
+                  <div className="flex gap-2 mt-2">
+                      <button
+                          className="px-3 py-1 bg-red-500 text-white rounded"
+                          onClick={() => {
+                              toast.dismiss(t.id);
+                              deleteClass(id);
+                          }}
+                      >
+                          Yes, Delete
+                      </button>
+                      <button
+                          className="px-3 py-1 bg-gray-300 text-black rounded"
+                          onClick={() => toast.dismiss(t.id)}
+                      >
+                          Cancel
+                      </button>
+                  </div>
+              </div>
+          ),
+          { duration: 6000 }
+      );
+  };
+  
+  const deleteClass = async (id) => {
+      const deleteToast = toast.loading("Deleting class...");
+      
+      try {
+          const response = await axiosSecure.delete(`/classes/${id}`);
+          console.log(response);
+          
+          if (response.data.deletedCount > 0) {
+              toast.success("Class deleted successfully", { id: deleteToast });
+         await     refetch(); // Refresh data after deletion
+          } else {
+              toast.error("Failed to delete class", { id: deleteToast });
+          }
+      } catch (error) {
+          console.error("Delete error:", error);
+          toast.error("An error occurred while deleting", { id: deleteToast });
+      }
+  };
+  
   
 
     return (
@@ -88,12 +144,13 @@ const RequestedClass = () => {
           <thead>
             <tr>
               <th></th>
-              <th>title</th>
-              <th>image</th>
-              <th>email</th>
-              <th>description</th>
               <th></th>
-              <th>action</th>
+              <th>title</th>
+              <th>teacher name</th>
+              <th className="lowercase">teacher email</th>
+              <th>status</th>
+              <th></th>
+              <th>Action</th>
               <th></th>
 
             </tr>
@@ -104,17 +161,29 @@ const RequestedClass = () => {
                 classes.map((singleClass,index) =>
                     <tr key={index}>
                 <th> {index + 1}</th>
-                <td> {singleClass.title} </td>
-                <td> {singleClass.image} </td>
-                <td> {singleClass.email} </td>
-                <td> {singleClass.description} </td>
-                <td>  <button className="btn" onClick={() => handleApproveBtn(singleClass._id)}>approve</button>  </td>
-                <td>  <button className="btn" onClick={() =>  handleRejectBtn(singleClass._id)}>reject</button>  </td>
+                <td> <img src={singleClass?.image} alt="" className="w-[40px] h-[40px] rounded-full" /> </td>
+                <td> {singleClass?.title} </td>
+                <td> {singleClass?.name} </td>
+                <td> {singleClass?.email} </td>
+                <td>   <span className={
+                  `
+                  ${singleClass.status === 'pending' ? 'bg-orange-300 py-1 px-2 rounded-md' : ''}
+                  ${singleClass.status === 'approved' ? 'bg-green-200 py-1 px-2 rounded-md' : ''}
+                  ${singleClass.status === 'rejected' ? 'bg-red-300 py-1 px-2 rounded-md' : ''}
+                  `
+                }>   {singleClass?.status}  </span> </td>
+
+                <td>  <button className='btn btn-sm' title="approve button" onClick={() => handleApproveBtn(singleClass._id)}><FcApproval className="text-xl"></FcApproval> </button>  </td>
+                
+                <td>  <button className="btn btn-sm" title="reject  button" onClick={() =>  handleRejectBtn(singleClass._id)}> <FcDisapprove className="text-xl"></FcDisapprove></button>  </td>
+
+                <td>  <button className="btn btn-sm" title="delete  button" onClick={() =>  handleDeleteBtn(singleClass._id)}> <MdDelete className="text-xl text-red-500"></MdDelete></button>  </td>
+
                    <td>
-                   {
+                     <Link to={`/dashboard/class-progress/${singleClass._id}`} className="btn btn-sm btn-neutral btn-outline" >Details</Link>  
+                   {/* {
                       singleClass.status === 'approved' ? 
                       <>
-                 <Link to={`/dashboard/class-progress/${singleClass._id}`} className="btn" >progress</Link>  
                       
                       </>  
                        : 
@@ -122,7 +191,7 @@ const RequestedClass = () => {
 <button className="btn" disabled>progess</button>
 
                       </>
-                    }
+                    } */}
          
                    </td>
               </tr>)

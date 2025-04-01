@@ -1,14 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import { FaUsers } from "react-icons/fa";
+import { FaUser, FaUsers } from "react-icons/fa";
 
-import { toast } from "react-toastify";
+
+import toast from 'react-hot-toast';
+
 import { useState } from "react";
 import useRole from "../../Hooks/useRole";
 import { FaDeleteLeft } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import Loading from "../../Common/Loading";
+import { MdDelete } from "react-icons/md";
 
 const Users = () => {
    
@@ -80,7 +83,7 @@ const handleUserDelete = (user) => {
 }
 
   return (
-    <div>
+    <div className="mx-4 my-8 border border-amber-200 capitalize">
     
 
       <div className="overflow-x-auto">
@@ -105,19 +108,38 @@ const handleUserDelete = (user) => {
                     <img className="w-[50px] h-[50px] rounded-full" src={user.image} alt="" />
                 </td>
                 <td>{user.name}</td>
-                <td>{user.email}</td>
+                <td className="lowercase">{user.email}</td>
 
-                 <td>  { user.role ? <>  <p>{user.role}</p> </> : <><FaUsers></FaUsers></>} </td>
+                 <td > 
+                   {
+                    user?.role === 'user' ? <>  <FaUsers></FaUsers> </>  
+                             
+                    : 
+                        <> 
+                         <span  className={
+                     `
+                     ${user.role === 'admin' ? 'bg-green-300 px-2 py-1 rounded-md' : ''}
+                     ${user.role === 'teacher' ? 'bg-red-200 px-2 py-1 rounded-md' : ''}
+                     ${user.role === 'student' ? 'bg-orange-200 px-2 py-1 rounded-md' : ''}
+
+                     `
+                 } >
+                  {user.role}
+                  </span> 
+                        </>
+                   }
+                 
+                 </td>
             
                 <td>
                    {
                     user?.role == 'admin' ? <>
-                        <button className="btn bg-gray-500 text-gray-400">make admin</button>
+                        <button className="btn btn-sm opacity-50 cursor-not-allowed" disabled>make admin</button>
                     </>
                     : 
                     <>
                       {" "}
-                  <button className='btn' onClick={() =>handleAdminButton(user)}>
+                  <button className='btn btn-sm capitalize btn-neutral btn-outline' onClick={() =>handleAdminButton(user)}>
                     make admin
                   </button>{" "}
                     </>
@@ -126,8 +148,8 @@ const handleUserDelete = (user) => {
                 </td>
                 <td>
                   {" "}
-                  <button className="btn" onClick={() =>  handleUserDelete(user)}>
-                    <FaDeleteLeft></FaDeleteLeft>
+                  <button className="btn btn-sm" onClick={() =>  handleUserDelete(user)}>
+                    <MdDelete className="text-xl text-red-500"></MdDelete>
                   </button>{" "}
                 </td>
               </tr>

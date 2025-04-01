@@ -1,7 +1,8 @@
 
 import { useForm } from "react-hook-form";
 
-import { toast } from "react-toastify";
+import toast from 'react-hot-toast';
+
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";

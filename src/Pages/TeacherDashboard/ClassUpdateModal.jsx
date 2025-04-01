@@ -66,7 +66,7 @@ const ClassUpdateModal = ({refetch,id,title, image ,description ,price}) => {
 
 <div
           onClick={open}
-          className="rounded-md btn"
+          className="rounded-md btn w-[100px]"
         >
           update
         </div>

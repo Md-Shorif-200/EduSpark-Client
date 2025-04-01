@@ -13,7 +13,12 @@ const MyClass = () => {
             const {user}  =  useAuth()
       
              const [classes,refetch,isLoading]= useClass()
-             const myClasses = classes.filter(data => data?.email == user?.email);
+           
+              
+              
+             const myClasses = classes.filter(data =>  data?.email == user?.email);
+       
+             
 
              if(isLoading){
                  return <Loading></Loading>
@@ -22,9 +27,9 @@ const MyClass = () => {
     return (
         <div>
 
-              <SectionTitle  title={'my class'}></SectionTitle>
+              {/* <SectionTitle  title={'my class'}></SectionTitle> */}
        
-                <div className="my_class_cards grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 md:p-8">
+                <div className="my_class_cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 md:p-8 ">
                     {
                         myClasses.map((singleClass,index) => 
 
