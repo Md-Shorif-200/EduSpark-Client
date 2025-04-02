@@ -5,6 +5,11 @@ import SectionTitle from '../../Common/SectionTitle';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+// react aos animation
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -22,7 +27,7 @@ const EducationFaculties = () => {
     const [facultites, setFaculties] = useState([]);
     const [swiperRef, setSwiperRef] = useState(null);
 
-        
+            // get data 
     useEffect(() => {
               const fetchFaculties = async() => {
                  try{
@@ -42,6 +47,19 @@ const EducationFaculties = () => {
               fetchFaculties();
     },[])
 
+
+
+
+    useEffect(() => {
+      // Initialize AOS
+AOS.init({
+duration: 800, // কম ডুরেশন = স্মুথার এফেক্ট (১৫০০ms থেকে ১২০০ms বা ১০০০ms এ নামান)
+once: false, // false করলে স্ক্রোল আপ/ডাউন করলে বারবার অ্যানিমেশন ট্রিগার হবে
+easing: 'ease-in-out', // 'ease' এর চেয়ে 'ease-in-out' বেশি স্মুথ
+offset: 100, // এলিমেন্ট ভিউপোর্টের ১২০px আগে অ্যানিমেশন শুরু হবে
+mirror: true, // স্ক্রোল ডাউনের পাশাপাশি স্ক্রোল আপেও অ্যানিমেশন দেখাবে
+});
+} , [])
 
     
 
@@ -76,13 +94,9 @@ const EducationFaculties = () => {
       ]);
     };
 
-  // const groupedFaculties = [];
-  // for (let i = 0; i < facultites.length; i += 4) {
-  //   groupedFaculties.push(facultites.slice(i, i + 4));
-  // }
 
     return (
-        <div className='secondary_text_color'>
+        <div className='secondary_text_color my-10' data-aos='fade-up'>
                 {/* <SectionTitle  title={'  education facultites'}></SectionTitle> */}
                 {/* sweper slider */}
                 <Swiper
@@ -104,31 +118,13 @@ const EducationFaculties = () => {
                 <Faculty facultyData = {faculty}></Faculty>
             </SwiperSlide>)
           }
-        {/* <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide> */}
+    
       </Swiper>
 
-            
-      {/* <SwiperSlide>Slide 1</SwiperSlide>
-      <SwiperSlide>Slide 2</SwiperSlide>
-      <SwiperSlide>Slide 3</SwiperSlide>
-      <SwiperSlide>Slide 4</SwiperSlide> */}
+   
         </div>
     );
 };
 
 export default EducationFaculties;
-            {/* {
-                groupedFaculties.map((group,index) => 
-                
-                <SwiperSlide key={index}>
-                    <div className='grid grid-cols-4'>
-                        {
-                            group.map(faculty => <Faculty key={faculty.id} faculty={faculty}></Faculty>)
-                        }
-                    </div>
-                </SwiperSlide>
-                )
-            } */}
+           

@@ -16,6 +16,7 @@ import { useInView } from "react-intersection-observer";
 // react aos animation
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import AnimateTitle from '../../Common/AnimateTitle';
 
 const Statistics = () => {
 
@@ -41,7 +42,7 @@ const Statistics = () => {
 
 
     return (
-        <div className='statistics grid grid-cols-2 primary_bg_color primary_text_color  px-5 py-16'>
+        <div className='statistics grid grid-cols-2 bg-[#182024] text-gray-300  px-5 py-16'>
               <div className="statistics_img relative">
                         <img src={statistics_img} alt="" className='w-full h-full rounded-2xl' />
 
@@ -75,19 +76,9 @@ const Statistics = () => {
               <div className="statistics_cnt px-6">
                         
 
-                            <h3 className='text-justify font-semibold capitalize my-3'>
-                            <Typewriter
-                                       words={['why choose us']}
-                                       loop = {0}
-                                        cursor
-                                        cursorStyle='__'
-                                        typeSpeed={100}
-                                        deleteSpeed={100}
-                                        delaySpeed={1000}
-                                    ></Typewriter>
-                            </h3>
+                             <AnimateTitle animateTtile={'why choose us'}></AnimateTitle>
 
-                            <h1 className='text-4xl font-semibold capitalize text-justify'>your ideal learning partner</h1>
+                            <h1 className='text-4xl font-semibold capitalize text-justify my-4'>your ideal learning partner</h1>
 
                             <p className='my-2'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae sed aliquid repellendus culpa labore pariatur asperiores cumque illum minus reprehenderit.</p>
 

@@ -1,25 +1,36 @@
+/* google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
 @import "tailwindcss";
 @plugin "daisyui";
 
 
+
+
 /*! common section starts */
 
-/* 
-2. Elegant & Minimal (Dark + Gold)
-Primary: #121212 (Black)
-Secondary: #F4B400 (Gold)
-Background: #FFFFFF (White)
-Text: #333333 (Dark Gray)
-Accent: #F05454 (Warm Red)
+*{
+    font-family: "Outfit", sans-serif;
+  
 
-*/
+    
+}
+
+
 
 /* css color variable */
 
-:root {
+/* :root {
 --Primary: #121212 ;
 --Secondary: #F4B400 ;
 --Background: #FFFFFF ;
+--Text: #333333 ;
+--Accent: #F05454 ;
+} */
+:root {
+--Primary: #39B8AD ;
+--Secondary: #EFF2F9 ;
+
 --Text: #333333 ;
 --Accent: #F05454 ;
 }
@@ -32,7 +43,7 @@ Accent: #F05454 (Warm Red)
 }
 
 .primary_text_color {
-color: white; 
+color: var(--Primary);
 }
 .secondary_text_color {
     color: var(--Text);
@@ -54,80 +65,33 @@ color: white;
     color:var(--Text)
 }
 .btn_primary {
-
-    background-color:  var(--Secondary);
-    color : white;
-    outline: none;
-    border: none;
-    font-weight: 800;
-
-/*     
-    width: 120px;
-    background-color: #00A6A6;
-    color: #F4F4F4;
-
-    border: none;
-    outline: none;
-    text-transform: uppercase;
-    transition: .5s ease; */
+    @apply btn btn-outline btn-accent font-semibold capitalize 
 }
-.btn_primary:hover{
-    /* color: black; */
-}
+
 
 
 .btn_secondary {
+   @apply btn btn-accent font-semibold capitalize text-white
+}
 
-    background-color:  var(--Background);
-    color : var(--Text);
-    outline: none;
-    border: none;
-    font-weight: 800;
-  transition: .5s all;
-    /* width: 150px;
-    background-color: #F4F4F4;
+.animate_title {
+    background-color: white;
     color: black;
-    border: none;
-    outline: none;
-    text-transform: uppercase;
-    transition: .5s ease; */
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
 
-.btn_secondary:hover {
-    /* background-color:#00A6A6 ;
-    color: white; */    background-color: var(--Secondary);
-     color  : white;
-}
-
-.actionable_primary_btn {
-    background-color:  var(--Secondary);
-     color : var(--Background);
-     outline: none;
-     border: none;
-     font-weight: 700;
-   
-}
-
-.actionable_secondary_btn {
-    background-color:  var(--Background);
-     color : var(--Text);
-     outline: none;
-     border: none;
-     font-weight: 700;
-   transition: .5s all;
-}
-.actionable_secondary_btn:hover {
-     background-color: var(--Secondary);
-     color  : white;
+.hover_effect_1 {
+    @apply w-full block bg-white capitalize p-4 hover:bg-[#39B8AD] hover:text-white  transition duration-500
 }
 /*! common section ends */
 
 /* navigation section  */
+
  .navbar {
-           background-color: var(--Primary);
-          box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-          position: fixed;
-          top : 0;
+    background-color: white;
+           /* background-color: var(--Primary); */
+           box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+        
           z-index: 10;
  }
 
@@ -136,21 +100,21 @@ color: white;
  
     }
     .navbar ul li a {
-        font-size: 12px;
+        font-size: 16px;
         text-transform: uppercase;
-        font-weight: 500;
+        font-weight: 600;
+
         }
 
         .navbar li a {
-            color : white;
+            /* color : white; */
                 font-weight: bold;
                 transition: ease;
         }
+
+        
      
-        /* .navbar li a.active{
-            background-color: #6a0dad96;
-            color: white;
-        } */
+    
 
 
 
@@ -162,6 +126,7 @@ color: white;
 .navbar .dropdown_cnt{
    width: 220px;
       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      z-index: 50;
   
 }
 
@@ -175,10 +140,47 @@ color: white;
     line-height: 60px;
 }
 
-.banner {
-    background-color: rgba(0, 0, 0, 0.432);
-    background-blend-mode:multiply;
+
+
+.banner_img img {
+    width: 400px;
+    height: 450px;
+     border-radius: 30px;
 }
+
+.banner_img .animate_card {
+    width: 180px;
+     background-color: white;
+     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+
+     border-radius: 10px;
+     font-size: 18px;
+     text-transform: capitalize;
+     font-weight: 700;
+}
+
+.zigzag-line {
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(
+      -45deg,
+      transparent 75%,
+      #39B8AD 75%,
+      #39B8AD 85%,
+      transparent 85%
+    ),
+    linear-gradient(
+      45deg,
+      transparent 75%,
+      #39B8AD 75%,
+      #39B8AD 85%,
+      transparent 85%
+    );
+    background-size: 20px 20px;
+  }
+  
+
 
 /* faculty section */
 
@@ -187,7 +189,7 @@ color: white;
     transition: .3s all;
 }
 .faculty_card:hover{
-    background-color: var(--Secondary);
+    background-color: var(--Primary);
     color: white;
 }
 
@@ -199,7 +201,7 @@ color: white;
 
 .statistics_cards .card {
     background-color: white;
-    color: black;
+    color: var(--Text);
     text-transform: capitalize;
     text-align: center;
     padding: 30px 0;
@@ -217,7 +219,7 @@ color: white;
 .statistics_img_card {
   
     background-color: white;
-    color: black;
+    color: var(--Text);
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 padding: 35px 18px;
 border-radius: 20px;
@@ -238,8 +240,21 @@ border-radius: 20px;
 
 /* class details */
 
-.class_details .class_cnt h1{
+/* .class_details .class_cnt h1{
     margin : 10px 0;
+} */
+
+.classs_details_container .about_heading {
+     font-size: 25px;
+     font-weight: 600;
+     margin: 30px 0;
+     color: var(--Text);
+     text-transform: capitalize;
+}
+
+.classs_details_container p {
+    color : #666666 ;
+    text-transform: capitalize;
 }
 
 /* partners */

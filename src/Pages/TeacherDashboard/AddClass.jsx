@@ -339,12 +339,12 @@ const AddClass = () => {
              <textarea
                type="text"
                className="textarea w-full"
-               placeholder="Enter course descriptions"
-               {...register("descriptions",{required : true})}
+               placeholder="Enter course description"
+               {...register("description",{required : true})}
              
              />
 
-             {errors.descriptions && (
+             {errors.description && (
                <span className="text-red-500 my-3">
                  This field is required
                </span>

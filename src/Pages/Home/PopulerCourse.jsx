@@ -7,6 +7,10 @@ import useClass from '../../Hooks/useClass';
 import { Link } from 'react-router-dom';
 
 import Class_Catagory_tab from '../../Pages/Class/Class_Catagory_tab';
+import AnimateTitle from '../../Common/AnimateTitle';
+
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
+
 
 
 const PopulerCourse = () => {
@@ -25,15 +29,18 @@ const PopulerCourse = () => {
              
    
     return (
-        <div className='bg_color_2 p-6 '>
+        <div className='bg_color_2 p-6 secondary_bg_color px-16'>
 
+                  <AnimateTitle animateTtile={'top class courses'}></AnimateTitle>
               <div className='grid grid-cols-2 pt-4 pb-3'>
                   <div className='pr-14'>
-                  <SectionTitle  title={'populer courses'}></SectionTitle>
+                  <SectionTitle  title={'Explore populer courses'}></SectionTitle>
                   </div>
                
                   <div className='text-end'>
-                     <Link className=" my-4 capitalize text-purple-700">view all courses</Link>
+                     <Link to='allClass' className=" text-lg my-4 capitalize primary_text_color font-bold flex justify-end items-center gap-x-2">view all courses  
+                       <FaArrowUpRightFromSquare></FaArrowUpRightFromSquare>
+                      </Link>
                   </div>
               </div>
                 <div className='divider'></div>

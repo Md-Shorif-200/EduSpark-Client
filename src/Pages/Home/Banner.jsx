@@ -13,6 +13,7 @@ import { Carousel } from 'react-responsive-carousel';
        import img_8 from '../../assets/banner-img/img-8.jpg'
        import img_9 from '../../assets/banner-img/img-9.jpg'
        import img_10 from '../../assets/banner-img/img-10.jpg'
+       import banner_img from '../../assets/banner-img/banner_1.jpg'
 
 import { useEffect, useState } from "react";
 import BannerContent from "../../Componets/BannerContent";
@@ -34,10 +35,27 @@ const Banner = () => {
 
     return (
         <div>
-                 <Carousel
+              
+
+            <div className="z-0">
+                                   <BannerContent className='' img={banner_img} subTitle={'welcome to academix'} title= {""} description={"Join thousands of learners worldwide and gain in-demand skills with our high-quality online courses. Start learning today and take your career to the next level!"}></BannerContent>                    
+                </div>
+
+
+        </div>
+            
+    );
+};
+
+export default Banner;
+
+
+
+
+   {/* <Carousel
                  autoPlay 
                  infiniteLoop 
-                 interval={4000} 
+                 interval={10000} 
                  showThumbs={false} 
       showStatus={false}
       transitionTime={800}  // Slide পরিবর্তনের সময় 0.8s (Smooth effect)
@@ -49,9 +67,7 @@ const Banner = () => {
 
                  >
 
-                <div className="">
-                                   <BannerContent className='w-full h-full' img={img_8} subTitle={'welcome to academix'} title= {'Unlock Your Potential with Expert-Led Courses'} description={"Join thousands of learners worldwide and gain in-demand skills with our high-quality online courses. Start learning today and take your career to the next level!"}></BannerContent>                    
-                </div>
+               
 
                 <div className="">
                                    <BannerContent  className='w-full h-full' img={img_2} 
@@ -74,10 +90,6 @@ const Banner = () => {
                 
                 </div>
                 
-            </Carousel> 
-        </div>
-            
-    );
-};
+            </Carousel>  */}
 
-export default Banner;
+            

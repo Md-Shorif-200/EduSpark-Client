@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../Hooks/useAuth';
-import nav_logo from '../assets/navLogo/academix_logo.png'
+import nav_logo from '../assets/navLogo/logo__1-removebg-preview.png'
 import { RiArrowDropDownLine } from "react-icons/ri";
+import Heading from './Heading';
 
 
 
@@ -11,13 +12,13 @@ const Navbar = () => {
 
     const navLinks = <>
                 <li>
-                    <NavLink to='/'> home </NavLink>
+                    <NavLink className='hover:bg-white hover:text-[#39B8AD]  transition duration-300 ease-in-out ' to='/' > home </NavLink>
                 </li>
                 <li>
-                    <NavLink to='allClass'> all classes </NavLink>
+                    <NavLink className='hover:bg-white hover:text-[#39B8AD]  transition duration-300 ease-in-out ' to='allClass'> all classes </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/TeachOn'> teach on academix </NavLink>
+                    <NavLink className='hover:bg-white hover:text-[#39B8AD]  transition duration-300 ease-in-out ' to='/TeachOn'> teach on academix </NavLink>
                 </li>
                 {/* <li>
                     <NavLink to='/signUp'> sign up </NavLink>
@@ -30,7 +31,9 @@ const Navbar = () => {
     </>
     
     return (
-        <div className="navbar  shadow-sm px-16 py-4">
+              <div className='web_header '>
+                      <Heading></Heading>
+                     <div className="navbar  shadow-sm px-16">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -44,8 +47,8 @@ const Navbar = () => {
           </div>
         {/* nav logo  */}
            <div className="nav_logo">
-                     {/* <img src={nav_logo} className='w-[80px] h-[50px] rounded-sm'  alt="" /> */}
-                     <h1 className='text-white text-lg font-semibold '>academi<span className='text-4xl text-pink-300'>x</span>      </h1>
+                     <img src={nav_logo} className='w-[80px] '  alt="" />
+                     {/* <h1 className='text-white text-lg font-semibold '>academi<span className='text-4xl text-pink-300'>x</span>      </h1> */}
            </div>
         </div>
         {/* nav links */}
@@ -73,13 +76,15 @@ const Navbar = () => {
 
       <div
         tabIndex={0}
-        class=" dropdown_cnt absolute -right-4 top-12 p-3 rounded-box   bg-white shadow-lg 
-                  opacity-0 invisible transition-all duration-300 
-                  group-hover:opacity-100 group-hover:visible   ">
+        class="dropdown_cnt absolute -right-4 top-12  rounded-box bg-white shadow-lg 
+               opacity-0 invisible transform scale-95 translate-y-[-15px] 
+               transition-all duration-500 ease-out
+               group-hover:opacity-100 group-hover:visible 
+               group-hover:translate-y-0 group-hover:scale-100">
 
  
              <div className='h-full'>
-             <div className=' flex gap-1 items-center'>  
+             <div className=' flex gap-1 items-center p-3'>  
                      
                        <img src={user?.photoURL} className='w-[60px] h-[60px] rounded-full border' alt="" />
                           <div>
@@ -88,11 +93,15 @@ const Navbar = () => {
                           </div>
           </div>
 
-          <div className="divider"></div>
+          <div className="divider my-3"></div>
 
           <div className=' h-full  px-1'>
-            <Link className=' w-full block bg-white capitalize px-1 py-2 hover:bg-[#6a0dad25] hover:text-[#6A0DAD]  ' to='dashboard'>Dashaboard</Link>
-            <Link className=' w-full block bg-white capitalize px-1 py-2 hover:bg-[#6a0dad25] hover:text-[#6A0DAD] ' onClick={logOut}>Log Out</Link>
+                 <div className='hover_effect_1'>
+                 <Link className='  ' to='dashboard'>Dashaboard</Link>
+                 </div>
+                   <div className='hover_effect_1'>
+                   <Link className='' onClick={logOut}>Log Out</Link>
+                   </div>
         </div> 
         
              </div>
@@ -103,13 +112,14 @@ const Navbar = () => {
                         </> 
                         : 
                         <>
-                        <Link className='btn btn-sm actionable_primary_btn   font-semibold  ' to='/signIn'>Sign In</Link>
-                        <Link className='btn btn-sm actionable_secondary_btn   font-semibold ml-2' to='/signUp'>Sign Up</Link>
+                        <Link className=' btn_primary  ' to='/signIn'>Log In</Link>
+                        <Link className=' btn_secondary  ml-2' to='/signUp'>Sign Up</Link>
                         </>
                     }
 
         </div>
       </div>
+              </div>
     );
 };
 

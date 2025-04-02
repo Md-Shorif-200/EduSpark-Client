@@ -13,8 +13,9 @@ import img1 from '../../assets/about_us/low-angle-business-people-posing.jpg'
 import img2 from '../../assets/about_us/woman-work-having-video-call.jpg'
 import img3 from '../../assets/about_us/youngsters-coworking-with-laptop.jpg'
 
-import lottie_animation from '../../../src/assets/lottie react/about_us.json'
+import lottie_animation from '../../../src/assets/lottie react/about_lottie_animation.json'
 import Lottie from 'lottie-react';
+import AnimateTitle from '../../Common/AnimateTitle';
 
 const AboutUs = () => {
 
@@ -30,23 +31,18 @@ const AboutUs = () => {
           } , [])
 
     return (
-        <div className='grid grid-cols-2 gap-x-8 px-16  mb-4 items-center'>
+        <div className='grid grid-cols-2 gap-x-8 px-16  mb-4 items-center mt-16'>
 
-<div className="about_us_cnt" data-aos='fade-right' data-aos-delay='100'>
-                    <h6 className='secondary_text_color  text-[16px] uppercase font-bold'>
-                    <Typewriter
-                                       words={['about us']}
-                                       loop = {0}
-                                        cursor
-                                        cursorStyle='__'
-                                        typeSpeed={100}
-                                        deleteSpeed={100}
-                                        delaySpeed={1000}
-                                    ></Typewriter>
+<div className="about_us_animation w-full" data-aos='fade-right'>
+                    <Lottie animationData={lottie_animation}></Lottie>
+               </div>
+   
 
-                    </h6>
-                    <h1 className='text-5xl  secondary_text_color font-semibold my-4 leading-16'>
-                    Empowering Minds Shaping Futures
+         <div className="about_us_cnt" data-aos='fade-left' data-aos-delay='100'>
+                        <AnimateTitle animateTtile={'get more about us'}></AnimateTitle>
+                    <h1 className='text-4xl  secondary_text_color font-semibold my-4 leading-16'>
+                    Over 10 Years in Distant learning
+for Skill Development
                     </h1>
 
                     <p className='secondary_text_color mt-3 mb-5'>At Academix, we believe that quality education should be accessible to everyone. Our expert-led courses are designed to help learners gain real-world skills and advance their careers. Join us in shaping a future where knowledge knows no boundaries!</p>
@@ -70,22 +66,11 @@ const AboutUs = () => {
                     </div>
 
                      <div>
-                          <button className='btn btn_primary uppercase mt-8'>learn more</button>
+                          <button className='btn btn_secondary  uppercase mt-8'>learn more</button>
                      </div>
             </div>
 
-{/* <div className="about_us_img ">
-                     <div className='grid grid-cols-2  gap-6'>
-                         <img src={img1} alt="" className=' w-full h-full row-span-3 rounded-2xl' data-aos='fade-left' data-aos-delay = '100' />
-                         <img src={img3} alt="" className=' w-full row-span-2  rounded-2xl' data-aos='fade-left' data-aos-delay = '200' />
-                         <img src={img2} alt="" className=' w-full  rounded-2xl' data-aos='fade-left' data-aos-delay = '300' />
-                     </div>
-            </div> */}
-
-            <div className="about_us_animation w-full" data-aos='fade-left' data-aos-delay='600'>
-                <Lottie animationData={lottie_animation}></Lottie>
-            </div>
-
+            
          
 
           
