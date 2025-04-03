@@ -142,9 +142,9 @@ background-color: #F4E1D2;
 
 
 /* banner section */
- .banner_cnt h1 {
+ /* .banner_cnt h1 {
     line-height: 60px;
-}
+} */
 
 
 
@@ -230,9 +230,9 @@ background-color: #F4E1D2;
 padding: 35px 18px;
 border-radius: 20px;
 }
-.sign_up .sign_up_input{
+ .sign_up_input{
     width: 100%;
-    margin: 10px 0;
+    margin: 12px 0;
     border: none;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     padding: 12px;

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Heading = () => {
     return (
-        <div className='flex gap-x-3 bg-black text-white justify-between items-center px-16 py-3.5 text-[15px]  capitalize'>
+        <div className=' hidden lg:flex gap-x-3 bg-black text-white justify-between items-center px-16 py-3.5 text-[15px]  capitalize'>
             <div className="contact flex gap-x-9">
                         <div className="phone_number flex gap-x-3 justify-between items-center">
                             <p> <FaPhone></FaPhone> </p>

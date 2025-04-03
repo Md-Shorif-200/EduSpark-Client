@@ -35,14 +35,14 @@ const BannerContent = ({subTitle,title,description,img}) => {
        const  [classes,refetch,isLoading]  = useClass()
 
     return (
-           <div className="banner w-full min-h-screen  secondary_bg_color  flex gap-x-10 items-center justify-between" >
+           <div className="banner w-full min-h-screen  secondary_bg_color  md:flex gap-x-10 items-center justify-between" >
 
-                        <div className="banner_cnt w-[45%] text-justify py-30 px-16 " data-aos='fade-up' data-aos-duration="1000">
+                        <div className="banner_cnt md:w-[45%] text-justify py-10 px-2 " data-aos='fade-up' data-aos-duration="1000">
 
                               
                                <AnimateTitle animateTtile={'welcome to academix'}></AnimateTitle>
 
-                               <h1 className="text-5xl  my-6 secondary_text_color font-bold">  Start learning from
+                               <h1 className="text-3xl md:text-5xl  my-6 secondary_text_color font-bold">  Start learning from
                                the world’s      <span className='primary_text_color font-normal'> best institutions </span>  </h1>
 
 
@@ -58,7 +58,7 @@ const BannerContent = ({subTitle,title,description,img}) => {
 
                         </div> 
 
-                        <div className="banner_img pr-17 relative">
+                        <div className="banner_img p-4 md:pr-17 relative">
 
                               <img src={img} alt="" className=' ' />
 
