@@ -96,9 +96,9 @@ const FeedbackModal = ({classData}) => {
         <>
         <Button
           onClick={open}
-          className="rounded-md btn mt-4 w-[300px]  "
+          className="rounded-md btn_secondary mt-4  "
           >
-        TER
+        Feedback
           </Button>
   
         <Dialog open={isOpen} as="div" className="relative z-10 focus:outline-none" onClose={close}>

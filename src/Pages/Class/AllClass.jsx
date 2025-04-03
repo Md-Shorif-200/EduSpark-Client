@@ -3,6 +3,8 @@ import useClassCard from "../../Hooks/useClassCard";
 import ClassCard from "./ClassCard";
 import Loading from "../../Common/Loading";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import CoverImg from "../../Common/CoverImg";
+
 
 const AllClass = () => {
   const [search, setSearch] = useState("");
@@ -30,11 +32,12 @@ const AllClass = () => {
   };
 
   return (
-    <div className="All_classes my-30 px-16">
+    <div className="All_classes mb-30 ">
+                    <CoverImg title={'all course'}></CoverImg>
       {/* <h1>         total claass  :{approvedClasses.length} </h1> */}
 
-      <div className="my-6 flex gap-x-4 items-center">
-        <div className="filter_course">
+      <div className="my-12 px-16 flex gap-x-4 items-center justify-end">
+        <div className="filter_course z-60">
           <fieldset className="fieldset">
             <select
               value={filter}
@@ -87,7 +90,7 @@ const AllClass = () => {
           </label>
         </div>
 
-        <div className="sort_course">
+        <div className="sort_course z-50">
           <fieldset className="fieldset">
             <select
               value={sort}
@@ -100,14 +103,14 @@ const AllClass = () => {
             </select>
           </fieldset>
         </div>
-        <div className="btn" onClick={handleResetBtn}>
+        <div className="btn_secondary" onClick={handleResetBtn}>
           reset
         </div>
       </div>
 
     
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-16 ">
         {approvedClasses.map((appProvedClass, index) => (
           <ClassCard key={index} approvedClass={appProvedClass}></ClassCard>
         ))}

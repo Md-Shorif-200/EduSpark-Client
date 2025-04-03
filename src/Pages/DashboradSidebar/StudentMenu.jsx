@@ -8,6 +8,7 @@ const StudentMenu = () => {
     
 
                       <li> <NavLink to='myEnrollMent'> my enrollment </NavLink> </li>
+                      <li> <NavLink to='myOrders'> my orders </NavLink> </li>
                       <li> <NavLink to='studentProfile'> my profile </NavLink> </li>
              <div className='divider'></div>
              <li> <NavLink to='/'> home </NavLink> </li>

@@ -30,6 +30,7 @@ import Payment from "../Pages/Payment/Payment";
 import EnrollmentDetails from "../Pages/StudentDashboard/EnrollmentDetails";
 import WelcomeMessage from "../Pages/WelcomeMessage";
 import AdminClassProgress from "../Pages/AdminDashboard/AdminClassProgress";
+import MyOrders from "../Pages/StudentDashboard/MyOrders";
 
 
 
@@ -151,6 +152,12 @@ const router = createBrowserRouter([
         {
           path : '/dashboard/myEnrollMent/enrollmentDetails/:id',
           element :<PrivateRoute> <EnrollmentDetails></EnrollmentDetails></PrivateRoute>
+        },
+        {
+          path  : 'myOrders',
+          element : <PrivateRoute>
+                 <MyOrders></MyOrders>
+          </PrivateRoute>
         }
       ]
   

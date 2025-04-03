@@ -7,7 +7,7 @@ const EnrollmentCard = ({myPayment}) => {
        
     return (
         <div>
-            <div className="card bg-base-100 w-full shadow-sm">
+            <div className="card bg-base-100 w-full shadow-sm capitalize">
   <figure>
     <img className='w-full h-[150px]'
       src={courseBanner}
@@ -18,7 +18,7 @@ const EnrollmentCard = ({myPayment}) => {
     <h1 className='text-xl  my-2'>   Teacher  Name : {TeacherName} </h1>
     
     <div className="card-actions justify-end">
-      <Link to={`/dashboard/myEnrollMent/enrollmentDetails/${_id}`} className="btn primary_bg_color text-white w-full">continue</Link>
+      <Link to={`/dashboard/myEnrollMent/enrollmentDetails/${_id}`} className=" btn_primary w-full">continue</Link>
     </div>
   </div>
 </div>

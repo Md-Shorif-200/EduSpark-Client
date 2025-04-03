@@ -81,7 +81,7 @@ const EnrollmentDetails = () => {
   return (
     <div>
 
-      <div className="lg:p-8">
+      <div className="lg:p-8 capitalize">
           <div className="feedBackSection">
             <FeedbackModal classData ={data}></FeedbackModal>
           </div>

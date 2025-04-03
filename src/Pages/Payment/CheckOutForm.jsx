@@ -26,8 +26,10 @@ const CheckOutForm = () => {
 
   
 const classData = useLoaderData()
-const {_id,title, name ,price,image} = classData;
-const totalPrice = price;
+
+
+const {_id,title, name ,email,price,image,duration} = classData;
+const totalPrice = parseFloat(price);
 
 // send payment data to server
   useEffect(() => {
@@ -99,14 +101,16 @@ const totalPrice = price;
 
                 const payment = {
                       TeacherName : name,
+                      teacherEmail : email,
                       studentEmail : user.email,
                       courseTitle : title,
                       courseFee : totalPrice,
+                      courseDuration : duration,
                       courseBanner : image,
                        date : new Date(),
                       transectionId : paymentIntent.id ,
                       paymentId : _id,
-                      status : 'pending',
+                
 
                 }
 
@@ -129,7 +133,7 @@ const totalPrice = price;
 
 
                         // update class totalEnrollments 
-                        axiosSecure.patch(`/classes/${_id}`) 
+                        axiosSecure.patch(`/classes/${_id}`,payment) 
                         
                         .then(response => {
                           

@@ -151,7 +151,7 @@ alt={title} />
 </figure>
 <div className="px-8  py-4">
 <div className="w-full">
-<Link to={`/payment/${_id}`} className="btn btn-primary w-full my-4">Enroll now</Link>
+<Link to={`/payment/${_id}`} className="btn_secondary w-full my-4">Enroll now</Link>
 </div>
 <h2 className="card-title my-4">This Course Includes : </h2>
 

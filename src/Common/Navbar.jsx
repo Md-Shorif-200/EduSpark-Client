@@ -4,11 +4,15 @@ import useAuth from '../Hooks/useAuth';
 import nav_logo from '../assets/navLogo/logo__1-removebg-preview.png'
 import { RiArrowDropDownLine } from "react-icons/ri";
 import Heading from './Heading';
+import useRole from '../Hooks/useRole';
 
 
 
 const Navbar = () => {
     const {user,logOut} = useAuth();
+    const    [data,refetch,isLoading] = useRole()
+
+     
 
     const navLinks = <>
                 <li>
@@ -17,16 +21,24 @@ const Navbar = () => {
                 <li>
                     <NavLink className='hover:bg-white hover:text-[#39B8AD]  transition duration-300 ease-in-out ' to='allClass'> all classes </NavLink>
                 </li>
-                <li>
-                    <NavLink className='hover:bg-white hover:text-[#39B8AD]  transition duration-300 ease-in-out ' to='/TeachOn'> teach on academix </NavLink>
-                </li>
-                {/* <li>
-                    <NavLink to='/signUp'> sign up </NavLink>
-                </li> */}
+
            
-            {/* <button onClick={logOut}>
-                  log out
-            </button> */}
+                {data?.role !== 'teacher' || !user && (
+  <li>
+    <NavLink
+      className="hover:bg-white hover:text-[#39B8AD] transition duration-300 ease-in-out"
+      to="/TeachOn"
+    >
+      Teach on Academix
+    </NavLink>
+  </li>
+)}
+       
+
+                  <li>
+                  <NavLink className='hover:bg-white hover:text-[#39B8AD]  transition duration-300 ease-in-out ' to='contact'> Contact </NavLink>
+                  </li>
+             
 
     </>
     
@@ -69,7 +81,7 @@ const Navbar = () => {
             <div className=''>
             <img className='rounded-full  border relative' src={user?.photoURL} alt="" />
             </div>
-          <RiArrowDropDownLine className='text-4xl text-white font-bold absolute top-0 left-6'></RiArrowDropDownLine>
+          <RiArrowDropDownLine className='text-4xl text-black font-semibold absolute top-0 left-6'></RiArrowDropDownLine>
          
 
       </div>
@@ -90,15 +102,23 @@ const Navbar = () => {
                           <div>
                           <h1 className=' text-justify text-[18px] font-bold capitalize '> {user.displayName} </h1>
                             <p className='text-[12px]'>  {user?.email.slice(0,23)}.. </p>
+                            <p className='capitalize'> {data?.role} </p>
                           </div>
           </div>
 
           <div className="divider my-3"></div>
 
           <div className=' h-full  px-1'>
-                 <div className='hover_effect_1'>
-                 <Link className='  ' to='dashboard'>Dashaboard</Link>
-                 </div>
+                    {
+                      data?.role !== 'user' &&   <div className='hover_effect_1'>
+                      <Link className='  ' to='dashboard'>Dashaboard</Link>
+                      </div>
+                    }
+
+<div className='hover_effect_1'>
+                   <Link className='' >Profile</Link>
+                   </div>
+
                    <div className='hover_effect_1'>
                    <Link className='' onClick={logOut}>Log Out</Link>
                    </div>
