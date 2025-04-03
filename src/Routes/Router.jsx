@@ -83,7 +83,7 @@ const router = createBrowserRouter([
       ]
     },
 
-    // dashboard routers 
+    // ! dashboard routers 
     {
       path : 'dashboard',
       element : <DashboardLayout></DashboardLayout>,
@@ -91,7 +91,7 @@ const router = createBrowserRouter([
       children  : [
           {
             path : '/dashboard',
-            element : <WelcomeMessage></WelcomeMessage>
+            element : <MyEnrollMent></MyEnrollMent>
           },
         {
             path : 'teacherRequest',

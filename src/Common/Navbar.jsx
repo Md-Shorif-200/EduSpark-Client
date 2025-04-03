@@ -111,7 +111,7 @@ const Navbar = () => {
           <div className=' h-full  px-1'>
                     {
                       data?.role !== 'user' &&   <div className='hover_effect_1'>
-                      <Link className='  ' to='dashboard'>Dashaboard</Link>
+                      <Link className='  ' to='dashboard/myEnrollMent'>Dashaboard</Link>
                       </div>
                     }
 

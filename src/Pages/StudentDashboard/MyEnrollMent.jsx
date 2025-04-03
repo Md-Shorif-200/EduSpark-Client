@@ -18,7 +18,7 @@ const MyEnrollMent = () => {
  }
 
   
-const myPayments = payments.filter(payment => payment.studentEmail === user.email)
+const myPayments = payments.filter(payment => payment?.studentEmail === user?.email)
 
    console.log(myPayments);
    

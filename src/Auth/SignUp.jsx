@@ -1,173 +1,159 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import useAuth from "../Hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
+
+import * as yup from "yup";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
+import { IoEyeSharp } from "react-icons/io5";
+import { IoIosEyeOff } from "react-icons/io";
+
+import useAuth from "../Hooks/useAuth";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 
+
+import { yupResolver } from "@hookform/resolvers/yup";
 import Loading from "../Common/Loading";
-import Lottie from "lottie-react";
+import CoverImg from "../Common/CoverImg";
 
-// lottie file
+// পাসওয়ার্ড ভ্যালিডেশন রিজেক্স
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
 
-
-import lottie_signUp_animation from '../assets/lottie react/Animation - 1741485045379.json'
+// Yup validation schema
+const schema = yup.object().shape({
+  name: yup.string().required("Name is required"),
+  email: yup.string().email("Invalid email format").required("Email is required"),
+  password: yup
+  .string()
+  .matches(passwordRegex, "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.")
+  .required("Password is required"),
+  image: yup.mixed().required("Profile image is required"),
+});
 
 const SignUp = () => {
-  // react hook form
-  const {
-    register,
-    handleSubmit,reset,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-  // get user data from authProvider
-  const { creatUser,updateUserProfile,loading } = useAuth();
+  const { creatUser, updateUserProfile } = useAuth();
+  const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
+  // Handle Form Submission
+  const onSubmit = async (data) => {
+    setLoading(true);
 
+    try {
+      const imageFile = data.image[0];
+      const formData = new FormData();
+      formData.append("file", imageFile);
+      formData.append("upload_preset", "your_cloudinary_preset");
 
-  const navigate = useNavigate()
-  const axiosSecure = useAxiosSecure()
-
-
-// form submit functionality
-  const onSubmit = (data) => {
-    creatUser(data.email, data.password)
-      .then((result) => {
-  
-        
-        // update Profile
-          updateUserProfile(data.name, data.photoUrl)
-          .then(() => {
-
-         
-        if(loading){
-          return <Loading></Loading>
-        }
-            
-            const userInfo = {
-              name : data.name,
-              email : data.email,
-              image : data.photoUrl,
-              role : 'user'
-            }
-
-            axiosSecure.post('/users', userInfo)
-            .then(result => {
-               const registerdUser = result.data;
-               
-              
-               if(registerdUser.insertedId){
-                 reset()
-                toast.success('sign up succesfully');
-                navigate('/') 
-               }
-                
-             
-            })
-
-            .catch(err => {
-               console.log(err);
-               return ;
-            })
-            
-      
-        })
-        .catch(err => {
-           console.log(err);
-           
-        })
-         
-        
-      })
-      .catch((err) => {
-        console.log(err);
+      // Upload Image to Cloudinary
+      const imageRes = await fetch("https://api.cloudinary.com/v1_1/your_cloudinary_name/image/upload", {
+        method: "POST",
+        body: formData,
       });
+
+      const imageData = await imageRes.json();
+      const imageUrl = imageData.secure_url;
+
+      // Create User
+      const result = await creatUser(data.email, data.password);
+      await updateUserProfile(data.name, imageUrl);
+
+      // Store user info in DB
+      const userInfo = {
+        name: data.name,
+        email: data.email,
+        image: imageUrl,
+        role: "user",
+        registrationTime : new Date().toLocaleString()
+      };
+
+      const response = await axiosSecure.post("/users", userInfo);
+      if (response.data.insertedId) {
+        reset();
+        toast.success("Sign up successfully!");
+        navigate("/");
+      }
+    } catch (error) {
+      toast.error(error.message || "Something went wrong!");
+    } finally {
+      setLoading(false);
+    }
   };
 
-
-
   return (
-    <div className="sign_up">
-      <div className="hero bg-base-200 min-h-screen">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-        
-        <div className="text-center lg:text-left mb-4">
-                   <Lottie animationData={lottie_signUp_animation}></Lottie>
-          </div>
+    <div className="sign_up ">
+              <CoverImg title={'Sign Up'}></CoverImg>
+      <div className="py-10">
+          
 
-          <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            <div className="card-body">
-                    <h1 className="text-2xl  uppercase font-semibold text-center">sign up</h1>
-              <form className="" onSubmit={handleSubmit(onSubmit)}>
+          {/* SignUp Form */}
+          <div className="w-[45%] mx-auto">
 
-                {/* user name */}
-                <label className="fieldset-label">Name</label>
-                <input
-                  type="text"
-                  className="input"
-                  placeholder="Enter Your Name"
-                  {...register("name", { required: true })}
-                />
-                {errors.name && (
-                  <span className="text-red-500 "> name is required</span>
-                )}
+              <h1 className="text-2xl font-semibold capitalize mb-6 mt-8"> Sign Up now! </h1>
 
-                {/* user photo url  */}
-                <label className="fieldset-label">Photo</label>
-                <input
-                  type="text"
-                  className="input"
-                  placeholder="Enter Your Photo Url"
-                  {...register("photoUrl", { required: true })}
-                />
-                {errors.photoUrl && (
-                  <span className="bg-red-500">This field is required</span>
-                )}
+            {loading ? (
+                  <Loading></Loading>
+            ) : (
+              <form onSubmit={handleSubmit(onSubmit)}>
+                
+                {/* Name Input */}
+                <div className="mb-3">
+                  <label className="fieldset-label">Name</label>
+                  <input type="text" className=" sign_up_input" placeholder="Enter Your Name" {...register("name")} />
+                  {errors.name && <span className="text-red-500">{errors.name.message}</span>}
+                </div>
 
-                {/* user email  */}
-                <label className="fieldset-label">Email</label>
-                <input
-                  type="email"
-                  className="input"
-                  placeholder="Enter Your email"
-                  {...register("email", { required: true })}
-                />
-                {errors.email && (
-                  <span className="text-red-500 my-3">
-                    This field is required
-                  </span>
-                )}
+                {/* Image Upload */}
+                <div className="mb-3">
+                  <label className="fieldset-label">Profile Image</label>
+                  <input type="file" accept="image/*" className="file-input file-input-ghost my-2" {...register("image")} />
+                  {errors.image && <span className="text-red-500">{errors.image.message}</span>}
+                </div>
 
-                {/* user email password  */}
-                <label className="fieldset-label">Password</label>
-                <input
-                  type="text"
-                  className="input"
-                  placeholder="Enter Your email"
-                  {...register("password", { required: true })}
-                />
+                {/* Email Input */}
+                <div className="mb-3">
+                  <label className="fieldset-label">Email</label>
+                  <input type="email" className=" sign_up_input" placeholder="Enter Your Email" {...register("email")} />
+                  {errors.email && <span className="text-red-500">{errors.email.message}</span>}
+                </div>
 
-                {/* sign Up button */}
+                {/* Password Input with Toggle */}
+                <div className="mb-3 relative">
+                  <label className="fieldset-label">Password</label>
+                  <input 
+                    type={showPassword ? "text" : "password"}
+                    className=" pr-10 sign_up_input"
+                    placeholder="Enter Your Password"
+                    {...register("password")}
+                  />
+                  <button
+                    type="button"
+                    className="absolute right-3 top-12 text-black"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? <IoIosEyeOff size={20} /> : <IoEyeSharp size={20} />}
+                  </button>
+                  {errors.password && <span className="text-red-500">{errors.password.message}</span>}
+                </div>
 
-                <button className="btn w-full primary_bg_color text-white my-2 ">Sign Up</button>
+                {/* Sign Up Button */}
+                <button className="btn w-full  primary_bg_color text-white my-2">Sign Up</button>
 
-                <div className="my-2">
-                  <p>
-                    already you have an account? please{" "}
-                    <Link className="text-green-700" to="/signIn">
-                      Sign In
-                    </Link>{" "}
-                  </p>
+                {/* Sign In Redirect */}
+                <div className="my-2 text-center">
+                  <p className="my-2 text-xl">Already have an account? <Link className="text-green-700 font-bold" to="/signIn">Sign In</Link></p>
                 </div>
               </form>
-            </div>
+            )}
           </div>
 
-      
-
         </div>
-      </div>
     </div>
   );
 };

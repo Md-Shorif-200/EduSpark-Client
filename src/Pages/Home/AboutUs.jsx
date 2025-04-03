@@ -33,21 +33,21 @@ const AboutUs = () => {
     return (
         <div className='grid grid-cols-2 gap-x-8 px-16  mb-4 items-center mt-16'>
 
-<div className="about_us_animation w-full" data-aos='fade-right'>
+<div className="about_us_animation w-full" >
                     <Lottie animationData={lottie_animation}></Lottie>
                </div>
    
 
-         <div className="about_us_cnt" data-aos='fade-left' data-aos-delay='100'>
+         <div className="about_us_cnt">
                         <AnimateTitle animateTtile={'get more about us'}></AnimateTitle>
-                    <h1 className='text-4xl  secondary_text_color font-semibold my-4 leading-16'>
+                    <h1 className='text-4xl  secondary_text_color font-semibold my-4 leading-16' data-aos='fade-up'>
                     Over 10 Years in Distant learning
 for Skill Development
                     </h1>
 
-                    <p className='secondary_text_color mt-3 mb-5'>At Academix, we believe that quality education should be accessible to everyone. Our expert-led courses are designed to help learners gain real-world skills and advance their careers. Join us in shaping a future where knowledge knows no boundaries!</p>
+                    <p className='secondary_text_color mt-3 mb-5' data-aos='fade-up' data-aos-delay='100'>At Academix, we believe that quality education should be accessible to everyone. Our expert-led courses are designed to help learners gain real-world skills and advance their careers. Join us in shaping a future where knowledge knows no boundaries!</p>
 
-                    <div className="about_checkmark grid grid-cols-2 gap-6 secondary_text_color">
+                    <div className="about_checkmark grid grid-cols-2 gap-6 secondary_text_color" data-aos='fade-up' data-aos-delay='200'>
                           <div>
                               <p className='flex items-center  gap-x-3'> <span className=' text-xl'><FaCheckCircle></FaCheckCircle> </span>  Innovative Learning    </p>
                           </div>
@@ -65,7 +65,7 @@ for Skill Development
                           </div>
                     </div>
 
-                     <div>
+                     <div data-aos='fade-up' data-aos-delay='300'>
                           <button className='btn btn_secondary  uppercase mt-8'>learn more</button>
                      </div>
             </div>
