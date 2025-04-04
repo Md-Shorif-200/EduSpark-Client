@@ -42,11 +42,11 @@ const Statistics = () => {
 
 
     return (
-        <div className='statistics grid grid-cols-2 bg-[#182024] text-gray-300  px-5 py-16'>
-              <div className="statistics_img relative">
+        <div className='statistics grid grid-cols-1 lg:grid-cols-2 bg-[#182024] text-gray-300 px-2 md:px-5 py-16 my-12'>
+              <div className="statistics_img relative mb-4">
                         <img src={statistics_img} alt="" className='w-full h-full rounded-2xl' />
 
-                        <div className="cards flex gap-4 absolute bottom-[80px] px-6">
+                        <div className="cards flex gap-4 absolute bottom-[80px] px-6 hidden">
                             <div className='statistics_img_card flex'>
                                         <div className=''>
                                             
@@ -73,35 +73,35 @@ const Statistics = () => {
                         </div>
               </div>
 
-              <div className="statistics_cnt px-6">
+              <div className="statistics_cnt px-2 md:px-6">
                         
 
                              <AnimateTitle animateTtile={'why choose us'}></AnimateTitle>
 
-                            <h1 className='text-4xl font-semibold capitalize text-justify my-4'>your ideal learning partner</h1>
+                            <h1 className='text-3xl md:text-4xl font-semibold capitalize  my-4'>your ideal learning partner</h1>
 
                             <p className='my-2'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae sed aliquid repellendus culpa labore pariatur asperiores cumque illum minus reprehenderit.</p>
 
-                            <div className="statistics_cards grid grid-cols-2 gap-10 px-7 pt-8">
+                            <div className="statistics_cards grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-10 px-7 pt-8">
                            
 
                                   <div className="card" data-aos='fade-left'>
-                                     <h1 key={inView} ref={ref}> {inView ? <CountUp start={0} end={5000}  duration={3}></CountUp> : '0'} + </h1>
+                                     <h1 key={inView} ref={ref}>  <CountUp start={0} end={5000}  duration={3}></CountUp>  + </h1>
                                      <p>satisfied students</p>
                                   </div>
 
                                   <div className="card" data-aos='fade-left' data-aos-delay='100'>
-                                   <h1 key={inView} ref={ref}>{inView ? <CountUp start={0} end={20}  duration={3}></CountUp> : '0'} + </h1>
+                                   <h1 key={inView} ref={ref}> <CountUp start={0} end={20}  duration={3}></CountUp>  + </h1>
                                      <p>years exprerience</p>
                                   </div>
 
                                   <div className="card" data-aos='fade-left' data-aos-delay='200'>
-                         <h1 key={inView} ref={ref}>{inView ? <CountUp start={0} end={15}  duration={3}></CountUp> : '0'} + </h1>
+                         <h1 key={inView} ref={ref}> <CountUp start={0} end={15}  duration={3}></CountUp>  + </h1>
                                      <p>faculty course</p>
                                   </div>
 
                                   <div className="card" data-aos='fade-left' data-aos-delay='300'>
-                       <h1 key={inView} ref={ref}>{inView ? <CountUp start={0} end={100}  duration={3}></CountUp> : '0'} + </h1>
+                       <h1 key={inView} ref={ref}> <CountUp start={0} end={100}  duration={3}></CountUp>  + </h1>
                                      <p>Teacher</p>
                                   </div>
 

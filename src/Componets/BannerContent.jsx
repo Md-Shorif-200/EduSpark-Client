@@ -35,7 +35,7 @@ const BannerContent = ({subTitle,title,description,img}) => {
        const  [classes,refetch,isLoading]  = useClass()
 
     return (
-           <div className="banner w-full min-h-screen  secondary_bg_color  md:flex gap-x-10 items-center justify-between" >
+           <div className="banner w-full min-h-screen  secondary_bg_color  md:flex gap-x-10 items-center justify-between  md:px-16" >
 
                         <div className="banner_cnt md:w-[45%] text-justify py-10 px-2 " data-aos='fade-up' data-aos-duration="1000">
 

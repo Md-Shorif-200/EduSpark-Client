@@ -13,7 +13,7 @@ const CoverImg = ({title}) => {
             }
             }>
 
-                <h1 className='absolute top-26 left-36 text-white text-5xl capitalize'> {title} </h1>
+                <h1 className='absolute top-16 left-6 lg:top-26 md:left-36 text-white text-5xl capitalize'> {title} </h1>
               
         </div>
     );

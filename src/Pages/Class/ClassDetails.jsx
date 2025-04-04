@@ -39,14 +39,14 @@ const ClassDetails = () => {
         <div className='classs_details_container mb-40 z-0   '>
 
             
-<div className="class_cnt bg-[#F2F7FD] px-16">
-                    <p className="subtitle text-gray-400 flex items-center pt-4">    <RiHome2Line></RiHome2Line>/ <span> {category} </span>/ <span>{title} </span>  </p>
+<div className="class_cnt bg-[#F2F7FD] px-2 lg:px-16">
+                    <p className="subtitle text-gray-400  items-center pt-4 hidden lg:flex">    <RiHome2Line></RiHome2Line>/ <span> {category} </span>/ <span>{title} </span>  </p>
 
-                    <div className="w-[16%] bg-[#39B8AD] px-2 py-1 text-white text-center rounded-xl font-semibold mt-16">  {category} </div>
+                    <div className="w-[16%] bg-[#39B8AD] px-2 py-1 text-white text-center rounded-xl font-semibold mt-16 hidden md:block">  {category} </div>
                   <h1 className='text-3xl font-bold mt-4 capitalize secondary_text_color'> {title} </h1>
                 
-                <div className=' flex gap-10 items-center capitalize py-8 secondary_text_color'>
-                       <div className='flex items-center gap-x-4'>
+                <div className='block md:flex gap-10 items-center capitalize  py-8 secondary_text_color'>
+                       <div className='flex items-center gap-x-4 '>
                             <img src={img} alt="" className='w-12 h-12 rounded-full' />
                               <div className=''>
                                   <h1 className='secondary_text_color font-semibold'>teacher</h1>
@@ -54,18 +54,18 @@ const ClassDetails = () => {
                               </div>
                        </div>
 
-                       <div>
+                       <div className='my-6'>
                                   <h1 className='secondary_text_color font-semibold'>category</h1>
                                   <p className='font-semibold mt-1'>{category} </p>
-                              </div>
+                        </div>
 
 
-                              <div>
+                              <div className='my-6'>
                                   <h1 className='secondary_text_color font-semibold'>last updated</h1>
                                   <p className='font-semibold mt-1'>{time} </p>
                               </div>
 
-                              <div>
+                              <div className='my-6'>
                                         <ul className='flex gap-1 text-md my-1'>
                                                <li className='text-[#F4B400]'>  <FaStar></FaStar> </li>
                                                <li className='text-[#F4B400]'>  <FaStar></FaStar> </li>
@@ -81,17 +81,17 @@ const ClassDetails = () => {
                   </div>
 
 
-                 <div className='flex justify-between'>
-                 <div className="class_details w-[65%]">
+                 <div className=' lg:flex justify-between'>
+                 <div className="class_details lg:w-[65%]">
            
 
 
-           <div className="about_class px-16">
+           <div className="about_class px-2 lg:px-16">
                  <h1 className='about_heading'>About Course</h1>
                 <p> {description?.slice(0,400)} </p>
            </div>
            {/* //id={`panel${index}-header`}     aria-controls={`panel${index}-content`} */}
-           <div className="course_curriculam px-16">
+           <div className="course_curriculam px-2 lg:px-16">
                  <h1 className='about_heading'>course curriculam </h1>
 
                  {/* matarial ui accordion */}
@@ -141,15 +141,17 @@ const ClassDetails = () => {
 
 
      
-
-      <div className="enroll_card pr-14 -mt-40 sticky ">
-      <div className="card bg-base-100 w-90 shadow-sm">
+                {/* enroll card */}
+      <div className="enroll_card lg:pr-14 mt-4  lg:-mt-40 sticky ">
+      <div className="card bg-base-100 w-full lg:w-90 shadow-sm">
 <figure className='p-4'> 
 <img
 src={image}
-alt={title} />
+alt={title}
+ className='w-full'
+/>
 </figure>
-<div className="px-8  py-4">
+<div className="px-4 lg:px-8  py-4">
 <div className="w-full">
 <Link to={`/payment/${_id}`} className="btn_secondary w-full my-4">Enroll now</Link>
 </div>

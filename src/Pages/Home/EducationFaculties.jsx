@@ -53,11 +53,11 @@ const EducationFaculties = () => {
     useEffect(() => {
       // Initialize AOS
 AOS.init({
-duration: 800, // কম ডুরেশন = স্মুথার এফেক্ট (১৫০০ms থেকে ১২০০ms বা ১০০০ms এ নামান)
-once: false, // false করলে স্ক্রোল আপ/ডাউন করলে বারবার অ্যানিমেশন ট্রিগার হবে
-easing: 'ease-in-out', // 'ease' এর চেয়ে 'ease-in-out' বেশি স্মুথ
-offset: 100, // এলিমেন্ট ভিউপোর্টের ১২০px আগে অ্যানিমেশন শুরু হবে
-mirror: true, // স্ক্রোল ডাউনের পাশাপাশি স্ক্রোল আপেও অ্যানিমেশন দেখাবে
+duration: 800,
+once: false, 
+easing: 'ease-in-out', 
+offset: 100, 
+mirror: true, 
 });
 } , [])
 
@@ -96,18 +96,32 @@ mirror: true, // স্ক্রোল ডাউনের পাশাপাশ�
 
 
     return (
-        <div className='secondary_text_color my-10' data-aos='fade-up'>
+        <div className='secondary_text_color my-10 px-4' data-aos='fade-up'>
                 {/* <SectionTitle  title={'  education facultites'}></SectionTitle> */}
                 {/* sweper slider */}
                 <Swiper
         onSwiper={setSwiperRef}
-        slidesPerView={5}
+        slidesPerView={1}
         centeredSlides={true}
         spaceBetween={30}
         pagination={{
           type: 'fraction',
         }}
         navigation={true}
+            // responsive for all device
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+          },
+          768: {
+            slidesPerView: 3,
+          },
+          1024: {
+            slidesPerView: 5,
+          },
+        
+        }}
+
         modules={[Pagination, Navigation]}
         className="mySwiper"
       >

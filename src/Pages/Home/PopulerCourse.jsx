@@ -29,16 +29,16 @@ const PopulerCourse = () => {
              
    
     return (
-        <div className='bg_color_2 p-6 secondary_bg_color px-16'>
+        <div className='bg_color_2  secondary_bg_color pt-8  md:p-6 lg:px-16'>
 
                   <AnimateTitle animateTtile={'top class courses'}></AnimateTitle>
-              <div className='grid grid-cols-2 pt-4 pb-3'>
-                  <div className='pr-14'>
-                  <SectionTitle  title={'Explore populer courses'}></SectionTitle>
+              <div className='md:grid  md:grid-cols-2 pt-4 pb-3'>
+                  <div className='md:pr-14'>
+                  <h1 className='text-3xl font-semibold capitalize '>explore populer course</h1>
                   </div>
                
-                  <div className='text-end'>
-                     <Link to='allClass' className=" text-lg my-4 capitalize primary_text_color font-bold flex justify-end items-center gap-x-2">view all courses  
+                  <div className='text-start md:text-end'>
+                     <Link to='allClass' className=" text-lg my-4 capitalize primary_text_color font-bold flex md:justify-end items-center gap-x-2">view all courses  
                        <FaArrowUpRightFromSquare></FaArrowUpRightFromSquare>
                       </Link>
                   </div>
@@ -51,25 +51,25 @@ const PopulerCourse = () => {
 <div className="tabs tabs-box">
 
   <input type="radio" name="my_tabs_2" className="tab text-lg capitalize mb-8" aria-label="all" defaultChecked  />
-  <div className="tab-content  border-base-300 bg-base-100 p-10">   {
+  <div className="tab-content  lg:border-base-300 bg-base-100 p-2 md:p-5 lg:p-10">   {
      <Class_Catagory_tab class_catagory={populerClasses}></Class_Catagory_tab>} </div>
 
 <input type="radio" name="my_tabs_2" className="tab text-lg capitalize mb-8" aria-label="web & software" />
-  <div className="tab-content  border-base-300 bg-base-100 p-10">   {
+  <div className="tab-content  lg:border-base-300 bg-base-100 p-2 md:p-5 lg:p-10">   {
      <Class_Catagory_tab class_catagory={web_softawre}></Class_Catagory_tab>} </div>
 
 
 <input type="radio" name="my_tabs_2" className="tab text-lg capitalize mb-8" aria-label="design & multimedia" />
-  <div className="tab-content  border-base-300 bg-base-100 p-10">   {
+  <div className="tab-content  lg:border-base-300 bg-base-100 p-2 md:p-5 lg:p-10">   {
      <Class_Catagory_tab class_catagory={design_multimedia}></Class_Catagory_tab>} </div>
 
 <input type="radio" name="my_tabs_2" className="tab text-lg capitalize mb-8" aria-label="digital marketing" />
-  <div className="tab-content  border-base-300 bg-base-100 p-10">   {
+  <div className="tab-content  lg:border-base-300 bg-base-100 p-2 md:p-5 lg:p-10">   {
      <Class_Catagory_tab class_catagory={digital_marketing}></Class_Catagory_tab>} </div>
 
 
 <input type="radio" name="my_tabs_2" className="tab text-lg capitalize mb-8" aria-label="office management" />
-  <div className="tab-content  border-base-300 bg-base-100 p-10">   {
+  <div className="tab-content  lg:border-base-300 bg-base-100 p-2 md:p-5 lg:p-10">   {
      <Class_Catagory_tab class_catagory={office_management}></Class_Catagory_tab>} </div>
 
 </div>

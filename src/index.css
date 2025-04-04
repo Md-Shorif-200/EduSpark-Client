@@ -11,8 +11,8 @@
 
 *{
     font-family: "Outfit", sans-serif;
-  
-
+    /* outline: 1px solid red; */
+/* overflow-x: hidden; */
     
 }
 
@@ -120,8 +120,8 @@ color: var(--Primary);
 
 
 .avatar img {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
 }
 
 .navbar .dropdown_cnt{
@@ -141,18 +141,15 @@ background-color: #F4E1D2;
 }
 
 
-/* banner section */
- /* .banner_cnt h1 {
-    line-height: 60px;
-} */
+/* banner section */ */
 
 
 
-.banner_img img {
+/* .banner_img img {
     width: 400px;
     height: 450px;
      border-radius: 30px;
-}
+} */
 
 .banner_img .animate_card {
     width: 180px;

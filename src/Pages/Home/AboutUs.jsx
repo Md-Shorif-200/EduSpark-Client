@@ -22,25 +22,25 @@ const AboutUs = () => {
          useEffect(() => {
                     // Initialize AOS
         AOS.init({
-            duration: 800, // কম ডুরেশন = স্মুথার এফেক্ট (১৫০০ms থেকে ১২০০ms বা ১০০০ms এ নামান)
-            once: false, // false করলে স্ক্রোল আপ/ডাউন করলে বারবার অ্যানিমেশন ট্রিগার হবে
-            easing: 'ease-in-out', // 'ease' এর চেয়ে 'ease-in-out' বেশি স্মুথ
-            offset: 120, // এলিমেন্ট ভিউপোর্টের ১২০px আগে অ্যানিমেশন শুরু হবে
-            mirror: true, // স্ক্রোল ডাউনের পাশাপাশি স্ক্রোল আপেও অ্যানিমেশন দেখাবে
+            duration: 800, 
+            once: false, 
+            easing: 'ease-in-out', 
+            offset: 120,
+            mirror: true,
         });
           } , [])
 
     return (
-        <div className='grid grid-cols-2 gap-x-8 px-16  mb-4 items-center mt-16'>
+        <div className='grid grid-cols-1 md:grid-cols-2 md:gap-x-8 px-2 md:px-16  mb-4 items-center mt-14 md:mt-16'>
 
-<div className="about_us_animation w-full" >
+<div className="about_us_animation" >
                     <Lottie animationData={lottie_animation}></Lottie>
                </div>
    
 
          <div className="about_us_cnt">
                         <AnimateTitle animateTtile={'get more about us'}></AnimateTitle>
-                    <h1 className='text-4xl  secondary_text_color font-semibold my-4 leading-16' data-aos='fade-up'>
+                    <h1 className='text-3xl md:text-4xl  secondary_text_color font-semibold my-6 leading-10  md:leading-16' data-aos='fade-up'>
                     Over 10 Years in Distant learning
 for Skill Development
                     </h1>

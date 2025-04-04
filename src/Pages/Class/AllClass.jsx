@@ -36,7 +36,7 @@ const AllClass = () => {
                     <CoverImg title={'all course'}></CoverImg>
       {/* <h1>         total claass  :{approvedClasses.length} </h1> */}
 
-      <div className="my-12 px-16 flex gap-x-4 items-center justify-end">
+      <div className="my-12 px-2 lg:px-16  grid grid-cols-2 lg:grid-cols-4 items-center gap-6">
         <div className="filter_course z-60">
           <fieldset className="fieldset">
             <select
@@ -103,14 +103,14 @@ const AllClass = () => {
             </select>
           </fieldset>
         </div>
-        <div className="btn_secondary" onClick={handleResetBtn}>
+        <div className="btn_secondary lg:w-28" onClick={handleResetBtn}>
           reset
         </div>
       </div>
 
     
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-16 ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-2 lg:px-16 ">
         {approvedClasses.map((appProvedClass, index) => (
           <ClassCard key={index} approvedClass={appProvedClass}></ClassCard>
         ))}
