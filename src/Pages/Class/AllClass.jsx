@@ -32,7 +32,7 @@ const AllClass = () => {
   };
 
   return (
-    <div className="All_classes mb-30 ">
+    <div className="All_classes mb-30 overflow-x-hidden ">
                     <CoverImg title={'all course'}></CoverImg>
       {/* <h1>         total claass  :{approvedClasses.length} </h1> */}
 

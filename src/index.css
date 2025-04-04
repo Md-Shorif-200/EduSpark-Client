@@ -124,7 +124,7 @@ color: var(--Primary);
     height: 40px;
 }
 
-.navbar .dropdown_cnt{
+.navbar .dropdown_cnt,.dropdown-content{
    width: 220px;
       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
       z-index: 50;
@@ -151,17 +151,16 @@ background-color: #F4E1D2;
      border-radius: 30px;
 } */
 
-.banner_img .animate_card {
-    width: 180px;
+ /* .animate_card {
+    width: 50;
      background-color: white;
      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-
-
      border-radius: 10px;
      font-size: 18px;
      text-transform: capitalize;
      font-weight: 700;
-}
+     z-index: 100;
+} */
 
 .zigzag-line {
     width: 100%;
@@ -227,6 +226,8 @@ background-color: #F4E1D2;
 padding: 35px 18px;
 border-radius: 20px;
 }
+
+/* sign up */
  .sign_up_input{
     width: 100%;
     margin: 12px 0;

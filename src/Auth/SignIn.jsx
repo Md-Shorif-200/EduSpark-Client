@@ -53,69 +53,78 @@ const SignIn = () => {
   return (
     <div className=" mb-14">
                 <CoverImg title={'Sign In'}></CoverImg>
-      <div className="w-[35%] mx-auto mt-20">
+      <div className="w-full sm:w-[80%] md:w-[70%] lg:w-[35%] mx-auto mt-20 px-6 lg:px-0">
       <h1 className="text-2xl font-semibold capitalize mb-6 mt-8"> Sign In Now! </h1>
           <div className="">
-            <form onSubmit={handleSubmit(onSubmit)}>
-              {/* User Email */}
-              <label className="fieldset-label">Email</label>
-              <input
-                type="email"
-                className="sign_up_input"
-                placeholder="Enter Your email"
-                {...register("email")}
-              />
-              {errors.email && (
-                <span className="text-red-500 my-3">{errors.email.message}</span>
-              )}
-
-              {/* User Password */}
-              <label className="fieldset-label">Password</label>
-              <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  className="sign_up_input pr-10"
-                  placeholder="Enter Your Password"
-                  {...register("password")}
-                />
-                <button
-                  type="button"
-                  className="absolute right-3 top-7 text-black"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
-                </button>
-              </div>
-              {errors.password && (
-                <span className="text-red-500 my-3">{errors.password.message}</span>
-              )}
-                    {/* forgot password */}
-                <div className="flex items-center justify-between my-2 ">
-                    <div className="text-base text-gray-600">
-                    <input type="checkbox"  className=" text-sm mr-2 " />
-                    Remember me
+               {
+                  loading ? (
+                    
+                    <Loading></Loading> 
+                  )  : (
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                    {/* User Email */}
+                    <label className="fieldset-label">Email</label>
+                    <input
+                      type="email"
+                      className="sign_up_input"
+                      placeholder="Enter Your email"
+                      {...register("email")}
+                    />
+                    {errors.email && (
+                      <span className="text-red-500 my-3">{errors.email.message}</span>
+                    )}
+      
+                    {/* User Password */}
+                    <label className="fieldset-label">Password</label>
+                    <div className="relative">
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        className="sign_up_input pr-10"
+                        placeholder="Enter Your Password"
+                        {...register("password")}
+                      />
+                      <button
+                        type="button"
+                        className="absolute right-3 top-7 text-black"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
+                      </button>
                     </div>
-              <Link className="text-blue-600">Forgot Password ? </Link>
-                </div>
+                    {errors.password && (
+                      <span className="text-red-500 my-3">{errors.password.message}</span>
+                    )}
+                          {/* forgot password */}
+                      <div className="flex items-center justify-between my-2 ">
+                          <div className="text-base text-gray-600">
+                          <input type="checkbox"  className=" text-sm mr-2 " />
+                          Remember me
+                          </div>
+                    <Link className="text-blue-600">Forgot Password ? </Link>
+                      </div>
+      
+                    {/* SignIn Button */}
+                    <button className="btn primary_bg_color text-white w-full my-2">
+                      Sign In
+                    </button>
+      
+                    <div className="text-end">
+                      <p className="secondary_text_color">
+                    
+                        New to Academix ?
+                        <Link className="text-blue-700 ml-2" to="/signUp">
+                          Create Account
+                        </Link>
+                      </p>
+                    </div>
+                  </form>
 
-              {/* SignIn Button */}
-              <button className="btn primary_bg_color text-white w-full my-2">
-                Sign In
-              </button>
+                  )
+                   
+               }
+          
 
-              <div className="text-end">
-                <p className="secondary_text_color">
-              
-                  New to Academix ?
-                  <Link className="text-blue-700 ml-2" to="/signUp">
-                    Create Account
-                  </Link>
-                </p>
-              </div>
-            </form>
 
-            {/* Loading Spinner */}
-            {loading && <Loading />}
 
             {/* Social LogIn */}
             <p className="text-center capitalize font-bold mb-2 mt-6">or </p>

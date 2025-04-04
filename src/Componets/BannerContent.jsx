@@ -35,14 +35,14 @@ const BannerContent = ({subTitle,title,description,img}) => {
        const  [classes,refetch,isLoading]  = useClass()
 
     return (
-           <div className="banner w-full min-h-screen  secondary_bg_color  md:flex gap-x-10 items-center justify-between  md:px-16" >
+           <div className="banner w-full min-h-screen  secondary_bg_color  lg:flex gap-x-10 items-center justify-between sm:px-8  md:px-16 "  >
 
-                        <div className="banner_cnt md:w-[45%] text-justify py-10 px-2 " data-aos='fade-up' data-aos-duration="1000">
+                        <div className="banner_cnt w-full sm:w-[75%] text-justify py-10 px-2 " data-aos='fade-up' data-aos-duration="1000">
 
                               
                                <AnimateTitle animateTtile={'welcome to academix'}></AnimateTitle>
 
-                               <h1 className="text-3xl md:text-5xl  my-6 secondary_text_color font-bold">  Start learning from
+                               <h1 className="text-3xl md:text-4xl lg:text-5xl  my-6 secondary_text_color font-bold">  Start learning from
                                the world’s      <span className='primary_text_color font-normal'> best institutions </span>  </h1>
 
 
@@ -60,9 +60,9 @@ const BannerContent = ({subTitle,title,description,img}) => {
 
                         <div className="banner_img p-4 md:pr-17 relative">
 
-                              <img src={img} alt="" className=' ' />
+                              <img src={img} alt="" className='w-full  rounded-2xl' />
 
-                                <motion.div className='animate_card pl-6 py-2 absolute top-50 -left-20' 
+                                <motion.div className='animate_card bg-white w-[150px] py-2 pl-4 rounded-md absolute top-26 -left-4 md:top-50 md:-left-20' 
                                  animate={{
     x: [-20, 20, -20], // -20px থেকে 20px, তারপর আবার -20px (লুপের মতো)
   }}
@@ -74,7 +74,7 @@ const BannerContent = ({subTitle,title,description,img}) => {
      }}
   >
          
-                                       <div className='text-3xl font-bold primary_text_color'>
+                                       <div className='text-3xl font-bold primary_text_color '>
                                        <CountUp start={0} end={5000} duration={3} separator="" />
                                          +
                                          </div>

@@ -129,27 +129,27 @@ const AddClass = () => {
   }
 
     return (
-         <div className="add_class_form flex items-center my-12 px-10">
+         <div className="add_class_form block lg:flex items-center my-12 px-2 lg:px-10">
 
          
             
-            <div className="form_animationw-[30%] p-8">
+            <div className="form_animation p-8">
                   <Lottie animationData={lottie_animation}></Lottie>
             </div>
 
-      <div className="w-[70%] ">
+      <div className=" w-full lg:w-[70%] ">
         <div className="w-full">
       
 
           <div className=" bg-base-100 shrink-0 shadow-2xl">
             <div className="px-4 pt-6 pb-1">
-              <form className="grid grid-cols-2" onSubmit={handleSubmit(onSubmit)}>
+              <form className="grid grid-cols-1  sm:grid-cols-2" onSubmit={handleSubmit(onSubmit)}>
 
                 
            
 
                  {/*  name */}
-               <div className="px-4 capitalize col-span-2 ">
+               <div className="px-4 capitalize sm:col-span-2 ">
                  <label className="fieldset-label">Name</label>
                 <input
                   type="text"
@@ -163,7 +163,7 @@ const AddClass = () => {
 
             
                 {/* user email  */}
-                 <div className="px-4 capitalize  col-span-2">
+                 <div className="px-4 capitalize  sm:col-span-2">
                   
                 <label className="fieldset-label">Email</label>
                 <input
@@ -197,7 +197,7 @@ const AddClass = () => {
                    <div className="px-4 capitalize">
               <label className="fieldset-label mb-2">course catagory</label>
         
-              <select defaultValue="select a category" className="select capitalize" 
+              <select defaultValue="select a category" className="select capitalize w-full" 
                {...register("category",{required : true})} >
 
     <option    disabled={true}>select a category</option>

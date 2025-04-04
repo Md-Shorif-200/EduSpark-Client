@@ -96,7 +96,7 @@ mirror: true,
 
 
     return (
-        <div className='secondary_text_color my-10 px-4' data-aos='fade-up'>
+        <div className='secondary_text_color my-10 px-4 ' data-aos='fade-up'>
                 {/* <SectionTitle  title={'  education facultites'}></SectionTitle> */}
                 {/* sweper slider */}
                 <Swiper

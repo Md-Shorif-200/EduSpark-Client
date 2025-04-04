@@ -31,7 +31,7 @@ const AboutUs = () => {
           } , [])
 
     return (
-        <div className='grid grid-cols-1 md:grid-cols-2 md:gap-x-8 px-2 md:px-16  mb-4 items-center mt-14 md:mt-16'>
+        <div className='grid grid-cols-1 md:grid-cols-2 md:gap-x-8 px-2 md:px-16  mb-4 items-center mt-14 md:mt-16 '>
 
 <div className="about_us_animation" >
                     <Lottie animationData={lottie_animation}></Lottie>

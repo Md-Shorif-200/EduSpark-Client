@@ -93,7 +93,7 @@ const SignUp = () => {
           
 
           {/* SignUp Form */}
-          <div className="w-[45%] mx-auto">
+          <div className="w-full sm:w-[80%] md:w-[70%] lg:w-[35%] mx-auto mt-20 px-6 lg:px-0">
 
               <h1 className="text-2xl font-semibold capitalize mb-6 mt-8"> Sign Up now! </h1>
 

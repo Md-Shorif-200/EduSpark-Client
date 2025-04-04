@@ -25,7 +25,7 @@ const Statistics = () => {
                           // Initialize AOS
               AOS.init({
                 duration: 800, 
-                once: false, // false করলে স্ক্রোল আপ/ডাউন করলে বারবার অ্যানিমেশন ট্রিগার হবে
+                once: true, // false করলে স্ক্রোল আপ/ডাউন করলে বারবার অ্যানিমেশন ট্রিগার হবে
                 easing: 'linear', // 'ease' এর চেয়ে 'ease-in-out' বেশি স্মুথ
                 offset: 80, // এলিমেন্ট ভিউপোর্টের ১২০px আগে অ্যানিমেশন শুরু হবে
                 mirror: true, // স্ক্রোল ডাউনের পাশাপাশি স্ক্রোল আপেও অ্যানিমেশন দেখাবে
@@ -42,11 +42,11 @@ const Statistics = () => {
 
 
     return (
-        <div className='statistics grid grid-cols-1 lg:grid-cols-2 bg-[#182024] text-gray-300 px-2 md:px-5 py-16 my-12'>
-              <div className="statistics_img relative mb-4">
-                        <img src={statistics_img} alt="" className='w-full h-full rounded-2xl' />
+        <div className='statistics grid grid-cols-1 lg:grid-cols-2 bg-[#182024] text-gray-300 px-2 md:px-5 py-16 mt-12 '>
+              <div className="statistics_img w-full h-full relative mb-4  overflow-hidden">
+                        <img src={statistics_img} alt="" className='w-full h-auto rounded-2xl' />
 
-                        <div className="cards flex gap-4 absolute bottom-[80px] px-6 hidden">
+                        <div className="cards hidden lg:flex gap-4 absolute bottom-[80px] px-6 ">
                             <div className='statistics_img_card flex'>
                                         <div className=''>
                                             
@@ -82,7 +82,7 @@ const Statistics = () => {
 
                             <p className='my-2'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae sed aliquid repellendus culpa labore pariatur asperiores cumque illum minus reprehenderit.</p>
 
-                            <div className="statistics_cards grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-10 px-7 pt-8">
+                            <div className="statistics_cards grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-10 px-2 pt-8">
                            
 
                                   <div className="card" data-aos='fade-left'>
