@@ -12,6 +12,7 @@ import useAuth from '../Hooks/useAuth';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
 import { UpdateDisabled } from '@mui/icons-material';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
+import toast from 'react-hot-toast';
 
 // image hosting 
 const image_hosting_key= import.meta.env.VITE_IMAGE_HOSTING_KEY;
@@ -74,10 +75,18 @@ const EditProfileModal = ({ isOpen, onClose }) => {
 
           const  updateProfile = async() => {
                 try {
-                  const response = await axiosSecure.patch(`/users/${user?.email}`,updetedData);
+                  const response = await axiosSecure.patch(`/api/user/update-profile/${user?.email}`,updetedData);
 
-                  
+                      console.log(response.data);
+
+                      if(response.data.modifiedCount > 0) {
+                         toast.success('data updated succesfully')
+                      }else {
+                        toast.error('no change. please try again')
+                      }
+                      
                 } catch (error) {
+                  console.log(error);
                   
                 }
           };
