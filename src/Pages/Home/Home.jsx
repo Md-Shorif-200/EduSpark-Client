@@ -1,3 +1,7 @@
+import React from 'react';
+
+// import ChatForm from "../../Common/chatForm";
+// import ShadcnUi from "../../Common/ShadcnUi";
 import AboutUs from "./AboutUs";
 import Banner from "./Banner";
 import EducationFaculties from "./EducationFaculties";
@@ -14,6 +18,8 @@ import SuccessHistory from "./SuccesStory";
 const Home = () => {
     return (
         <div>
+                   {/* <ShadcnUi></ShadcnUi> */}
+                    {/* <ChatForm></ChatForm> */}
                <Banner></Banner>
                <AboutUs></AboutUs>
                <EducationFaculties></EducationFaculties>

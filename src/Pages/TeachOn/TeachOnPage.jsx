@@ -13,6 +13,10 @@ const TeachOnPage = () => {
 
   return (
     <div>
+
+            
+
+
       {status === "accepted" ? 
       <>
       <TeacherConfirmation></TeacherConfirmation>

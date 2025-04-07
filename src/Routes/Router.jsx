@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -31,6 +32,7 @@ import EnrollmentDetails from "../Pages/StudentDashboard/EnrollmentDetails";
 import WelcomeMessage from "../Pages/WelcomeMessage";
 import AdminClassProgress from "../Pages/AdminDashboard/AdminClassProgress";
 import MyOrders from "../Pages/StudentDashboard/MyOrders";
+import Profile from '../Common/Profile';
 
 
 
@@ -70,15 +72,21 @@ const router = createBrowserRouter([
           element : <PrivateRoute>
             <ClassDetails></ClassDetails>
           </PrivateRoute>,
-          loader : ({params}) => fetch(`http://localhost:5000/classes/${params.id}`)
+          loader : ({params}) => fetch(`http://localhost:5000//classes/${params.id}`)
          },
          {
           path : '/payment/:id',
           element :   <PrivateRoute>
             <Payment></Payment>
           </PrivateRoute>,
-          loader : ({params}) => fetch(`http://localhost:5000/classes/${params.id}`)
+          loader : ({params}) => fetch(`http://localhost:5000//classes/${params.id}`)
 
+         },
+         {
+          path : '/profile',
+          element : <PrivateRoute>
+            <Profile></Profile>
+          </PrivateRoute>
          }
       ]
     },
@@ -137,7 +145,7 @@ const router = createBrowserRouter([
         {
           path : '/dashboard/myClassDetails/:id',
           element :<PrivateRoute> <MyClassDetailsPage></MyClassDetailsPage></PrivateRoute>,
-          loader : ({params}) => fetch(`http://localhost:5000/classes/${params.id}`)
+          loader : ({params}) => fetch(`http://localhost:5000//classes/${params.id}`)
         },
         {
           path : 'studentProfile',
