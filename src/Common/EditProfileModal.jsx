@@ -11,6 +11,7 @@ import { MdClose } from 'react-icons/md';
 import useAuth from '../Hooks/useAuth';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
 import { UpdateDisabled } from '@mui/icons-material';
+import useAxiosSecure from '../Hooks/useAxiosSecure';
 
 // image hosting 
 const image_hosting_key= import.meta.env.VITE_IMAGE_HOSTING_KEY;
@@ -28,6 +29,9 @@ const EditProfileModal = ({ isOpen, onClose }) => {
   const {user} = useAuth();
 //   public api 
   const axiosPublic = useAxiosPublic()
+  // private api
+
+  const axiosSecure  = useAxiosSecure();
 
 
 
@@ -59,11 +63,29 @@ const EditProfileModal = ({ isOpen, onClose }) => {
           const updetedData = {
               name : user?.displayName,
               email : user?.email,
-              image : res.data.data?.display_url,
+              image : res.data.data.display_url,
               phoneNumber : data?.phone,
               address : data?.address
               
           }
+
+
+          // call async function to patch user data 
+
+          const  updateProfile = async() => {
+                try {
+                  const response = await axiosSecure.patch(`/users/${user?.email}`,updetedData);
+
+                  
+                } catch (error) {
+                  
+                }
+          };
+
+          updateProfile()
+
+
+
 
 
 
