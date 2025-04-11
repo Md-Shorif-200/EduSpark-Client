@@ -1,192 +1,115 @@
-import React from 'react';
-import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
-import { useState } from 'react'
+import React, { useState } from 'react';
+import { Button, Dialog, DialogPanel } from '@headlessui/react';
 import { useForm } from 'react-hook-form';
+import { Rating } from '@mui/material';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
-// import ReactStars from "react-rating-stars-component";
-// import { CiStar } from "react-icons/ci";
-import { Rating } from '@smastrom/react-rating'
-
-import '@smastrom/react-rating/style.css'
-import '@smastrom/react-rating/style.css'
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
+import CircularProgress from '@mui/material/CircularProgress';
+import Loading from '../../Common/Loading';
 
+const FeedbackModal = ({ classData }) => {
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const [isOpen, setIsOpen] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
 
- 
+  const handleRatingChange = (event, newValue) => {
+    setRating(newValue);
+  };
 
-const FeedbackModal = ({classData}) => {
+  const onSubmit = async (data) => {
+    setLoading(true);
 
-      // react hook form
-      const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors },
-      } = useForm();
+    const feedbackInfo = {
+      studentName: user?.displayName,
+      studentEmail: user?.email,
+      studentImage: user?.photoURL,
+      courseTitle: classData.courseTitle,
+      teacherName: classData.TeacherName,
+      date: new Date(),
+      feedbackDescription: data.description,
+      feedbackStar: rating,
+    };
 
-    let [isOpen, setIsOpen] = useState(false);  // modal initial value
-    const [rating, setRating] = useState(0) // rating Initial value
-    const {user} = useAuth(); // get user information form authProvider
-     console.log(user);
-     
-    const axiosSecure = useAxiosSecure();
-
-   
-    // manage handleRatingChange functions
-    const handleRatingChange = (newRating) => {
-        setRating(newRating);
-
-      };
-
-    
-// manage feedback form submission
-  const onSubmit = (data) => {
-
-       const feedbackInfo = {
-              studentName : user?.displayName,
-              studentEmail : classData.studentEmail,
-              studentImage : user?.photoURL,
-              courseTitle : classData.courseTitle,
-              teacherName : classData.TeacherName,
-              date : new Date(),
-              feedbackDescription : data.description,
-              feedbackStar : rating
-       }
-   
-      
-        try{
-        axiosSecure.post('/feedback',feedbackInfo)
-        .then(response => {
-                  const feedbackSuccessfull = response.data.insertedId;
-
-                  if(feedbackSuccessfull){
-                    Swal.fire({
-                      title: "feedback given successfullyh",
-                      icon: "success",
-                      draggable: true
-                    });
-
-                    reset()  // reset form
-                    setRating(0);
-                    setIsOpen(false) // close modal
-                    
-                  }
-        })
-        }catch(error){
-            console.log(error);
-            
-        }finally{
-          setIsOpen(false)
-        }
-         
+    try {
+      const response = await axiosSecure.post('/feedback', feedbackInfo);
+      if (response.data.insertedId) {
+        Swal.fire({
+          title: 'Feedback given successfully!',
+          icon: 'success',
+          timer: 1500,
+          showConfirmButton: false
+        });
+        reset();
+        setRating(0);
+        setIsOpen(false);
       }
+    } catch (error) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Something went wrong. Please try again.',
+        icon: 'error'
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
-
-      function open() {
-        setIsOpen(true)
-      }
-    
-      function close() {
-        setIsOpen(false)
-      }
-
-      
-      return (
-        <>
-        <Button
-          onClick={open}
-          className="rounded-md btn_secondary mt-4  "
-          >
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)} className="rounded-md btn_secondary mt-4">
         Feedback
-          </Button>
-  
-        <Dialog open={isOpen} as="div" className="relative z-10 focus:outline-none" onClose={close}>
-          <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4">
-              <DialogPanel
-                transition
-                className="w-full max-w-md rounded-xl bg-white/5 p-6 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
-              >
-             
+      </Button>
 
-           
-                   <main>
-                                <div>
-                                  
-                               
-                                  <div className=" bg-base-200">
-                                    <div className=" flex-col">
-                                      <div className="card bg-base-100 w-full max-w-lg shrink-0 shadow-2xl">
-                                        <div className="card-body relative">
-                                                <h1 className='text-lg capitalize font-semibold'>teaching evalutation report</h1>
-                                          {/* form  */}
-                                          <form className="" onSubmit={handleSubmit(onSubmit)}>
-                                     
-                                            {/* assignment description  */}
-                
-                                            <fieldset className="fieldset">
-                                              <legend className="fieldset-legend">
-                                                Description
-                                              </legend>
-                
-                                              <textarea
-                                                className="textarea h-24"
-                                                placeholder="write your opinion"
-                                                {...register("description", { required: true })}
-                                              ></textarea>
-                
-                                              {errors.description && (
-                                                <span className="text-red-500 my-3">
-                                                  This field is required
-                                                </span>
-                                              )}
-                                            </fieldset>
-                
-                                                {/* react rating component  */}
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-10">
+        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+          <div className="feedback_modal flex min-h-full items-center justify-center p-4">
+            <DialogPanel className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl">
+              <h1 className="text-xl font-bold mb-4 text-center capitalize">Teaching Evaluation</h1>
 
-                                        
-                                                <h1 className='text-md capitalize font-semibold my-4'>give your feedback</h1>
-                                        
-                                              {/* react rating */}
-                                              <Rating style={{ maxWidth: 200 }} value={rating} onChange={setRating} />
-                                               
-                                           
-                                            {/* form button */}
-                
-                                            <Button
-                                              type="submit"
-                                              className="btn  mt-4 primary_bg_color text-white"
-                                            >
-                                              send
-                                            </Button>
-                                          </form>
-                                          <div
-                                            className="absolute bottom-8 right-12"
-                                            onClick={close}
-                                          >
-                                            <button className="btn  primary_bg_color text-white">
-                                              {" "}
-                                              cencel
-                                            </button>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </main>
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                <div>
+                  <label className="block font-semibold mb-1">Feedback Description</label>
+                  <textarea
+                    className="textarea textarea-bordered w-full h-24"
+                    placeholder="Write your opinion"
+                    {...register("description", { required: true })}
+                  ></textarea>
+                  {errors.description && <p className="text-red-500 mt-1">This field is required</p>}
+                </div>
 
-           
+                <div>
+                  <label className="block font-semibold mb-1">Rate this course</label>
+                  <Rating name="rating" value={rating} onChange={handleRatingChange} />
+                </div>
 
-               
-    
-              </DialogPanel>
-            </div>
+                <div className="flex justify-between gap-4 mt-6">
+                  <button
+                    type="button"
+                    onClick={() => setIsOpen(false)}
+                    className="w-full py-2 rounded-md border border-[#39B8AD] hover:bg-accent "
+                  >
+                    Cancel
+                  </button>
+
+                  <button
+                    type="submit"
+                    className=" w-full py-2 rounded-md flex justify-center items-center bg-accent"
+                    disabled={loading}
+                  >
+                         {loading ? <CircularProgress size={20} color="inherit" /> : 'Send'}
+                  </button>
+                </div>
+              </form>
+            </DialogPanel>
           </div>
-        </Dialog>
-      </>
-    )
+        </div>
+      </Dialog>
+    </>
+  );
 };
 
 export default FeedbackModal;

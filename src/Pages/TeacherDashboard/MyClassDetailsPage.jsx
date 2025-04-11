@@ -7,7 +7,7 @@ import Loading from '../../Common/Loading';
 import AddAsignment from './AddAsignment';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
-const MyClassDetailsPage = () => {
+const myClassDetailsPage = () => {
 
   const classData = useLoaderData();
   
@@ -90,7 +90,7 @@ const MyClassDetailsPage = () => {
     );
 };
 
-export default MyClassDetailsPage;
+export default myClassDetailsPage;
 
 
 

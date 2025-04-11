@@ -15,7 +15,7 @@ const Profile = () => {
           const [isModalOpen, setIsModalOpen] = useState(false); // modal state
 
   return (
-    <div className='profile_section bg-[#39B8AD] px-16 py-8 mb-[200px] capitalize relative text-black'>
+    <div className='profile_section bg-[#39B8AD] px-8 md:px-16 py-8 mb-[200px] capitalize relative text-black'>
 
         <div className="profile_info ">
 
@@ -38,7 +38,7 @@ const Profile = () => {
         </div>
 
         
-        <div className="profile_img_card w-[350px] px-6  py-10 rounded-2xl absolute top-18 right-20">
+        <div className="profile_img_card w-[250px] sm:w[300px] md:w-[350px] px-6  py-10 rounded-2xl sm:absolute mt-20 sm:mt-0 sm:top-10 sm:right-10   md:top-18 md:right-20">
                         <div className="mb-6">
                             <img src={profile_img} alt="profile image" className='w-[150px] h-[150px] mx-auto rounded-full border' />
                         </div>

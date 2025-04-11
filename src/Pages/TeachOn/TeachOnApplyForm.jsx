@@ -20,6 +20,8 @@ const TeachOnApplyForm = () => {
   } = useForm();
 
   const { user } = useAuth();
+
+  
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   
@@ -35,11 +37,14 @@ const TeachOnApplyForm = () => {
       phone: data.phone,
       address: data.address,
       description: data.description,
-      image: data.image && data.image[0], // handle image upload
+      // image: data.image && data.image[0], // handle image upload
     };
 
+    console.log(skills);
+    
+
     try {
-      const result = await axiosSecure.patch(`/users/${user.email}`, skills);
+      const result = await axiosSecure.patch(`/users/${user?.email}`, skills);
       if (result.data.modifiedCount > 0) {
         Swal.fire({
           position: "top-end",
@@ -52,7 +57,12 @@ const TeachOnApplyForm = () => {
         navigate('/');
       }
     } catch (error) {
-      toast.error('Something went wrong. Please try again');
+        if(error.response && error.response.status === 400){
+          toast.error(error.response.data)
+        }else{
+
+          toast.error('Something went wrong. Please try again');
+        }
     } finally {
       setLoading(false);  // Hide loading spinner after request is done
     }
@@ -145,12 +155,12 @@ const TeachOnApplyForm = () => {
               </Grid>
 
               {/* Image Upload */}
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <fieldset className="fieldset">
                   <legend className="fieldset-legend text-[16px] text-gray-600">Your CV</legend>
                   <input type="file" className="file-input w-full" />
                 </fieldset>
-              </Grid>
+              </Grid> */}
 
               {/* Phone Number */}
               <Grid item xs={12} sm={6}>

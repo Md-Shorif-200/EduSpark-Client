@@ -9,7 +9,7 @@ const TeacherMenu = () => {
             {/* teacher */}
             <li> <NavLink to='addClass'> add class </NavLink> </li>
             <li> <NavLink to='myClass'> my class </NavLink> </li>
-            <li> <NavLink to='teacherProfile'>  my profile </NavLink> </li>
+            {/* <li> <NavLink to='teacherProfile'>  my profile </NavLink> </li> */}
 
             {/* home  */}
              <div className='divider'></div>

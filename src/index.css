@@ -83,6 +83,13 @@ color: var(--Primary);
 .hover_effect_1 {
     @apply w-full block bg-white capitalize p-4 hover:bg-[#39B8AD] hover:text-white  transition duration-500
 }
+
+.editProfile_modal {
+    background-color: rgba(0, 0, 0, 0.603);
+}
+.feedback_modal{
+    background-color: rgba(0, 0, 0, 0.603);
+}
 /*! common section ends */
 
 /* navigation section  */
@@ -332,7 +339,7 @@ height: 70px;
 }
 
 .dashboard_menu .text-base-content {
-    background-color: #292865;
+    background-color: var(--Primary);
     color: white;
     font-weight: 600;
     height: 100vh;

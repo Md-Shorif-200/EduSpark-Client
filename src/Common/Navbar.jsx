@@ -37,7 +37,14 @@ const Navbar = () => {
   const navItems = [
     { name: "Home", path: "/" },
     { name: "All Classes", path: "/allClass" },
-    { name: "Teach On Academix", path: "/TeachOn" },
+
+    // shows teach on academex when role !== teacher
+      ...(
+        data?.role !== 'teacher' ?  [
+          { name: "Teach On Academix", path: "/TeachOn" },
+
+        ]  : []
+      ),
     { name: "Contact", path: "/contact" },
   ];
 
@@ -80,7 +87,7 @@ const Navbar = () => {
                 <div className="w-10 rounded-full ring ring-primary ring-offset-2">
                   <img src={user.photoURL} alt="User Avatar" />
                 </div>
-                <span className="hidden lg:block font-semibold">{user.displayName}</span>
+                {/* <span className="hidden lg:block font-semibold">{user.displayName}</span> */}
               </div>
               <div className="absolute right-0 mt-3 w-56 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-3 opacity-0 group-hover:opacity-100 transition duration-200 z-20">
                 {/* User Info and Role-Based Dashboard */}

@@ -9,7 +9,7 @@ const AdminMenu = () => {
           <li> <NavLink to='teacherRequest'> teacher request </NavLink> </li>
             <li> <NavLink to='users'> Users </NavLink> </li>
             <li> <NavLink to='RequestedClass'> all classes </NavLink> </li>
-            <li> <NavLink to='adminProfile'> profile </NavLink> </li>
+            {/* <li> <NavLink to='adminProfile'> profile </NavLink> </li> */}
 
             {/* home  */}
              <div className='divider'></div>

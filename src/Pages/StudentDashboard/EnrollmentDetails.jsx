@@ -9,6 +9,8 @@ import toast from 'react-hot-toast';
 
 import FeedbackModal from "./FeedbackModal";
 
+import image from '../../assets/assignment/8767132.jpg'
+
 const EnrollmentDetails = () => {
     //   // react hook form
     //   const {
@@ -85,7 +87,22 @@ const EnrollmentDetails = () => {
           <div className="feedBackSection">
             <FeedbackModal classData ={data}></FeedbackModal>
           </div>
-      <div className="assignment_list_title text-xl capitalize font-semibold  my-6 ">
+                 
+
+                {
+                  myClassAssignmets.length === 0 
+                  
+                  ?
+                  
+                  <div className="">
+                          <h1 className="text-2xl font-semibold text-center mt-14 mb-6">No Assignments For This Class</h1>
+                        <img src={image} alt="" className="w-1/2 mx-auto" />
+                   </div>
+
+                  : 
+
+                  <>
+                    <div className="assignment_list_title text-xl capitalize font-semibold  my-6 ">
         <h1>Your All Assignment for this class </h1>
       </div>
         <div className=" rounded-box border border-base-content/5 bg-base-100">
@@ -131,6 +148,9 @@ const EnrollmentDetails = () => {
             </tbody>
           </table>
         </div>
+                  </>
+                }
+
       </div>
     </div>
   );

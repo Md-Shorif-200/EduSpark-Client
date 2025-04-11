@@ -19,7 +19,6 @@ import AdminProfile from "../Pages/AdminDashboard/AdminProfile";
 import TeacherRequest from "../Pages/AdminDashboard/TeacherRequest";
 import AddClass from "../Pages/TeacherDashboard/AddClass";
 import MyClass from "../Pages/TeacherDashboard/MyClass";
-import MyClassDetailsPage from "../Pages/TeacherDashboard/MyClassDetailsPage";
 import AllClass from "../Pages/Class/AllClass";
 import ClassDetails from "../Pages/Class/ClassDetails";
 import StudentProfile from "../Pages/StudentDashboard/StudentProfile";
@@ -144,7 +143,7 @@ const router = createBrowserRouter([
         },
         {
           path : '/dashboard/myClassDetails/:id',
-          element :<PrivateRoute> <MyClassDetailsPage></MyClassDetailsPage></PrivateRoute>,
+          element :<PrivateRoute> <myClassDetails></myClassDetails></PrivateRoute>,
           loader : ({params}) => fetch(`http://localhost:5000//classes/${params.id}`)
         },
         {
