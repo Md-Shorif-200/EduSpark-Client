@@ -32,7 +32,7 @@ import WelcomeMessage from "../Pages/WelcomeMessage";
 import AdminClassProgress from "../Pages/AdminDashboard/AdminClassProgress";
 import MyOrders from "../Pages/StudentDashboard/MyOrders";
 import Profile from '../Common/Profile';
-
+import MyClassDetailsPage from '../Pages/TeacherDashboard/MyClassDetailsPage';
 
 
 
@@ -143,7 +143,7 @@ const router = createBrowserRouter([
         },
         {
           path : '/dashboard/myClassDetails/:id',
-          element :<PrivateRoute> <myClassDetails></myClassDetails></PrivateRoute>,
+          element :<PrivateRoute> <MyClassDetailsPage></MyClassDetailsPage></PrivateRoute>,
           loader : ({params}) => fetch(`http://localhost:5000//classes/${params.id}`)
         },
         {

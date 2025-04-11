@@ -339,9 +339,7 @@ height: 70px;
 }
 
 .dashboard_menu .text-base-content {
-    background-color: var(--Primary);
-    color: white;
-    font-weight: 600;
+
     height: 100vh;
 }
 
@@ -378,10 +376,11 @@ height: 70px;
 --rr--stroke-off-color: #eda76a; */
 
 /* add class section */
-.add_class_form input {
+/* .add_class_form input {
     margin : 10px 0 15px 0;
-    width: 100%;
-}
+    width: 50%;
+    margin: auto;
+} */
 
 /* Chrome, Safari, Edge, Opera এর জন্য */
 input[type="number"]::-webkit-outer-spin-button,

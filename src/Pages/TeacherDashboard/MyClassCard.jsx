@@ -4,108 +4,86 @@ import Swal from 'sweetalert2';
 import ClassUpdateModal from './ClassUpdateModal';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
-const MyClassCard = ({refetch,singleClass}) => {
+const MyClassCard = ({ refetch, singleClass }) => {
+  const { _id, title, name, email, price, description, image, status } = singleClass;
+  const axiosSecure = useAxiosSecure();
 
-    const {_id,title, name, email, price ,description, image ,status } = singleClass;
- 
-     const axiosSecure = useAxiosSecure()
-;
+  // Optimized Delete Function
+  const handleDeleteButton = async () => {
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    });
 
-    
-            //  delete fuctionality
-            const handleDeleteButton = (singleClass) => {
-                   Swal.fire({
-                 title: "Are you sure?",
-                 text: "You won't be able to revert this!",
-                 icon: "warning",
-                 showCancelButton: true,
-                 confirmButtonColor: "#3085d6",
-                 cancelButtonColor: "#d33",
-                 confirmButtonText: "Yes, delete it!"
-               }).then((result) => {
-                 if (result.isConfirmed) {
+    if (result.isConfirmed) {
+      try {
+        const { data } = await axiosSecure.delete(`/classes/${_id}`);
+        if (data?.deletedCount > 0) {
+          Swal.fire('Deleted!', 'Your class has been deleted.', 'success');
+          refetch();
+        }
+      } catch (err) {
+        Swal.fire('Error!', 'Something went wrong.', 'error');
+        console.error(err);
+      }
+    }
+  };
 
-                   axiosSecure.delete(`/classes/${singleClass._id}`)
-                   .then(result => {
-                         if(result.data.deletedCount > 0){
-                           Swal.fire({
-                             title: "Deleted!",
-                             text: "Your file has been deleted.",
-                             icon: "success"
-                           });
-                               refetch()
-                         }
-                   })
+  return (
+    <div className="rounded-xl shadow-md bg-white border border-gray-100 overflow-hidden">
+      <img
+        src={image}
+        alt="class"
+        className="w-full h-48 object-cover object-center"
+      />
+      <div className="p-5">
+        <h2 className="text-xl font-semibold text-gray-800 mb-2">{title}</h2>
+        <p className="text-gray-600 text-sm mb-1">Course Fee: <span className="font-medium text-gray-800">${price}</span></p>
+        <p className="text-gray-600 text-sm mb-2">Status: <span className="font-medium text-blue-600">{status}</span></p>
 
-                 }
-               });
+        <div className="flex items-center justify-between gap-3 mb-4">
+          <ClassUpdateModal
+            refetch={refetch}
+            id={_id}
+            title={title}
+            image={image}
+            description={description}
+            price={price}
+          />
 
-         }
-
-    return (
-        <div>
-              <div className="card bg-base-100 w-full shadow-sm">
-  <figure>
-    <img className='w-full h-[180px] object-cover'
-      src={image}
-      alt="class image" />
-  </figure>
-  <div className="card-body p-4 capitalize">
-    <h2 className="font-bold text-lg"> {title} </h2>
-    <div className="card_cnt">
-    {/* <h2 className="font-semibold  text-md my-2"> name :  <span className='text-gray-700'>{name}</span> </h2> */}
-    {/* <h2 className="font-semibold  text-md my-2"> email : <span className='text-gray-700'>{email} </span> </h2> */}
-    <h2 className="font-semibold  text-md"> course fee  :<span className='text-gray-700'>{price} </span> </h2>
-    {/* <h2 className="font-semibold  text-md my-2" title={description}> description : <span className='text-gray-700'>{description?.slice(0,20)}.... </span> </h2> */}
-    <h2 className="font-semibold  text-md my-1"> status  :<span className='text-gray-700'>{status} </span> </h2>
-    </div>
-     
-       <div className="w-full flex justify-between">
-        
-
-     <button className='  '>
-       
-       <div>
-       <ClassUpdateModal refetch={refetch} id={_id} title={title} image = {image} description={description} price={price}></ClassUpdateModal>
-       </div>
-
-</button>
-   
-         
-
-
-<button className='btn mx-5 md:mx-0 w-[100px] ' onClick={() =>handleDeleteButton(singleClass)}>delete</button>
-
-         
-          
-       </div>
-
-       <div className=''>
-       {
-              status === 'pending'  || status === 'rejected' ? 
-               <>
-               <div className="tooltip w-full" >
-  <div className="tooltip-content">
-    <div className=" warning  text-[14px]"> The button will open when the status is approved. </div>
-  </div>
-  <button className="btn bg-gray-300 text-gray-400 w-full">See Details</button>
-</div>
-               </> : 
-
-               <>
-               <Link to={`/dashboard/myClassDetails/${singleClass._id}`} className="btn my-5 md:my-0 primary_bg_color text-white w-full">see details </Link>
-               
-               </>
-            }
-       </div>
-
-      
-
-
-  </div>
-</div>
+          <button
+            onClick={handleDeleteButton}
+            className="px-4 py-2 rounded bg-red-500 text-white hover:bg-red-600 transition duration-200 w-[100px]"
+          >
+            Delete
+          </button>
         </div>
-    );
+
+        {status === 'pending' || status === 'rejected' ? (
+          <div className="tooltip w-full">
+            <div className="tooltip-content">
+              <p className="text-sm text-yellow-600">The button will open when the status is approved.</p>
+            </div>
+            <button className="btn bg-gray-200 text-gray-400 w-full cursor-not-allowed" disabled>
+              See Details
+            </button>
+          </div>
+        ) : (
+          <Link
+            to={`/dashboard/myClassDetails/${_id}`}
+            className="btn bg-blue-600 hover:bg-blue-700 text-white w-full transition duration-200"
+          >
+            See Details
+          </Link>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default MyClassCard;
