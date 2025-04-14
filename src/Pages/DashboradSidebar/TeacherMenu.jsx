@@ -9,7 +9,8 @@ const linkClasses = ({ isActive }) =>
 
 const TeacherMenu = () => {
   return (
-    <div className="dashboard_menu w-full">
+    <div className="dashboard_menu bg-base-200 min-h-screen w-70 md:w-80 p-4">
+      <h2 className="text-xl font-bold mb-6 text-center text-primary">Teacher Panel</h2>
       <ul className="menu bg-base-200 text-base-content min-h-full w-full md:w-60 lg:w-72 p-4 space-y-2">
 
         <li>

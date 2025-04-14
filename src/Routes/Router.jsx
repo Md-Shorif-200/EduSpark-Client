@@ -33,6 +33,7 @@ import AdminClassProgress from "../Pages/AdminDashboard/AdminClassProgress";
 import MyOrders from "../Pages/StudentDashboard/MyOrders";
 import Profile from '../Common/Profile';
 import MyClassDetailsPage from '../Pages/TeacherDashboard/MyClassDetailsPage';
+import WhisLists from '../Componets/WhisLists';
 
 
 
@@ -86,6 +87,11 @@ const router = createBrowserRouter([
           element : <PrivateRoute>
             <Profile></Profile>
           </PrivateRoute>
+         },
+         {
+           path : '/whisLists',
+           element : <WhisLists></WhisLists>
+
          }
       ]
     },

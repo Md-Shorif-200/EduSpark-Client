@@ -145,9 +145,9 @@ const SignUp = () => {
                 {/* Sign Up Button */}
                 <button className="btn w-full  primary_bg_color text-white my-2">Sign Up</button>
 
-                {/* Sign In Redirect */}
+                {/* log In Redirect */}
                 <div className="my-2 text-center">
-                  <p className="my-2 text-xl">Already have an account? <Link className="text-green-700 font-bold" to="/signIn">Sign In</Link></p>
+                  <p className="my-2 text-xl">Already have an account? <Link className="text-green-700 font-bold" to="/signIn">log In</Link></p>
                 </div>
               </form>
             )}

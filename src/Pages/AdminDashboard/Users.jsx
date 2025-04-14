@@ -85,6 +85,7 @@ const handleUserDelete = (user) => {
   return (
     <div className="mx-4 my-8 border border-amber-200 capitalize">
     
+    <h1 className="text-2xl font-semibold mx-16 mt-14 mb-6">Total Users : {users.length} </h1>
 
       <div className="overflow-x-auto">
         <table className="table">

@@ -90,6 +90,10 @@ color: var(--Primary);
 .feedback_modal{
     background-color: rgba(0, 0, 0, 0.603);
 }
+
+.loading_spiner{
+    
+}
 /*! common section ends */
 
 /* navigation section  */
@@ -337,11 +341,11 @@ margin: 10px;
     width: 100px;
 height: 70px;
 }
-
+/* 
 .dashboard_menu .text-base-content {
 
     height: 100vh;
-}
+} */
 
 .text-base-content li a {
      text-transform: capitalize;

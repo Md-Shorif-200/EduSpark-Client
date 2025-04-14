@@ -15,7 +15,7 @@ const DashboardSidebar = () => {
              <Loading></Loading>
            }
     return (
-      <div className="drawer-side">
+      <div className="drawer-side w-full">
       <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
      {role === 'admin' &&                 <AdminMenu></AdminMenu> }
      {role === 'teacher' &&                <TeacherMenu></TeacherMenu> }

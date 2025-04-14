@@ -5,12 +5,14 @@ import {
   FaUserCircle, FaSignOutAlt, FaUser, FaCog
 } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import nav__logo from '../assets/navLogo/logo__1-removebg-preview.png';
 import useAuth from "../Hooks/useAuth";
 import useRole from "../Hooks/useRole";
 import { MdDashboard } from "react-icons/md";
+import { AiFillHeart } from "react-icons/ai";
+import nav__logo from '../assets/navLogo/academix___nav_logo.png';
 
 import Loading from "./Loading";
+import useWhisList from "../Hooks/useWhisList";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -20,6 +22,7 @@ const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // Loading state
+  const   [whislists,refetch] = useWhisList()
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);
@@ -56,7 +59,7 @@ const Navbar = () => {
         <motion.img
           initial={{ x: -30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          className="w-[60px] cursor-pointer"
+          className="w-[80px] cursor-pointer"
           src={nav__logo}
           alt="Logo"
           onClick={() => handleNavigation("/")}
@@ -74,6 +77,20 @@ const Navbar = () => {
             </button>
           ))}
 
+
+            {/* favourite badge */}
+
+            <Link to='whisLists' className="relative flex items-center gap-2 px-4 py-2 transition-all duration-200">
+      <AiFillHeart className="text-[#39B8AD] text-3xl" />
+
+      {/* Badge */}
+      <span className="absolute -top-1 -right-2 bg-[#39B8AD] text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow-lg animate-bounce">
+        {whislists?.length}
+      </span>
+    </Link>
+
+
+            {/* darkmode/light mode  */}
           <button
             onClick={() => setDarkMode(!darkMode)}
             className="text-xl hover:text-yellow-400 transition duration-200"
@@ -85,7 +102,7 @@ const Navbar = () => {
             <div className="relative group cursor-pointer">
               <div className="avatar flex items-center gap-2">
                 <div className="w-10 rounded-full ring ring-primary ring-offset-2">
-                  <img src={user.photoURL} alt="User Avatar" />
+                  <img src={user?.photoURL} alt={user?.displayName} />
                 </div>
                 {/* <span className="hidden lg:block font-semibold">{user.displayName}</span> */}
               </div>
@@ -117,7 +134,7 @@ const Navbar = () => {
           ) : (
             <>
               <button onClick={() => handleNavigation("/signIn")} className="px-4 py-2 border rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition">
-                Login
+                log In
               </button>
               <button onClick={() => handleNavigation("/signUp")} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
                 Sign Up
@@ -178,14 +195,34 @@ const Navbar = () => {
             </>
           ) : (
             <div className="flex flex-col gap-2">
-              <button onClick={() => handleNavigation("/signIn")} className="btn_primary transition">Login</button>
+              <button onClick={() => handleNavigation("/signIn")} className="btn_primary transition">log In</button>
               <button onClick={() => handleNavigation("/signUp")} className="btn_secondary transition">Sign Up</button>
             </div>
           )}
 
-          <button onClick={() => setDarkMode(!darkMode)} className="mt-4 flex items-center gap-2">
-            {darkMode ? <FaSun /> : <FaMoon />} Dark mode/Light Mode
+            <div className="flex gap-x-8">
+
+ {/* responsive darkmode/light mode */}
+
+ <button onClick={() => setDarkMode(!darkMode)} className=" my-6 flex items-center px-4  text-2xl">
+            {darkMode ? <FaSun /> : <FaMoon />} 
           </button>
+
+
+            {/* responsive favourite badge */}
+
+            <Link to='whisLists' className="relative flex items-center gap-2 px-4 py-2 transition-all duration-200">
+      <AiFillHeart className="text-[#39B8AD] text-3xl" />
+
+      {/* Badge */}
+      <span className="absolute -top-1 -right-2 bg-[#39B8AD] text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow-lg animate-bounce">
+        +99
+      </span>
+    </Link>
+
+
+            </div>
+ 
         </motion.div>
       )}
     </div>

@@ -92,7 +92,7 @@ const TeacherRequest = () => {
     }
     return (
            <div className='mx-4 my-8 border border-gray-300 capitalize'>
-         
+         <h1 className="text-2xl font-semibold mx-16 mt-14 mb-6"> Total Requests :  {teachers.length} </h1>
        
 <div className="overflow-x-auto">
 <table className="table">
@@ -122,9 +122,9 @@ const TeacherRequest = () => {
              <img src={teacher.image} className='w-[50px] h-[50px] rounded-full' alt="teacher image" />
          </td>
          <td>  {teacher.name} </td>
-         <td>  {teacher.skills.title} </td>
+         <td>  {teacher?.skills?.title} </td>
 
-         <td>  {teacher.skills.experience} </td>
+         <td>  {teacher?.skills?.experience} </td>
          <td  >       <span  className={
             `
             ${teacher.status === 'pending' ? 'bg-orange-300 px-2 py-1 rounded-md ' : ''}

@@ -13,6 +13,11 @@ import { CiStar } from "react-icons/ci";
 import { IoTimeOutline } from "react-icons/io5";
 import { GoProjectSymlink } from "react-icons/go";
 import { FaHeart } from "react-icons/fa";
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import useAuth from '../../Hooks/useAuth';
+import toast from 'react-hot-toast';
+import useWhisList from '../../Hooks/useWhisList';
+
 
 
 
@@ -34,7 +39,10 @@ const ClassCard = ({approvedClass}) => {
             
       //  get student feedback data
         const axiosSecure = useAxiosSecure();
+        const axiosPublic = useAxiosPublic();
+        const {user} = useAuth()
        const [feedback,setFeedback] = useState([]);
+       const   [whislists,refetch,isLoading] = useWhisList()
 
        useEffect(() => {
         axiosSecure.get('/feedback')
@@ -47,11 +55,56 @@ const ClassCard = ({approvedClass}) => {
       }, []);
 
        const studentFeedback = feedback.find(data => data.title == approvedClass.title);
-        console.log(studentFeedback);
+      
+       
+        // get class data 
+             const {_id,title,name ,email, price ,description, status , image,duration,totalEnrollments,totalLectures,totalProjects,courseCurriculam} = approvedClass;
+
+
+            
+              
+
+
+        // post wishList data to database
+
+        const handleAddToWhisList =  async (id) => {
+
+            const wishListData = {
+                  wishListId : id,
+                  courseTitle  : title,
+                  studentEmail : user?.email,
+                  teacherName : name,
+                  teacherEmail : email,
+                  totalLectures : totalLectures,
+                  totalProjects : totalProjects,
+                  image : image,
+                  time : new Date()
+
+            }
+          
+            try {
+
+                    const response = await axiosPublic.post('/api/whislists', wishListData);
+
+                      if(response.data.acknowledged == true){
+                        toast.success('added to whislist');
+                            // refresh data
+                            refetch()
+                      }
+                      else{
+                        toast.error(response.data.meassage || 'something went wrong')
+                      }
+                    
+
+            } catch (error) {
+                // console.log(error);
+                
+              toast.error('faild add to whislist')
+            }
+            
+        }
         
       
-// get class data 
-     const {_id,title,name ,email, price ,description, status , image,duration,totalEnrollments,totalLectures,totalProjects,courseCurriculam} = approvedClass;
 
     return (
               // course card
@@ -90,7 +143,9 @@ const ClassCard = ({approvedClass}) => {
         </div>
 
     <div className="card-actions justify-end">
-        <button className="btn btn-sm btn-outline btn-accent tooltip"  data-tip="Add To Favourite"> <FaHeart></FaHeart> </button>
+        <button onClick={() => handleAddToWhisList(_id)}
+        disabled={!!whislists?.find(data => data.wishListId === _id)}
+        className= {`btn btn-sm btn-outline btn-accent tooltip`}  data-tip="Add To Whislist"> <FaHeart></FaHeart> </button>
 
       <Link to={`/allClass/classDetails/${_id}`} className="btn btn-sm btn-outline btn-accent" >view course  </Link>
     </div>

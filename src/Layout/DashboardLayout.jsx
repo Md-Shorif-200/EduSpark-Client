@@ -4,6 +4,7 @@ import DashboardSidebar from '../Pages/DashboradSidebar/DashboardSidebar';
 import { Outlet } from 'react-router-dom';
 
 import { MdMenuOpen } from "react-icons/md";
+import { FiMenu } from 'react-icons/fi'; // More modern and clean icon
 
 
 const DashboardLayout = () => {
@@ -16,15 +17,13 @@ const DashboardLayout = () => {
 
 
          
-         <label htmlFor="my-drawer-2" className="drawer-button text-3xl  md:hidden  ">
-                   <div className='ml-60 sm:ml-65 my-6' >
-                   <MdMenuOpen></MdMenuOpen>
-                   </div>
-        </label>
-        
-
-
-              
+                  
+  <div className="flex justify-end items-center p-4 md:hidden">
+  <label htmlFor="my-drawer-2" className="drawer-button text-2xl text-gray-700 hover:text-primary transition-all duration-200 cursor-pointer">
+    <FiMenu />
+  </label>
+</div>
+               
 
                  <Outlet></Outlet>
   </div>

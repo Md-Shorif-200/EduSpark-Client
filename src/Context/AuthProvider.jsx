@@ -36,14 +36,14 @@ const AuthProvider = ({children}) => {
         return createUserWithEmailAndPassword(auth,email,password)
     }
 
-    // sign in
+    // log In
 
     const signIn = (email,password) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth,email,password)
     }
 
-    // google sign in
+    // google log In
 
     const googleSignIn = () => {
         setLoading(true)

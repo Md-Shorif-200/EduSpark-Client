@@ -11,7 +11,7 @@ const StudentMenu = () => {
      ${isActive ? 'bg-primary text-white font-semibold shadow-md' : 'hover:bg-gray-200'}`;
 
   return (
-    <div className="bg-base-200 min-h-screen w-full md:w-60 p-4">
+    <div className="bg-base-200 min-h-screen w-70 md:w-80 p-4">
       <h2 className="text-xl font-bold mb-6 text-center text-primary">Student Panel</h2>
       <ul className="space-y-2">
         <li>

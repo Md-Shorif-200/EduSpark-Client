@@ -139,6 +139,9 @@ const RequestedClass = () => {
           <div>
       
               <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+
+              <h1 className="text-2xl font-semibold mx-16 mt-14 mb-6"> Total  Classes: {classes.length}  </h1>
+
         <table className="table">
           {/* head */}
           <thead>
