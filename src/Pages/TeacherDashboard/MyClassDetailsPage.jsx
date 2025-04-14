@@ -1,36 +1,51 @@
 import React, { useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useParams } from 'react-router-dom';
 import ClassProgress from './ClassProgress';
 import ClassAssignment from './AddAsignment';
 import useAssignments from '../../Hooks/useAssignments';
 import Loading from '../../Common/Loading';
 import AddAsignment from './AddAsignment';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import useClass from '../../Hooks/useClass';
 
 const MyClassDetailsPage = () => {
 
-  const classData = useLoaderData();
+  // const myClassDetails = useLoaderData();
+  const {id} = useParams()
+
+
+
+  const [classes] = useClass();
+
+  
+
+  const myClassDetails = classes.find(data => data._id == id)
+
+  console.log(myClassDetails);
+  
+   
   
      const [assignments,refetch,isLoading]  = useAssignments();
      
-     const myAssignmets = assignments.filter(assignment => assignment.assignmentId === classData._id);
+     const myAssignmets = assignments.filter(assignment => assignment.assignmentId === myClassDetails?._id);
      
      const axiosSecure = useAxiosSecure();
      const [submitedAssignments , setSubmitedAssignments] = useState([])
      
-     const filterdSubmissions = submitedAssignments.filter(submission => submission.submitedId === classData._id);
-    try{
-         useEffect(() => {
-          axiosSecure.get('/submit-asignment')
-          .then(response => {
-                setSubmitedAssignments(response.data);
-                refetch()
-          })
-         } ,[filterdSubmissions])
-    }catch(error){
-             console.log(error);
-             
-    }
+     const filterdSubmissions = submitedAssignments.filter(submission => submission.submitedId === myClassDetails?._id);
+     useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axiosSecure.get('/submit-asignment');
+          setSubmitedAssignments(response.data);
+          refetch();
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchData();
+    }, [myClassDetails?._id]); // তোমার dependency ঠিকমতো দেওয়া উচিত
+    
     
       // if(isLoading){
       //      return <Loading></Loading>
@@ -42,12 +57,12 @@ const MyClassDetailsPage = () => {
         <div className='px-12 py-10'>
 
                   <div className="class_Prgress">
-             <ClassProgress classData={classData} totalAssignments= {myAssignmets} totalSubmissions={filterdSubmissions.length}></ClassProgress>
+             <ClassProgress myClassDetails={myClassDetails} totalAssignments= {myAssignmets} totalSubmissions={filterdSubmissions.length}></ClassProgress>
 
                   </div>
 
                  <div className="creat_assignment">
-            <AddAsignment classData={classData} refetch={refetch}></AddAsignment> 
+            <AddAsignment myClassDetails={myClassDetails} refetch={refetch}></AddAsignment> 
                </div>
 
                <div className="assignmet_list mt-8">

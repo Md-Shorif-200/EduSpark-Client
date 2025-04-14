@@ -21,17 +21,34 @@ import { MdOutlineSlowMotionVideo } from "react-icons/md";
 import { GoProjectSymlink } from 'react-icons/go';
 
 import { LiaCertificateSolid, LiaCircleNotchSolid, LiaCriticalRole } from "react-icons/lia";
+import useClass from '../../Hooks/useClass';
 
 
 const ClassDetails = () => {
      const classData = useLoaderData()
      const {user} = useAuth()
+     const {id} = useParams();
+ 
+      const [classes,refetch,isLoading] = useClass()
 
+      
+      
+      
+      const classDetails = classes.find(cls => cls._id == id);
+
+      console.log(classDetails);
+      
+
+      
+  
   
             
-     const {_id,title,name ,email, price ,description, status , image,duration,totalEnrollments,totalLectures,totalProjects,courseCurriculam,time,category}  = classData;
+    //  const {_id,title,name ,email, price ,description, status , image,duration,totalEnrollments,totalLectures,totalProjects,courseCurriculam,time,category}  = classDetails;
+
+   
+     
               
-               const gettingStarted = courseCurriculam.slice(0,5)
+               const gettingStarted = classDetails?.courseCurriculam.slice(0,5)
                 console.log(gettingStarted);
                 
 
@@ -40,10 +57,10 @@ const ClassDetails = () => {
 
             
 <div className="class_cnt bg-[#F2F7FD] px-2 lg:px-16">
-                    <p className="subtitle text-gray-400  items-center pt-4 hidden lg:flex">    <RiHome2Line></RiHome2Line>/ <span> {category} </span>/ <span>{title} </span>  </p>
+                    <p className="subtitle text-gray-400  items-center pt-4 hidden lg:flex">    <RiHome2Line></RiHome2Line>/ <span> {classDetails?.category} </span>/ <span>{classDetails?.title} </span>  </p>
 
-                    <div className="w-[16%] bg-[#39B8AD] px-2 py-1 text-white text-center rounded-xl font-semibold mt-16 hidden md:block">  {category} </div>
-                  <h1 className='text-3xl font-bold mt-4 capitalize secondary_text_color'> {title} </h1>
+                    <div className="w-[16%] bg-[#39B8AD] px-2 py-1 text-white text-center rounded-xl font-semibold mt-16 hidden md:block">  {classDetails?.category} </div>
+                  <h1 className='text-3xl font-bold mt-4 capitalize secondary_text_color'> {classDetails?.title} </h1>
                 
                 <div className='block md:flex gap-10 items-center capitalize  py-8 secondary_text_color'>
                        <div className='flex items-center gap-x-4 '>
@@ -56,13 +73,13 @@ const ClassDetails = () => {
 
                        <div className='my-6'>
                                   <h1 className='secondary_text_color font-semibold'>category</h1>
-                                  <p className='font-semibold mt-1'>{category} </p>
+                                  <p className='font-semibold mt-1'>{classDetails?.category} </p>
                         </div>
 
 
                               <div className='my-6'>
                                   <h1 className='secondary_text_color font-semibold'>last updated</h1>
-                                  <p className='font-semibold mt-1'>{time} </p>
+                                  <p className='font-semibold mt-1'>{classDetails?.time} </p>
                               </div>
 
                               <div className='my-6'>
@@ -88,7 +105,7 @@ const ClassDetails = () => {
 
            <div className="about_class px-2 lg:px-16">
                  <h1 className='about_heading'>About Course</h1>
-                <p> {description?.slice(0,400)} </p>
+                <p> {classDetails?.description?.slice(0,400)} </p>
            </div>
            {/* //id={`panel${index}-header`}     aria-controls={`panel${index}-content`} */}
            <div className="course_curriculam px-2 lg:px-16">
@@ -110,7 +127,7 @@ const ClassDetails = () => {
    <Typography>
           <ul>
             {
-               gettingStarted.map((data,index) => <li>  <ClassDetailsAccordion key={index} accordionData={data}></ClassDetailsAccordion> </li>)
+               gettingStarted?.map((data,index) => <li>  <ClassDetailsAccordion key={index} accordionData={data}></ClassDetailsAccordion> </li>)
             }
             
           </ul>
@@ -146,14 +163,14 @@ const ClassDetails = () => {
       <div className="card bg-base-100 w-full lg:w-90 shadow-sm">
 <figure className='p-4'> 
 <img
-src={image}
-alt={title}
+src={classDetails?.image}
+alt={classDetails?.title}
  className='w-full'
 />
 </figure>
 <div className="px-4 lg:px-8  py-4">
 <div className="w-full">
-<Link to={`/payment/${_id}`} className="btn_secondary w-full my-4">Enroll now</Link>
+<Link to={`/payment/${classDetails?._id}`} className="btn_secondary w-full my-4">Enroll now</Link>
 </div>
 <h2 className="card-title my-4">This Course Includes : </h2>
 
@@ -163,7 +180,7 @@ alt={title}
                   <MdOutlineSlowMotionVideo></MdOutlineSlowMotionVideo>
       <p> Lectures </p>
              </div>
-      <p> {totalLectures} </p>
+      <p> {classDetails?.totalLectures} </p>
  </div>
  
  <div className="divider my-2"></div>
@@ -174,7 +191,7 @@ alt={title}
 
        <p>Project</p>
           </div>
-       <p>{totalProjects} </p>
+       <p>{classDetails?.totalProjects} </p>
  </div>
  
  <div className="divider my-2"></div>

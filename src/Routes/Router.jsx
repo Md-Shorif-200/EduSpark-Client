@@ -71,14 +71,14 @@ const router = createBrowserRouter([
           element : <PrivateRoute>
             <ClassDetails></ClassDetails>
           </PrivateRoute>,
-          loader : ({params}) => fetch(`http://localhost:5000//classes/${params.id}`)
+          // loader : ({params}) => fetch(`http://localhost:5000/classes/${params.id}`)
          },
          {
           path : '/payment/:id',
           element :   <PrivateRoute>
             <Payment></Payment>
           </PrivateRoute>,
-          loader : ({params}) => fetch(`http://localhost:5000//classes/${params.id}`)
+          loader : ({params}) => fetch(`http://localhost:5000/classes/${params.id}`)
 
          },
          {
@@ -144,7 +144,7 @@ const router = createBrowserRouter([
         {
           path : '/dashboard/myClassDetails/:id',
           element :<PrivateRoute> <MyClassDetailsPage></MyClassDetailsPage></PrivateRoute>,
-          loader : ({params}) => fetch(`http://localhost:5000//classes/${params.id}`)
+          // loader : ({params}) => fetch(`http://localhost:5000//classes/${params.id}`)
         },
         {
           path : 'studentProfile',

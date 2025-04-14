@@ -9,9 +9,12 @@ const useClass = () => {
          queryKey : ['classes'],
          queryFn : async () => {
             const res = await axiosSecure.get('/classes');
+
              return res.data
          }
     })
+
+     
 
      return [classes,refetch,isLoading]
 };

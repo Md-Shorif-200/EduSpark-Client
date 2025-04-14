@@ -1,54 +1,50 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Loading from "../../Common/Loading";
 import usePayments from "../../Hooks/usePayments";
+import { FaUsers, FaTasks, FaCheckCircle } from "react-icons/fa";
 
-const ClassProgress = ({classData,totalAssignments,totalSubmissions}) => {
+const ClassProgress = ({ myClassDetails, totalAssignments, totalSubmissions }) => {
+  const [payments, refetch, isLoading] = usePayments();
 
-          // const [totalEnrollments , setTotalEnrollments] = useState(0)
-          // const [totalAssignment , setTotalAssignment] = useState(0)
-          // const [totalAssignmentSubmission , setTotalAssignmentSubmission] = useState(0)
+  if (isLoading) return <Loading />;
 
-          
-          // fetch total class from the database
-            const [payments,refetch,isLoading] = usePayments();
-            
-            if(isLoading){
-               return <Loading></Loading>
-            }
+  const totalEnrollments = payments.filter(
+    (payment) => payment.paymentId === myClassDetails?._id
+  );
 
-            const totalEnrollments = payments.filter( (payment) => payment.paymentId === classData._id);
-             
-        
+  const cardClasses =
+    "bg-white shadow-md rounded-2xl border border-gray-100 p-6 hover:shadow-xl transition duration-300 flex flex-col items-center text-center";
+
+  const headingClasses = "text-lg text-gray-600 mb-2";
+  const numberClasses = "text-3xl font-bold";
 
   return (
-    <div className="p-8">
-      <div className="class_progress_cards grid grid-cols-1 gap-y-6 sm:grid-cols-3 md:gap-8 ">
-    
-
-        <div className="card w-full bg-base-100 card-sm shadow-sm p-8  capitalize ">
-          <div className="">
-            <h2 className=" text-xl font-semibold ">total enrollment</h2>
-             <p className="text-2xl font-semibold mt-3  text-center">    {totalEnrollments.length} </p>
-          </div>
+    <div className="py-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Card 1 */}
+        <div className={cardClasses}>
+          <FaUsers className="text-4xl text-indigo-500 mb-3" />
+          <h2 className={headingClasses}>Total Enrollment</h2>
+          <p className={`${numberClasses} text-indigo-600`}>
+            {totalEnrollments.length}
+          </p>
         </div>
 
-        <div className="card w-full bg-base-100 card-sm shadow-sm p-8 capitalize">
-          <div className="">
-            <h2 className=" text-xl font-semibold ">total assignment</h2>
-            <p className="text-xl font-semibold  mt-3 text-center"> {totalAssignments.length} </p>
-          </div>
+        {/* Card 2 */}
+        <div className={cardClasses}>
+          <FaTasks className="text-4xl text-yellow-500 mb-3" />
+          <h2 className={headingClasses}>Total Assignments</h2>
+          <p className={`${numberClasses} text-yellow-600`}>
+            {totalAssignments.length}
+          </p>
         </div>
 
-
-        <div className="card w-full bg-base-100 card-sm shadow-sm p-8 capitalize">
-          <div className="">
-            <h2 className=" text-xl font-semibold "> total asignment submission</h2>
-            <p className="text-x2l font-semibold  mt-3 text-center"> {totalSubmissions} </p>
-          </div>
+        {/* Card 3 */}
+        <div className={cardClasses}>
+          <FaCheckCircle className="text-4xl text-green-500 mb-3" />
+          <h2 className={headingClasses}>Submissions</h2>
+          <p className={`${numberClasses} text-green-600`}>{totalSubmissions}</p>
         </div>
-
-   
-
       </div>
     </div>
   );

@@ -1,18 +1,15 @@
-import React from "react";
-import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { Dialog, DialogPanel } from "@headlessui/react";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
+import { Button } from "@headlessui/react";
 
-
-const AddAsignment = ({ classData,refetch }) => {
-  let [isOpen, setIsOpen] = useState(false);
-
+const AddAsignment = ({ myClassDetails, refetch }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const axiosSecure = useAxiosSecure();
-  
 
-  // react hook form
+  // React Hook Form
   const {
     register,
     handleSubmit,
@@ -20,152 +17,126 @@ const AddAsignment = ({ classData,refetch }) => {
     formState: { errors },
   } = useForm();
 
-    
+  const open = () => setIsOpen(true);
+  const close = () => setIsOpen(false);
 
-  function open() {
-    setIsOpen(true);
-  }
-
-  //   handle form submission
   const onSubmit = (data) => {
     const assignmentInfo = {
       title: data.title,
       dedline: data.dedline,
       description: data.description,
-      teacherName: classData.name,
-      assignmentId: classData._id,
+      teacherName: myClassDetails?.name,
+      assignmentId: myClassDetails?._id,
     };
 
-    try {
-      axiosSecure.post("/assignments", assignmentInfo).then((respons) => {
-        console.log(respons.data);
-
-        if (respons.data.insertedId) {
-          toast.success("assignment added succesfully");
-          reset(); // clear form
-          refetch()  // reload data
-          setIsOpen(false); // close modal 
+    axiosSecure
+      .post("/assignments", assignmentInfo)
+      .then((res) => {
+        if (res.data.insertedId) {
+          toast.success("Assignment added successfully!");
+          reset();
+          refetch();
+          close();
         }
+      })
+      .catch((err) => {
+        toast.error("Something went wrong!");
+        console.error(err);
       });
-    } catch (error) {
-    } finally {
-      setIsOpen(false);
-    }
-  };
-
-  const close = () => {
-    setIsOpen(false);
   };
 
   return (
     <>
-      <Button
+      <button
         onClick={open}
-        className="btn primary_bg_color text-white mt-8 capitalize"
+        className="px-6 py-2 rounded-lg bg-[#121212] hover:bg-[#333] text-white font-semibold transition duration-200"
       >
-        + creat Assignment
-      </Button>
+        + Create Assignment
+      </button>
 
       <Dialog
         open={isOpen}
-        as="div"
-        className="relative z-10 focus:outline-none"
         onClose={close}
+        className="fixed z-50 inset-0 overflow-y-auto"
       >
-        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-          <div className="flex  items-center justify-center p-4">
-            <DialogPanel
-              transition
-              className="w-full max-w-md rounded-xl bg-white/5 p-6 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
-            >
-              {/* <DialogTitle
-                as="h3"
-                className="text-base/7 font-medium text-white"
-              >
-                Payment successful
-              </DialogTitle> */}
+        <div className="flex items-center justify-center min-h-screen px-4">
+          <DialogPanel className="bg-white w-full max-w-xl rounded-2xl shadow-2xl p-8 space-y-6 relative">
+            <h2 className="text-2xl font-bold text-center text-gray-800">
+              Add New Assignment
+            </h2>
 
-              <main>
-                <div>
-                  <div className=" bg-base-200">
-                    <div className=" flex-col">
-                      <div className="card bg-base-100 w-full max-w-lg shrink-0 shadow-2xl">
-                        <div className="card-body relative">
-                          {/* form  */}
-                          <form className="" onSubmit={handleSubmit(onSubmit)}>
-                            {/* assignment title  */}
-                            <label className="fieldset-label">Title</label>
-                            <input
-                              type="text"
-                              className="input my-4"
-                              placeholder=" Assignment Title"
-                              {...register("title", { required: true })}
-                            />
-                            {errors.title && (
-                              <span className="text-red-500 my-3">
-                                This field is required
-                              </span>
-                            )}
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+              {/* Title */}
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  Assignment Title
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter title"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  {...register("title", { required: true })}
+                />
+                {errors.title && (
+                  <p className="text-red-500 text-sm mt-1">
+                    This field is required.
+                  </p>
+                )}
+              </div>
 
-                            {/* assignment dedline  */}
-                            <label className="fieldset-label">dedline</label>
-                            <input
-                              type="date"
-                              className="input my-4"
-                              placeholder=" Assignment dedline"
-                              {...register("dedline", { required: true })}
-                            />
-                            {errors.dedline && (
-                              <span className="text-red-500 my-3">
-                                This field is required
-                              </span>
-                            )}
+              {/* Deadline */}
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  Deadline
+                </label>
+                <input
+                  type="date"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  {...register("dedline", { required: true })}
+                />
+                {errors.dedline && (
+                  <p className="text-red-500 text-sm mt-1">
+                    This field is required.
+                  </p>
+                )}
+              </div>
 
-                            {/* assignment description  */}
+              {/* Description */}
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  Description
+                </label>
+                <textarea
+                  rows={4}
+                  placeholder="Write assignment details..."
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  {...register("description", { required: true })}
+                ></textarea>
+                {errors.description && (
+                  <p className="text-red-500 text-sm mt-1">
+                    This field is required.
+                  </p>
+                )}
+              </div>
 
-                            <fieldset className="fieldset">
-                              <legend className="fieldset-legend">
-                                Description
-                              </legend>
-
-                              <textarea
-                                className="textarea h-24"
-                                placeholder="Assignment Description"
-                                {...register("description", { required: true })}
-                              ></textarea>
-
-                              {errors.description && (
-                                <span className="text-red-500 my-3">
-                                  This field is required
-                                </span>
-                              )}
-                            </fieldset>
-                            {/* form button */}
-
-                            <Button
-                              type="submit"
-                              className="btn  mt-4 primary_bg_color text-white"
-                            >
-                              Add Assignment
-                            </Button>
-                          </form>
-                          <div
-                            className="md:absolute bottom-8 right-12"
-                            onClick={close}
-                          >
-                            <button className="btn  primary_bg_color text-white">
-                              {" "}
-                              cencel
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </main>
-            </DialogPanel>
-          </div>
+              {/* Buttons */}
+              <div className="flex justify-between items-center mt-6">
+                <button
+                  type="button"
+                  onClick={close}
+                  className="w-1/2 mr-2 bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300 transition"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="w-1/2 ml-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+                >
+                  Add Assignment
+                </button>
+              </div>
+            </form>
+          </DialogPanel>
         </div>
       </Dialog>
     </>
