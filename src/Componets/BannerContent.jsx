@@ -15,6 +15,9 @@ import { motion } from "framer-motion";
 import AnimateTitle from '../Common/AnimateTitle';
 import CountUp from 'react-countup';
 
+import shape_1 from '../assets/banner-img/hero-shape-2.png'
+import shape_2 from '../assets/banner-img/hero-shape-3.png'
+
 
 const BannerContent = ({subTitle,title,description,img}) => {
 
@@ -35,36 +38,53 @@ const BannerContent = ({subTitle,title,description,img}) => {
        const  [classes,refetch,isLoading]  = useClass()
 
     return (
-           <div className="banner w-full min-h-screen  secondary_bg_color  lg:flex gap-x-10 items-center justify-between sm:px-8  md:px-16 "  >
+         <div className='sm:px-6 md:px-16  secondary_bg_color'>
+                <div className="banner w-full min-h-screen   lg:flex gap-x-10 items-center justify-between  "  >
 
-                        <div className="banner_cnt w-full sm:w-[75%] text-justify py-10 px-2 " data-aos='fade-up' data-aos-duration="1000">
+                        <div className="banner_cnt w-full lg:w-[50%] text-justify lg:pr-20 relative" data-aos='fade-up' data-aos-duration="1000">
 
                               
                                <AnimateTitle animateTtile={'welcome to academix'}></AnimateTitle>
 
-                               <h1 className="text-3xl md:text-4xl lg:text-5xl  my-6 secondary_text_color font-bold">  Start learning from
-                               the world’s      <span className='primary_text_color font-normal'> best institutions </span>  </h1>
+                               <h1 className="text-3xl md:text-4xl lg:text-5xl  my-6 secondary_text_color font-bold">  Education Is About    <span className='primary_text_color font-normal'>Academic Excellence   </span>  </h1>
 
 
                                <div className="banner_btn mt-8 flex gap-6  ">
-                                      <button className=" btn_primary ">get started</button>
-                                      <button className=" btn_secondary">browse course</button>
+                              
+                                      <button className=" btn_secondary uppercase">GET STARTED</button>
                                </div>
 
                                <h2 className='capitalize text-2xl font-semibold mt-8 mb-4'> Explore  <span className='primary_text_color'> {classes?.length} +   </span>  course within subject</h2>
+
+                                <motion.img src={shape_1} alt="" className="absolute left-1/12"
+                                
+                                 animate={{
+    x: [-10, 10, -10], // -20px থেকে 20px, তারপর আবার -20px (লুপের মতো)
+  }}
+  transition={{
+       duration: 5, // ২ সেকেন্ডে সম্পূর্ণ অ্যানিমেশন হবে
+       repeat: Infinity, // বারবার চলতে থাকবে
+       repeatType: "reverse", // সামনে-পিছনে যাবে, বন্ধ হলে হঠাৎ বন্ধ হবে না
+       ease: "easeInOut", // স্মুথ এফেক্ট
+     }}
+                                />
+
+
 
 
                           
 
                         </div> 
 
-                        <div className="banner_img p-4 md:pr-17 relative">
+                        <div className="banner_img lg:w-[50%] min-h-screen  p-4  relative  flex justify-end  ">
 
-                              <img src={img} alt="" className='w-full  rounded-2xl' />
+                              <div className='  flex items-center '>
+                                   <img src={img} alt="" className='w-[80%] mx-auto z-10  rounded-2xl' />
+                              </div>
 
-                                <motion.div className='animate_card bg-white w-[150px] py-2 pl-4 rounded-md absolute top-26 -left-4 md:top-50 md:-left-20' 
+                                <motion.div className='animate_card bg-white w-[150px] py-2 pl-4 rounded-md absolute top-26 -left-4 md:top-60 md:-left-10 z-20' 
                                  animate={{
-    x: [-20, 20, -20], // -20px থেকে 20px, তারপর আবার -20px (লুপের মতো)
+    x: [-10, 10, -10], // -20px থেকে 20px, তারপর আবার -20px (লুপের মতো)
   }}
   transition={{
        duration: 5, // ২ সেকেন্ডে সম্পূর্ণ অ্যানিমেশন হবে
@@ -80,10 +100,14 @@ const BannerContent = ({subTitle,title,description,img}) => {
                                          </div>
                                         <p>students</p>
                                 </motion.div>
+
+
+                                <img src={shape_2} alt="" className='w-full absolute left-0 bottom-0 z-0' />
                         </div>
 
 
                  </div>
+         </div>
     );
 };
 

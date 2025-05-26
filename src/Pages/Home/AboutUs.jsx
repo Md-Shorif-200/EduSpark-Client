@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
-import { FaCheckCircle } from "react-icons/fa";
+import { FaCheckCircle, FaVideo } from "react-icons/fa";
+import { MdSlowMotionVideo } from "react-icons/md";
+import { MdOutlinePhoneInTalk } from "react-icons/md";
+
 
 // react aos animation
 import AOS from 'aos';
@@ -9,8 +12,8 @@ import 'aos/dist/aos.css';
 // react type-writer
 import { Typewriter } from 'react-simple-typewriter'
 
-import img1 from '../../assets/about_us/low-angle-business-people-posing.jpg'
-import img2 from '../../assets/about_us/woman-work-having-video-call.jpg'
+import img1 from '../../assets/about_us/about-img-1.jpg'
+import img2 from '../../assets/about_us/about-img-2.jpg'
 import img3 from '../../assets/about_us/youngsters-coworking-with-laptop.jpg'
 
 import lottie_animation from '../../../src/assets/lottie react/about_lottie_animation.json'
@@ -33,8 +36,41 @@ const AboutUs = () => {
     return (
         <div className='grid grid-cols-1 md:grid-cols-2 md:gap-x-8 px-2 md:px-16  mb-4 items-center mt-14 md:mt-16 '>
 
-<div className="about_us_animation" >
-                    <Lottie animationData={lottie_animation}></Lottie>
+<div className="about_us_img flex gap-x-6" >
+
+                    <div className="img_1">
+                              <div className='relative'>
+                                 <img src={img1} alt="" className='rounded-tr-[60px] rounded-bl-[60px]' />
+                                        <div className="video_icon absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] p-4  bg-white rounded-full primary_text_color text-3xl">
+                                            <MdSlowMotionVideo></MdSlowMotionVideo>      
+                                </div>
+                              </div>
+
+
+
+                            <div className="online_support primary_bg_color text-white mt-4 py-6 px-8 rounded-tr-[60px] rounded-bl-[60px]">
+
+                                        <div className='flex items-center gap-x-4'>
+
+                                               <div className='p-2 bg-white rounded-full primary_text_color text-2xl'>
+                                                 <MdOutlinePhoneInTalk></MdOutlinePhoneInTalk>
+                                               </div>
+                                   
+
+                                            <div>
+                                   <h2 className=' font-semibold uppercase'>online support</h2>
+                                    <p className='font-semibold'>+88 01972144240</p>
+
+                                            </div>
+                                        </div>
+
+                            </div>
+
+                    </div>
+                    <div className="img_2 flex items-end">
+                      <img src={img2} alt="" className='rounded-tl-[60px] rounded-br-[60px]' />
+
+                    </div>
                </div>
    
 

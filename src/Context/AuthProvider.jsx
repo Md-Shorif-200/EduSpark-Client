@@ -12,7 +12,7 @@ const AuthProvider = ({children}) => {
     const [loading , setLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider()
 
-    // firebase  observer
+  // Setup Firebase auth state observer
     useEffect(() => {
 
         const unsbscribe = onAuthStateChanged(auth,currentUser => {

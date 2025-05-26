@@ -16,6 +16,7 @@ import React from 'react';
        import img_9 from '../../assets/banner-img/img-9.jpg'
        import img_10 from '../../assets/banner-img/img-10.jpg'
        import banner_img from '../../assets/banner-img/banner_1.jpg'
+       
 
 import { useEffect, useState } from "react";
 import BannerContent from "../../Componets/BannerContent";

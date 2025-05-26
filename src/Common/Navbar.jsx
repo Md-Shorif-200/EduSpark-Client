@@ -9,7 +9,7 @@ import useAuth from "../Hooks/useAuth";
 import useRole from "../Hooks/useRole";
 import { MdDashboard } from "react-icons/md";
 import { AiFillHeart } from "react-icons/ai";
-import nav__logo from '../assets/navLogo/academix___nav_logo.png';
+import nav__logo from '../assets/navLogo/nav-log-academix.png';
 
 import Loading from "./Loading";
 import useWhisList from "../Hooks/useWhisList";
@@ -52,18 +52,21 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="bg-white dark:bg-gray-900 text-gray-800 dark:text-white shadow-md sticky top-0 z-50 ">
+    <div className="bg-white dark:bg-gray-900 text-gray-800 dark:text-white shadow-md sticky top-0 z-50 py-2">
       {isLoading && <Loading />} {/* Show loader */}
 
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-        <motion.img
+               <div className="flex items-center  gap-x-3">
+                  <motion.img
           initial={{ x: -30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          className="w-[80px] cursor-pointer"
+          className=" w-[50px] cursor-pointer"
           src={nav__logo}
           alt="Logo"
           onClick={() => handleNavigation("/")}
         />
+              <p className="font-semibold text-xl md:text-2xl">Academix</p>
+               </div>
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center space-x-6">
