@@ -55,7 +55,7 @@ const Navbar = () => {
     <div className="bg-white dark:bg-gray-900 text-gray-800 dark:text-white shadow-md sticky top-0 z-50 py-2">
       {isLoading && <Loading />} {/* Show loader */}
 
-      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div className=" px-4 sm:px-6 md:px-16 2xl:px-22 py-3 flex justify-between items-center">
                <div className="flex items-center  gap-x-3">
                   <motion.img
           initial={{ x: -30, opacity: 0 }}

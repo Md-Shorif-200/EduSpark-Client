@@ -34,13 +34,13 @@ const AboutUs = () => {
           } , [])
 
     return (
-        <div className='grid grid-cols-1 md:grid-cols-2 md:gap-x-8 px-2 md:px-16  mb-4 items-center mt-14 md:mt-16 '>
+        <div className='grid grid-cols-1 lg:grid-cols-2 md:gap-x-8 px-2 md:px-16  mb-4 items-center mt-14 md:mt-16 '>
 
-<div className="about_us_img flex gap-x-6" >
+<div className="about_us_img md:flex gap-x-6" >
 
                     <div className="img_1">
                               <div className='relative'>
-                                 <img src={img1} alt="" className='rounded-tr-[60px] rounded-bl-[60px]' />
+                                 <img src={img1} alt="" className=' w-full sm:w-[80%] md:w-full mx-auto  rounded-tr-[60px] rounded-bl-[60px]' />
                                         <div className="video_icon absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] p-4  bg-white rounded-full primary_text_color text-3xl">
                                             <MdSlowMotionVideo></MdSlowMotionVideo>      
                                 </div>
@@ -48,7 +48,7 @@ const AboutUs = () => {
 
 
 
-                            <div className="online_support primary_bg_color text-white mt-4 py-6 px-8 rounded-tr-[60px] rounded-bl-[60px]">
+                            <div className="online_support sm:w-[80%] md:w-full  mx-auto primary_bg_color text-white my-4 py-6 px-8 rounded-tr-[60px] rounded-bl-[60px]">
 
                                         <div className='flex items-center gap-x-4'>
 
@@ -67,14 +67,14 @@ const AboutUs = () => {
                             </div>
 
                     </div>
-                    <div className="img_2 flex items-end">
-                      <img src={img2} alt="" className='rounded-tl-[60px] rounded-br-[60px]' />
+                    <div className="img_2 flex justify-end  items-end">
+                      <img src={img2} alt="" className=' w-full sm:w-[80%] md:w-full mx-auto  rounded-tl-[60px] rounded-br-[60px]' />
 
                     </div>
                </div>
    
 
-         <div className="about_us_cnt">
+         <div className="about_us_cnt mt-8">
                         <AnimateTitle animateTtile={'get more about us'}></AnimateTitle>
                     <h1 className='text-3xl md:text-4xl  secondary_text_color font-semibold my-6 leading-10  md:leading-16' data-aos='fade-up'>
                     Over 10 Years in Distant learning

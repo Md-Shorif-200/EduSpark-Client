@@ -25,7 +25,7 @@ const Home = () => {
                <EducationFaculties></EducationFaculties>
                {/* <Partners></Partners> */}
                <PopulerCourse></PopulerCourse>
-               <Statistics></Statistics>
+               {/* <Statistics></Statistics> */}
                {/* <Feedback></Feedback> */}
                {/* <PlatformOverview></PlatformOverview> */}
                {/* <InspireAsTeacher></InspireAsTeacher> */}

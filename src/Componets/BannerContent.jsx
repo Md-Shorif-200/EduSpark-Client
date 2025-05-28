@@ -38,8 +38,8 @@ const BannerContent = ({subTitle,title,description,img}) => {
        const  [classes,refetch,isLoading]  = useClass()
 
     return (
-         <div className='sm:px-6 md:px-16  secondary_bg_color'>
-                <div className="banner w-full min-h-screen   lg:flex gap-x-10 items-center justify-between  "  >
+         <div className='px-3 pt-8 lg:pt-0 sm:px-6 md:px-16 2xl:px-22 secondary_bg_color'>
+                <div className="banner w-full lg:min-h-screen 2xl:min-h-[800px]  lg:flex gap-x-10 items-center justify-between  "  >
 
                         <div className="banner_cnt w-full lg:w-[50%] text-justify lg:pr-20 relative" data-aos='fade-up' data-aos-duration="1000">
 
@@ -56,7 +56,7 @@ const BannerContent = ({subTitle,title,description,img}) => {
 
                                <h2 className='capitalize text-2xl font-semibold mt-8 mb-4'> Explore  <span className='primary_text_color'> {classes?.length} +   </span>  course within subject</h2>
 
-                                <motion.img src={shape_1} alt="" className="absolute left-1/12"
+                                <motion.img src={shape_1} alt="" className="absolute left-1/12 hidden lg:block"
                                 
                                  animate={{
     x: [-10, 10, -10], // -20px থেকে 20px, তারপর আবার -20px (লুপের মতো)
@@ -76,13 +76,13 @@ const BannerContent = ({subTitle,title,description,img}) => {
 
                         </div> 
 
-                        <div className="banner_img lg:w-[50%] min-h-screen  p-4  relative  flex justify-end  ">
+                        <div className="banner_img lg:w-[50%] lg:min-h-screen 2xl:min-h-[800px]  p-4  relative  flex lg:justify-end  pt-8 sm:pt-16 md:pt-22 lg:pt-0">
 
-                              <div className='  flex items-center '>
-                                   <img src={img} alt="" className='w-[80%] mx-auto z-10  rounded-2xl' />
+                              <div className='  flex lg:items-center '>
+                                   <img src={img} alt="" className='md:w-[80%] lg:w-full mx-auto z-10  rounded-2xl' />
                               </div>
 
-                                <motion.div className='animate_card bg-white w-[150px] py-2 pl-4 rounded-md absolute top-26 -left-4 md:top-60 md:-left-10 z-20' 
+                                <motion.div className='animate_card bg-white w-[150px] py-2 pl-4 rounded-md absolute top-16 -left-4 md:top-60 2xl:top-80 md:-left-10 z-20' 
                                  animate={{
     x: [-10, 10, -10], // -20px থেকে 20px, তারপর আবার -20px (লুপের মতো)
   }}
@@ -102,7 +102,7 @@ const BannerContent = ({subTitle,title,description,img}) => {
                                 </motion.div>
 
 
-                                <img src={shape_2} alt="" className='w-full absolute left-0 bottom-0 z-0' />
+                                <img src={shape_2} alt="" className='w-full sm:w-[80%] md:w-[70%] lg:w-[100%] absolute left-0 bottom-0 z-0' />
                         </div>
 
 
