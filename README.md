@@ -1,5 +1,5 @@
 
-# Academix
+# EduSpark
 
 #### Admin user name :  Shorif 
 #### Admin email :  shorif234@gmail.com 
