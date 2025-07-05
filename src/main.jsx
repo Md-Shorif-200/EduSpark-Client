@@ -36,7 +36,7 @@ createRoot(document.getElementById('root')).render(
 );
 
 // remove loading spiner
-const loader = document.getElementById('initial-loader');
-if (loader) {
-  loader.remove();
-}
+// const loader = document.getElementById('initial-loader');
+// if (loader) {
+//   loader.remove();
+// }
