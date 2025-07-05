@@ -9,7 +9,7 @@ import useAuth from "../Hooks/useAuth";
 import useRole from "../Hooks/useRole";
 import { MdDashboard } from "react-icons/md";
 import { AiFillHeart } from "react-icons/ai";
-import nav__logo from '../assets/navLogo/nav-log-academix.png';
+import nav__logo from '../assets/navLogo/academix_footer_logo-removebg-preview.png';
 
 import Loading from "./Loading";
 import useWhisList from "../Hooks/useWhisList";
@@ -44,7 +44,7 @@ const Navbar = () => {
     // shows teach on academex when role !== teacher
       ...(
         data?.role !== 'teacher' ?  [
-          { name: "Teach On Academix", path: "/TeachOn" },
+          { name: "Teach On EduSpark", path: "/TeachOn" },
 
         ]  : []
       ),
@@ -65,7 +65,7 @@ const Navbar = () => {
           alt="Logo"
           onClick={() => handleNavigation("/")}
         />
-              <p className="font-semibold text-xl md:text-2xl">Academix</p>
+              <p className="font-semibold text-xl md:text-2xl">EduSpark</p>
                </div>
 
         {/* Desktop Menu */}

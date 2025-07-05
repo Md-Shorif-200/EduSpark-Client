@@ -1,5 +1,5 @@
 
-# Academix
+# EduSpark
 
 #### Admin user name :  Shorif 
 #### Admin email :  shorif234@gmail.com 
@@ -7,7 +7,7 @@
 #### password  :  shorif234234
 ### project live link : 
 
-<a href="https://academix-e460f.web.app/">click to see </a>
+<a href="https://EduSpark-e460f.web.app/">click to see </a>
 
 ### kye features : 
 1. full stack website

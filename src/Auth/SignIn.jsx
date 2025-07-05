@@ -111,7 +111,7 @@ const SignIn = () => {
                     <div className="text-end">
                       <p className="secondary_text_color">
                     
-                        New to Academix ?
+                        New to EduSpark ?
                         <Link className="text-blue-700 ml-2" to="/signUp">
                           Create Account
                         </Link>

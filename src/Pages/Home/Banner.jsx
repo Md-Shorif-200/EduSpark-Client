@@ -41,7 +41,7 @@ const Banner = () => {
               
 
             <div className="">
-                                   <BannerContent className='' img={banner_img} subTitle={'welcome to academix'} title= {""} description={"Join thousands of learners worldwide and gain in-demand skills with our high-quality online courses. Start learning today and take your career to the next level!"}></BannerContent>                    
+                                   <BannerContent className='' img={banner_img} subTitle={'welcome to EduSpark'} title= {""} description={"Join thousands of learners worldwide and gain in-demand skills with our high-quality online courses. Start learning today and take your career to the next level!"}></BannerContent>                    
                 </div>
 
 
@@ -74,7 +74,7 @@ export default Banner;
 
                 <div className="">
                                    <BannerContent  className='w-full h-full' img={img_2} 
-                                   subTitle={'welcome to academix'} 
+                                   subTitle={'welcome to EduSpark'} 
                                    
                                    title= {'Learn Anytime, Anywhere – Master New Skills'} 
                                    
@@ -85,7 +85,7 @@ export default Banner;
 
                 <div className="">
                                    <BannerContent  className='w-full h-full' img={img_1} 
-                                   subTitle={'welcome to academix'} 
+                                   subTitle={'welcome to EduSpark'} 
                                    
                                    title= {'From Beginner to Pro – Learn with Industry Experts'} 
                                    

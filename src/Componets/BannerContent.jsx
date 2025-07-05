@@ -44,7 +44,7 @@ const BannerContent = ({subTitle,title,description,img}) => {
                         <div className="banner_cnt w-full lg:w-[50%] text-justify lg:pr-20 relative" data-aos='fade-up' data-aos-duration="1000">
 
                               
-                               <AnimateTitle animateTtile={'welcome to academix'}></AnimateTitle>
+                               <AnimateTitle animateTtile={'welcome to EduSpark'}></AnimateTitle>
 
                                <h1 className="text-3xl md:text-4xl lg:text-5xl  my-6 secondary_text_color font-bold">  Education Is About    <span className='primary_text_color font-normal'>Academic Excellence   </span>  </h1>
 

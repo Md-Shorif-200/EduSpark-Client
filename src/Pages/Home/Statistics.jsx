@@ -42,8 +42,8 @@ const Statistics = () => {
 
 
     return (
-        <div className='statistics grid grid-cols-1 lg:grid-cols-2 bg-[#182024] text-gray-300 px-2 md:px-5 py-16 mt-12 '>
-              <div className="statistics_img w-full h-full relative mb-4  overflow-hidden">
+        <div className='statistics grid grid-cols-1 lg:grid-cols-2 bg-[#182024] text-gray-300 px-2 md:px-5 py-16 mt-12 overflow-hidden '>
+              <div className="statistics_img w-full h-full relative mb-4  ">
                         <img src={statistics_img} alt="" className='w-full h-auto rounded-2xl' />
 
                         <div className="cards hidden lg:flex gap-4 absolute bottom-[80px] px-6 ">

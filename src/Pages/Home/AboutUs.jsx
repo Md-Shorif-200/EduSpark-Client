@@ -81,7 +81,7 @@ const AboutUs = () => {
 for Skill Development
                     </h1>
 
-                    <p className='secondary_text_color mt-3 mb-5' data-aos='fade-up' data-aos-delay='100'>At Academix, we believe that quality education should be accessible to everyone. Our expert-led courses are designed to help learners gain real-world skills and advance their careers. Join us in shaping a future where knowledge knows no boundaries!</p>
+                    <p className='secondary_text_color mt-3 mb-5' data-aos='fade-up' data-aos-delay='100'>At EduSpark, we believe that quality education should be accessible to everyone. Our expert-led courses are designed to help learners gain real-world skills and advance their careers. Join us in shaping a future where knowledge knows no boundaries!</p>
 
                     <div className="about_checkmark grid grid-cols-2 gap-6 secondary_text_color" data-aos='fade-up' data-aos-delay='200'>
                           <div>
