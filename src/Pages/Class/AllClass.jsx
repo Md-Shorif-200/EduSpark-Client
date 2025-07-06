@@ -33,7 +33,7 @@ const AllClass = () => {
 
   return (
     <div className="All_classes mb-30 overflow-x-hidden ">
-                    <CoverImg title={'all course'}></CoverImg>
+                    {/* <CoverImg title={'all course'}></CoverImg> */}
       {/* <h1>         total claass  :{approvedClasses.length} </h1> */}
 
       <div className="my-12 px-2 lg:px-16">

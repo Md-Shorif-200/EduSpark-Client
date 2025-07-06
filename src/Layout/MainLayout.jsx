@@ -25,7 +25,7 @@ const MainLayout = () => {
 
     return (
         <>
-                        <Heading></Heading>
+                        {/* <Heading></Heading> */}
                 <Navbar></Navbar>
               
            

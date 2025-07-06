@@ -14,7 +14,7 @@ const Navbar = () => {
            const navLinks = <>
                     <li className='text-lg lg:font-semibold  capitalize py-1 lg:py-0 cursor-pointer'> <Link to='/'>Home</Link> </li>
                     <li className='text-lg lg:font-semibold  capitalize py-1 lg:py-0 cursor-pointer'> <Link to='/allClass'>All Class</Link> </li>
-                    <li className='text-lg lg:font-semibold  capitalize py-1 lg:py-0 cursor-pointer'> <Link to='/TeachOn'>Teach On EduSpark </Link> </li>
+                    <li className='text-lg lg:font-semibold  capitalize py-1 lg:py-0 cursor-pointer'> <Link to='/TeachOn'>Teach   On </Link> </li>
                     <li className='text-lg lg:font-semibold  capitalize py-1 lg:py-0 cursor-pointer'> <Link to='/contact'>Contact</Link> </li>
             </>
 

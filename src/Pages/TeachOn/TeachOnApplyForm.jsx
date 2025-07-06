@@ -70,7 +70,7 @@ const TeachOnApplyForm = () => {
 
   return (
          <div>
-      <CoverImg title={'Become a Teacher'} />
+      {/* <CoverImg title={'Become a Teacher'} /> */}
              <Container maxWidth="lg" className='mt-14 mb-30'>
 
       <div className="w-full sm:w-[80%] md:w-[70%] lg:w-[40%] mx-auto mt-20 px-6 lg:px-0">
