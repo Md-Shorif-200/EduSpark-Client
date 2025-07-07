@@ -69,7 +69,7 @@ const SignUp = () => {
         name: data.name,
         email: data.email,
         image: imageUrl,
-        role: "user",
+        role: "student",
         registrationTime : new Date().toLocaleString()
       };
 
@@ -88,7 +88,7 @@ const SignUp = () => {
 
   return (
     <div className="sign_up ">
-              <CoverImg title={'Sign Up'}></CoverImg>
+              {/* <CoverImg title={'Sign Up'}></CoverImg> */}
       <div className="py-10">
           
 

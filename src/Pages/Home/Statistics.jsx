@@ -20,24 +20,12 @@ import AnimateTitle from '../../Common/AnimateTitle';
 
 const Statistics = () => {
 
-    // aos init 
-         useEffect(() => {
-                          // Initialize AOS
-              AOS.init({
-                duration: 800, 
-                once: true, // false করলে স্ক্রোল আপ/ডাউন করলে বারবার অ্যানিমেশন ট্রিগার হবে
-                easing: 'linear', // 'ease' এর চেয়ে 'ease-in-out' বেশি স্মুথ
-                offset: 80, // এলিমেন্ট ভিউপোর্টের ১২০px আগে অ্যানিমেশন শুরু হবে
-                mirror: true, // স্ক্রোল ডাউনের পাশাপাশি স্ক্রোল আপেও অ্যানিমেশন দেখাবে
-  
-             
-              });
-                } , [])
+ 
     
 
     const { ref, inView } = useInView({
-        triggerOnce: false, // একবার ট্রিগার হলে বারবার রিস্টার্ট হবে না
-        threshold: 0.5, // ৫০% অংশ ভিউতে এলে কাউন্ট শুরু করবে
+        triggerOnce: false, 
+        threshold: 0.5, 
     });
 
 
@@ -46,42 +34,17 @@ const Statistics = () => {
               <div className="statistics_img w-full h-full relative mb-4  ">
                         <img src={statistics_img} alt="" className='w-full h-auto rounded-2xl' />
 
-                        <div className="cards hidden lg:flex gap-4 absolute bottom-[80px] px-6 ">
-                            <div className='statistics_img_card flex'>
-                                        <div className=''>
-                                            
-                                        <img src={img_1} alt="" className='w-[60px] mt-8' />    </div>                             
-                                    <div className="card_cnt px-4">
-                                        <h1 className='text-2xl capitalize font-semibold my-1'>most qualified teacher</h1>
-          
-          <p>Lorem ipsum dolor sit amet.</p>                            
-                  </div>
-
-                            </div>
-
-                            <div className='statistics_img_card flex'>
-                                              
-                                            <div className=''><img src={img_2} alt="" className='w-[60px] mt-8' /> </div>                       
-                                    <div className="card_cnt px-4">
-                                        <h1 className='text-2xl capitalize font-semibold my-1'>best online course</h1>
-          
-          <p>Lorem ipsum dolor sit amet.</p>                                    </div>
-
-                            </div>
-
-
-                        </div>
+                  
               </div>
 
               <div className="statistics_cnt px-2 md:px-6">
                         
 
-                             <AnimateTitle animateTtile={'why choose us'}></AnimateTitle>
+                              <h3 className='common_section_intro'>  why choose us </h3>
 
                             <h1 className='text-3xl md:text-4xl font-semibold capitalize  my-4'>your ideal learning partner</h1>
 
-                            <p className='my-2'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae sed aliquid repellendus culpa labore pariatur asperiores cumque illum minus reprehenderit.</p>
-
+                                <p className="my-2">With over 10 years of excellence in education, we’ve empowered 5,000+ students through expert-led courses and personalized learning support. Our 100+ qualified instructors and 15+ specialized programs ensure a high-impact learning experience tailored to your goals.</p>
                             <div className="statistics_cards grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-10 px-2 pt-8">
                            
 
@@ -91,7 +54,7 @@ const Statistics = () => {
                                   </div>
 
                                   <div className="card" data-aos='fade-left' data-aos-delay='100'>
-                                   <h1 key={inView} ref={ref}> <CountUp start={0} end={20}  duration={3}></CountUp>  + </h1>
+                                   <h1 key={inView} ref={ref}> <CountUp start={0} end={10}  duration={3}></CountUp>  + </h1>
                                      <p>years exprerience</p>
                                   </div>
 

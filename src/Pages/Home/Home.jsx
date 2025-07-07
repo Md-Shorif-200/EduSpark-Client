@@ -13,6 +13,7 @@ import PlatformOverview from "./PlatformOverview";
 import PopulerCourse from "./PopulerCourse";
 import Statistics from "./Statistics";
 import SuccessHistory from "./SuccesStory";
+import Motivational_Intro from './Motivational_Intro';
 
 
 const Home = () => {
@@ -21,16 +22,17 @@ const Home = () => {
                    {/* <ShadcnUi></ShadcnUi> */}
                     {/* <ChatForm></ChatForm> */}
                <Banner></Banner>
-               <AboutUs></AboutUs>
-               <EducationFaculties></EducationFaculties>
-               {/* <Partners></Partners> */}
                <PopulerCourse></PopulerCourse>
+                                <Motivational_Intro></Motivational_Intro>
+               {/* <AboutUs></AboutUs> */}
+               {/* <EducationFaculties></EducationFaculties> */}
+               {/* <Partners></Partners> */}
                <Statistics></Statistics>
                {/* <Feedback></Feedback> */}
                {/* <PlatformOverview></PlatformOverview> */}
-               <InspireAsTeacher></InspireAsTeacher>
-               <ExclusiveSolution></ExclusiveSolution>
-               <SuccessHistory></SuccessHistory>
+               {/* <InspireAsTeacher></InspireAsTeacher> */}
+               {/* <ExclusiveSolution></ExclusiveSolution> */}
+               {/* <SuccessHistory></SuccessHistory> */}
         </div>
     );
 };

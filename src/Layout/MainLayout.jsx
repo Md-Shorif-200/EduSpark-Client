@@ -4,6 +4,8 @@ import Navbar from '../Common/Navbar';
 import Footer from '../Common/Footer';
 import Heading from '../Common/Heading';
 import Loading from '../Common/Loading';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // aos css import
 
 const MainLayout = () => {
 
@@ -21,6 +23,17 @@ const MainLayout = () => {
     //   if(initialLoading) {
     //     return <Loading></Loading>
     //   }
+
+    // App.jsx বা main.jsx
+
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: false,
+      offset: 100,
+    });
+  }, []);
 
 
     return (

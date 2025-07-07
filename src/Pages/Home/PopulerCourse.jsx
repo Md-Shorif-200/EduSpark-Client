@@ -1,90 +1,81 @@
-import React, { useEffect, useState } from 'react';
-import SectionTitle from '../../Common/SectionTitle';
-import ClassCard from '../Class/ClassCard';
-import useAxiosPublic from '../../Hooks/useAxiosPublic';
-import { useQuery } from '@tanstack/react-query';
+import React from 'react';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
+
 import useClass from '../../Hooks/useClass';
-import { Link } from 'react-router-dom';
-
 import Class_Catagory_tab from '../../Pages/Class/Class_Catagory_tab';
-import AnimateTitle from '../../Common/AnimateTitle';
-
-import { FaArrowUpRightFromSquare } from "react-icons/fa6";
-
-
 
 const PopulerCourse = () => {
-    const  [classes,refetch,isLoading]  = useClass();
-    const approvedClass = classes.filter(classData => classData.status === 'approved')
-    const sortedClass = approvedClass.sort((a,b) => b.totalEnrollments - a.totalEnrollments);
-    const populerClasses = sortedClass.slice(0,8)
+  const [classes, refetch, isLoading] = useClass();
 
-    const web_softawre = populerClasses.filter(data => data.category == "web & software")
-    const design_multimedia = populerClasses.filter(data => data.category == "design & multimedia")
-    const digital_marketing = populerClasses.filter(data => data.category == "digital marketing")
-    const office_management = populerClasses.filter(data => data.category == "office management")
-    
-     
-     
-             
-   
-    return (
-        <div className='bg_color_2  secondary_bg_color pt-8  md:p-6  lg:px-16 '>
+  const approvedClass = classes.filter(classData => classData.status === 'approved');
+  const sortedClass = approvedClass.sort((a,b) => b.totalEnrollments - a.totalEnrollments);
+  const populerClasses = sortedClass.slice(0,8);
 
-                  <AnimateTitle animateTtile={'top class courses'}></AnimateTitle>
-              <div className='md:grid  md:grid-cols-2 pt-4 pb-3 px-2'>
-                  <div className='md:pr-14'>
-                  <h1 className='text-3xl font-semibold capitalize '>explore populer course</h1>
-                  </div>
-               
-                  <div className='text-start md:text-end'>
-                     <Link to='allClass' className=" text-lg my-4 capitalize primary_text_color font-bold flex md:justify-end items-center gap-x-2">view all courses  
-                       <FaArrowUpRightFromSquare></FaArrowUpRightFromSquare>
-                      </Link>
-                  </div>
-              </div>
-                <div className='divider'></div>
+  const web_development = populerClasses.filter(data => data.category === "web_development");
+  const app_development = populerClasses.filter(data => data.category === "app_development");
+  const cyber_security = populerClasses.filter(data => data.category === "cyber_security");
+  const design_and_multimedia = populerClasses.filter(data => data.category === "design_and_multimedia");
+  const digital_marketing = populerClasses.filter(data => data.category === "digital_marketing");
+  const office_management = populerClasses.filter(data => data.category === "office_management");
+ ;
 
-              
-
-                    {/* name of each tab group should be unique */}
-<div className="tabs tabs-box">
-
-  <input type="radio" name="my_tabs_2" className="tab text-lg capitalize mb-8" aria-label="all" defaultChecked  />
-  <div className="tab-content  lg:border-base-300 bg-base-100 p-2 sm:p-6 md:p-5 lg:p-10">   {
-     <Class_Catagory_tab class_catagory={populerClasses}></Class_Catagory_tab>} </div>
-
-<input type="radio" name="my_tabs_2" className="tab text-lg capitalize mb-8" aria-label="web & software" />
-  <div className="tab-content  lg:border-base-300 bg-base-100 p-2 sm:p-6 md:p-5 lg:p-10">   {
-     <Class_Catagory_tab class_catagory={web_softawre}></Class_Catagory_tab>} </div>
-
-
-<input type="radio" name="my_tabs_2" className="tab text-lg capitalize mb-8" aria-label="design & multimedia" />
-  <div className="tab-content  lg:border-base-300 bg-base-100 p-2 sm:p-6 md:p-5 lg:p-10">   {
-     <Class_Catagory_tab class_catagory={design_multimedia}></Class_Catagory_tab>} </div>
-
-<input type="radio" name="my_tabs_2" className="tab text-lg capitalize mb-8" aria-label="digital marketing" />
-  <div className="tab-content  lg:border-base-300 bg-base-100 p-2 sm:p-6 md:p-5 lg:p-10">   {
-     <Class_Catagory_tab class_catagory={digital_marketing}></Class_Catagory_tab>} </div>
-
-
-<input type="radio" name="my_tabs_2" className="tab text-lg capitalize mb-8" aria-label="office management" />
-  <div className="tab-content  lg:border-base-300 bg-base-100 p-2 sm:p-6 md:p-5 lg:p-10">   {
-     <Class_Catagory_tab class_catagory={office_management}></Class_Catagory_tab>} </div>
-
-</div>
-
-
-
-
-            {/* <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 '> 
-                 {
-                    populerClasses.map(populerClass => <ClassCard approvedClass= {populerClass}></ClassCard>)
-                 }
-            </div> */}
-            
+  return (
+    <div className='secondary_bg_color common_padding py-10'>
+      <div className='bg-white px-4 pb-10 rounded-2xl'>
+        <div className='pt-6 pb-12 text-center'>
+          <h1 className='section_title'>Explore Popular Courses</h1>
         </div>
-    );
+
+        <Tabs>
+          <TabList className=" sm:flex  gap-4 mb-8 border-b-2 border-gray-200 border-none">
+            <Tab className="cursor-pointer px-4 py-2 my-2 bg-[#EAECF0] border border-gray-300  rounded hover:bg-blue-500 hover:text-white focus:outline-none" selectedClassName="bg-blue-500 text-white font-semibold">
+             Web Development
+            </Tab>
+            <Tab className="cursor-pointer px-4 py-2 my-2 bg-[#EAECF0] border border-gray-300 rounded hover:bg-blue-500 hover:text-white focus:outline-none" selectedClassName="bg-blue-500 text-white font-semibold">
+              App Development
+            </Tab>
+            <Tab className="cursor-pointer px-4 py-2 my-2 bg-[#EAECF0] border border-gray-300 rounded hover:bg-blue-500 hover:text-white focus:outline-none" selectedClassName="bg-blue-500 text-white font-semibold">
+                  Cyber Security
+            </Tab>
+            <Tab className="cursor-pointer px-4 py-2 my-2 bg-[#EAECF0] border border-gray-300 rounded hover:bg-blue-500 hover:text-white focus:outline-none" selectedClassName="bg-blue-500 text-white font-semibold">
+             Design & Multimedia
+            </Tab>
+
+               <Tab className="cursor-pointer px-4 py-2 my-2 bg-[#EAECF0] border border-gray-300 rounded hover:bg-blue-500 hover:text-white focus:outline-none" selectedClassName="bg-blue-500 text-white font-semibold">
+                Digital Marketing
+            </Tab>
+
+
+               <Tab className="cursor-pointer px-4 py-2 my-2 bg-[#EAECF0] border border-gray-300 rounded hover:bg-blue-500 hover:text-white focus:outline-none" selectedClassName="bg-blue-500 text-white font-semibold">
+               Office Management
+            </Tab>
+
+
+          </TabList>
+
+          <TabPanel>
+            <Class_Catagory_tab class_catagory={web_development} />
+          </TabPanel>
+          <TabPanel>
+            <Class_Catagory_tab class_catagory={app_development} />
+          </TabPanel>
+          <TabPanel>
+            <Class_Catagory_tab class_catagory={cyber_security} />
+          </TabPanel>
+          <TabPanel>
+            <Class_Catagory_tab class_catagory={design_and_multimedia} />
+          </TabPanel>
+          <TabPanel>
+            <Class_Catagory_tab class_catagory={digital_marketing} />
+          </TabPanel>
+          <TabPanel>
+            <Class_Catagory_tab class_catagory={office_management} />
+          </TabPanel>
+        </Tabs>
+      </div>
+    </div>
+  );
 };
 
 export default PopulerCourse;

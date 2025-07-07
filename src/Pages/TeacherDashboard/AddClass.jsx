@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../Hooks/useAuth';
@@ -135,10 +136,12 @@ const AddClass = () => {
                     error={!!errors.category}
                     helperText={errors.category ? 'This field is required' : ''}
                   >
-                    <MenuItem value="web & software">Web & Software</MenuItem>
-                    <MenuItem value="design & multimedia">Design & Multimedia</MenuItem>
-                    <MenuItem value="digital marketing">Digital Marketing</MenuItem>
-                    <MenuItem value="office management">Office Management</MenuItem>
+                    <MenuItem value="web_development">Web Development</MenuItem>
+                    <MenuItem value="app_development">App Development</MenuItem>
+                    <MenuItem value="cyber_security">Cyber Security</MenuItem>
+                    <MenuItem value="design_and_multimedia">Design & Multimedia</MenuItem>
+                    <MenuItem value="digital_marketing">Digital Marketing</MenuItem>
+                    <MenuItem value="office_management">Office Management</MenuItem>
                   </TextField>
                 </Grid>
 

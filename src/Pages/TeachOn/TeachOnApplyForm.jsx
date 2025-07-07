@@ -144,11 +144,12 @@ const TeachOnApplyForm = () => {
                     {...register('catagory', { required: true })}
                     defaultValue=""
                   >
-                    <MenuItem value="web development">Web Development</MenuItem>
-                    <MenuItem value="graphics design">Graphics Design</MenuItem>
-                    <MenuItem value="digital marketing">Digital Marketing</MenuItem>
-                    <MenuItem value="video editing">Video Editing</MenuItem>
-                    <MenuItem value="ui/ux design">UI/UX Design</MenuItem>
+                                     <MenuItem value="web_development">Web Development</MenuItem>
+                                      <MenuItem value="app_development">App Development</MenuItem>
+                                      <MenuItem value="cyber_security">Cyber Security</MenuItem>
+                                      <MenuItem value="design_and_multimedia">Design & Multimedia</MenuItem>
+                                      <MenuItem value="digital_marketing">Digital Marketing</MenuItem>
+                                      <MenuItem value="office_management">Office Management</MenuItem>
                   </Select>
                   {errors.catagory && <FormHelperText>Category is required</FormHelperText>}
                 </FormControl>

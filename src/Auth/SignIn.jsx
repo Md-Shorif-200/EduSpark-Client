@@ -37,10 +37,12 @@ const SignIn = () => {
     resolver: yupResolver(schema),
   });
 
-  // SignIn ফর্ম সাবমিট করার জন্য হ্যান্ডলার
+  // SignIn form handeler
   const onSubmit = (data) => {
     signIn(data.email, data.password)
       .then((result) => {
+          console.log(result.data);
+          
         toast.success("Logged in successfully");
         reset();
         navigate(from, { replace: true });
@@ -52,7 +54,7 @@ const SignIn = () => {
 
   return (
     <div className=" mb-14">
-                <CoverImg title={'log In'}></CoverImg>
+                {/* <CoverImg title={'log In'}></CoverImg> */}
       <div className="w-full sm:w-[80%] md:w-[70%] lg:w-[35%] mx-auto mt-20 px-6 lg:px-0">
       <h1 className="text-2xl font-semibold capitalize mb-6 mt-8"> log In Now! </h1>
           <div className="">
