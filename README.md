@@ -59,16 +59,17 @@ eduSpark provides separate dashboards for each user role:
 
 ## Tech Stack
 
-| Category         | Technology             |
-|------------------|------------------------|
-| Frontend         | React, Tailwind CSS    |
-| Backend          | Node.js, Express.js    |
-| Database         | MongoDB                |
-| Authentication   | Firebase Auth, JWT     |
-| Deployment       | Vercel (Client), Render (Server) |
-| State Management | React Context API      |
-| Forms            | React Hook Form        |
-| Animation        | AOS, Framer Motion     |
+| Category         | Technology                         
+|------------------|------------------------            
+| Frontend         | JavaScript, React, Tailwind CSS    
+| Backend          | Node.js, Express.js, REST API                
+| Database         | MongoDB                          
+| Authentication   | Firebase Auth                   
+| Deployment       | Firebase Hosting | Vercel
+| State Management | React Context API      
+| Forms            | React Hook Form        
+| Animation        | AOS, Framer Motion
+| Notification     | React hot-toast, Sweet Alert2     
 
 ---
 
