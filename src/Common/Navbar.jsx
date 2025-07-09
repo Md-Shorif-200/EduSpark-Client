@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import { FaHome, FaSignOutAlt, FaUser } from "react-icons/fa";
 import { MdClose, MdDashboard } from "react-icons/md";
 import { IoMenu } from "react-icons/io5";
 import useRole from "../Hooks/useRole";
+import nav__logo from '../assets/navLogo/nav_logo.png';
 
 const Navbar = () => {
   const { user, logOut } = useAuth(); // context api
@@ -13,21 +14,21 @@ const Navbar = () => {
   // nav Links
   const navLinks = (
     <>
-      <li className="text-lg lg:font-semibold  capitalize py-1 lg:py-0 cursor-pointer">
+      <li className="text-base font-semibold   capitalize mx-4  py-2 lg:py-0 cursor-pointer">
         {" "}
-        <Link to="/">Home</Link>{" "}
+        <NavLink to="/">Home</NavLink>{" "}
       </li>
-      <li className="text-lg lg:font-semibold  capitalize py-1 lg:py-0 cursor-pointer">
+      <li className="text-base font-semibold   capitalize mx-4  py-2 lg:py-0 cursor-pointer">
         {" "}
-        <Link to="/allClass">All Class</Link>{" "}
+        <NavLink to="/allClass">All Class</NavLink>{" "}
       </li>
-      <li className="text-lg lg:font-semibold  capitalize py-1 lg:py-0 cursor-pointer">
+      <li className="text-base font-semibold   capitalize mx-4  py-2 lg:py-0 cursor-pointer">
         {" "}
-        <Link to="/TeachOn">Teach On </Link>{" "}
+        <NavLink to="/TeachOn">Teach On </NavLink>{" "}
       </li>
-      <li className="text-lg lg:font-semibold  capitalize py-1 lg:py-0 cursor-pointer">
+      <li className="text-base font-semibold   capitalize mx-4  py-2 lg:py-0 cursor-pointer">
         {" "}
-        <Link to="/contact">Contact</Link>{" "}
+        <NavLink to="/contact">Contact</NavLink>{" "}
       </li>
     </>
   );
@@ -37,21 +38,21 @@ const Navbar = () => {
     <>
       <Link
         to="/profile"
-        className="text-lg  lg:font-semibold capitalize flex items-center gap-x-3 px-2 pt-6 pb-2 hover:bg-gray-100"
+        className="text-base font-semibold   capitalize flex items-center gap-x-3 px-2 pt-6 pb-2 hover:bg-gray-100"
       >
         {" "}
         <FaUser></FaUser> Profile
       </Link>
       <Link
         to="/dashboard"
-        className="text-lg  lg:font-semibold capitalize flex items-center gap-x-3 p-2 hover:bg-gray-100"
+        className="text-base font-semibold   capitalize flex items-center gap-x-3 p-2 hover:bg-gray-100"
       >
         {" "}
         <MdDashboard></MdDashboard> dashboard
       </Link>
       <Link
         onClick={logOut}
-        className="text-lg  lg:font-semibold capitalize flex items-center gap-x-3 px-2 pb-6 pt-2 hover:bg-gray-100"
+        className="text-base font-semibold   capitalize flex items-center gap-x-3 px-2 pb-6 pt-2 hover:bg-gray-100"
       >
         {" "}
         <FaSignOutAlt></FaSignOutAlt> Logout
@@ -66,11 +67,12 @@ const Navbar = () => {
 
   return (
     <div className=" bg-base-100 shadow-sm sticky top-0 z-50">
-      <div className="navbar px-4 sm:px-6 md:px-16 2xl:px-22   py-3 relative">
-        <div className="navbar-start">
-          <a className="btn btn-ghost text-xl">EduSpark</a>
+      <div className="navbar px-4 sm:px-6 md:px-16 2xl:px-22  py-3 relative">
+        <div className="navbar-start flex items-center">
+            <img src={nav__logo} alt="" className="w-[60px] h-[60px]" />
+          <h2 className="text-xl font-semibold">EduSpark</h2>
         </div>
-        <div className="navbar-center hidden lg:flex">
+        <div className="nav_link navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             {/* nav links */}
             {navLinks}
@@ -92,7 +94,7 @@ const Navbar = () => {
             {/* responsive nav menu */}
             <div
               tabIndex={0}
-              className={`responsive_nav_links  h-[100vh] bg-black/30  absolute left-0 top-0 transition-all duration-300 ease-in-out ${
+              className={`  h-[100vh] bg-black/30  absolute left-0 top-0 transition-all duration-300 ease-in-out ${
                 isActive ? "w-full " : "w-0 overflow-hidden"
               } `}
               onClick={() => setIsActive(false)}
@@ -102,7 +104,7 @@ const Navbar = () => {
                   isActive ? "w-[80%]" : "w-0 overflow-hidden"
                 }`}
               >
-                <div className="flex justify-between items-center pt-2 mb-6 ">
+                <div className=" flex justify-between items-center pt-2 mb-6 ">
                   <a className="btn btn-ghost text-xl ">EduSpark</a>
 
                   <MdClose
@@ -111,7 +113,7 @@ const Navbar = () => {
                   ></MdClose>
                 </div>
 
-                <ul> {navLinks} </ul>
+                <ul className="nav_link"> {navLinks} </ul>
 
                 <div className="divider"></div>
 
@@ -120,7 +122,7 @@ const Navbar = () => {
                   <div className="img flex items-center gap-x-3">
                     <img
                       src={user?.photoURL}
-                      className="w-[50px] h-[50px] rounded-full border border-gray-200"
+                      className="w-[40px] h-[40px] rounded-full border border-gray-200"
                       alt="image"
                     />
                     <div>

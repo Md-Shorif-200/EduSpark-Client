@@ -7,7 +7,7 @@ const useWhisList = () => {
     const axiosPublic = useAxiosPublic();
 
     const {data : whislists = [],refetch,isLoading} = useQuery({
-      queryKey : 'whislists',
+      queryKey : ['whislists'],
       queryFn :  async () => {
            const res =  await axiosPublic.get('/api/whislists')
 

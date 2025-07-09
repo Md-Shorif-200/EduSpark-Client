@@ -16,7 +16,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Loading from "../Common/Loading";
 import CoverImg from "../Common/CoverImg";
 
-// পাসওয়ার্ড ভ্যালিডেশন রিজেক্স
+// regex password validation
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
 
 // Yup validation schema
@@ -31,7 +31,7 @@ const schema = yup.object().shape({
 });
 
 const SignUp = () => {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm({
+  const { register, handleSubmit , reset, formState: { errors ,isSubmitting} } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -43,7 +43,6 @@ const SignUp = () => {
 
   // Handle Form Submission
   const onSubmit = async (data) => {
-    setLoading(true);
 
     try {
       const imageFile = data.image[0];
@@ -82,7 +81,7 @@ const SignUp = () => {
     } catch (error) {
       toast.error(error.message || "Something went wrong!");
     } finally {
-      setLoading(false);
+
     }
   };
 
@@ -97,10 +96,7 @@ const SignUp = () => {
 
               <h1 className="text-2xl font-semibold capitalize mb-6 mt-8"> Sign Up now! </h1>
 
-            {loading ? (
-                  <Loading></Loading>
-            ) : (
-              <form onSubmit={handleSubmit(onSubmit)}>
+             <form onSubmit={handleSubmit(onSubmit)}>
                 
                 {/* Name Input */}
                 <div className="mb-3">
@@ -143,14 +139,30 @@ const SignUp = () => {
                 </div>
 
                 {/* Sign Up Button */}
-                <button className="btn w-full  primary_bg_color text-white my-2">Sign Up</button>
+
+                    {
+                      isSubmitting ? <>
+
+                      <button className="btn w-full ">
+  <span className="loading loading-spinner"></span>
+  Submitting
+</button>
+               
+                      
+                      </> 
+                      :
+                       <>
+                      <button className="btn w-full  primary_bg_color text-white my-2">
+                        Sign Up
+                </button>
+                       </>
+                    }
 
                 {/* log In Redirect */}
                 <div className="my-2 text-center">
                   <p className="my-2 text-xl">Already have an account? <Link className="text-green-700 font-bold" to="/signIn">log In</Link></p>
                 </div>
               </form>
-            )}
           </div>
 
         </div>

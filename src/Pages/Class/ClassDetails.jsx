@@ -59,7 +59,7 @@ const ClassDetails = () => {
 <div className="class_cnt bg-[#F2F7FD] px-2 lg:px-16">
                     <p className="subtitle text-gray-400  items-center pt-4 hidden lg:flex">    <RiHome2Line></RiHome2Line>/ <span> {classDetails?.category} </span>/ <span>{classDetails?.title} </span>  </p>
 
-                    <div className="w-[16%] bg-[#39B8AD] px-2 py-1 text-white text-center rounded-xl font-semibold mt-16 hidden md:block">  {classDetails?.category} </div>
+                    <div className="w-[16%] primary_bg_color px-2 py-1 text-white text-center rounded-xl font-semibold mt-16 hidden md:block">  {classDetails?.category} </div>
                   <h1 className='text-3xl font-bold mt-4 capitalize secondary_text_color'> {classDetails?.title} </h1>
                 
                 <div className='block md:flex gap-10 items-center capitalize  py-8 secondary_text_color'>
@@ -170,7 +170,7 @@ alt={classDetails?.title}
 </figure>
 <div className="px-4 lg:px-8  py-4">
 <div className="w-full">
-<Link to={`/payment/${classDetails?._id}`} className="btn_secondary w-full my-4">Enroll now</Link>
+<Link to={`/payment/${classDetails?._id}`} > <button className="primary_btn my-4 uppercase"> <span>enroll now</span></button> </Link>
 </div>
 <h2 className="card-title my-4">This Course Includes : </h2>
 
@@ -225,44 +225,3 @@ export default ClassDetails;
 
 
 
-
-
-
-
-
-
-
-
-
-
-    {/* <div className="course_cnt">
-              <h1> {title} </h1>
-               <div className="course_cnt_cards">
-                        <div className="card">
-                            <h2> duration </h2>
-                            <p>  {duration} </p>
-                        </div>
-
-                        <div className="card">
-                            <h2> Lectures </h2>
-                            <p>  {totalLectures} </p>
-                        </div>
-
-                        <div className="card">
-                            <h2> Projects </h2>
-                            <p>  {totalProjects} </p>
-                        </div>
-
-
-               </div>
-               <div className="course_desc">
-                <p> {description} </p>
-               </div>
-
-               <div>
-                  <button className="btn">enroll now</button>
-               </div>
-    </div>
-    <div className="course_img">
-                <img src={image} alt="" />
-    </div> */}

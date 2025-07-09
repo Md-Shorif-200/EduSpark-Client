@@ -34,6 +34,8 @@ import MyOrders from "../Pages/StudentDashboard/MyOrders";
 import Profile from '../Common/Profile';
 import MyClassDetailsPage from '../Pages/TeacherDashboard/MyClassDetailsPage';
 import WhisLists from '../Componets/WhisLists';
+import Contact from '../Pages/Contact';
+import DashboardRedirect from '../Layout/DashboardRedirect';
 
 
 
@@ -92,6 +94,10 @@ const router = createBrowserRouter([
            path : '/whisLists',
            element : <WhisLists></WhisLists>
 
+         },
+         {
+          path : '/contact',
+          element : <Contact></Contact>
          }
       ]
     },
@@ -104,8 +110,20 @@ const router = createBrowserRouter([
       children  : [
           {
             path : '/dashboard',
-            element : <MyEnrollMent></MyEnrollMent>
+            element : <DashboardRedirect></DashboardRedirect>
           },
+          {
+            path :'/dashboard/admin',
+            element : <Users></Users>
+          },
+           {
+            path : '/dashboard/student',
+            element : <MyEnrollMent></MyEnrollMent>
+           },
+           {
+            path : 'dashboard/teacher',
+            element :  <AddClass></AddClass> 
+           },
         {
             path : 'teacherRequest',
             element : <PrivateRoute>

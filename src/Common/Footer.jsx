@@ -19,7 +19,7 @@ const Footer = () => {
 
         {/* Brand Section */}
         <div>
-          <h2 className="text-2xl font-bold text-[#F4B400]">ECADEMIX</h2>
+          <h2 className="text-2xl font-bold text-[#F4B400]">EduSpark</h2>
           <p className="mt-4 text-sm text-gray-300">
             Empowering learners with quality online education. Learn anywhere, anytime.
           </p>

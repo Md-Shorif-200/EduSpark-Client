@@ -72,9 +72,7 @@
 }
 
 
-/* .btn_secondary {
-   @apply btn btn-accent font-semibold 
-} */
+
 
 .animate_title {
     background-color: white;
@@ -93,73 +91,53 @@
     background-color: rgba(0, 0, 0, 0.603);
 }
 
-.loading_spiner{
-    
-}
 /*! common section ends */
 
-/* navigation section  */
 
- .navbar {
-    background-color: white;
-           /* background-color: var(--Primary); */
-           box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
-        
-          z-index: 10;
- }
-
-.navbar ul li {
-    margin-left: 15px;
- 
-    }
-    nav button {
-        font-size: 14px;
-       font-weight: 600;
-        text-transform: uppercase;
-        
-        }
-
-     
-
-        
-     
-    
+/* .navbar ul li a.active {
+     @apply text-blue-500
+} */
 
 
-
-.avatar img {
-    width: 40px;
-    height: 40px;
-}
-
-.navbar .dropdown_cnt,.dropdown-content{
-   width: 220px;
-      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-      z-index: 50;
-  
-}
-
-
-/* ! profile section */
-.profile_img_card  {
-background-color: white;
-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-
-
+.navbar .nav_link a {
+  position: relative;
+  display: inline-block;
+  background-color: transparent;
+  padding: 3px 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 
 
-/* faculty section */
+.navbar .nav_link a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #2563eb;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease-in-out;
+}
 
-.faculty_card {
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    transition: .3s all;
+.navbar .nav_link a:hover::after {
+  transform: scaleX(1);
 }
-.faculty_card:hover{
-    background-color: var(--Primary);
-    color: white;
+
+.navbar .nav_link a.active {
+  color: #2563eb;
 }
+
+.navbar .nav_link a.active::after {
+  transform: scaleX(1);
+}
+
 
 
 
@@ -226,58 +204,7 @@ border-radius: 20px;
     text-transform: capitalize;
 }
 
-/* partners */
 
-.Our_partners .description p{
-margin: 10px;
- color : rgba(0, 0, 0, 0.596)
-}
-.overview_cards .card-body {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-    height: 100%;
-}
-.overview_container .right_side  {
-     
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-
-}
-
-
-.inspire_teacher .inspire_img {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-
-}
-
-.inspire_teacher .inspire_cnt {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-
-}
-
-
-.exclusive_cards .card {
-     height:  330px;
-     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-     text-align: center;
-     text-transform: capitalize;
-     font-weight: 600;
-
-}
-.exclusive_cards  .logo{
-  
-    overflow: hidden;
-}
-.exclusive_cards  .logo p {
-
-    font-size: 30px;
-        margin: 10px 0;
-        transform: translateX(40%);
-        color : #292865;
-}
-.exclusive_cards  .desc {
-    font-size : 14px ;
-    color : rgba(0, 0, 0, 0.719);
-    line-height: 23px;
-}
 
 
 
