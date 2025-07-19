@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import Navbar from '../Common/Navbar';
+
 import Footer from '../Common/Footer';
 import Heading from '../Common/Heading';
 import Loading from '../Common/Loading';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // aos css import
+import Navbar from '../Common/Navbar/Navbar';
 
 const MainLayout = () => {
 

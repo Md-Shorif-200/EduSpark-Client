@@ -99,7 +99,7 @@
 } */
 
 
-.navbar .nav_link a {
+.nav_link a {
   position: relative;
   display: inline-block;
   background-color: transparent;
@@ -113,7 +113,7 @@
 
 
 
-.navbar .nav_link a::after {
+ .nav_link a::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -126,15 +126,15 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.navbar .nav_link a:hover::after {
+ .nav_link a:hover::after {
   transform: scaleX(1);
 }
 
-.navbar .nav_link a.active {
+ .nav_link a.active {
   color: #2563eb;
 }
 
-.navbar .nav_link a.active::after {
+ .nav_link a.active::after {
   transform: scaleX(1);
 }
 

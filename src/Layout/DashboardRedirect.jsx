@@ -5,8 +5,8 @@ import { Navigate } from 'react-router-dom';
 
 const DashboardRedirect = () => {
       const [data,refetch,isLoading]= useRole();
-      const role = data.role;
-      console.log(role);
+      const role = data?.role;
+
       
       if(isLoading || !role){
             return <Loading></Loading>

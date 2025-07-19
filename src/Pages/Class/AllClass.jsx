@@ -8,10 +8,10 @@ import axios from "axios";
 import useClass from "../../Hooks/useClass";
 
 const AllClass = () => {
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("");
   const axiosPublic = useAxiosPublic();
-  const [classes,refetch,isLoading] =  useClass(search,filter)
+  const [classes,refetch,isLoading] =  useClass(filter)
 
   //  get approved class
   const approvedClasses = classes.filter((Class) => Class.status == "approved");
@@ -24,6 +24,11 @@ const AllClass = () => {
   };
 
 
+  if(isLoading){
+    return  <Loading></Loading>
+  }
+
+
 
   return (
     <div className="All_classes mb-30  common_padding">
@@ -33,7 +38,7 @@ const AllClass = () => {
       <div className="my-12 ">
         <div className=" w-full  md:flex justify-end items-center  gap-4 mb-6 ">
           {/* Search Input */}
-          <div className="w-full md:w-1/3">
+          {/* <div className="w-full md:w-1/3">
             <div className="relative">
               <input
                 type="text"
@@ -56,7 +61,7 @@ const AllClass = () => {
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
             </div>
-          </div>
+          </div> */}
 
           {/* Filter by Category */}
           <div className="w-full md:w-1/4 my-6 ">

@@ -92,7 +92,7 @@ const ClassCard = ({ approvedClass }) => {
 
   return (
     // course card
-    <div className="populer_course_card" data-aos="fade-up">
+    <div className="populer_course_card">
       <div className="class_card bg-base-100 w-full shadow-sm ">
         <figure>
           <img

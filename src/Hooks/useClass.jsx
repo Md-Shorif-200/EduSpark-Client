@@ -2,13 +2,13 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import useAxiosSecure from './useAxiosSecure';
 
-const useClass = (search='',filter='') => {
+const useClass = (filter='') => {
     const axiosSecure = useAxiosSecure();
 
     const {data : classes = [],refetch,isLoading}  = useQuery({
-         queryKey : ['classes',search,filter],
+         queryKey : ['classes',filter],
          queryFn : async () => {
-            const res = await axiosSecure.get( `/classes?search=${search}&filter=${filter}`);
+            const res = await axiosSecure.get( `/classes?filter=${filter}`);
 
              return res.data
          }
