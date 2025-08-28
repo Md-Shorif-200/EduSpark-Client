@@ -24,9 +24,9 @@ createRoot(document.getElementById('root')).render(
             <AuthProvider>
           <QueryClientProvider client={queryClient}>
                     {/* react router dom */}
-          <div>
+     
           <RouterProvider router={router} />
-          </div>
+     
           {/* <Toaster></Toaster> */}
           <Toaster ></Toaster>
           </QueryClientProvider>

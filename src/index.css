@@ -17,37 +17,61 @@
 }
 
 
-
-
-/* css color variable */
 :root {
-/* --Primary: #39B8AD ; */
---Secondary: #F9F9F9 ;
-
---Text: #333333 ;
---Accent: #F05454 ;
+  /* Primary */
+  --primary: #3B82F6;
+  
+  /* Buttons */
+  --btn-primary: #3B82F6;
+  --btn-primary-hover: #2563EB;
+  --btn-secondary: #FFFFFF;
+  
+  /* Borders */
+  --border-light: #E2E8F0;
+  --border-medium: #CBD5E1;
 }
 
-.primary_bg_color {
-   @apply bg-blue-500
-}
-.secondary_bg_color {
-    background-color: var(--Secondary);
+
+
+/* --------------- common color ----------- */
+
+ .text_primary {
+    @apply text-[#3B82F6]
+ }
+ .bg_primary {
+    @apply bg-[#3B82F6]
+ }
+
+ .bg_main{
+    @apply bg-[#FFFFFF]
+ }
+
+ .bg_secondary{
+    @apply bg-[#F8FAFC]
+ }
+
+
+  
+/* -------- title */
+
+.title_color {
+  @apply text-[#1E293B];
+  font-weight: 700;
 }
 
-.primary_text_color {
- @apply text-blue-500
-}
-.secondary_text_color {
-    color: var(--Text);
+.subtitle_color {
+    @apply text-[#475569];
+    font-weight: 600;
 }
 
-.accent_bg_color {
-    background-color: var(--Accent);
+.paragraph_color {
+    @apply text-[#64748B];
+  font-weight: 400;
+  line-height: 1.6;
 }
 
-.warning{
-    color: var(--Accent);
+.text_muted {
+    @apply text-[#94A3B8]
 }
 
 
@@ -99,7 +123,7 @@
 } */
 
 
-.nav_link a {
+/* .nav_link a {
   position: relative;
   display: inline-block;
   background-color: transparent;
@@ -128,7 +152,7 @@
 
  .nav_link a:hover::after {
   transform: scaleX(1);
-}
+} */
 
  .nav_link a.active {
   color: #2563eb;

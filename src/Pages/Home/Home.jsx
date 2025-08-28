@@ -27,7 +27,7 @@ const Home = () => {
                {/* <AboutUs></AboutUs> */}
                {/* <EducationFaculties></EducationFaculties> */}
                {/* <Partners></Partners> */}
-               <Statistics></Statistics>
+               {/* <Statistics></Statistics> */}
                {/* <Feedback></Feedback> */}
                {/* <PlatformOverview></PlatformOverview> */}
                {/* <InspireAsTeacher></InspireAsTeacher> */}

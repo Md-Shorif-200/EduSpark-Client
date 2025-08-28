@@ -4,13 +4,14 @@ import img_1 from "../../assets/banner-img/happy-teacher-talking-with-her-studen
 
 const Banner = () => {
   const [isOpen, setIsOpen] = useState(false);
+  // bg-gradient-to-br from-[#39b8ae41] via-transparent to-transparent
 
   return (
-    <div className="w-full bg-gradient-to-br from-[#39b8ae41] via-transparent to-transparent common_padding">
-      <div className="w-full max-w-7xl mx-auto px-4 md:px-10 flex flex-col lg:flex-row items-center gap-6 py-10 md:py-16 lg:py-24">
+    <div className="w-full bg-gradient-to-br from-[#39b8ae41] via-transparent to-transparent common_padding lg:min-h-screen">
+      <div className="w-full  flex flex-col lg:flex-row justify-between items-center gap-6 py-10 md:py-16 lg:py-30 ">
         {/* Left Content */}
-        <div className="w-full lg:w-1/2 space-y-6 text-center lg:text-left" data-aos="fade-right">
-          <h3 className="text-lg font-medium primary_text_color">33% off today</h3>
+        <div className="w-full lg:w-1/2 space-y-6 text-center lg:text-left " data-aos="fade-right">
+          <h3 className="bg-blue-500 w-[60%] sm:w-[50%]  px-4 py-1  text-lg text-white rounded-2xl capitalize">25% OFF | Life Time Access</h3>
           <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold leading-tight">
             Education Creates <br /> a Better <span className="primary_text_color">Future</span>
           </h1>
@@ -29,7 +30,7 @@ const Banner = () => {
         </div>
 
         {/* Right Side - Video Section */}
-        <div className="w-full lg:w-1/2" data-aos="fade-left" data-aos-delay="200">
+        <div className="w-full lg:w-1/2 my-10 md:my-0" data-aos="fade-left" data-aos-delay="200">
           <div className="relative mx-auto max-w-md md:max-w-lg cursor-pointer rounded-xl overflow-hidden shadow-md" onClick={() => setIsOpen(true)}>
             <img
               src={img_1}
