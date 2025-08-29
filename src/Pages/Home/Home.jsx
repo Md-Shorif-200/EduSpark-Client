@@ -3,7 +3,7 @@ import React from 'react';
 // import ChatForm from "../../Common/chatForm";
 // import ShadcnUi from "../../Common/ShadcnUi";
 import AboutUs from "./AboutUs";
-import Banner from "./Banner";
+
 import EducationFaculties from "./EducationFaculties";
 import ExclusiveSolution from "./ExclusiveSolution";
 import Feedback from "./Feedback";
@@ -14,6 +14,7 @@ import PopulerCourse from "./PopulerCourse";
 import Statistics from "./Statistics";
 import SuccessHistory from "./SuccesStory";
 import Motivational_Intro from './Motivational_Intro';
+import Banner from './Banner/Banner';
 
 
 const Home = () => {

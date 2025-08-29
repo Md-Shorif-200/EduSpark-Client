@@ -56,11 +56,14 @@ const MobileSidebar = ({
 
           {/* Navigation Links */}
           <div className="flex-1 p-6">
-            <nav className="space-y-2">
-              <div onClick={closeSidebar}>
-                <Navlinks />
-              </div>
-            </nav>
+          <nav className="nav_link space-y-2">
+  <ul className="list-none">
+    <div onClick={closeSidebar}>
+      <Navlinks />
+    </div>
+  </ul>
+</nav>
+
 
             <div className="divider"></div>
 

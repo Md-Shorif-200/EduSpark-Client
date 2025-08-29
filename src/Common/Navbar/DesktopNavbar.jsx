@@ -25,7 +25,7 @@ const DesktopNavbar = ({ user, isDarkMode, handleThemeToggle, handleMenuIcon }) 
         </div>
       </div>
 
-      <div className="hidden lg:flex">
+      <div className="nav_link hidden lg:flex">
         <ul className="menu menu-horizontal px-1 gap-2">
           <Navlinks />
         </ul>

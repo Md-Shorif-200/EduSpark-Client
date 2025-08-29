@@ -17,6 +17,8 @@
 }
 
 
+
+
 :root {
   /* Primary */
   --primary: #3B82F6;
@@ -43,12 +45,23 @@
  }
 
  .bg_main{
-    @apply bg-[#FFFFFF]
+    @apply bg-[#FFFFFF] opacity-90
  }
 
  .bg_secondary{
     @apply bg-[#F8FAFC]
  }
+
+ /* .banner_bg {
+background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+ } */
+ .banner_bg {
+    background: linear-gradient(to right, #bbdefb 0%, #e3f2fd 50%, #ffffff 100%);
+
+ }
+ /* .banner_bg {
+  background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+ } */
 
 
   
@@ -95,6 +108,76 @@
     @apply bg-blue-500 w-[60%] sm:w-[50%] md:w-[45%] lg:w-[35%] px-4 py-1  text-lg text-white rounded-2xl capitalize
 }
 
+/*------------- common button */
+
+.primary_btn {
+  background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.primary_btn:hover {
+  background: linear-gradient(135deg, #1D4ED8 0%, #1E40AF 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.primary_btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.secondary_btn {
+  background: linear-gradient(135deg, white 0%, #F8FAFC 100%);
+  color: #3B82F6;
+  border: 2px solid #3B82F6;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.secondary_btn:hover {
+  background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+}
+
+.secondary_btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+}
+
+/* Optional: Add a subtle shine effect */
+.primary_btn::before,
+.secondary_btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.primary_btn:hover::before,
+.secondary_btn:hover::before {
+  left: 100%;
+}
 
 
 
@@ -154,14 +237,24 @@
   transform: scaleX(1);
 } */
 
- .nav_link a.active {
-  color: #2563eb;
+
+ .nav_link li:hover {
+   @apply bg-blue-500 text-white rounded-sm
 }
 
+
+
+ .nav_link a.active {
+   @apply bg-blue-500 text-white
+}
+/* 
  .nav_link a.active::after {
   transform: scaleX(1);
-}
+} */
 
+ ul {
+  @apply list-none pl-0 m-0;
+}
 
 
 
@@ -268,102 +361,18 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
- .primary_btn  {
-@apply btn ;
- cursor: pointer;
- font-family: inherit;
-
- position: relative;
- display: inline-block;
- letter-spacing: 0.05rem;
- font-weight: 700;
- overflow: hidden;
- background: black;
- color: ghostwhite;
-}
-
- .primary_btn span {
- position: relative;
- z-index: 10;
- transition: color 0.4s;
-}
-
- .primary_btn:hover span {
- color: white;
-}
-
- .primary_btn::before,
- .primary_btn::after {
- position: absolute;
- top: 0;
- left: 0;
- width: 100%;
- height: 100%;
- z-index: 0;
-}
-
- .primary_btn::before {
-@apply bg-blue-500;
- content: "";
- width: 120%;
- left: -10%;
- transform: skew(30deg);
- transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
-}
-
- .primary_btn:hover::before {
- transform: translate3d(100%, 0, 0);
-}
 
 
-/* btn -2 */
 
- .secondary_btn  {
-@apply btn  border border-blue-500 ;
- cursor: pointer;
- font-family: inherit;
- position: relative;
- display: inline-block;
- letter-spacing: 0.05rem;
- font-weight: 700;
- overflow: hidden;
- background: black;
- color: black;
-}
+ 
 
- .secondary_btn span {
- position: relative;
- z-index: 10;
- transition: color 0.4s;
-}
 
- .secondary_btn:hover span {
- color: white;
-}
 
- .secondary_btn::before,
- .secondary_btn::after {
- position: absolute;
- top: 0;
- left: 0;
- width: 100%;
- height: 100%;
- z-index: 0;
-}
+ 
 
- .secondary_btn::before {
- content: "";
- background: white;
- width: 120%;
- left: -10%;
- transform: skew(30deg);
- transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
-}
 
- .secondary_btn:hover::before {
- transform: translate3d(100%, 0, 0);
-}
 
+ 
 /* motivational_intro */
 .motivational_intro .img_section .card .overlay_info {
     width: 100%;

@@ -15,7 +15,7 @@ const Navbar = () => {
   const closeSidebar = () => setIsActive(false);
 
   return (
-    <div className="bg-white dark:bg-gray-900 shadow-lg border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50 transition-all duration-300">
+    <div className="bg-white dark:bg-gray-900 shadow-xs border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50 transition-all duration-300">
       <DesktopNavbar
         user={user}
         isDarkMode={isDarkMode}
