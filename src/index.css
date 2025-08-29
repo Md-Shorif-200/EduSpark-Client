@@ -56,7 +56,11 @@
 background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
  } */
  .banner_bg {
-    background: linear-gradient(to right, #bbdefb 0%, #e3f2fd 50%, #ffffff 100%);
+
+ @apply bg-blue-100
+/* @apply bg-[#A4DDED] */
+/* @apply bg-[#89CFF0] */
+/* @apply bg-[#AFEEEE] */
 
  }
  /* .banner_bg {
@@ -393,6 +397,53 @@ input[type="number"] {
 
 
 
+/* ! populer section */
+/* Override react-tabs default styles */
+.react-tabs__tab-list {
+  border-bottom: none !important;
+  margin: 0 !important;
+}
+
+.react-tabs__tab {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.react-tabs__tab--selected {
+  border: none !important;
+}
+
+.react-tabs__tab:focus {
+  box-shadow: none !important;
+}
+
+.react-tabs__tab-panel {
+  display: none;
+}
+
+.react-tabs__tab-panel--selected {
+  display: block;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
 
 
 
