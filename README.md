@@ -7,8 +7,8 @@ EduSpark is a clean, user-friendly online learning platform built with the MERN 
 #### admin email : jubayer.hossain4@gmail.com
 #### password : Jubayer12$$
 ------
-#### Teacher email : asif.uddin897@gmail.com
-#### Password : Asif&897
+#### Teacher email : allen23@gmail.com
+#### Password : Allen12%$
 
 
 
