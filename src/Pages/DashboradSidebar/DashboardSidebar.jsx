@@ -9,7 +9,10 @@ import Loading from '../../Common/Loading';
 const DashboardSidebar = () => {
 
          const [data,isLoading] = useRole();
+         console.log(data);
+         
          const role = data?.role;
+          console.log(role)
 
            if(isLoading){
              <Loading></Loading>

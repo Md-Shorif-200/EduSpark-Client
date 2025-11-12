@@ -36,7 +36,8 @@ const AllClass = () => {
       {/* <h1>         total claass  :{approvedClasses.length} </h1> */}
 
       <div className="my-12 ">
-        <div className=" w-full  md:flex justify-end items-center  gap-4 mb-6 ">
+    <div className="hidden">
+           <div className=" w-full  md:flex justify-end items-center  gap-4 mb-6   ">
           {/* Search Input */}
           {/* <div className="w-full md:w-1/3">
             <div className="relative">
@@ -92,6 +93,7 @@ const AllClass = () => {
             </button>
           </div>
         </div>
+    </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-8  ">

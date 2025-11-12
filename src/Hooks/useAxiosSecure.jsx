@@ -4,7 +4,7 @@ import React from 'react';
 const useAxiosSecure = () => {
 
     const axiosSecure = axios.create({
-        baseURL : 'http://localhost:5000/'
+        baseURL : 'https://edu-spark-server-lake.vercel.app/'
     })
     return  axiosSecure;
 };

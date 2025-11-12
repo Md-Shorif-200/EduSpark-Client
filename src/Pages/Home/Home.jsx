@@ -25,10 +25,10 @@ const Home = () => {
                <Banner></Banner>
                <PopulerCourse></PopulerCourse>
                                 <Motivational_Intro></Motivational_Intro>
-               {/* <AboutUs></AboutUs> */}
+               <AboutUs></AboutUs>
                {/* <EducationFaculties></EducationFaculties> */}
                {/* <Partners></Partners> */}
-               {/* <Statistics></Statistics> */}
+               <Statistics></Statistics>
                {/* <Feedback></Feedback> */}
                {/* <PlatformOverview></PlatformOverview> */}
                {/* <InspireAsTeacher></InspireAsTeacher> */}
