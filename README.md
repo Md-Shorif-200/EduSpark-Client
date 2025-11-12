@@ -4,11 +4,11 @@ EduSpark is a clean, user-friendly online learning platform built with the MERN 
 ####  Live Link : [Clice Here](https://eduspark-3990d.web.app/)
 ####  Server-side Github : https://github.com/Md-Shorif-200/EduSpark-Server
 
-#### admin email : jubayer.hossain456@gmail.com
-#### password : Jubayer#345
+#### admin email : jubayer.hossain4@gmail.com
+#### password : Jubayer12$$
 ------
-#### Teacher email : asif.uddin897@gmail.com
-#### Password : Asif&897
+#### Teacher email : allen23@gmail.com
+#### Password : Allen12%$
 
 
 
