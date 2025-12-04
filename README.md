@@ -61,7 +61,7 @@ eduSpark provides separate dashboards for each user role:
 
 | Category         | Technology                         
 |------------------|------------------------            
-| Frontend         | JavaScript, React, Tailwind CSS    
+| Frontend         | JavaScript, React, Tailwind CSS,Daisy Ui    
 | Backend          | Node.js, Express.js, REST API                
 | Database         | MongoDB                          
 | Authentication   | Firebase Auth                   
