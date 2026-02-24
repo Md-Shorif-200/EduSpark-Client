@@ -35,16 +35,16 @@ const DesktopNavbar = ({ user, isDarkMode, handleThemeToggle, handleMenuIcon }) 
       <div className="flex items-center gap-x-2 sm:gap-x-4">
         
         {/* Theme Toggle */}
-        <button
+        {/* <button
           onClick={handleThemeToggle}
-          className="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          className="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors "
         >
           {isDarkMode ? (
             <IoSunny className="text-xl text-yellow-500" />
           ) : (
             <IoMoon className="text-xl text-gray-600" />
           )}
-        </button>
+        </button> */}
 
         {/* Mobile Menu Icon */}
         <div className="lg:hidden">

@@ -1,70 +1,52 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { FaChalkboardTeacher, FaUsers, FaClipboardList, FaHome } from 'react-icons/fa';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { FaChalkboardTeacher, FaUsers, FaClipboardList, FaHome } from "react-icons/fa";
+
+const menuItems = [
+  { to: "teacherRequest", icon: FaChalkboardTeacher, label: "Teacher Request" },
+  { to: "users", icon: FaUsers, label: "Users" },
+  { to: "RequestedClass", icon: FaClipboardList, label: "All Classes" },
+];
+
+const linkClass = ({ isActive }) =>
+  `flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+    isActive
+      ? "bg-indigo-600 text-white shadow-md shadow-indigo-200"
+      : "text-gray-600 hover:bg-indigo-50 hover:text-indigo-600"
+  }`;
 
 const AdminMenu = () => {
-    return (
-        <div className='dashboard_menu bg-base-200 min-h-screen w-70 md:w-80 p-4'>
-            <h2 className="text-xl font-bold mb-6 text-center text-primary">Admin Panel</h2>
-            <ul className="bg-base-200 shadow-md rounded-xl min-h-full w-full md:w-60 lg:w-72 p-4 space-y-2 text-base-content">
-                <li>
-                    <NavLink
-                        to="teacherRequest"
-                        className={({ isActive }) =>
-                            `flex items-center gap-3 p-3 rounded-lg transition-all duration-200 hover:bg-primary hover:text-white ${
-                                isActive ? 'bg-primary text-white font-semibold' : ''
-                            }`
-                        }
-                    >
-                        <FaChalkboardTeacher size={18} />
-                        Teacher Request
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to="users"
-                        className={({ isActive }) =>
-                            `flex items-center gap-3 p-3 rounded-lg transition-all duration-200 hover:bg-primary hover:text-white ${
-                                isActive ? 'bg-primary text-white font-semibold' : ''
-                            }`
-                        }
-                    >
-                        <FaUsers size={18} />
-                        Users
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to="RequestedClass"
-                        className={({ isActive }) =>
-                            `flex items-center gap-3 p-3 rounded-lg transition-all duration-200 hover:bg-primary hover:text-white ${
-                                isActive ? 'bg-primary text-white font-semibold' : ''
-                            }`
-                        }
-                    >
-                        <FaClipboardList size={18} />
-                        All Classes
-                    </NavLink>
-                </li>
+  return (
+    <nav className="px-4 py-6">
+      <p className="px-4 mb-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
+        Admin Panel
+      </p>
+      <ul className="space-y-1">
+        {menuItems.map(({ to, icon: Icon, label }) => (
+          <li key={to}>
+            <NavLink to={to} className={linkClass}>
+              <Icon size={18} />
+              {label}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
 
-                <div className="divider my-3"></div>
+      <div className="my-5 border-t border-gray-100" />
 
-                <li>
-                    <NavLink
-                        to="/"
-                        className={({ isActive }) =>
-                            `flex items-center gap-3 p-3 rounded-lg transition-all duration-200 hover:bg-primary hover:text-white ${
-                                isActive ? 'bg-primary text-white font-semibold' : ''
-                            }`
-                        }
-                    >
-                        <FaHome size={18} />
-                        Home
-                    </NavLink>
-                </li>
-            </ul>
-        </div>
-    );
+      <p className="px-4 mb-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
+        General
+      </p>
+      <ul>
+        <li>
+          <NavLink to="/" className={linkClass}>
+            <FaHome size={18} />
+            Back to Home
+          </NavLink>
+        </li>
+      </ul>
+    </nav>
+  );
 };
 
 export default AdminMenu;

@@ -3,7 +3,7 @@ import React from 'react';
 
 const useAxiosPublic = () => {
     const axiosPublic = axios.create({
-        baseURL : 'https://edu-spark-server-lake.vercel.app/'
+        baseURL : 'http://localhost:5000/'
     })
     return  axiosPublic;
 };

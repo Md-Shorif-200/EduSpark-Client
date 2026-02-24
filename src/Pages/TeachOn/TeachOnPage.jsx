@@ -6,30 +6,23 @@ import TeacherConfirmation from "./TeacherConfirmation";
 import TeachOnApplyForm from "./TeachOnApplyForm";
 
 const TeachOnPage = () => {
-  const [data, isLoading] = useRole();
+  const [data, , isLoading] = useRole();
   const status = data?.status;
+  const role = data?.role;
 
-
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div>
-
-            
-
-
-      {status === "accepted" ? 
-      <>
-      <TeacherConfirmation></TeacherConfirmation>
-      </> :
-       status === "rejected" ? 
-       <>
-        <RejectionMeassage></RejectionMeassage>
-       </> :
-        <>
-        <TeachOnApplyForm></TeachOnApplyForm>
-        </>}
-
-
+      {status === "accepted" && role === "teacher" ? (
+        <TeacherConfirmation />
+      ) : status === "rejected" ? (
+        <RejectionMeassage />
+      ) : (
+        <TeachOnApplyForm />
+      )}
     </div>
   );
 };

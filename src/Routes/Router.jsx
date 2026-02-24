@@ -18,7 +18,7 @@ import AdminProfile from "../Pages/AdminDashboard/AdminProfile";
 
 import TeacherRequest from "../Pages/AdminDashboard/TeacherRequest";
 import AddClass from "../Pages/TeacherDashboard/AddClass";
-import MyClass from "../Pages/TeacherDashboard/MyClass";
+import MyAllClass from "../Pages/TeacherDashboard/MyAllClass";
 import AllClass from "../Pages/Class/AllClass";
 import ClassDetails from "../Pages/Class/ClassDetails";
 import StudentProfile from "../Pages/StudentDashboard/StudentProfile";
@@ -74,14 +74,14 @@ const router = createBrowserRouter([
           element : <PrivateRoute>
             <ClassDetails></ClassDetails>
           </PrivateRoute>,
-          // loader : ({params}) => fetch(`https://edu-spark-server-lake.vercel.app/classes/${params.id}`)
+          // loader : ({params}) => fetch(`http://localhost:5000/classes/${params.id}`)
          },
          {
           path : '/payment/:id',
           element :   <PrivateRoute>
             <Payment></Payment>
           </PrivateRoute>,
-          loader : ({params}) => fetch(`https://edu-spark-server-lake.vercel.app/classes/${params.id}`)
+          loader : ({params}) => fetch(`http://localhost:5000/classes/${params.id}`)
 
          },
          {
@@ -163,12 +163,12 @@ const router = createBrowserRouter([
         },
         {
           path : 'myClass',
-          element : <PrivateRoute><MyClass></MyClass></PrivateRoute>
+          element : <PrivateRoute><MyAllClass></MyAllClass></PrivateRoute>
         },
         {
           path : '/dashboard/myClassDetails/:id',
           element :<PrivateRoute> <MyClassDetailsPage></MyClassDetailsPage></PrivateRoute>,
-          // loader : ({params}) => fetch(`https://edu-spark-server-lake.vercel.app//classes/${params.id}`)
+          // loader : ({params}) => fetch(`http://localhost:5000//classes/${params.id}`)
         },
         {
           path : 'studentProfile',

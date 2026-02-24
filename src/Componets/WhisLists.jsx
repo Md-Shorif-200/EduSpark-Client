@@ -41,7 +41,7 @@ const WhisLists = () => {
                                   </p>
                           
                                   <p className="flex items-center gap-2 text-sm text-gray-600">
-                                    <FaBookOpen className="text-blue-500" />
+                                    <FaBookOpen className="text-indigo-500" />
                                     Lectures: <span className="font-medium">{data?.totalLectures}</span>
                                   </p>
                           
@@ -62,7 +62,7 @@ const WhisLists = () => {
 
   <button
     // onClick={() => onViewDetails(id)}
-    className="flex-1 flex items-center justify-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+    className="flex-1 flex items-center justify-center gap-2 bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition"
   >
     {/* <FaBookOpen />  Details */}
     See Details

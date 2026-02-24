@@ -44,7 +44,7 @@ const MyClassDetailsPage = () => {
         }
       };
       fetchData();
-    }, [myClassDetails?._id]); // তোমার dependency ঠিকমতো দেওয়া উচিত
+    }, [myClassDetails?._id]);
     
     
       // if(isLoading){

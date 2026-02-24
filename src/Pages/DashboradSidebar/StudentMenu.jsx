@@ -1,38 +1,50 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { FaUserGraduate, FaShoppingBag } from 'react-icons/fa';
-import { HiOutlineClipboardCheck } from 'react-icons/hi';
-import { MdSchool } from 'react-icons/md';
-import { FiHome } from 'react-icons/fi';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { FaUserGraduate, FaShoppingBag, FaHome } from "react-icons/fa";
+
+const menuItems = [
+  { to: "myEnrollMent", icon: FaUserGraduate, label: "My Enrollments" },
+  { to: "myOrders", icon: FaShoppingBag, label: "My Orders" },
+];
+
+const linkClass = ({ isActive }) =>
+  `flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+    isActive
+      ? "bg-indigo-600 text-white shadow-md shadow-indigo-200"
+      : "text-gray-600 hover:bg-indigo-50 hover:text-indigo-600"
+  }`;
 
 const StudentMenu = () => {
-  const linkClasses = ({ isActive }) =>
-    `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-300 
-     ${isActive ? 'bg-primary text-white font-semibold shadow-md' : 'hover:bg-gray-200'}`;
-
   return (
-    <div className="bg-base-200 min-h-screen w-70 md:w-80 p-4">
-      <h2 className="text-xl font-bold mb-6 text-center text-primary">Student Panel</h2>
-      <ul className="space-y-2">
+    <nav className="px-4 py-6">
+      <p className="px-4 mb-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
+        Student Panel
+      </p>
+      <ul className="space-y-1">
+        {menuItems.map(({ to, icon: Icon, label }) => (
+          <li key={to}>
+            <NavLink to={to} className={linkClass}>
+              <Icon size={18} />
+              {label}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+
+      <div className="my-5 border-t border-gray-100" />
+
+      <p className="px-4 mb-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
+        General
+      </p>
+      <ul>
         <li>
-          <NavLink to="myEnrollMent" className={linkClasses}>
-            <FaUserGraduate className="text-lg" /> My Enrollments
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="myOrders" className={linkClasses}>
-            <FaShoppingBag className="text-lg" /> My Orders
-          </NavLink>
-        </li>
-        {/* Future: Add more options like student profile or feedback here */}
-        <div className="divider my-4" />
-        <li>
-          <NavLink to="/" className={linkClasses}>
-            <FiHome className="text-lg" /> Home
+          <NavLink to="/" className={linkClass}>
+            <FaHome size={18} />
+            Back to Home
           </NavLink>
         </li>
       </ul>
-    </div>
+    </nav>
   );
 };
 

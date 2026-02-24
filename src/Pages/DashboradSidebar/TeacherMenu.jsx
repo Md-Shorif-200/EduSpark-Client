@@ -1,40 +1,51 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { MdAddBox, MdLibraryBooks } from 'react-icons/md';
-import { FaHome } from 'react-icons/fa';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { MdAddBox, MdLibraryBooks } from "react-icons/md";
+import { FaHome } from "react-icons/fa";
 
-const linkClasses = ({ isActive }) =>
-  `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-300 
-   ${isActive ? 'bg-primary text-white font-semibold shadow-md' : 'hover:bg-gray-200'}`;
+const menuItems = [
+  { to: "addClass", icon: MdAddBox, label: "Add Class" },
+  { to: "myClass", icon: MdLibraryBooks, label: "My Classes" },
+];
+
+const linkClass = ({ isActive }) =>
+  `flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+    isActive
+      ? "bg-indigo-600 text-white shadow-md shadow-indigo-200"
+      : "text-gray-600 hover:bg-indigo-50 hover:text-indigo-600"
+  }`;
 
 const TeacherMenu = () => {
   return (
-    <div className="dashboard_menu bg-base-200 min-h-screen w-70 md:w-80 p-4">
-      <h2 className="text-xl font-bold mb-6 text-center text-primary">Teacher Panel</h2>
-      <ul className="menu bg-base-200 text-base-content min-h-full w-full md:w-60 lg:w-72 p-4 space-y-2">
-
-        <li>
-          <NavLink to="addClass" className={linkClasses}>
-            <MdAddBox size={20} /> Add Class
-          </NavLink>
-        </li>
-
-        <li>
-          <NavLink to="myClass" className={linkClasses}>
-            <MdLibraryBooks size={20} /> My Classes
-          </NavLink>
-        </li>
-
-        <div className="divider" />
-
-        <li>
-          <NavLink to="/" className={linkClasses}>
-            <FaHome size={20} /> Home
-          </NavLink>
-        </li>
-
+    <nav className="px-4 py-6">
+      <p className="px-4 mb-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
+        Teacher Panel
+      </p>
+      <ul className="space-y-1">
+        {menuItems.map(({ to, icon: Icon, label }) => (
+          <li key={to}>
+            <NavLink to={to} className={linkClass}>
+              <Icon size={18} />
+              {label}
+            </NavLink>
+          </li>
+        ))}
       </ul>
-    </div>
+
+      <div className="my-5 border-t border-gray-100" />
+
+      <p className="px-4 mb-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
+        General
+      </p>
+      <ul>
+        <li>
+          <NavLink to="/" className={linkClass}>
+            <FaHome size={18} />
+            Back to Home
+          </NavLink>
+        </li>
+      </ul>
+    </nav>
   );
 };
 

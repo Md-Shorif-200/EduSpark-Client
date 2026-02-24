@@ -74,7 +74,7 @@ const AddAsignment = ({ myClassDetails, refetch }) => {
                 <input
                   type="text"
                   placeholder="Enter title"
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   {...register("title", { required: true })}
                 />
                 {errors.title && (
@@ -91,7 +91,7 @@ const AddAsignment = ({ myClassDetails, refetch }) => {
                 </label>
                 <input
                   type="date"
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   {...register("dedline", { required: true })}
                 />
                 {errors.dedline && (
@@ -109,7 +109,7 @@ const AddAsignment = ({ myClassDetails, refetch }) => {
                 <textarea
                   rows={4}
                   placeholder="Write assignment details..."
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   {...register("description", { required: true })}
                 ></textarea>
                 {errors.description && (
@@ -130,7 +130,7 @@ const AddAsignment = ({ myClassDetails, refetch }) => {
                 </button>
                 <button
                   type="submit"
-                  className="w-1/2 ml-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+                  className="w-1/2 ml-2 bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition"
                 >
                   Add Assignment
                 </button>

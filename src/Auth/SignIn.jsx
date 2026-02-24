@@ -102,7 +102,7 @@ const SignIn = () => {
                           <input type="checkbox"  className=" text-sm mr-2 " />
                           Remember me
                           </div>
-                    <Link className="text-blue-600">Forgot Password ? </Link>
+                    <Link className="text-indigo-600">Forgot Password ? </Link>
                       </div>
       
                     {/* SignIn Button */}
@@ -114,7 +114,7 @@ const SignIn = () => {
                       <p className="secondary_text_color">
                     
                         New to EduSpark ?
-                        <Link className="text-blue-700 ml-2" to="/signUp">
+                        <Link className="text-indigo-700 ml-2" to="/signUp">
                           Create Account
                         </Link>
                       </p>

@@ -1,145 +1,162 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import usePayments from '../../Hooks/usePayments';
-import useAuth from '../../Hooks/useAuth';
-// pdf & auto-table 
+import { 
+  Table, TableBody, TableCell, tableCellClasses, 
+  TableContainer, TableHead, TableRow, Paper, Chip 
+} from '@mui/material';
+import { HiOutlineDownload, HiOutlineCheckCircle } from 'react-icons/hi';
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable"; 
+import usePayments from '../../Hooks/usePayments';
+import useAuth from '../../Hooks/useAuth';
+import Loading from '../../Common/Loading';
 
-
+// Modern Styled Table Components
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    backgroundColor: '#f8fafc', // Light slate background
+    color: '#64748b',           // Slate-500 text
+    fontWeight: 700,
+    fontSize: '0.85rem',
+    textTransform: 'uppercase',
+    letterSpacing: '0.05em',
+    borderBottom: '1px solid #e2e8f0',
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
+    color: '#1e293b',
+    padding: '16px',
   },
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
+  '&:hover': {
+    backgroundColor: '#f1f5f9 !important', // Hover effect
+    transition: 'background-color 0.2s ease',
   },
-  // hide last border
   '&:last-child td, &:last-child th': {
     border: 0,
   },
 }));
 
-
-
 export default function MyOrders() {
+  const { user } = useAuth();
+  const [payments, , isLoading] = usePayments();
+  const [downloadingId, setDownloadingId] = React.useState(null);
 
-    const {user} = useAuth()
-    const [payments,refetch,isLoading] = usePayments() 
+  const myOrders = payments?.filter(data => data?.studentEmail === user?.email) || [];
+
+  const downloadInvoice = (orderData) => {
+    setDownloadingId(orderData?.transectionId);
     
-    const myOrders = payments.filter(data => data?.studentEmail === user?.email);
-    const [downloadedInvoices, setDownloadedInvoices] = React.useState([]);
-    
-//  invoice download function
-     const downloadInvoice = (orderData) => {
-        
-          
-        const doc = new jsPDF();
-
-        doc.setFont("helvetica", "bold");
-        doc.setFontSize(22); 
-        doc.text("INVOICE", 80, 20);
-
-
-    
-        //  Add Invoice Details
-    doc.setFontSize(12);
+    const doc = new jsPDF();
+    // Modern Invoice PDF Styling
     doc.setFont("helvetica", "bold");
-    doc.text("Transaction ID:", 14, 50);
-    doc.setFont("helvetica", "normal");
-    doc.text(`${orderData?.transectionId}`, 50, 50);
+    doc.setTextColor(40);
+    doc.setFontSize(22); 
+    doc.text("ECADEMIX INVOICE", 14, 25);
 
-    doc.setFont("helvetica", "bold");
-    doc.text("Student name:", 14, 60);
-    doc.setFont("helvetica", "normal");
-    doc.text(`${orderData?.studentName}`, 50, 60);
+    doc.setFontSize(10);
+    doc.setTextColor(100);
+    doc.text(`Date: ${new Date().toLocaleDateString()}`, 14, 35);
+    doc.text(`Transaction: ${orderData?.transectionId}`, 14, 40);
 
-    doc.setFont("helvetica", "bold");
-    doc.text("student Email:", 14, 70);
-    doc.setFont("helvetica", "normal");
-    doc.text(`${orderData?.studentEmail}`, 50, 70);
+    autoTable(doc, { 
+      startY: 50,
+      head: [["Description", "Instructor", "Amount"]],
+      body: [[orderData?.courseTitle, orderData?.teacherEmail, `$${orderData?.courseFee}`]],
+      theme: "striped",
+      headStyles: { fillColor: [79, 70, 229] }, // Indigo-600
+    });
 
-    doc.setFont("helvetica", "bold");
-    doc.text("Institute:", 14, 80);
-    doc.setFont("helvetica", "normal");
-    doc.text("ECADEMIX", 50, 80); // Replace "ECADEMIX" with dynamic value if needed
-
+    doc.save(`Invoice_${orderData?.transectionId}.pdf`);
     
-        //  অর্ডারের তথ্য টেবিল আকারে দেখানো
-        autoTable(doc, {  
-            startY: 85,
-            head: [["Class Title", "Price", "Course Duration"]],
-            body: [[orderData?.courseTitle, `$${orderData?.courseFee}` ,`${orderData?.courseDuration} month` ]],
-            theme: "grid",
-            styles: { fontSize: 12, cellPadding: 5, valign: "middle", halign: "center" },
-            headStyles: { fillColor: [41, 128, 185], textColor: [255, 255, 255] },
-            alternateRowStyles: { fillColor: [240, 240, 240] },
-        });
-    
-        doc.save(`Invoice_${orderData?.transectionId}.pdf`); // PDF ডাউনলোড     
+    setTimeout(() => setDownloadingId(null), 1000); // Reset loading state
+  };
 
-        setDownloadedInvoices((prev) => [...prev, orderData?.transectionId]);
-     }
-     
-
-
+  if (isLoading) return <Loading />;
 
   return (
-         <div className='orders__table px-6 py-4 capitalize'>
+    <div className="p-8 bg-slate-50 min-h-screen">
+      <div className="max-w-7xl mx-auto">
+        {/* Header Section */}
+        <div className="mb-8">
+          <h1 className="text-2xl font-bold text-slate-800">Order History</h1>
+          <p className="text-slate-500">Manage your enrollments and download billing receipts.</p>
+        </div>
 
-<TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell></StyledTableCell>
-            <StyledTableCell align="left">Class Title</StyledTableCell>
-            {/* <StyledTableCell align="left">Fat&nbsp;(g)</StyledTableCell> */}
-            <StyledTableCell align="left">teacher email</StyledTableCell>
-            <StyledTableCell align="left">course fee</StyledTableCell>
-            <StyledTableCell align="left">transection id</StyledTableCell>
-            <StyledTableCell align="left"></StyledTableCell>
-   
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {myOrders.map((orderData,index) => (
-            <StyledTableRow key={index}>
-              <StyledTableCell align="left"> {index +1} </StyledTableCell>
-              <StyledTableCell align="left"> {orderData?.courseTitle} </StyledTableCell>
-              <StyledTableCell align="left"> {orderData?.teacherEmail} </StyledTableCell>
-              <StyledTableCell align="left">$ {orderData?.courseFee} </StyledTableCell>
-              <StyledTableCell align="left"> {orderData?.transectionId} </StyledTableCell>
-              <StyledTableCell align="right"> 
-              <button
-                    className={`btn_secondary btn-sm ${downloadedInvoices.includes(orderData?.transectionId) ? "opacity-50 cursor-not-allowed" : ""}`}
-                    onClick={() => downloadInvoice(orderData)}
-                    disabled={downloadedInvoices.includes(orderData?.transectionId)}
-                  >
-                    get invoice
-                    {/* {downloadedInvoices.includes(orderData?.transectionId) ? "Downloaded" : "Get Invoice"} */}
-                  </button>
+        <TableContainer component={Paper} elevation={0} className="border border-slate-200 rounded-xl overflow-hidden">
+          <Table sx={{ minWidth: 700 }} aria-label="orders table">
+            <TableHead>
+              <TableRow>
+                <StyledTableCell>#</StyledTableCell>
+                <StyledTableCell>Course Information</StyledTableCell>
+                <StyledTableCell>Transaction ID</StyledTableCell>
+                <StyledTableCell>Status</StyledTableCell>
+                <StyledTableCell>Amount</StyledTableCell>
+                <StyledTableCell align="right">Actions</StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {myOrders.map((orderData, index) => (
+                <StyledTableRow key={orderData._id || index}>
+                  <StyledTableCell className="font-medium text-slate-400">
+                    {index + 1}
                   </StyledTableCell>
-        
-           
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-         </div>
+                  
+                  <StyledTableCell>
+                    <div className="flex flex-col">
+                      <span className="font-bold text-slate-700">{orderData?.courseTitle}</span>
+                      <span className="text-xs text-slate-400 lowercase">{orderData?.teacherEmail}</span>
+                    </div>
+                  </StyledTableCell>
+
+                  <StyledTableCell>
+                    <code className="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600">
+                      {orderData?.transectionId}
+                    </code>
+                  </StyledTableCell>
+
+                  <StyledTableCell>
+                    <Chip 
+                      icon={<HiOutlineCheckCircle className="text-green-600" />} 
+                      label="Paid" 
+                      size="small"
+                      className="bg-green-50 text-green-700 font-medium border border-green-100"
+                    />
+                  </StyledTableCell>
+
+                  <StyledTableCell className="font-bold text-slate-700">
+                    ${orderData?.courseFee}
+                  </StyledTableCell>
+
+                  <StyledTableCell align="right">
+                    <button
+                      onClick={() => downloadInvoice(orderData)}
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 text-slate-700 rounded-lg font-semibold text-sm hover:bg-slate-50 hover:border-indigo-300 hover:text-indigo-600 transition-all shadow-sm"
+                    >
+                      {downloadingId === orderData?.transectionId ? (
+                        "Generating..."
+                      ) : (
+                        <>
+                          <HiOutlineDownload className="text-lg" />
+                          Invoice
+                        </>
+                      )}
+                    </button>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+          
+          {myOrders.length === 0 && (
+            <div className="py-20 text-center">
+              <p className="text-slate-500">No orders found.</p>
+            </div>
+          )}
+        </TableContainer>
+      </div>
+    </div>
   );
 }

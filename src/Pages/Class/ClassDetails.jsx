@@ -59,7 +59,7 @@ const ClassDetails = () => {
 <div className="class_cnt bg-[#F2F7FD] px-2 lg:px-16">
                     <p className="subtitle text-gray-400  items-center pt-4 hidden lg:flex">    <RiHome2Line></RiHome2Line>/ <span> {classDetails?.category} </span>/ <span>{classDetails?.title} </span>  </p>
 
-                    <div className="w-[16%] primary_bg_color px-2 py-1 text-white text-center rounded-xl font-semibold mt-16 hidden md:block">  {classDetails?.category} </div>
+                    <div className="w-[16%] primary_bg_color  py-1 text-black  rounded-xl font-semibold mt-16 hidden md:block">  {classDetails?.category} </div>
                   <h1 className='text-3xl font-bold mt-4 capitalize secondary_text_color'> {classDetails?.title} </h1>
                 
                 <div className='block md:flex gap-10 items-center capitalize  py-8 secondary_text_color'>

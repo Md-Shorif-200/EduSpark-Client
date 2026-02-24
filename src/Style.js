@@ -2,13 +2,13 @@
 /* Memory updated
 For a professional, attractive, and engaging online course website, you should use a modern and balanced color palette that enhances readability and user experience. Here are some recommended color combinations:
 
-1. Modern & Professional (Blue + White + Gray)
-Primary: #1E3A8A (Dark Blue)
-Secondary: #3B82F6 (Bright Blue)
+1. Modern & Professional (indigo + White + Gray)
+Primary: #1E3A8A (Dark indigo)
+Secondary: #3B82F6 (Bright indigo)
 Background: #F8FAFC (Soft Gray)
 Text: #1F2937 (Dark Gray)
 Accent: #FACC15 (Gold)
-✅ Why? Blue represents trust and professionalism, and gold adds an attractive touch.
+✅ Why? indigo represents trust and professionalism, and gold adds an attractive touch.
 
 2. Elegant & Minimal (Dark + Gold)
 Primary: #121212 (Black)
@@ -35,7 +35,7 @@ Accent: #F87171 (Soft Red)
 ✅ Why? Gives a modern, tech-focused feel, great for an innovative platform.
 
 Final Suggestion:
-If your website is more professional and corporate, go with Blue & White.
+If your website is more professional and corporate, go with indigo & White.
 If you want a premium feel, use Black & Gold.
 If you're targeting youth and creativity, use Teal & Purple.
 
@@ -48,20 +48,20 @@ Response 2
 Memory updated
 For an online course website, a professional yet attractive color scheme should balance trust, engagement, and readability. Here are some recommended color palettes:
 
-1️⃣ Modern & Professional (Blue-Based)
-✅ Primary: #007BFF (Bright Blue)
-✅ Secondary: #292865 (Deep Navy Blue)
+1️⃣ Modern & Professional (indigo-Based)
+✅ Primary: #007BFF (Bright indigo)
+✅ Secondary: #292865 (Deep Navy indigo)
 ✅ Accent: #FFC107 (Vibrant Yellow)
 ✅ Background: #F8F9FA (Light Gray/White)
 
 🔹 Why?
 
-Blue builds trust and credibility (used by top ed-tech platforms).
+indigo builds trust and credibility (used by top ed-tech platforms).
 Yellow adds a warm and inviting feel to CTA buttons.
 Light gray/white ensures clean UI and readability.
 2️⃣ Elegant & Premium (Dark-Based)
-✅ Primary: #1E1E2E (Dark Blue/Gray)
-✅ Secondary: #8AB4F8 (Soft Blue)
+✅ Primary: #1E1E2E (Dark indigo/Gray)
+✅ Secondary: #8AB4F8 (Soft indigo)
 ✅ Accent: #F4B400 (Gold)
 ✅ Background: #FFFFFF (White)
 

@@ -30,7 +30,7 @@ const PopulerCourse = () => {
   }
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-white pt-12 ">
+    <div className="bg-gradient-to-br from-indigo-50 to-white pt-12 ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Section */}
@@ -50,7 +50,7 @@ const PopulerCourse = () => {
               <Tab
                 key={category.key}
                 className="relative cursor-pointer px-6 py-3 rounded-xl text-sm font-medium text-gray-600 hover:text-gray-900 transition-all duration-200 focus:outline-none"
-                selectedClassName="!text-white !bg-gradient-to-r !from-blue-500 !to-blue-600 !shadow-md"
+                selectedClassName="!text-white !bg-gradient-to-r !from-indigo-500 !to-indigo-600 !shadow-md"
               >
                 <span className="relative z-10">
                   {category.name}
