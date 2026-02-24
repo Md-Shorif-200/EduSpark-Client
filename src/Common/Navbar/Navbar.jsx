@@ -13,8 +13,10 @@ const Navbar = () => {
   const closeSidebar = () => setIsActive(false);
 
   return (
-    <header className="bg-white/80 backdrop-blur-lg border-b border-gray-100 sticky top-0 z-50">
-      <DesktopNavbar user={user} handleMenuIcon={handleMenuIcon} />
+    <>
+      <header className="bg-white/80 backdrop-blur-lg border-b border-gray-100 sticky top-0 z-50">
+        <DesktopNavbar user={user} handleMenuIcon={handleMenuIcon} />
+      </header>
 
       <MobileSidebar
         user={user}
@@ -23,7 +25,7 @@ const Navbar = () => {
         closeSidebar={closeSidebar}
         setIsActive={setIsActive}
       />
-    </header>
+    </>
   );
 };
 

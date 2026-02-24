@@ -20,7 +20,7 @@ const DesktopNavbar = ({ user, handleMenuIcon }) => {
             className="w-10 h-10 sm:w-11 sm:h-11 transition-transform duration-300 group-hover:scale-105"
           />
         </div>
-        <span className="text-[22px] font-bold tracking-tight text-gray-900 hidden sm:block">
+        <span className="text-[22px] font-bold tracking-tight text-gray-900 ">
           Edu<span className="text-indigo-600">Spark</span>
         </span>
       </Link>

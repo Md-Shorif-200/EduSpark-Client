@@ -70,7 +70,7 @@ const router = createBrowserRouter([
       {
         path: '/payment/:id',
         element: <PrivateRoute><SuspenseWrapper><Payment /></SuspenseWrapper></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/classes/${params.id}`),
+        loader: ({ params }) => fetch(`https://edu-spark-server-lake.vercel.app/classes/${params.id}`),
       },
       {
         path: '/profile',
