@@ -1,77 +1,71 @@
-import React, { useEffect } from 'react';
-import { MdSettingsSuggest } from "react-icons/md";
-import { BiSolidLike } from "react-icons/bi";
+import React from 'react';
+import Container from '../../Common/Container';
+import CountUp from 'react-countup';
+import { useInView } from 'react-intersection-observer';
+import { FaUserGraduate, FaChalkboardTeacher, FaBookOpen, FaAward } from 'react-icons/fa';
 
-import img_1 from '../../assets/Statistics/quality.png'
-import img_2 from '../../assets/Statistics/best-seller.png'
+import statistics_img from '../../assets/banner-img/img-8.jpg';
 
- 
-import statistics_img from '../../assets/banner-img/img-8.jpg'
-import SectionTitle from '../../Common/SectionTitle';
-import { Typewriter } from 'react-simple-typewriter';
-
-import CountUp from "react-countup";
-import { useInView } from "react-intersection-observer";
-
-// react aos animation
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import AnimateTitle from '../../Common/AnimateTitle';
+const stats = [
+  { icon: FaUserGraduate, end: 5000, label: 'Satisfied Students', color: 'text-blue-500', bg: 'bg-blue-50' },
+  { icon: FaAward, end: 10, label: 'Years Experience', color: 'text-green-500', bg: 'bg-green-50' },
+  { icon: FaBookOpen, end: 15, label: 'Faculty Courses', color: 'text-purple-500', bg: 'bg-purple-50' },
+  { icon: FaChalkboardTeacher, end: 100, label: 'Expert Teachers', color: 'text-orange-500', bg: 'bg-orange-50' },
+];
 
 const Statistics = () => {
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
 
- 
-    
+  return (
+    <section className="py-16 md:py-20 bg-slate-900 text-white overflow-hidden">
+      <Container>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <div className="relative">
+            <img
+              src={statistics_img}
+              alt="Learning environment"
+              className="w-full h-auto rounded-2xl shadow-2xl"
+              loading="lazy"
+            />
+            <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-blue-500/20 rounded-2xl blur-xl" />
+            <div className="absolute -top-4 -left-4 w-32 h-32 bg-purple-500/20 rounded-full blur-xl" />
+          </div>
 
-    const { ref, inView } = useInView({
-        triggerOnce: false, 
-        threshold: 0.5, 
-    });
+          <div>
+            <span className="inline-block text-blue-400 font-semibold text-sm tracking-widest uppercase mb-3">
+              Why Choose Us
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              Your Ideal Learning Partner
+            </h2>
+            <p className="text-slate-300 text-lg leading-relaxed mb-8">
+              With over 10 years of excellence in education, we've empowered 5,000+ students through expert-led courses and personalized learning support.
+            </p>
 
-
-    return (
-        <div className='statistics grid grid-cols-1 lg:grid-cols-2 bg-[#182024] text-gray-300 px-2 md:px-5 py-16 mt-12 overflow-hidden '>
-              <div className="statistics_img w-full h-full relative mb-4  ">
-                        <img src={statistics_img} alt="" className='w-full h-auto rounded-2xl' />
-
-                  
-              </div>
-
-              <div className="statistics_cnt px-2 md:px-6">
-                        
-
-                              <h3 className='common_section_intro'>  why choose us </h3>
-
-                            <h1 className='text-3xl md:text-4xl font-semibold capitalize  my-4'>your ideal learning partner</h1>
-
-                                <p className="my-2">With over 10 years of excellence in education, we’ve empowered 5,000+ students through expert-led courses and personalized learning support. Our 100+ qualified instructors and 15+ specialized programs ensure a high-impact learning experience tailored to your goals.</p>
-                            <div className="statistics_cards grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-10 px-2 pt-8">
-                           
-
-                                  <div className="card" data-aos='fade-left'>
-                                     <h1 key={inView} ref={ref}>  <CountUp start={0} end={5000}  duration={3}></CountUp>  + </h1>
-                                     <p>satisfied students</p>
-                                  </div>
-
-                                  <div className="card" data-aos='fade-left' data-aos-delay='100'>
-                                   <h1 key={inView} ref={ref}> <CountUp start={0} end={10}  duration={3}></CountUp>  + </h1>
-                                     <p>years exprerience</p>
-                                  </div>
-
-                                  <div className="card" data-aos='fade-left' data-aos-delay='200'>
-                         <h1 key={inView} ref={ref}> <CountUp start={0} end={15}  duration={3}></CountUp>  + </h1>
-                                     <p>faculty course</p>
-                                  </div>
-
-                                  <div className="card" data-aos='fade-left' data-aos-delay='300'>
-                       <h1 key={inView} ref={ref}> <CountUp start={0} end={100}  duration={3}></CountUp>  + </h1>
-                                     <p>Teacher</p>
-                                  </div>
-
-                            </div>
-              </div>
+            <div ref={ref} className="grid grid-cols-2 gap-4">
+              {stats.map((stat, index) => {
+                const Icon = stat.icon;
+                return (
+                  <div
+                    key={index}
+                    className="bg-white/5 backdrop-blur-sm rounded-2xl p-5 border border-white/10 hover:bg-white/10 transition-colors duration-300"
+                  >
+                    <div className={`w-10 h-10 ${stat.bg} rounded-xl flex items-center justify-center mb-3`}>
+                      <Icon className={`text-lg ${stat.color}`} />
+                    </div>
+                    <h3 className="text-3xl font-bold mb-1">
+                      {inView && <CountUp start={0} end={stat.end} duration={2.5} />}+
+                    </h3>
+                    <p className="text-slate-400 text-sm capitalize">{stat.label}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
-    );
+      </Container>
+    </section>
+  );
 };
 
 export default Statistics;

@@ -1,8 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { FaChalkboardTeacher, FaUsers, FaClipboardList, FaHome } from "react-icons/fa";
+import { FaChalkboardTeacher, FaUsers, FaClipboardList, FaHome, FaChartPie } from "react-icons/fa";
 
 const menuItems = [
+  { to: "/dashboard/admin", icon: FaChartPie, label: "Analytics" },
   { to: "teacherRequest", icon: FaChalkboardTeacher, label: "Teacher Request" },
   { to: "users", icon: FaUsers, label: "Users" },
   { to: "RequestedClass", icon: FaClipboardList, label: "All Classes" },

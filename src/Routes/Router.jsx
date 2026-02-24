@@ -1,199 +1,166 @@
-import React from 'react';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import MainLayout from "../Layout/MainLayout";
+import React, { lazy, Suspense } from 'react';
+import { createBrowserRouter } from 'react-router-dom';
+import MainLayout from '../Layout/MainLayout';
+import ErrorPage from '../Common/ErrorPage';
+import Loading from '../Common/Loading';
+import PrivateRoute from './PrivateRoute';
 
-import SignUp from "../Auth/SignUp";
-import SignIn from "../Auth/SignIn";
-import ErrorPage from "../Common/ErrorPage";
-import Home from "../Pages/Home/Home";
-import DashboardLayout from "../Layout/DashboardLayout";
+const Home = lazy(() => import('../Pages/Home/Home'));
+const SignUp = lazy(() => import('../Auth/SignUp'));
+const SignIn = lazy(() => import('../Auth/SignIn'));
+const AllClass = lazy(() => import('../Pages/Class/AllClass'));
+const ClassDetails = lazy(() => import('../Pages/Class/ClassDetails'));
+const TeachOnPage = lazy(() => import('../Pages/TeachOn/TeachOnPage'));
+const Payment = lazy(() => import('../Pages/Payment/Payment'));
+const Profile = lazy(() => import('../Common/Profile'));
+const WhisLists = lazy(() => import('../Componets/WhisLists'));
+const Contact = lazy(() => import('../Pages/Contact'));
 
-import Users from "../Pages/AdminDashboard/Users";
-import RequestedClass from "../Pages/AdminDashboard/RequestedClass";
-// import AllClasses from "../Pages/AdminDashboard/AllClasses";
-import AdminProfile from "../Pages/AdminDashboard/AdminProfile";
+const DashboardLayout = lazy(() => import('../Layout/DashboardLayout'));
+const DashboardRedirect = lazy(() => import('../Layout/DashboardRedirect'));
+const DashboardAnalytics = lazy(() => import('../Pages/AdminDashboard/DashboardAnalytics'));
+const Users = lazy(() => import('../Pages/AdminDashboard/Users'));
+const RequestedClass = lazy(() => import('../Pages/AdminDashboard/RequestedClass'));
+const AdminProfile = lazy(() => import('../Pages/AdminDashboard/AdminProfile'));
+const AdminClassProgress = lazy(() => import('../Pages/AdminDashboard/AdminClassProgress'));
+const TeacherRequest = lazy(() => import('../Pages/AdminDashboard/TeacherRequest'));
+const AddClass = lazy(() => import('../Pages/TeacherDashboard/AddClass'));
+const MyAllClass = lazy(() => import('../Pages/TeacherDashboard/MyAllClass'));
+const TeacherProfile = lazy(() => import('../Pages/TeacherDashboard/TeacherProfile'));
+const MyClassDetailsPage = lazy(() => import('../Pages/TeacherDashboard/MyClassDetailsPage'));
+const StudentProfile = lazy(() => import('../Pages/StudentDashboard/StudentProfile'));
+const MyEnrollMent = lazy(() => import('../Pages/StudentDashboard/MyEnrollMent'));
+const EnrollmentDetails = lazy(() => import('../Pages/StudentDashboard/EnrollmentDetails'));
+const MyOrders = lazy(() => import('../Pages/StudentDashboard/MyOrders'));
 
-import TeacherRequest from "../Pages/AdminDashboard/TeacherRequest";
-import AddClass from "../Pages/TeacherDashboard/AddClass";
-import MyAllClass from "../Pages/TeacherDashboard/MyAllClass";
-import AllClass from "../Pages/Class/AllClass";
-import ClassDetails from "../Pages/Class/ClassDetails";
-import StudentProfile from "../Pages/StudentDashboard/StudentProfile";
-import MyEnrollMent from "../Pages/StudentDashboard/MyEnrollMent";
-import TeachOnPage from "../Pages/TeachOn/TeachOnPage";
-import PrivateRoute from "./PrivateRoute";
-import TeacherProfile from "../Pages/TeacherDashboard/TeacherProfile";
-import Payment from "../Pages/Payment/Payment";
-import EnrollmentDetails from "../Pages/StudentDashboard/EnrollmentDetails";
-import WelcomeMessage from "../Pages/WelcomeMessage";
-import AdminClassProgress from "../Pages/AdminDashboard/AdminClassProgress";
-import MyOrders from "../Pages/StudentDashboard/MyOrders";
-import Profile from '../Common/Profile';
-import MyClassDetailsPage from '../Pages/TeacherDashboard/MyClassDetailsPage';
-import WhisLists from '../Componets/WhisLists';
-import Contact from '../Pages/Contact';
-import DashboardRedirect from '../Layout/DashboardRedirect';
-
-
-
+const SuspenseWrapper = ({ children }) => (
+  <Suspense fallback={<Loading />}>{children}</Suspense>
+);
 
 const router = createBrowserRouter([
-  // main layout routers
-    {
-      path: "/",
-      element: <MainLayout></MainLayout>,
-      errorElement : <ErrorPage></ErrorPage>,
-      children : [
-        {
-            path : '/',
-            element : <Home></Home>
-        },
-        {
-          path: 'signUp',
-          element : <SignUp></SignUp>
-        },
-         {
-          path : 'signIn',
-          element : <SignIn></SignIn>
-         },
-         {
-          path : 'TeachOn',
-          element : <PrivateRoute>
-             <TeachOnPage></TeachOnPage>
-          </PrivateRoute>
-         },
-         {
-          path : 'allClass',
-          element : <AllClass></AllClass>
-         },
-         {
-          path : 'allClass/classDetails/:id',
-          element : <PrivateRoute>
-            <ClassDetails></ClassDetails>
-          </PrivateRoute>,
-          // loader : ({params}) => fetch(`http://localhost:5000/classes/${params.id}`)
-         },
-         {
-          path : '/payment/:id',
-          element :   <PrivateRoute>
-            <Payment></Payment>
-          </PrivateRoute>,
-          loader : ({params}) => fetch(`http://localhost:5000/classes/${params.id}`)
+  {
+    path: '/',
+    element: <MainLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: '/',
+        element: <SuspenseWrapper><Home /></SuspenseWrapper>,
+      },
+      {
+        path: 'signUp',
+        element: <SuspenseWrapper><SignUp /></SuspenseWrapper>,
+      },
+      {
+        path: 'signIn',
+        element: <SuspenseWrapper><SignIn /></SuspenseWrapper>,
+      },
+      {
+        path: 'TeachOn',
+        element: <PrivateRoute><SuspenseWrapper><TeachOnPage /></SuspenseWrapper></PrivateRoute>,
+      },
+      {
+        path: 'allClass',
+        element: <SuspenseWrapper><AllClass /></SuspenseWrapper>,
+      },
+      {
+        path: 'allClass/classDetails/:id',
+        element: <PrivateRoute><SuspenseWrapper><ClassDetails /></SuspenseWrapper></PrivateRoute>,
+      },
+      {
+        path: '/payment/:id',
+        element: <PrivateRoute><SuspenseWrapper><Payment /></SuspenseWrapper></PrivateRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/classes/${params.id}`),
+      },
+      {
+        path: '/profile',
+        element: <PrivateRoute><SuspenseWrapper><Profile /></SuspenseWrapper></PrivateRoute>,
+      },
+      {
+        path: '/whisLists',
+        element: <SuspenseWrapper><WhisLists /></SuspenseWrapper>,
+      },
+      {
+        path: '/contact',
+        element: <SuspenseWrapper><Contact /></SuspenseWrapper>,
+      },
+    ],
+  },
+  {
+    path: '/dashboard',
+    element: <SuspenseWrapper><DashboardLayout /></SuspenseWrapper>,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: '/dashboard',
+        element: <SuspenseWrapper><DashboardRedirect /></SuspenseWrapper>,
+      },
+      {
+        path: '/dashboard/admin',
+        element: <SuspenseWrapper><DashboardAnalytics /></SuspenseWrapper>,
+      },
+      {
+        path: '/dashboard/student',
+        element: <SuspenseWrapper><MyEnrollMent /></SuspenseWrapper>,
+      },
+      {
+        path: '/dashboard/teacher',
+        element: <SuspenseWrapper><AddClass /></SuspenseWrapper>,
+      },
+      {
+        path: 'teacherRequest',
+        element: <PrivateRoute><SuspenseWrapper><TeacherRequest /></SuspenseWrapper></PrivateRoute>,
+      },
+      {
+        path: 'users',
+        element: <PrivateRoute><SuspenseWrapper><Users /></SuspenseWrapper></PrivateRoute>,
+      },
+      {
+        path: 'RequestedClass',
+        element: <PrivateRoute><SuspenseWrapper><RequestedClass /></SuspenseWrapper></PrivateRoute>,
+      },
+      {
+        path: '/dashboard/class-progress/:id',
+        element: <PrivateRoute><SuspenseWrapper><AdminClassProgress /></SuspenseWrapper></PrivateRoute>,
+      },
+      {
+        path: 'adminProfile',
+        element: <SuspenseWrapper><AdminProfile /></SuspenseWrapper>,
+      },
+      {
+        path: 'addClass',
+        element: <PrivateRoute><SuspenseWrapper><AddClass /></SuspenseWrapper></PrivateRoute>,
+      },
+      {
+        path: 'teacherProfile',
+        element: <SuspenseWrapper><TeacherProfile /></SuspenseWrapper>,
+      },
+      {
+        path: 'myClass',
+        element: <PrivateRoute><SuspenseWrapper><MyAllClass /></SuspenseWrapper></PrivateRoute>,
+      },
+      {
+        path: '/dashboard/myClassDetails/:id',
+        element: <PrivateRoute><SuspenseWrapper><MyClassDetailsPage /></SuspenseWrapper></PrivateRoute>,
+      },
+      {
+        path: 'studentProfile',
+        element: <SuspenseWrapper><StudentProfile /></SuspenseWrapper>,
+      },
+      {
+        path: 'myEnrollMent',
+        element: <PrivateRoute><SuspenseWrapper><MyEnrollMent /></SuspenseWrapper></PrivateRoute>,
+      },
+      {
+        path: '/dashboard/myEnrollMent/enrollmentDetails/:id',
+        element: <PrivateRoute><SuspenseWrapper><EnrollmentDetails /></SuspenseWrapper></PrivateRoute>,
+      },
+      {
+        path: 'myOrders',
+        element: <PrivateRoute><SuspenseWrapper><MyOrders /></SuspenseWrapper></PrivateRoute>,
+      },
+    ],
+  },
+]);
 
-         },
-         {
-          path : '/profile',
-          element : <PrivateRoute>
-            <Profile></Profile>
-          </PrivateRoute>
-         },
-         {
-           path : '/whisLists',
-           element : <WhisLists></WhisLists>
-
-         },
-         {
-          path : '/contact',
-          element : <Contact></Contact>
-         }
-      ]
-    },
-
-    // ! dashboard routers 
-    {
-      path : '/dashboard',
-      element : <DashboardLayout></DashboardLayout>,
-      errorElement : <ErrorPage></ErrorPage>,
-      children  : [
-          {
-            path : '/dashboard',
-            element : <DashboardRedirect></DashboardRedirect>
-          },
-          {
-            path :'/dashboard/admin',
-            element : <Users></Users>
-          },
-           {
-            path : '/dashboard/student',
-            element : <MyEnrollMent></MyEnrollMent>
-           },
-           {
-            path : '/dashboard/teacher',
-            element :  <AddClass></AddClass> 
-           },
-        {
-            path : 'teacherRequest',
-            element : <PrivateRoute>
-               <TeacherRequest></TeacherRequest>
-            </PrivateRoute>
-        },
-  
-        {
-          path : 'users',
-          element : <PrivateRoute>
-             <Users></Users>
-          </PrivateRoute>
-        },
-        {
-          path : 'RequestedClass',
-          element : <PrivateRoute>
-            <RequestedClass></RequestedClass>
-          </PrivateRoute>
-        },
-        {
-          path : '/dashboard/class-progress/:id',
-          element : <PrivateRoute>
-             <AdminClassProgress></AdminClassProgress>
-          </PrivateRoute>
-        },
-        {
-          path : 'adminProfile',
-          element :  <AdminProfile></AdminProfile>
-        },
-        {
-          path : 'addClass',
-          element : <PrivateRoute><AddClass></AddClass></PrivateRoute>
-        },
-        {
-           path : 'teacherProfile',
-           element : <TeacherProfile></TeacherProfile>
-        },
-        {
-          path : 'myClass',
-          element : <PrivateRoute><MyAllClass></MyAllClass></PrivateRoute>
-        },
-        {
-          path : '/dashboard/myClassDetails/:id',
-          element :<PrivateRoute> <MyClassDetailsPage></MyClassDetailsPage></PrivateRoute>,
-          // loader : ({params}) => fetch(`http://localhost:5000//classes/${params.id}`)
-        },
-        {
-          path : 'studentProfile',
-          element : <StudentProfile></StudentProfile>
-        },
-        {
-          path : 'myEnrollMent',
-          element : <PrivateRoute>
-                <MyEnrollMent></MyEnrollMent>
-          </PrivateRoute>
-        },
-        {
-          path : '/dashboard/myEnrollMent/enrollmentDetails/:id',
-          element :<PrivateRoute> <EnrollmentDetails></EnrollmentDetails></PrivateRoute>
-        },
-        {
-          path  : 'myOrders',
-          element : <PrivateRoute>
-                 <MyOrders></MyOrders>
-          </PrivateRoute>
-        }
-      ]
-  
-    }
-  ]);
-
-
-  export default router
+export default router;

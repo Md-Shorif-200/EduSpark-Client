@@ -1,94 +1,58 @@
 import React from "react";
+import Container from "../../Common/Container";
 import img_1 from "../../assets/Motivational_Intro/img-1.jpg";
 import img_2 from "../../assets/Motivational_Intro/img-2.jpg";
 import img_3 from "../../assets/Motivational_Intro/img-3.jpg";
+
+const cards = [
+  { img: img_1, title: "Coaching" },
+  { img: img_2, title: "Consulting" },
+  { img: img_3, title: "Courses" },
+];
+
 const Motivational_Intro = () => {
   return (
-    <div className="motivational_intro w-full secondary_bg_color common_padding py-20">
-      <div className="section_heading text-center mb-24 ">
-        <h1 className="section_title">Explore How can I help you</h1>
-        <p className="text-lg text-slate-600 my-2 capitalize">
-          the ultimate planning solution for busy women who want to reach their
-          personal goals
-        </p>
-      </div>
-
-      <div className="img_section grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-14">
-        {/* card-1 */}
-        <div
-          className="card w-[90%] md:w-full mx-auto  h-[280px] sm:h-[300px] md:h-[350px] relative  "
-          data-aos="fade-up"
-        >
-          <img
-            src={img_1}
-            className="w-full h-full object-cover rounded-lg "
-            alt=""
-          />
-
-          <div className="absolute inset-0 bg-black/5 z-10"></div>
-          <p className="absolute top-0 left-0 right-0 bottom-0  w-fit h-fit m-auto text-white text-4xl capitalize font-bold  ">
-            coaching
+    <section className="py-16 md:py-20 bg-slate-50">
+      <Container>
+        <div className="text-center mb-14">
+          <span className="inline-block text-blue-600 font-semibold text-sm tracking-widest uppercase mb-3">
+            How We Help
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+            Explore How We Can Help You
+          </h2>
+          <p className="text-slate-500 max-w-2xl mx-auto text-lg">
+            The ultimate planning solution for learners who want to reach their
+            personal and professional goals
           </p>
-          {/* overlay info */}
-          <div className="overlay_info  bg-white p-2  flex justify-center items-center absolute bottom-0">
-            <button className="primary_btn uppercase">
-              {" "}
-              <span> appointment</span>{" "}
-            </button>
-          </div>
         </div>
 
-        {/* card-2 */}
-        <div
-          className="card w-[90%] md:w-full mx-auto  h-[280px] sm:h-[300px] md:h-[350px] relative"
-          data-aos="fade-up"
-          data-aos-delay="400"
-        >
-          <img
-            src={img_2}
-            className="w-full h-full object-cover rounded-lg "
-            alt=""
-          />
-          <div className="absolute inset-0 bg-black/5 z-10"></div>
-          <p className="absolute top-0 left-0 right-0 bottom-0  w-fit h-fit m-auto text-white text-4xl capitalize font-semibold">
-            consulting
-          </p>
-
-          {/* overlay info */}
-          <div className="overlay_info  bg-white p-2  flex justify-center items-center absolute bottom-0">
-            <button className="primary_btn uppercase">
-              {" "}
-              <span> appointment</span>{" "}
-            </button>
-          </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {cards.map((card, index) => (
+            <div
+              key={index}
+              className="group relative h-[300px] md:h-[350px] rounded-2xl overflow-hidden cursor-pointer"
+            >
+              <img
+                src={card.img}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                alt={card.title}
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <h3 className="text-white text-3xl font-bold capitalize mb-4">
+                  {card.title}
+                </h3>
+                <button className="primary_btn opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 uppercase text-sm">
+                  Learn More
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
-
-        {/* card -3 */}
-        <div
-          className="card w-[90%] md:w-full mx-auto  h-[280px] sm:h-[300px] md:h-[350px] relative"
-          data-aos="fade-up"
-          data-aos-delay="500"
-        >
-          <img
-            src={img_3}
-            className="w-full h-full object-cover rounded-lg "
-            alt=""
-          />
-          <div className="absolute inset-0 bg-black/5 z-10"></div>
-          <p className="absolute top-0 left-0 right-0 bottom-0  w-fit h-fit m-auto text-white text-4xl capitalize font-semibold">
-            courses
-          </p>
-
-          {/* overlay info */}
-          <div className="overlay_info  bg-white p-2  flex justify-center items-center absolute bottom-0">
-            <button className="primary_btn uppercase">
-              {" "}
-              <span> appointment</span>{" "}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+      </Container>
+    </section>
   );
 };
 

@@ -1,210 +1,223 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import useClass from "../../Hooks/useClass";
-import Swal from "sweetalert2";
+import { useState, useEffect } from 'react';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import useClass from '../../Hooks/useClass';
 import toast from 'react-hot-toast';
-
-import { useState } from "react";
-import Loading from "../../Common/Loading";
-import { Link } from "react-router-dom";
-
-// react icons
-import { FcApproval, FcDeleteColumn } from "react-icons/fc";
-import { FcDisapprove } from "react-icons/fc";
-import { MdDelete } from "react-icons/md";
-
-
-
-
+import Loading from '../../Common/Loading';
+import { HiDotsVertical } from 'react-icons/hi';
+import { FiCheck, FiX, FiTrash2 } from 'react-icons/fi';
 
 const RequestedClass = () => {
-    const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
+  const [classes, refetch, isLoading] = useClass();
+  const [openMenu, setOpenMenu] = useState(null);
 
-    const [classes,refetch,isLoading] = useClass();
-   
+  useEffect(() => {
+    const close = () => setOpenMenu(null);
+    document.addEventListener('click', close);
+    return () => document.removeEventListener('click', close);
+  }, []);
 
-    if(isLoading){
-      return <Loading></Loading>
-    }
+  if (isLoading) return <Loading />;
 
-// approve class request
-    const handleApproveBtn = (id) => {
-
-      
-      axiosSecure.patch(`/classes/approve/${id}`)
-      .then(result => {
-          console.log(result.data);
-          
-             if(result.data.modifiedCount > 0) {
-                                toast.success('class is approve now!')
-                                      
-              
-                                    //   refetch api 
-                                    refetch()
-                        }else if( result.data.modifiedCount === 0 && result.data.matchedCount === 1){
-
-                          toast.error("This class is already approved. You can't approve it again!")
-                        }
-                       
-                        
-
-           
-      })
-      .catch(err => {
-        console.log(err);
-        
-      })
-    }
-// reject class request
-    const handleRejectBtn = (id) => {
-
-       
-     try{
-      axiosSecure.patch(`/classes/reject/${id}`)
-      .then(result => {
-         console.log(result.data);
-         
-         if(result.data.modifiedCount > 0){
-           toast.success('The class was successfully rejected');
-          
-          //  refetch
-          refetch();
-         }else if( result.data.modifiedCount === 0 && result.data.matchedCount > 0){
-
-          toast.error("This class is already rejected.")
-        }
-      } )
-
-     }catch(error){
-      console.log(error);
-      
-     }
-      
-    }
-
-    // delete class
-
-    const handleDeleteBtn = (id) => {
-       console.log(id);
-       
-      toast(
-          (t) => (
-              <div>
-                  <p className="font-semibold">Are you sure you want to delete this class?</p>
-                  <div className="flex gap-2 mt-2">
-                      <button
-                          className="px-3 py-1 bg-red-500 text-white rounded"
-                          onClick={() => {
-                              toast.dismiss(t.id);
-                              deleteClass(id);
-                          }}
-                      >
-                          Yes, Delete
-                      </button>
-                      <button
-                          className="px-3 py-1 bg-gray-300 text-black rounded"
-                          onClick={() => toast.dismiss(t.id)}
-                      >
-                          Cancel
-                      </button>
-                  </div>
-              </div>
-          ),
-          { duration: 6000 }
-      );
-  };
-  
-  const deleteClass = async (id) => {
-      const deleteToast = toast.loading("Deleting class...");
-      
-      try {
-          const response = await axiosSecure.delete(`/classes/${id}`);
-          console.log(response);
-          
-          if (response.data.deletedCount > 0) {
-              toast.success("Class deleted successfully", { id: deleteToast });
-         await     refetch(); // Refresh data after deletion
-          } else {
-              toast.error("Failed to delete class", { id: deleteToast });
-          }
-      } catch (error) {
-          console.error("Delete error:", error);
-          toast.error("An error occurred while deleting", { id: deleteToast });
-      }
-  };
-  
-  
-
-    return (
-          <div>
-      
-              <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
-
-              <h1 className="text-2xl font-semibold mx-16 mt-14 mb-6"> Total  Classes: {classes.length}  </h1>
-
-        <table className="table">
-          {/* head */}
-          <thead>
-            <tr>
-              <th></th>
-              <th></th>
-              <th>title</th>
-              <th>teacher name</th>
-              <th className="lowercase">teacher email</th>
-              <th>status</th>
-              <th></th>
-              <th>Action</th>
-              <th></th>
-
-            </tr>
-          </thead>
-          <tbody>
-    
-            {
-                classes.map((singleClass,index) =>
-                    <tr key={index}>
-                <th> {index + 1}</th>
-                <td> <img src={singleClass?.image} alt="" className="w-[40px] h-[40px] rounded-full" /> </td>
-                <td> {singleClass?.title} </td>
-                <td> {singleClass?.name} </td>
-                <td> {singleClass?.email} </td>
-                <td>   <span className={
-                  `
-                  ${singleClass.status === 'pending' ? 'bg-orange-300 py-1 px-2 rounded-md' : ''}
-                  ${singleClass.status === 'approved' ? 'bg-green-200 py-1 px-2 rounded-md' : ''}
-                  ${singleClass.status === 'rejected' ? 'bg-red-300 py-1 px-2 rounded-md' : ''}
-                  `
-                }>   {singleClass?.status}  </span> </td>
-
-                <td>  <button className='btn btn-sm' title="approve button" onClick={() => handleApproveBtn(singleClass._id)}><FcApproval className="text-xl"></FcApproval> </button>  </td>
-                
-                <td>  <button className="btn btn-sm" title="reject  button" onClick={() =>  handleRejectBtn(singleClass._id)}> <FcDisapprove className="text-xl"></FcDisapprove></button>  </td>
-
-                <td>  <button className="btn btn-sm" title="delete  button" onClick={() =>  handleDeleteBtn(singleClass._id)}> <MdDelete className="text-xl text-red-500"></MdDelete></button>  </td>
-
-                   <td>
-                     <Link to={`/dashboard/class-progress/${singleClass._id}`} className="btn btn-sm btn-neutral btn-outline" >Details</Link>  
-                   {/* {
-                      singleClass.status === 'approved' ? 
-                      <>
-                      
-                      </>  
-                       : 
-                      <>
-<button className="btn" disabled>progess</button>
-
-                      </>
-                    } */}
-         
-                   </td>
-              </tr>)
-            }
-       
-          </tbody>
-        </table>
-      </div>
+  const confirmAction = (message, onConfirm) => {
+    toast(
+      (t) => (
+        <div className="flex flex-col gap-3">
+          <p className="font-medium text-gray-800">{message}</p>
+          <div className="flex gap-2 justify-end">
+            <button
+              onClick={() => toast.dismiss(t.id)}
+              className="px-3 py-1.5 text-sm text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition cursor-pointer"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={() => {
+                toast.dismiss(t.id);
+                onConfirm();
+              }}
+              className="px-3 py-1.5 text-sm text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition cursor-pointer"
+            >
+              Confirm
+            </button>
           </div>
+        </div>
+      ),
+      { duration: 8000 }
     );
+  };
+
+  const handleApprove = (id) => {
+    setOpenMenu(null);
+    confirmAction('Approve this class?', () => {
+      axiosSecure
+        .patch(`/classes/approve/${id}`)
+        .then((result) => {
+          if (result.data.modifiedCount > 0) {
+            toast.success('Class approved!');
+            refetch();
+          } else if (result.data.modifiedCount === 0 && result.data.matchedCount === 1) {
+            toast.error('This class is already approved');
+          }
+        })
+        .catch(() => toast.error('Something went wrong'));
+    });
+  };
+
+  const handleReject = (id) => {
+    setOpenMenu(null);
+    confirmAction('Reject this class?', () => {
+      axiosSecure
+        .patch(`/classes/reject/${id}`)
+        .then((result) => {
+          if (result.data.modifiedCount > 0) {
+            toast.success('Class rejected successfully');
+            refetch();
+          } else if (result.data.modifiedCount === 0 && result.data.matchedCount > 0) {
+            toast.error('This class is already rejected');
+          }
+        })
+        .catch((err) => console.error(err));
+    });
+  };
+
+  const handleDelete = (id) => {
+    setOpenMenu(null);
+    confirmAction('Delete this class? This cannot be undone.', () => {
+      const deleteToast = toast.loading('Deleting class...');
+      axiosSecure
+        .delete(`/classes/${id}`)
+        .then((result) => {
+          if (result.data.deletedCount > 0) {
+            toast.success('Class deleted successfully', { id: deleteToast });
+            refetch();
+          } else {
+            toast.error('Failed to delete class', { id: deleteToast });
+          }
+        })
+        .catch(() => toast.error('An error occurred while deleting', { id: deleteToast }));
+    });
+  };
+
+  const statusColor = {
+    pending: 'bg-amber-50 text-amber-700',
+    approved: 'bg-emerald-50 text-emerald-700',
+    rejected: 'bg-red-50 text-red-700',
+  };
+
+  return (
+    <div className="p-4 md:p-6">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100">
+        {/* Header */}
+        <div className="px-6 py-5 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h2 className="text-xl font-semibold text-gray-900">Requested Classes</h2>
+            <p className="text-sm text-gray-500 mt-1">Review and manage class submissions</p>
+          </div>
+          <span className="inline-flex items-center self-start px-3 py-1 rounded-full text-sm font-medium bg-indigo-50 text-indigo-700">
+            {classes.length} classes
+          </span>
+        </div>
+
+        {/* Table */}
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-gray-100 bg-gray-50/50">
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-6 py-3">
+                  #
+                </th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-6 py-3">
+                  Class
+                </th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-6 py-3">
+                  Teacher
+                </th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-6 py-3">
+                  Email
+                </th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-6 py-3">
+                  Status
+                </th>
+                <th className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider px-6 py-3">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-50">
+              {classes.map((singleClass, index) => (
+                <tr key={singleClass._id || index} className="hover:bg-gray-50/50 transition-colors">
+                  <td className="px-6 py-4 text-sm text-gray-500">{index + 1}</td>
+                  <td className="px-6 py-4">
+                    <div className="flex items-center gap-3">
+                      <img
+                        src={singleClass?.image}
+                        className="w-9 h-9 rounded-lg object-cover ring-2 ring-gray-100"
+                        alt=""
+                      />
+                      <span className="text-sm font-medium text-gray-900 capitalize">
+                        {singleClass?.title}
+                      </span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-600 capitalize">{singleClass?.name}</td>
+                  <td className="px-6 py-4 text-sm text-gray-600 lowercase">{singleClass?.email}</td>
+                  <td className="px-6 py-4">
+                    <span
+                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize ${statusColor[singleClass.status] || ''}`}
+                    >
+                      {singleClass?.status}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 text-right">
+                    <div className="relative inline-block">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setOpenMenu(openMenu === index ? null : index);
+                        }}
+                        className="p-2 rounded-lg hover:bg-gray-100 transition text-gray-400 hover:text-gray-600 cursor-pointer"
+                      >
+                        <HiDotsVertical className="text-lg" />
+                      </button>
+
+                      {openMenu === index && (
+                        <div className="absolute right-0 mt-1 w-44 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+                          <button
+                            onClick={() => handleApprove(singleClass._id)}
+                            className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition cursor-pointer"
+                          >
+                            <FiCheck className="text-base" /> Approve
+                          </button>
+                          <button
+                            onClick={() => handleReject(singleClass._id)}
+                            className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition cursor-pointer"
+                          >
+                            <FiX className="text-base" /> Reject
+                          </button>
+                          <div className="border-t border-gray-100 my-1"></div>
+                          <button
+                            onClick={() => handleDelete(singleClass._id)}
+                            className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition cursor-pointer"
+                          >
+                            <FiTrash2 className="text-base" /> Delete
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {classes.length === 0 && (
+          <div className="text-center py-16 text-gray-400 text-sm">No class requests found</div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default RequestedClass;

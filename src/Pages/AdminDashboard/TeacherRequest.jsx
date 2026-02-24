@@ -1,207 +1,209 @@
-
-
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
-import Swal from 'sweetalert2';
- import toast  from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import Loading from '../../Common/Loading';
-import useRole from '../../Hooks/useRole';
-
-// react icons 
-import { FaCheckCircle } from "react-icons/fa";
-import { MdCancel, MdDelete } from "react-icons/md";
-import { FcDisapprove } from 'react-icons/fc';
-
+import { HiDotsVertical } from 'react-icons/hi';
+import { FiCheck, FiX } from 'react-icons/fi';
 
 const TeacherRequest = () => {
+  const axiosSecure = useAxiosSecure();
+  const [openMenu, setOpenMenu] = useState(null);
 
-    const axiosSecure = useAxiosSecure();
+  const { data: users = [], isLoading, refetch } = useQuery({
+    queryKey: ['users'],
+    queryFn: async () => {
+      const res = await axiosSecure.get('/users');
+      return res.data;
+    },
+  });
 
+  useEffect(() => {
+    const close = () => setOpenMenu(null);
+    document.addEventListener('click', close);
+    return () => document.removeEventListener('click', close);
+  }, []);
 
-     
+  if (isLoading) return <Loading />;
 
-    const {data : users = [], isLoading, refetch} = useQuery({
-        queryKey : ['users'],
-        queryFn :  async () => {
-             const res = await axiosSecure.get('/users')
-              return res.data
-        }
-    })
+  const teachers = users.filter(
+    (user) => user.status === 'pending' || user.status === 'accepted' || user.status === 'rejected'
+  );
 
-    
-    if(isLoading){
-      return <Loading></Loading>
-    }
-  
+  const confirmAction = (message, onConfirm) => {
+    toast(
+      (t) => (
+        <div className="flex flex-col gap-3">
+          <p className="font-medium text-gray-800">{message}</p>
+          <div className="flex gap-2 justify-end">
+            <button
+              onClick={() => toast.dismiss(t.id)}
+              className="px-3 py-1.5 text-sm text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition cursor-pointer"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={() => {
+                toast.dismiss(t.id);
+                onConfirm();
+              }}
+              className="px-3 py-1.5 text-sm text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition cursor-pointer"
+            >
+              Confirm
+            </button>
+          </div>
+        </div>
+      ),
+      { duration: 8000 }
+    );
+  };
 
-// filter teachers by status
-    const teachers = users.filter(user => user.status === 'pending' || user.status === 'accepted' || user.status ===  'rejected')
-     console.log(teachers);
-     
-    
-
-    // manage  teacher request
-
-    const handleApproveButton = (teacher) => {
-      axiosSecure.patch(`/users/teacher/confirm/${teacher.email}`)
-        .then(result => {
-          console.log(result.data);
+  const handleApprove = (teacher) => {
+    setOpenMenu(null);
+    confirmAction(`Approve ${teacher.name} as a teacher?`, () => {
+      axiosSecure
+        .patch(`/users/teacher/confirm/${teacher.email}`)
+        .then((result) => {
           if (result.data.modifiedCount > 0) {
             toast.success(`${teacher.name} is a teacher now!`);
             refetch();
           } else if (result.data.modifiedCount === 0 && result.data.matchedCount > 0) {
-             console.log('hlw');
-             
-            toast.error("Class is already approved"); 
+            toast.error('Already approved');
           }
         })
-        .catch(error => {
-          console.error(error);
-          toast.error("Something went wrong while approving the teacher!"); 
-        });
-    };
-    
-    // reject techer request 
-    const handleRejectButton = (teacher) => {
-      try{
-        axiosSecure.patch(`/users/teacher/reject/${teacher.email}`)
-        .then(result => {
-           
-          console.log(result.data);
-          if(result.data.modifiedCount > 0){
-            toast.success(`reject succesfully`)
-              refetch();
+        .catch(() => toast.error('Something went wrong'));
+    });
+  };
 
-          }else{
-            toast.error(`something is wrong`)
+  const handleReject = (teacher) => {
+    setOpenMenu(null);
+    confirmAction(`Reject ${teacher.name}'s request?`, () => {
+      axiosSecure
+        .patch(`/users/teacher/reject/${teacher.email}`)
+        .then((result) => {
+          if (result.data.modifiedCount > 0) {
+            toast.success('Rejected successfully');
+            refetch();
+          } else {
+            toast.error('Something went wrong');
           }
-          
         })
+        .catch((err) => console.error(err));
+    });
+  };
 
-      }catch(error) {
-          console.log(error);
-          
-      }
-    }
+  const statusColor = {
+    pending: 'bg-amber-50 text-amber-700',
+    accepted: 'bg-emerald-50 text-emerald-700',
+    rejected: 'bg-red-50 text-red-700',
+  };
 
-    // // manage reject button
+  return (
+    <div className="p-4 md:p-6">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100">
+        {/* Header */}
+        <div className="px-6 py-5 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h2 className="text-xl font-semibold text-gray-900">Teacher Requests</h2>
+            <p className="text-sm text-gray-500 mt-1">Manage teacher application requests</p>
+          </div>
+          <span className="inline-flex items-center self-start px-3 py-1 rounded-full text-sm font-medium bg-indigo-50 text-indigo-700">
+            {teachers.length} requests
+          </span>
+        </div>
 
-    const rejectionMessage = () => {
-      toast.error(  ` teacher was rejected `)
-    }
-    return (
-           <div className='mx-4 my-8 border border-gray-300 capitalize'>
-         <h1 className="text-2xl font-semibold mx-16 mt-14 mb-6"> Total Requests :  {teachers.length} </h1>
-       
-<div className="overflow-x-auto">
-<table className="table">
-  {/* head */}
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th>name</th>
-      <th>title</th>
+        {/* Table */}
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-gray-100 bg-gray-50/50">
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-6 py-3">
+                  #
+                </th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-6 py-3">
+                  Teacher
+                </th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-6 py-3">
+                  Title
+                </th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-6 py-3">
+                  Experience
+                </th>
+                <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-6 py-3">
+                  Status
+                </th>
+                <th className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider px-6 py-3">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-50">
+              {teachers.map((teacher, index) => (
+                <tr key={teacher._id || index} className="hover:bg-gray-50/50 transition-colors">
+                  <td className="px-6 py-4 text-sm text-gray-500">{index + 1}</td>
+                  <td className="px-6 py-4">
+                    <div className="flex items-center gap-3">
+                      <img
+                        src={teacher.image}
+                        className="w-9 h-9 rounded-full object-cover ring-2 ring-gray-100"
+                        alt=""
+                      />
+                      <span className="text-sm font-medium text-gray-900 capitalize">{teacher.name}</span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-600 capitalize">{teacher?.skills?.title}</td>
+                  <td className="px-6 py-4 text-sm text-gray-600 capitalize">{teacher?.skills?.experience}</td>
+                  <td className="px-6 py-4">
+                    <span
+                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize ${statusColor[teacher.status] || ''}`}
+                    >
+                      {teacher.status}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 text-right">
+                    <div className="relative inline-block">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setOpenMenu(openMenu === index ? null : index);
+                        }}
+                        className="p-2 rounded-lg hover:bg-gray-100 transition text-gray-400 hover:text-gray-600 cursor-pointer"
+                      >
+                        <HiDotsVertical className="text-lg" />
+                      </button>
 
-      <th>experience</th>
-      <th>status</th>
+                      {openMenu === index && (
+                        <div className="absolute right-0 mt-1 w-44 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+                          <button
+                            onClick={() => handleApprove(teacher)}
+                            disabled={teacher.status === 'rejected'}
+                            className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 disabled:opacity-40 disabled:cursor-not-allowed transition cursor-pointer"
+                          >
+                            <FiCheck className="text-base" /> Approve
+                          </button>
+                          <button
+                            onClick={() => handleReject(teacher)}
+                            disabled={teacher.status === 'rejected'}
+                            className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 disabled:opacity-40 disabled:cursor-not-allowed transition cursor-pointer"
+                          >
+                            <FiX className="text-base" /> Reject
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
-      <th></th>
-      <th> action</th>
-    
-
-   
-    </tr>
-  </thead>
-  <tbody>
-    {teachers.map((teacher, index) => (
-      <tr key={index}>
-        <th> {index + 1}</th>
-         <td>  
-             <img src={teacher.image} className='w-[50px] h-[50px] rounded-full' alt="teacher image" />
-         </td>
-         <td>  {teacher.name} </td>
-         <td>  {teacher?.skills?.title} </td>
-
-         <td>  {teacher?.skills?.experience} </td>
-         <td  >       <span  className={
-            `
-            ${teacher.status === 'pending' ? 'bg-orange-300 px-2 py-1 rounded-md ' : ''}
-            ${teacher.status === 'accepted' ? 'bg-green-200 px-2 py-1 rounded-md ' : ''}
-            ${teacher.status === 'rejected' ? 'bg-red-300 px-2 py-1 rounded-md ' : ''}
-            `
-         }>  {teacher.status}  </span>  </td>
-         {/* approve button */}
-         <td>  
-
-           {
-             teacher.status === 'rejected' 
-             ?
-              // <><button  className=' btn btn-sm opacity-40 cursor-not-allowed' > </button></> 
-
-              <div className="tooltip">
-  <div className="tooltip-content">
-    <div className=" text-orange-400 text-sm font-black">  The button will be active when the teacher requests again. </div>
-  </div>
-  <button className="btn btn-sm opacity-60 cursor-not-allowed"><FaCheckCircle className='text-xl text-green-300'></FaCheckCircle></button>
-</div>
-             :
-             <> <button className = 'btn btn-sm  btn-outline btn-success ' title='approve btn' onClick={() => handleApproveButton(teacher)}> <FaCheckCircle className='text-xl text-green-300'></FaCheckCircle> </button>  </>
-           }
-
-         </td>
-            {/* reject button */}
-<td>
-{
-teacher?.status === 'rejected' ?
-
-<>
-<div className="tooltip">
-  <div className="tooltip-content">
-    <div className=" text-orange-400 text-sm font-black">The button will be active when the teacher requests again.</div>
-  </div>
-  <button className="btn btn-sm opacity-60 cursor-not-allowed"><MdCancel className='text-xl text-red-400'></MdCancel></button>
-</div>
-</>
-
-: 
-
-<button className='btn btn-sm btn-outline btn-error  ' title='reject btn' onClick={() => handleRejectButton(teacher)}> <MdCancel className='text-xl'></MdCancel>  </button> 
-}
-</td>
-
-
-
-        
-      
-        
-
-    
-     
-      </tr>
-    ))}
-  </tbody>
-</table>
-</div>
-    
-           </div>
-    );
+        {teachers.length === 0 && (
+          <div className="text-center py-16 text-gray-400 text-sm">No teacher requests found</div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default TeacherRequest;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

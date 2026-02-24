@@ -1,25 +1,30 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import { NavLink } from "react-router-dom";
+
+const links = [
+  { to: "/", label: "Home" },
+  { to: "/allClass", label: "All Class" },
+  { to: "/TeachOn", label: "Teach On" },
+  { to: "/contact", label: "Contact" },
+];
 
 const Navlinks = () => {
-      const navLinks = (
-    <>
-      <li className="text-base text-[#1E293B] font-normal capitalize mx-2  py-2 lg:py-0 cursor-pointer">
-        <NavLink to="/">Home</NavLink>
-      </li>
-      <li className="text-base text-[#1E293B] font-normal capitalize mx-2  py-2 lg:py-0 cursor-pointer">
-        <NavLink to="/allClass">All Class</NavLink>
-      </li>
-      <li className="text-base text-[#1E293B] font-normal capitalize mx-2  py-2 lg:py-0 cursor-pointer">
-        <NavLink to="/TeachOn">Teach On</NavLink>
-      </li>
-      <li className="text-base text-[#1E293B] font-normal capitalize mx-2  py-2 lg:py-0 cursor-pointer">
-        <NavLink to="/contact">Contact</NavLink>
-      </li>
-    </>
-  );
-
-    return   navLinks;
+  return links.map(({ to, label }) => (
+    <li key={to}>
+      <NavLink
+        to={to}
+        className={({ isActive }) =>
+          `relative px-4 py-2 text-[15px] font-medium rounded-lg transition-all duration-200 outline-none ${
+            isActive
+              ? "text-indigo-600 bg-indigo-50"
+              : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+          }`
+        }
+      >
+        {label}
+      </NavLink>
+    </li>
+  ));
 };
 
 export default Navlinks;

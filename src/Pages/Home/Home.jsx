@@ -1,41 +1,38 @@
-import React from 'react';
-
-// import ChatForm from "../../Common/chatForm";
-// import ShadcnUi from "../../Common/ShadcnUi";
-import AboutUs from "./AboutUs";
-
-import EducationFaculties from "./EducationFaculties";
-import ExclusiveSolution from "./ExclusiveSolution";
-import Feedback from "./Feedback";
-import InspireAsTeacher from "./InspireAsTeacher";
-import Partners from "./Partners";
-import PlatformOverview from "./PlatformOverview";
-import PopulerCourse from "./PopulerCourse";
-import Statistics from "./Statistics";
-import SuccessHistory from "./SuccesStory";
-import Motivational_Intro from './Motivational_Intro';
+import React, { lazy, Suspense } from 'react';
+import Loading from '../../Common/Loading';
 import Banner from './Banner/Banner';
 
+const PopulerCourse = lazy(() => import('./PopulerCourse'));
+const Motivational_Intro = lazy(() => import('./Motivational_Intro'));
+const AboutUs = lazy(() => import('./AboutUs'));
+const EducationFaculties = lazy(() => import('./EducationFaculties'));
+const Partners = lazy(() => import('./Partners'));
+const Statistics = lazy(() => import('./Statistics'));
+const Feedback = lazy(() => import('./Feedback'));
+const PlatformOverview = lazy(() => import('./PlatformOverview'));
+const InspireAsTeacher = lazy(() => import('./InspireAsTeacher'));
+const ExclusiveSolution = lazy(() => import('./ExclusiveSolution'));
+const SuccessHistory = lazy(() => import('./SuccesStory'));
 
 const Home = () => {
-    return (
-        <div>
-                   {/* <ShadcnUi></ShadcnUi> */}
-                    {/* <ChatForm></ChatForm> */}
-               <Banner></Banner>
-               <PopulerCourse></PopulerCourse>
-                                <Motivational_Intro></Motivational_Intro>
-               <AboutUs></AboutUs>
-               {/* <EducationFaculties></EducationFaculties> */}
-               {/* <Partners></Partners> */}
-               <Statistics></Statistics>
-               {/* <Feedback></Feedback> */}
-               {/* <PlatformOverview></PlatformOverview> */}
-               {/* <InspireAsTeacher></InspireAsTeacher> */}
-               {/* <ExclusiveSolution></ExclusiveSolution> */}
-               {/* <SuccessHistory></SuccessHistory> */}
-        </div>
-    );
+  return (
+    <div>
+      <Banner />
+      <Suspense fallback={<Loading />}>
+        <PopulerCourse />
+        <Motivational_Intro />
+        <AboutUs />
+        <EducationFaculties />
+        <Partners />
+        <Statistics />
+        <Feedback />
+        <PlatformOverview />
+        <InspireAsTeacher />
+        <ExclusiveSolution />
+        <SuccessHistory />
+      </Suspense>
+    </div>
+  );
 };
 
 export default Home;

@@ -236,19 +236,6 @@
 } */
 
 
- .nav_link li:hover {
-   @apply bg-indigo-500 text-white rounded-sm
-}
-
-
-
- .nav_link a.active {
-   @apply bg-indigo-500 text-white
-}
-/* 
- .nav_link a.active::after {
-  transform: scaleX(1);
-} */
 
  ul {
   @apply list-none pl-0 m-0;

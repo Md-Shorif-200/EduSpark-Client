@@ -14,20 +14,13 @@ const AuthProvider = ({children}) => {
 
   // Setup Firebase auth state observer
     useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+            setUser(currentUser);
+            setLoading(false);
+        });
 
-        const unsbscribe = onAuthStateChanged(auth,currentUser => {
-             setUser(currentUser);
-            //   console.log(currentUser);
-              
-             setLoading(false)
-
-           return () => {
-            return unsbscribe()
-           }
-
-        })
-
-    },[])
+        return () => unsubscribe();
+    }, [])
 
     // creat new user with signUp
     
@@ -58,11 +51,12 @@ const logOut = () => {
 
 
 // update Profile
-const updateUserProfile = (name,photoUrl) => {
-return updateProfile(auth.currentUser, {
-    displayName
- : name, photoURL : photoUrl
-})
+const updateUserProfile = async (name, photoUrl) => {
+    await updateProfile(auth.currentUser, {
+        displayName: name,
+        photoURL: photoUrl,
+    });
+    setUser({ ...auth.currentUser });
 }
 
 

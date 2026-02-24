@@ -1,227 +1,180 @@
-
+import React from 'react';
 import { Link, useLoaderData, useParams } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
+import useClass from '../../Hooks/useClass';
 
-import img from '../../assets/InspireTeacher/teacher-6831688_640.webp'
-
-// matarial ui accordion
+// Material UI
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ClassDetailsAccordion from './ClassDetailsAccordion';
 
-// react icons
-
-import { RiHome2Line } from "react-icons/ri";
-import { FaStar, FaStarHalf } from 'react-icons/fa';
-
+// Icons
+import { RiHome2Line, RiTimeLine, RiUser3Line } from "react-icons/ri";
+import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import { MdOutlineSlowMotionVideo } from "react-icons/md";
 import { GoProjectSymlink } from 'react-icons/go';
+import { LiaCircleNotchSolid } from "react-icons/lia";
+import { HiOutlineFolderOpen } from "react-icons/hi";
 
-import { LiaCertificateSolid, LiaCircleNotchSolid, LiaCriticalRole } from "react-icons/lia";
-import useClass from '../../Hooks/useClass';
-
+import ClassDetailsAccordion from './ClassDetailsAccordion';
+import img from '../../assets/InspireTeacher/teacher-6831688_640.webp';
 
 const ClassDetails = () => {
-     const classData = useLoaderData()
-     const {user} = useAuth()
-     const {id} = useParams();
- 
-      const [classes,refetch,isLoading] = useClass()
+    const { id } = useParams();
+    const [classes] = useClass();
+    const classDetails = classes.find(cls => cls._id === id);
 
-      
-      
-      
-      const classDetails = classes.find(cls => cls._id == id);
-
-      console.log(classDetails);
-      
-
-      
-  
-  
-            
-    //  const {_id,title,name ,email, price ,description, status , image,duration,totalEnrollments,totalLectures,totalProjects,courseCurriculam,time,category}  = classDetails;
-
-   
-     
-              
-               const gettingStarted = classDetails?.courseCurriculam.slice(0,5)
-                console.log(gettingStarted);
-                
+    const gettingStarted = classDetails?.courseCurriculam?.slice(0, 5);
 
     return (
-        <div className='classs_details_container mb-40 z-0   '>
+        <div className="bg-white min-h-screen pb-20">
+            {/* Header Section */}
+            <div className="bg-slate-50 border-b border-slate-200">
+                <div className="max-w-7xl mx-auto px-4 lg:px-8 py-8 lg:py-12">
+                  
 
-            
-<div className="class_cnt bg-[#F2F7FD] px-2 lg:px-16">
-                    <p className="subtitle text-gray-400  items-center pt-4 hidden lg:flex">    <RiHome2Line></RiHome2Line>/ <span> {classDetails?.category} </span>/ <span>{classDetails?.title} </span>  </p>
+                    <div className="lg:w-2/3">
+                        <span className="inline-block px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold uppercase tracking-wider mb-4">
+                            {classDetails?.category}
+                        </span>
+                        <h1 className="text-3xl lg:text-4xl font-extrabold text-slate-900 mb-6 leading-tight">
+                            {classDetails?.title}
+                        </h1>
 
-                    <div className="w-[16%] primary_bg_color  py-1 text-black  rounded-xl font-semibold mt-16 hidden md:block">  {classDetails?.category} </div>
-                  <h1 className='text-3xl font-bold mt-4 capitalize secondary_text_color'> {classDetails?.title} </h1>
-                
-                <div className='block md:flex gap-10 items-center capitalize  py-8 secondary_text_color'>
-                       <div className='flex items-center gap-x-4 '>
-                            <img src={img} alt="" className='w-12 h-12 rounded-full' />
-                              <div className=''>
-                                  <h1 className='secondary_text_color font-semibold'>teacher</h1>
-                                  <p className='font-semibold mt-1'>{name} </p>
-                              </div>
-                       </div>
+                        <div className="flex flex-wrap gap-6 items-center text-slate-600">
+                            <div className="flex items-center gap-3">
+                                <img src={img} alt="Teacher" className="w-10 h-10 rounded-full ring-2 ring-white shadow-sm" />
+                                <div>
+                                    <p className="text-xs text-slate-400 uppercase font-bold">Instructor</p>
+                                    <p className="text-sm font-semibold text-slate-800">{classDetails?.name}</p>
+                                </div>
+                            </div>
 
-                       <div className='my-6'>
-                                  <h1 className='secondary_text_color font-semibold'>category</h1>
-                                  <p className='font-semibold mt-1'>{classDetails?.category} </p>
+                            <div className="h-8 w-px bg-slate-200 hidden md:block"></div>
+
+                            <div>
+                                <p className="text-xs text-slate-400 uppercase font-bold text-center md:text-left">Rating</p>
+                                <div className="flex items-center gap-1 text-amber-400 text-sm">
+                                    <FaStar /><FaStar /><FaStar /><FaStar /><FaStarHalfAlt />
+                                    <span className="text-slate-800 font-bold ml-1">4.5</span>
+                                </div>
+                            </div>
+
+                            <div className="h-8 w-px bg-slate-200 hidden md:block"></div>
+
+                            <div>
+                                <p className="text-xs text-slate-400 uppercase font-bold">Last Updated</p>
+                                <p className="text-sm font-semibold text-slate-800">{classDetails?.time}</p>
+                            </div>
                         </div>
-
-
-                              <div className='my-6'>
-                                  <h1 className='secondary_text_color font-semibold'>last updated</h1>
-                                  <p className='font-semibold mt-1'>{classDetails?.time} </p>
-                              </div>
-
-                              <div className='my-6'>
-                                        <ul className='flex gap-1 text-md my-1'>
-                                               <li className='text-[#F4B400]'>  <FaStar></FaStar> </li>
-                                               <li className='text-[#F4B400]'>  <FaStar></FaStar> </li>
-                                               <li className='text-[#F4B400]'>  <FaStar></FaStar> </li>
-                                               <li className='text-[#F4B400]'>  <FaStar></FaStar> </li>
-                                               <li className='text-[#7c7a75]'>  <FaStarHalf></FaStarHalf> </li>
-                                             </ul>
-                                  <p> 0/0 </p>
-                              </div>
-                   
+                    </div>
                 </div>
+            </div>
 
-                  </div>
+            {/* Main Content */}
+            <div className="max-w-7xl mx-auto px-4 lg:px-8 mt-10">
+                <div className="flex flex-col lg:flex-row gap-12">
+                    
+                    {/* Left Side: Info */}
+                    <div className="lg:w-2/3 space-y-12">
+                        <section>
+                            <h2 className="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                                <span className="w-1.5 h-8 bg-indigo-600 rounded-full"></span>
+                                About this course
+                            </h2>
+                            <p className="text-slate-600 leading-relaxed text-lg italic">
+                                "{classDetails?.description}"
+                            </p>
+                        </section>
 
+                        <section>
+                            <h2 className="text-2xl font-bold text-slate-900 mb-6">Course Curriculum</h2>
+                            <div className="rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+                                <Accordion defaultExpanded elevation={0} square className="border-b border-slate-100">
+                                    <AccordionSummary expandIcon={<ExpandMoreIcon className="text-indigo-600" />}>
+                                        <div className="flex items-center gap-3 font-bold text-slate-800">
+                                            <HiOutlineFolderOpen className="text-xl text-indigo-500" />
+                                            Getting Started
+                                        </div>
+                                    </AccordionSummary>
+                                    <AccordionDetails className="bg-slate-50/50">
+                                        <div className="space-y-1">
+                                            {gettingStarted?.map((data, index) => (
+                                                <ClassDetailsAccordion key={index} accordionData={data} />
+                                            ))}
+                                        </div>
+                                    </AccordionDetails>
+                                </Accordion>
 
-                 <div className=' lg:flex justify-between'>
-                 <div className="class_details lg:w-[65%]">
-           
+                                <Accordion elevation={0} square>
+                                    <AccordionSummary expandIcon={<ExpandMoreIcon className="text-indigo-600" />}>
+                                        <div className="flex items-center gap-3 font-bold text-slate-800">
+                                            <HiOutlineFolderOpen className="text-xl text-indigo-500" />
+                                            Advanced Concepts
+                                        </div>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <p className="text-slate-500 text-sm">Technical deep dive into current modules.</p>
+                                    </AccordionDetails>
+                                </Accordion>
+                            </div>
+                        </section>
+                    </div>
 
+                    {/* Right Side: Enroll Card */}
+                    <div className="lg:w-1/3">
+                        <div className="sticky top-8 border border-slate-200 rounded-2xl bg-white shadow-xl shadow-slate-100 overflow-hidden">
+                            <img src={classDetails?.image} alt="Course cover" className="w-full aspect-video object-cover" />
+                            
+                            <div className="p-6">
+                                <div className="flex items-center justify-between mb-6">
+                                    <span className="text-3xl font-black text-slate-900">${classDetails?.price}</span>
+                                    <span className="text-sm text-indigo-600 font-bold bg-indigo-50 px-3 py-1 rounded-md">Bestseller</span>
+                                </div>
 
-           <div className="about_class px-2 lg:px-16">
-                 <h1 className='about_heading'>About Course</h1>
-                <p> {classDetails?.description?.slice(0,400)} </p>
-           </div>
-           {/* //id={`panel${index}-header`}     aria-controls={`panel${index}-content`} */}
-           <div className="course_curriculam px-2 lg:px-16">
-                 <h1 className='about_heading'>course curriculam </h1>
+                                <Link to={`/payment/${classDetails?._id}`} className="block">
+                                    <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-indigo-100 active:scale-95">
+                                        Enroll Now
+                                    </button>
+                                </Link>
 
-                 {/* matarial ui accordion */}
-                 <div>
+                                <div className="mt-8 space-y-4">
+                                    <h3 className="font-bold text-slate-900 text-sm uppercase tracking-widest">This course includes:</h3>
+                                    
+                                    <div className="flex items-center justify-between text-slate-600">
+                                        <div className="flex items-center gap-3">
+                                            <MdOutlineSlowMotionVideo className="text-indigo-500 text-xl" />
+                                            <span className="text-sm font-medium">Video Lectures</span>
+                                        </div>
+                                        <span className="font-bold">{classDetails?.totalLectures}</span>
+                                    </div>
 
-<Accordion defaultExpanded className=''>
- <AccordionSummary
-   expandIcon={<ExpandMoreIcon />}
-   aria-controls="panel1-content"
-   id="panel1-header"
-  
- >
-   <Typography component="span">Getting Started</Typography>
- </AccordionSummary>
- <AccordionDetails>
-   <Typography>
-          <ul>
-            {
-               gettingStarted?.map((data,index) => <li>  <ClassDetailsAccordion key={index} accordionData={data}></ClassDetailsAccordion> </li>)
-            }
-            
-          </ul>
-   </Typography>
- </AccordionDetails>
-</Accordion>
+                                    <div className="flex items-center justify-between text-slate-600">
+                                        <div className="flex items-center gap-3">
+                                            <GoProjectSymlink className="text-indigo-500 text-xl" />
+                                            <span className="text-sm font-medium">Hands-on Projects</span>
+                                        </div>
+                                        <span className="font-bold">{classDetails?.totalProjects}</span>
+                                    </div>
 
-<Accordion>
- <AccordionSummary
-   expandIcon={<ExpandMoreIcon />}
-   aria-controls="panel2-content"
-   id="panel2-header"
- >
-   <Typography component="span">Header</Typography>
- </AccordionSummary>
- <AccordionDetails>
-   <Typography>
-     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-     malesuada lacus ex, sit amet blandit leo lobortis eget.
-   </Typography>
- </AccordionDetails>
-</Accordion>
-</div>
-{/* accordion ends */}
-           </div>
+                                    <div className="flex items-center justify-between text-slate-600">
+                                        <div className="flex items-center gap-3">
+                                            <LiaCircleNotchSolid className="text-indigo-500 text-xl" />
+                                            <span className="text-sm font-medium">Certificate</span>
+                                        </div>
+                                        <span className="font-bold text-indigo-600">Yes</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-    </div>
-
-
-     
-                {/* enroll card */}
-      <div className="enroll_card lg:pr-14 mt-4  lg:-mt-40 sticky ">
-      <div className="card bg-base-100 w-full lg:w-90 shadow-sm">
-<figure className='p-4'> 
-<img
-src={classDetails?.image}
-alt={classDetails?.title}
- className='w-full'
-/>
-</figure>
-<div className="px-4 lg:px-8  py-4">
-<div className="w-full">
-<Link to={`/payment/${classDetails?._id}`} > <button className="primary_btn my-4 uppercase"> <span>enroll now</span></button> </Link>
-</div>
-<h2 className="card-title my-4">This Course Includes : </h2>
-
-<div className="card_cnt">
- <div className='flex items-center justify-between text-xl '>
-             <div className="flex items-center gap-x-2">
-                  <MdOutlineSlowMotionVideo></MdOutlineSlowMotionVideo>
-      <p> Lectures </p>
-             </div>
-      <p> {classDetails?.totalLectures} </p>
- </div>
- 
- <div className="divider my-2"></div>
-
- <div className='flex items-center justify-between text-xl '>
-          <div className="flex items-center gap-x-2">
-                  <GoProjectSymlink></GoProjectSymlink>
-
-       <p>Project</p>
-          </div>
-       <p>{classDetails?.totalProjects} </p>
- </div>
- 
- <div className="divider my-2"></div>
-
- <div className='flex items-center justify-between text-xl '>
-               <div className="flex items-center gap-x-2">
-                  <LiaCircleNotchSolid></LiaCircleNotchSolid>
-         <p> certificate </p>
-               </div>
-         <p> Yes </p>
- </div>
- 
- <div className="divider my-2"></div>
-</div>
-
-</div>
-</div>
-         </div>
-
-                 </div>
-
+                </div>
+            </div>
         </div>
     );
 };
 
 export default ClassDetails;
-    
-
-
-
-
-
-
